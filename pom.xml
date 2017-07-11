@@ -9,6 +9,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
+	
 	<dependencies>
 		<dependency>
 			<groupId>javax</groupId>
@@ -22,13 +23,26 @@
 			<artifactId>primefaces</artifactId>
 			<version>6.1</version>
 		</dependency>
+	
 		<dependency>
 		    <groupId>org.primefaces.themes</groupId>
 		    <artifactId>all-themes</artifactId>
 		    <version>1.0.10</version>
 		</dependency>
-		<!-- http://blog.gsdgroup.net/primefaces-theme-setup-and-new-theme-definition/ -->
+		
+<!-- 		http://blog.gsdgroup.net/primefaces-theme-setup-and-new-theme-definition/ -->
+
 	</dependencies>
+	
+	<repositories>
+	    <repository>
+	        <id>prime-repo</id>
+	        <name>PrimeFaces Maven Repository</name>
+	        <url>http://repository.primefaces.org</url>
+	        <layout>default</layout>
+	   	</repository>
+	</repositories>
+
 	<build>
 		<finalName>BLACK_OAK_GAMES</finalName>
 
