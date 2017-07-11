@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.altar.upacademy.model.Category;
+import org.altar.upacademy.model.Platform;
 import org.altar.upacademy.repository.CategoryRepository;
 
 
@@ -33,10 +34,28 @@ public class CategoryBean implements Serializable{
 	public void setNewCategory(Category newCategory) {
 		this.newCategory = newCategory;
 	}
+	
+	private Category editedCategory = new Category();
 
+
+	public Category getEditedCategory() {
+		return editedCategory;
+	}
+
+	public void setEditedCategory(Category editedCategory) {
+		this.editedCategory = editedCategory;
+	}
 
 	public void addCategory(){
 		categoryRepository.addToDb(newCategory);
+	}
+	
+	public void editCategory() {
+		categoryRepository.updateInDb(editedCategory);
+	}
+	
+	public void deleteCategory(Category category) {
+		categoryRepository.removeFromDb(category);
 	}
 	
 }
