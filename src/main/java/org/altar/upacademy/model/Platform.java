@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @javax.persistence.Entity
 @Table(name="PLATFORM")
 
-public class Platform implements Serializable {
+public class Platform extends Entity implements Serializable {
 	/**
 	 * 
 	 */
