@@ -21,7 +21,7 @@ public class PlatformRepository extends EntityRepository<Platform> {
 @Override
 @Transactional
 public void removeFromDb(Platform platform){
-	Platpform platformToRemove = getDb().find(Platform.class, platform.getId());
+	Platform platformToRemove = getDb().find(Platform.class, platform.getId());
 	getDb().remove(platformToRemove);
 	}
 	
