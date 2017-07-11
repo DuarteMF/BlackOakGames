@@ -4,3 +4,4 @@ target/*
 .metadata/*
 .classpath
 .project
+/target/
