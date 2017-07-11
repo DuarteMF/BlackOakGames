@@ -14,14 +14,18 @@ import org.altar.upacademy.model.Platform;
 @ApplicationScoped
 public class PlatformRepository extends EntityRepository<Platform> {
 	public List<Platform> getDbElements() {
-		Query query = getDb().createQuery("FROM Platform");
+		Query query = getDbConnection().createQuery("FROM Platform");
 		List<Platform> dbElements = (List<Platform>) query.getResultList();
 		return dbElements;
 	}
 //@Override
 //@Transactional
 //public void removeFromDb(Platform platform){
+<<<<<<< HEAD
 //	Platpform platformToRemove = getDb().find(Platform.class, platform.getId());
+=======
+//	Platform platformToRemove = getDb().find(Platform.class, platform.getId());
+>>>>>>> dev
 //	getDb().remove(platformToRemove);
 //	}
 //	
@@ -30,5 +34,9 @@ public class PlatformRepository extends EntityRepository<Platform> {
 //	Platform dbPlatform = getDb().find(Platform.class, id);
 //	dbPlatform.setName(name);
 //	}
+<<<<<<< HEAD
 //
+=======
+
+>>>>>>> dev
 }
