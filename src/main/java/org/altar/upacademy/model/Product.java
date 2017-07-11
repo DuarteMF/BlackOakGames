@@ -30,7 +30,7 @@ public class Product extends Entity implements Serializable {
 	private String publisher = "produtor";
 	@Column(name="Details")
 	private String details = "descrição";
-	@Column(name="Renatal_Price")
+	@Column(name="Rental_Price")
 	private double rentalPrice = 0.0;
 	@Column(name="Availability")
 	private Integer availability = 0;

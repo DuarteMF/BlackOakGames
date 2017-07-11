@@ -13,25 +13,47 @@
 		<header>
     		<h1>Black Oak Games</h1>
 	    </header>
-	    <p:dataTable id="Platform" var="platform" value="#">
+	    <h:form id="PlatformTable">
+	    <p:dataTable id="PlatformList" var="platform" value="#{PlatformBean.getList()}">
 					    	<f:facet name="header">	Platforms </f:facet>
 					    	<p:column headerText="Id">
-					        	<h:outputText value="#" />
+					        	<h:outputText value="#{platform.platformId}" />
 					    	</p:column>
 					    	<p:column headerText="Name">
-					        	<h:outputText value="#" />
+					        	<h:outputText value="#{platform.platformName}" />
 					    	</p:column>
 	    </p:dataTable>
+	    </h:form>
 	    
-	    <p:dataTable id="Category" var="category" value="#">
+	    <h:form id="AddPlatformSection">
+	    <p:growl id="platformAddMsgs" showDetail="true" />
+	    <h:panelGrid columns="3" cellpadding="5">
+        <p:outputLabel value="Nome:" for="addPlatformName" />
+	    <p:inputText id="addPlatformName" value="#{PlatformBean.newPlatform.platformName}"/>
+	    <p:commandButton value="Adicionar" update=":PlatformTable:PlatformList" action="#{PlatformBean.addPlatform()}" />
+	    </h:panelGrid>
+	    </h:form>
+	    
+	    <h:form id="CategoryTable">
+	    <p:dataTable id="CategoryList" var="category" value="#{CategoryBean.getList()}">
 					    	<f:facet name="header">	Categories </f:facet>
 					    	<p:column headerText="Id">
-					        	<h:outputText value="#" />
+					        	<h:outputText value="#{category.categoryId}" />
 					    	</p:column>
 					    	<p:column headerText="Name">
-					        	<h:outputText value="#" />
+					        	<h:outputText value="#{category.categoryName}" />
 					    	</p:column>
 	    </p:dataTable>
+	    </h:form>
+	    
+	    <h:form id="AddCategorySection">
+	    <p:growl id="categoryAddMsgs" showDetail="true" />
+	    <h:panelGrid columns="3" cellpadding="5">
+        <p:outputLabel value="Nome:" for="addCategoryName" />
+	    <p:inputText id="addCategoryName" value="#{CategoryBean.newCategory.categoryName}"/>
+	    <p:commandButton value="Adicionar" update=":CategoryTable:CategoryList" action="#{CategoryBean.addCategory()}" />
+	    </h:panelGrid>
+	    </h:form>
 	  
 		<footer>
 	   		<p>@2017</p>

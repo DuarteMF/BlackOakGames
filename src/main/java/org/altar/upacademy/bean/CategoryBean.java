@@ -11,7 +11,7 @@ import org.altar.upacademy.model.Category;
 import org.altar.upacademy.repository.CategoryRepository;
 
 
-@Named("categoryBean")
+@Named("CategoryBean")
 @RequestScoped
 public class CategoryBean implements Serializable{
 
@@ -20,11 +20,11 @@ public class CategoryBean implements Serializable{
 	@Inject
 	private CategoryRepository categoryRepository;
 	
-	public List<Category> getCategoryList(){
+	public List<Category> getList(){
 		return categoryRepository.getDbCategories();
 	}
 	
-	private Category newCategory;
+	private Category newCategory = new Category();
 	
 	public Category getNewCategory() {
 		return newCategory;
@@ -35,7 +35,7 @@ public class CategoryBean implements Serializable{
 	}
 
 
-	public void addToCategoryList(){
+	public void addCategory(){
 		categoryRepository.addToDb(newCategory);
 	}
 	
