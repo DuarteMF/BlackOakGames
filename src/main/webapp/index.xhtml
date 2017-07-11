@@ -1,1 +1,40 @@
-teste
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+	</h:head>
+	<h:body>
+		<header>
+    		<h1>Black Oak Games</h1>
+	    </header>
+	    <p:dataTable id="Platform" var="platform" value="#">
+					    	<f:facet name="header">	Platforms </f:facet>
+					    	<p:column headerText="Id">
+					        	<h:outputText value="#" />
+					    	</p:column>
+					    	<p:column headerText="Name">
+					        	<h:outputText value="#" />
+					    	</p:column>
+	    </p:dataTable>
+	    
+	    <p:dataTable id="Category" var="category" value="#">
+					    	<f:facet name="header">	Categories </f:facet>
+					    	<p:column headerText="Id">
+					        	<h:outputText value="#" />
+					    	</p:column>
+					    	<p:column headerText="Name">
+					        	<h:outputText value="#" />
+					    	</p:column>
+	    </p:dataTable>
+	  
+		<footer>
+	   		<p>@2017</p>
+	   </footer>
+	</h:body>
+</html>
