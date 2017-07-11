@@ -1,0 +1,40 @@
+package org.altar.upacademy.model;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@javax.persistence.Entity
+@Table(name="PLATFORM")
+
+public class Platform extends Entity implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="Platform_ID")
+	private Integer platformId = 0;
+	@Column(name="Platform_Name", nullable = true)
+	private String platformName = "plataforma";
+	
+	public Integer getPlatformId() {
+		return platformId;
+	}
+	public void setPlatform_ID(Integer platformId) {
+		this.platformId = platformId;
+	}
+	public String getPlatformName() {
+		return platformName;
+	}
+	public void setPlatformName(String platformName) {
+		this.platformName = platformName;
+	}
+public Platform(){
+}
+}
