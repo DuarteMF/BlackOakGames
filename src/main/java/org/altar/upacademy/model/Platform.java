@@ -19,15 +19,15 @@ public class Platform extends Entity implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="Platform_ID")
-	private Integer Platform_ID = 0;
+	private Integer platformId = 0;
 	@Column(name="Platform_Name", nullable = true)
 	private String platformName = "plataforma";
 	
-	public Integer getPlatform_ID() {
-		return Platform_ID;
+	public Integer getPlatformId() {
+		return platformId;
 	}
-	public void setPlatform_ID(Integer platform_ID) {
-		Platform_ID = platform_ID;
+	public void setPlatform_ID(Integer platformId) {
+		this.platformId = platformId;
 	}
 	public String getPlatformName() {
 		return platformName;
