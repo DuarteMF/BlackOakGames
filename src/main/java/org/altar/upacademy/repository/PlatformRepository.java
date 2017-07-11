@@ -18,17 +18,17 @@ public class PlatformRepository extends EntityRepository<Platform> {
 		List<Platform> dbElements = (List<Platform>) query.getResultList();
 		return dbElements;
 	}
-@Override
-@Transactional
-public void removeFromDb(Platform platform){
-	Platpform platformToRemove = getDb().find(Platform.class, platform.getId());
-	getDb().remove(platformToRemove);
-	}
-	
-@Transactional
-public void alterInDb(int id, String name, List<Integer> platformId, string platformName){
-	Platform dbPlatform = getDb().find(Platform.class, id);
-	dbPlatform.setName(name);
-	}
-
+//@Override
+//@Transactional
+//public void removeFromDb(Platform platform){
+//	Platpform platformToRemove = getDb().find(Platform.class, platform.getId());
+//	getDb().remove(platformToRemove);
+//	}
+//	
+//@Transactional
+//public void alterInDb(int id, String name, List<Integer> platformId, string platformName){
+//	Platform dbPlatform = getDb().find(Platform.class, id);
+//	dbPlatform.setName(name);
+//	}
+//
 }
