@@ -39,7 +39,7 @@ public void setEditedProduct(Product editedProduct) {
 private ProductRepository productRepository;
 
 public List<Product> getList() {
-	return productRepository.getDbProducts();
+	return productRepository.getDbProduct();
 }
 
 
