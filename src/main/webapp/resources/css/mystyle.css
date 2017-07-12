@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+
+#footer {
+	text-align:center;
+}
+
+ h1 {
+  color: #FFD200;  
+  font-size: 47px;
+  margin-bottom: 15px;
+  margin-top: 0;
+  font-weight: lighter;
+  
+}
+
+body{
+	background-image: url(https://newevolutiondesigns.com/images/freebies/black-wallpaper-10.jpg);
+}
