@@ -1,11 +1,13 @@
 package org.altar.upacademy.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @javax.persistence.Entity
@@ -39,6 +41,17 @@ public class Category extends Entity implements Serializable {
 
 	public Category() {
 
+	}
+	
+	@ManyToMany(targetEntity=Product.class)
+	private Set<Product> productSet;
+
+	public Set<Product> getProductSet() {
+		return productSet;
+	}
+
+	public void setProductSet(Set<Product> productSet) {
+		this.productSet = productSet;
 	}
 
 }

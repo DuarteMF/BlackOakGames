@@ -100,5 +100,14 @@ public class Product extends Entity implements Serializable {
 		this.platformSet = platformSet;
 	}
 	
+	@ManyToMany(targetEntity=Category.class)
+	private Set<Category> categorySet;
+
+	public Set<Category> getCategorySet() {
+		return categorySet;
+	}
+	public void setCategorySet(Set<Category> categorySet) {
+		this.categorySet = categorySet;
+	}
 	
 }
