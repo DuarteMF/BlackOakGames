@@ -8,14 +8,9 @@
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
 	<h:outputStylesheet library="css" name="mystyle.css"></h:outputStylesheet>
-	<!-- <link href="css/bootstrap.min.css" rel="stylesheet"/>
-	<link href="css/skdslider.css" rel="stylesheet"/>
-	<link rel="stylesheet" href="css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="css/animate.css"/>
-	<link rel="stylesheet" href="style.css"/>
-	<link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
-	<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100' rel='stylesheet' type='text/css'/>  -->
+
 	
 </h:head>
 <h:body>
@@ -109,7 +104,100 @@
 				action="#{CategoryBean.editCategory()}" />
 		</h:panelGrid>
 	</h:form>
+	
+		<h:form id="ProductTable">
+		<p:growl id="productTableMsgs" showDetail="true" />
+		<p:dataTable id="ProductList" var="product"
+			value="#{ProductBean.getList()}">
+			<f:facet name="header">	Products </f:facet>
 
+			<p:column headerText="Id">
+				<h:outputText value="#{product.productId}" />
+			</p:column>
+			<p:column headerText="Name">
+				<h:outputText value="#{product.productName}" />
+			</p:column>
+			<p:column headerText="Year">
+				<h:outputText value="#{product.year}" />
+			</p:column>
+			<p:column headerText="Publisher">
+				<h:outputText value="#{product.publisher}" />
+			</p:column>
+			<p:column headerText="Details">
+				<h:outputText value="#{product.details}" />
+			</p:column>
+			<p:column headerText="Rental Price">
+				<h:outputText value="#{product.rentalPrice}" />
+			</p:column>
+			<p:column headerText="Availability">
+				<h:outputText value="#{product.availability}" />
+			</p:column>
+			<p:column headerText="Opções">
+				<p:commandButton update=":EditProductSection" icon="ui-icon-pencil" title="Edit">
+                <f:setPropertyActionListener value="#{product}" target="#{ProductBean.editedProduct}" />
+            </p:commandButton>
+            <p:commandButton update=":ProductTable:ProductList" action="#{ProductBean.deleteProduct(product)}" icon="ui-icon-trash" title="Delete"/>
+			</p:column>
+		</p:dataTable>
+	</h:form>
+	<div class="row">
+		<div class="col-xs-6">
+			<h:form id="AddProductSection">
+				<p:growl id="productAddMsgs" showDetail="true" />
+				<h:panelGrid columns="2" cellpadding="5">
+					<p:outputLabel value="Nome:" for="addProductName" />
+					<p:inputText id="addProductName"
+						value="#{ProductBean.newProduct.productName}" />
+					<p:outputLabel value="Year:" for="addYear" />
+					<p:inputText id="addYear"
+						value="#{ProductBean.newProduct.year}" />
+					<p:outputLabel value="Publisher:" for="addPublisher" />
+					<p:inputText id="addPublisher"
+						value="#{ProductBean.newProduct.publisher}" />
+					<p:outputLabel value="Details:" for="addDetails" />
+					<p:inputText id="addDetails"
+						value="#{ProductBean.newProduct.details}" />
+					<p:outputLabel value="Rental Price:" for="addRentalPrice" />
+					<p:inputText id="addRentalPrice"
+						value="#{ProductBean.newProduct.rentalPrice}" />
+					<p:outputLabel value="Availability:" for="addAvailability" />
+					<p:inputText id="addAvailability"
+						value="#{ProductBean.newProduct.availability}" />
+					<p:commandButton value="Adicionar"
+						update=":ProductTable:ProductList"
+						action="#{ProductBean.addProduct()}" />
+				</h:panelGrid>
+			</h:form>
+		</div>
+		<div class="col-xs-6">
+			<h:form id="EditProductSection">
+				<p:growl id="productEditMsgs" showDetail="true" />
+				<h:inputHidden value="#{ProductBean.editedProduct.productId}" />
+				<h:panelGrid columns="2" cellpadding="5">
+					<p:outputLabel value="Nome:" for="editProductName" />
+					<p:inputText id="editProductName"
+						value="#{ProductBean.editedProduct.productName}" />
+					<p:outputLabel value="Year:" for="editYear" />
+					<p:inputText id="editYear"
+						value="#{ProductBean.editedProduct.year}" />
+					<p:outputLabel value="Publisher:" for="editPublisher" />
+					<p:inputText id="editPublisher"
+						value="#{ProductBean.editedProduct.publisher}" />
+					<p:outputLabel value="Details:" for="editDetails" />
+					<p:inputText id="editDetails"
+						value="#{ProductBean.editedProduct.details}" />
+					<p:outputLabel value="Rental Price:" for="editRentalPrice" />
+					<p:inputText id="editRentalPrice"
+						value="#{ProductBean.editedProduct.rentalPrice}" />
+					<p:outputLabel value="Availability:" for="editAvailability" />
+					<p:inputText id="editAvailability"
+						value="#{ProductBean.editedProduct.availability}" />
+					<p:commandButton value="Editar" update=":ProductTable:ProductList"
+						action="#{ProductBean.editProduct()}" />
+				</h:panelGrid>
+			</h:form>
+		</div>
+	</div>
 	<footer>
 		<p>@2017</p>
 	</footer>
