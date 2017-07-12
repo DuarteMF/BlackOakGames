@@ -4,17 +4,17 @@
 	text-align:center;
 }
 
- h1 {
+ #title {
   color: #FFD200;  
   font-size: 47px;
   margin-bottom: 15px;
   margin-top: 0;
   font-weight: lighter;
-  text-align:center;
+  text-align:left;
   
 }
 
  body{
-	background-image: url(https://newevolutiondesigns.com/images/freebies/black-wallpaper-10.jpg);
+/* 	background-image: url(https://newevolutiondesigns.com/images/freebies/black-wallpaper-10.jpg); */
 	color: #FFD200;
 } 

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="mystyle.css"></h:outputStylesheet>
+</h:head>
+<h:body>
+	<div class="headersearch  col-xs-6 col-xs-offset-3" >Search Game  
+     <!--  https://codewithzenmind.wordpress.com/2012/08/23/learning-java-ee-part-2-jsf-and-managed-bean-for-part-search/   -->
+    <!--  https://stackoverflow.com/questions/7544335/jsf2-search-box -->
+	
+		<header><h1>Black Oak Games</h1></header>
+		<h:form>
+		    <h:inputText id="search" value="#{ProductBean.searchString}"></h:inputText>
+		    <h:commandButton value="Search by name" action="#{ProductBean.searchByName(ProductBean.searchString)}">
+		    <!-- <h:commandButton value="Search by category" action="#{ProductBean.searchByCategory(ProductBean.searchString)}">
+		    <h:commandButton value="Search by platform" action="#{ProductBean.searchByPlatform(ProductBean.searchString)}"> -->
+		        <f:ajax execute="search" render="output"></f:ajax>
+		    </h:commandButton>
+		    <h2><h:outputText id="output" value="#{ProductBean.product}"></h:outputText></h2>
+	</div> 
+</h:form>	 
+</h:body>
+</html>
