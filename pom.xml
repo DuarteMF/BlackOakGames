@@ -24,24 +24,21 @@
 			<version>6.1</version>
 		</dependency>
 	
-		<dependency>
+<!-- 		<dependency>
 		    <groupId>org.primefaces.themes</groupId>
 		    <artifactId>all-themes</artifactId>
 		    <version>1.0.10</version>
-		</dependency>
-		
-<!-- 		http://blog.gsdgroup.net/primefaces-theme-setup-and-new-theme-definition/ -->
-
+		</dependency> -->
 	</dependencies>
 	
-	<repositories>
+<!-- 	<repositories>
 	    <repository>
 	        <id>prime-repo</id>
 	        <name>PrimeFaces Maven Repository</name>
 	        <url>http://repository.primefaces.org</url>
 	        <layout>default</layout>
 	   	</repository>
-	</repositories>
+	</repositories> -->
 
 	<build>
 		<finalName>BLACK_OAK_GAMES</finalName>
