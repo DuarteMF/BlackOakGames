@@ -4,11 +4,14 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.altar.upacademy.model.Platform;
 import org.altar.upacademy.repository.PlatformRepository;
+import org.primefaces.event.CellEditEvent;
 
 
 
@@ -64,6 +67,16 @@ private static final long serialVersionUID = 1L;
 	public void setNewPlatform(Platform newPlatform) {
 		this.newPlatform = newPlatform;
 	}
+	
+	private Platform editedPlatform = new Platform();
+
+	public Platform getEditedPlatform() {
+		return editedPlatform;
+	}
+
+	public void setEditedPlatform(Platform editedPlatform) {
+		this.editedPlatform = editedPlatform;
+	}
 
 	@Inject
 	private PlatformRepository platformRepository;
@@ -76,7 +89,14 @@ private static final long serialVersionUID = 1L;
 	public void addPlatform() {
 		platformRepository.addToDb(newPlatform);
 	}
-
+	
+	public void editPlatform() {
+		platformRepository.updateInDb(editedPlatform);
+	}
+	
+	public void deletePlatform(Platform platform) {
+		platformRepository.removeFromDb(platform);
+	}
 	
 //	public String editProduct() {
 //		productService.editEntity(id, name, shelfId, discount, tax, price);
