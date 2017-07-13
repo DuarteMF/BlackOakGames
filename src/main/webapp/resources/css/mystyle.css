@@ -15,6 +15,17 @@
 }
 
  body{
-/* 	background-image: url(https://newevolutiondesigns.com/images/freebies/black-wallpaper-10.jpg); */
+
 	color: #FFD200;
 } 
+
+.ui-toolbar{
+	background-color:#2f3c54;
+	vertical-align:center !important;
+	content-align:center !important;
+}
+
+.ui-toolbar-group-left {
+	vertical-align:center !important;
+	text-align:center;
+}

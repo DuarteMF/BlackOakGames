@@ -10,22 +10,50 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
 	<h:outputStylesheet library="css" name="mystyle.css"></h:outputStylesheet>
+	
 </h:head>
 <h:body>
-	<div class="headersearch  col-xs-6 col-xs-offset-3" >Search Game  
-     <!--  https://codewithzenmind.wordpress.com/2012/08/23/learning-java-ee-part-2-jsf-and-managed-bean-for-part-search/   -->
-    <!--  https://stackoverflow.com/questions/7544335/jsf2-search-box -->
-	
-		<header><h1>Black Oak Games</h1></header>
-		<h:form>
-		    <h:inputText id="search" value="#{ProductBean.searchString}"></h:inputText>
-		    <h:commandButton value="Search by name" action="#{ProductBean.searchByName(ProductBean.searchString)}">
-		    <!-- <h:commandButton value="Search by category" action="#{ProductBean.searchByCategory(ProductBean.searchString)}">
-		    <h:commandButton value="Search by platform" action="#{ProductBean.searchByPlatform(ProductBean.searchString)}"> -->
-		        <f:ajax execute="search" render="output"></f:ajax>
-		    </h:commandButton>
-		    <h2><h:outputText id="output" value="#{ProductBean.product}"></h:outputText></h2>
-	</div> 
-</h:form>	 
+	<header>
+		<div class="container-fluid">
+
+			<div class="row header">
+				<p:toolbar>
+					<f:facet name="left">
+						<div class="Título">
+							<p>Black Oak Games</p>
+						</div>
+					</f:facet>
+
+					<f:facet name="right">
+						<h:form>
+
+							<h:panelGrid columns="5" cellpadding="5">
+								<h:outputLabel for="txt1" />
+								<p:inputText id="Title" value="#{searchView.text1}"
+									required="true" label="Text 1" placeholder="Title">
+									<f:validateLength minimum="2" />
+								</p:inputText>
+								<h:outputText value="#{searchView.text1}" />
+
+								<p:menuButton value="Category">
+									<p:menuitem value="Action" />
+									<p:menuitem value="Adventure" />
+									<p:menuitem value="RPG" />
+								</p:menuButton>
+
+								<p:menuButton value="Platform">
+									<p:menuitem value="PS4" />
+									<p:menuitem value="XBOX" />
+									<p:menuitem value="Wii" />
+								</p:menuButton>
+							</h:panelGrid>
+						</h:form>
+
+
+					</f:facet>
+				</p:toolbar>
+			</div>
+		</div>
+	</header>
 </h:body>
 </html>
