@@ -11,7 +11,7 @@
 	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
 	<h:outputStylesheet library="css" name="mystyle.css"></h:outputStylesheet>
 
-	
+
 </h:head>
 <h:body>
 	<header>
@@ -29,11 +29,18 @@
 			<p:column headerText="Name">
 				<h:outputText value="#{platform.platformName}" />
 			</p:column>
+			<p:column headerText="Games">
+				<h:outputText value="#{platform.productSet}" />
+			</p:column>
 			<p:column headerText="Opções">
-				<p:commandButton update=":EditPlatformSection" icon="ui-icon-pencil" title="Edit">
-                <f:setPropertyActionListener value="#{platform}" target="#{PlatformBean.editedPlatform}" />
-            </p:commandButton>
-            <p:commandButton update=":PlatformTable:PlatformList" action="#{PlatformBean.deletePlatform(platform)}" icon="ui-icon-trash" title="Delete"/>
+				<p:commandButton update=":EditPlatformSection" icon="ui-icon-pencil"
+					title="Edit">
+					<f:setPropertyActionListener value="#{platform}"
+						target="#{PlatformBean.editedPlatform}" />
+				</p:commandButton>
+				<p:commandButton update=":PlatformTable:PlatformList"
+					action="#{PlatformBean.deletePlatform(platform)}"
+					icon="ui-icon-trash" title="Delete" />
 			</p:column>
 		</p:dataTable>
 	</h:form>
@@ -72,11 +79,18 @@
 			<p:column headerText="Name">
 				<h:outputText value="#{category.categoryName}" />
 			</p:column>
+			<p:column headerText="Games">
+				<h:outputText value="#{category.productSet}" />
+			</p:column>
 			<p:column headerText="Opções">
-				<p:commandButton update=":EditCategorySection" icon="ui-icon-pencil" title="Edit">
-                <f:setPropertyActionListener value="#{category}" target="#{CategoryBean.editedCategory}" />
-            </p:commandButton>
-            <p:commandButton update=":CategoryTable:CategoryList" action="#{CategoryBean.deleteCategory(category)}" icon="ui-icon-trash" title="Delete"/>
+				<p:commandButton update=":EditCategorySection" icon="ui-icon-pencil"
+					title="Edit">
+					<f:setPropertyActionListener value="#{category}"
+						target="#{CategoryBean.editedCategory}" />
+				</p:commandButton>
+				<p:commandButton update=":CategoryTable:CategoryList"
+					action="#{CategoryBean.deleteCategory(category)}"
+					icon="ui-icon-trash" title="Delete" />
 			</p:column>
 		</p:dataTable>
 	</h:form>
@@ -92,7 +106,7 @@
 				action="#{CategoryBean.addCategory()}" />
 		</h:panelGrid>
 	</h:form>
-	
+
 	<h:form id="EditCategorySection">
 		<p:growl id="categoryEditMsgs" showDetail="true" />
 		<h:inputHidden value="#{CategoryBean.editedCategory.categoryId}" />
@@ -104,8 +118,8 @@
 				action="#{CategoryBean.editCategory()}" />
 		</h:panelGrid>
 	</h:form>
-	
-		<h:form id="ProductTable">
+
+	<h:form id="ProductTable">
 		<p:growl id="productTableMsgs" showDetail="true" />
 		<p:dataTable id="ProductList" var="product"
 			value="#{ProductBean.getList()}">
@@ -120,6 +134,12 @@
 			<p:column headerText="Year">
 				<h:outputText value="#{product.year}" />
 			</p:column>
+			<p:column headerText="Categories">
+				<h:outputText value="#{product.categorySet}" />
+			</p:column>
+			<p:column headerText="Platforms">
+				<h:outputText value="#{product.platformSet}" />
+			</p:column>
 			<p:column headerText="Publisher">
 				<h:outputText value="#{product.publisher}" />
 			</p:column>
@@ -133,10 +153,14 @@
 				<h:outputText value="#{product.availability}" />
 			</p:column>
 			<p:column headerText="Opções">
-				<p:commandButton update=":EditProductSection" icon="ui-icon-pencil" title="Edit">
-                <f:setPropertyActionListener value="#{product}" target="#{ProductBean.editedProduct}" />
-            </p:commandButton>
-            <p:commandButton update=":ProductTable:ProductList" action="#{ProductBean.deleteProduct(product)}" icon="ui-icon-trash" title="Delete"/>
+				<p:commandButton update=":EditProductSection" icon="ui-icon-pencil"
+					title="Edit">
+					<f:setPropertyActionListener value="#{product}"
+						target="#{ProductBean.editedProduct}" />
+				</p:commandButton>
+				<p:commandButton update=":ProductTable:ProductList"
+					action="#{ProductBean.deleteProduct(product)}" icon="ui-icon-trash"
+					title="Delete" />
 			</p:column>
 		</p:dataTable>
 	</h:form>
@@ -149,8 +173,23 @@
 					<p:inputText id="addProductName"
 						value="#{ProductBean.newProduct.productName}" />
 					<p:outputLabel value="Year:" for="addYear" />
-					<p:inputText id="addYear"
-						value="#{ProductBean.newProduct.year}" />
+					<p:inputText id="addYear" value="#{ProductBean.newProduct.year}" />
+					<p:outputLabel value="Categories:" for="addCategories"
+						rendered="#{not empty ProductBean.existingCategories()}" />
+					<p:selectCheckboxMenu id="addCategories"
+						value="#{ProductBean.categoryNameList}" label="Categories"
+						multiple="true"
+						rendered="#{not empty ProductBean.existingCategories()}">
+						<f:selectItems value="#{ProductBean.existingCategories()}" />
+					</p:selectCheckboxMenu>
+					<p:outputLabel value="Platforms:" for="addPlatforms"
+						rendered="#{not empty ProductBean.existingPlatforms()}" />
+					<p:selectCheckboxMenu id="addPlatforms"
+						value="#{ProductBean.platformNameList}" label="Platforms"
+						multiple="true"
+						rendered="#{not empty ProductBean.existingPlatforms()}">
+						<f:selectItems value="#{ProductBean.existingPlatforms()}" />
+					</p:selectCheckboxMenu>
 					<p:outputLabel value="Publisher:" for="addPublisher" />
 					<p:inputText id="addPublisher"
 						value="#{ProductBean.newProduct.publisher}" />
@@ -166,6 +205,8 @@
 					<p:commandButton value="Adicionar"
 						update=":ProductTable:ProductList"
 						action="#{ProductBean.addProduct()}" />
+					<p:commandButton value="Teste"
+						action="#{ProductBean.display()}" />
 				</h:panelGrid>
 			</h:form>
 		</div>

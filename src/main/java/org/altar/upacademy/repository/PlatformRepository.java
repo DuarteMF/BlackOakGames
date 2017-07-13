@@ -1,10 +1,13 @@
 package org.altar.upacademy.repository;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import org.altar.upacademy.model.Platform;
@@ -25,11 +28,17 @@ public class PlatformRepository extends EntityRepository<Platform> {
 		Platform platformToRemove = getDbConnection().find(Platform.class, platform.getPlatformId());
 		getDbConnection().remove(platformToRemove);
 	}
-	//
-	// @Transactional
-	// public void alterInDb(int id, String name, List<Integer> platformId,
-	// string platformName){
-	// Platform dbPlatform = getDb().find(Platform.class, id);
-	// dbPlatform.setName(name);
-	// }
+	
+	public Set<Platform> getPlatformsFromNames(List<String> platformNames){
+		Set<Platform> platforms = new HashSet<>();
+		for(String name: platformNames){
+//			TypedQuery<Platform> query = getDbConnection().createQuery("SELECT p FROM Platform AS p WHERE p.platformName = ?", Platform.class);
+//			query.setParameter(1, name);
+			TypedQuery<Platform> query = getDbConnection().createQuery("SELECT p FROM Platform AS p WHERE p.platformName = :name", Platform.class);
+			query.setParameter("name", name);
+			List<Platform> results = query.getResultList();
+			platforms.add(results.get(0));
+		}
+		return platforms;
+	}
 }
