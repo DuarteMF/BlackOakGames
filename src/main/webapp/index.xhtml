@@ -4,7 +4,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -126,7 +127,7 @@
 			<p:column headerText="Details">
 				<h:outputText value="#{product.details}" />
 			</p:column>
-			<p:column headerText="Rental Price">
+			<p:column headerText="Rental Price (€ per week)">
 				<h:outputText value="#{product.rentalPrice}" />
 			</p:column>
 			<p:column headerText="Availability">
@@ -145,24 +146,39 @@
 			<h:form id="AddProductSection">
 				<p:growl id="productAddMsgs" showDetail="true" />
 				<h:panelGrid columns="2" cellpadding="5">
+				
 					<p:outputLabel value="Nome:" for="addProductName" />
 					<p:inputText id="addProductName"
-						value="#{ProductBean.newProduct.productName}" />
-					<p:outputLabel value="Year:" for="addYear" />
-					<p:inputText id="addYear"
-						value="#{ProductBean.newProduct.year}" />
+						value="#{ProductBean.newProduct.productName}" placeholder="Insert Product" />
+						
+					 <h:outputLabel for="addYear" value="Year:"/>                    
+           			<p:inputText id="addYear" value="#{ProductBean.newProduct.year}" placeholder="1980-2018">
+                	<f:validateDoubleRange minimum="1980" maximum="2018" />
+            		</p:inputText>
+					
 					<p:outputLabel value="Publisher:" for="addPublisher" />
-					<p:inputText id="addPublisher"
+					<p:inputText id="addPublisher" 
 						value="#{ProductBean.newProduct.publisher}" />
+						
 					<p:outputLabel value="Details:" for="addDetails" />
 					<p:inputText id="addDetails"
 						value="#{ProductBean.newProduct.details}" />
-					<p:outputLabel value="Rental Price:" for="addRentalPrice" />
-					<p:inputText id="addRentalPrice"
-						value="#{ProductBean.newProduct.rentalPrice}" />
+						
+				
+					  <h:outputLabel for="addRentalPrice" value="Rental Price (€ per week):"/>                    
+            		<p:inputText id="addRentalPrice" value="#{ProductBean.newProduct.rentalPrice}" placeholder="1.00-35.00" converterMessage="Cannot convert to double.">
+                		<f:validateDoubleRange minimum="1.0" maximum="35.0" />
+           			 </p:inputText>	
+						
+						
+						
+						
+						
+						
 					<p:outputLabel value="Availability:" for="addAvailability" />
 					<p:inputText id="addAvailability"
 						value="#{ProductBean.newProduct.availability}" />
+						
 					<p:commandButton value="Adicionar"
 						update=":ProductTable:ProductList"
 						action="#{ProductBean.addProduct()}" />

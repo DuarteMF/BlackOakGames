@@ -44,6 +44,7 @@ public List<Product> getList() {
 
 
 public void addProduct() {
+	System.out.println(newProduct.getRentalPrice());
 	productRepository.addToDb(newProduct);
 }
 

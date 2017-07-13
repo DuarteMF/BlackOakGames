@@ -23,19 +23,19 @@ public class Product extends Entity implements Serializable {
 	@Column(name="Product_ID")
 	private Integer productId = 0;
 	@Column(name="Product_Name", nullable = true)
-	private String productName = "produto";
+	private String productName = null;
 //	@Column(name="Category_ID")
 //	private Integer categoryId = 0;
 	@Column(name="Year")
-	private Integer year = 0000;
+	private Integer year = null;
 	@Column(name="Publisher")
 	private String publisher = "produtor";
 	@Column(name="Details")
 	private String details = "descrição";
 	@Column(name="Rental_Price")
-	private double rentalPrice = 0.0;
+	private Double rentalPrice = null;
 	@Column(name="Availability")
-	private Integer availability = 0;
+	private Integer availability = null;
 	
 	public Integer getProductId() {
 		return productId;
@@ -73,10 +73,10 @@ public class Product extends Entity implements Serializable {
 	public void setDetails(String details) {
 		this.details = details;
 	}
-	public double getRentalPrice() {
+	public Double getRentalPrice() {
 		return rentalPrice;
 	}
-	public void setRentalPrice(double rentalPrice) {
+	public void setRentalPrice(Double rentalPrice) {
 		this.rentalPrice = rentalPrice;
 	}
 	public Integer getAvailability() {
