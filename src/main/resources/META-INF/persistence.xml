@@ -15,7 +15,7 @@
 			<property name="javax.persistence.schema-generation.create-source"
 				value="metadata" />
 
-			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.show_sql" value="false" />
 			<property name="hibernate.format_sql" value="true" />
 			<property name="hibernate.use_sql_comments" value="true" />
 		</properties>

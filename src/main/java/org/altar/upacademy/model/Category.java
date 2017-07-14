@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -43,7 +44,7 @@ public class Category extends Entity implements Serializable {
 
 	}
 	
-	@ManyToMany(targetEntity=Product.class)
+	@ManyToMany(targetEntity=Product.class, fetch=FetchType.EAGER)
 	private Set<Product> productSet;
 
 	public Set<Product> getProductSet() {
@@ -54,4 +55,8 @@ public class Category extends Entity implements Serializable {
 		this.productSet = productSet;
 	}
 
+	@Override
+	public String toString(){
+		return this.categoryName;
+	}
 }

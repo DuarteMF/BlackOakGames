@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -82,7 +83,7 @@ public class Product extends Entity implements Serializable {
 
 	}
 	
-	@ManyToMany(targetEntity=Platform.class)
+	@ManyToMany(targetEntity=Platform.class, fetch=FetchType.EAGER)
 	private Set<Platform> platformSet;
 
 	public Set<Platform> getPlatformSet() {
@@ -92,7 +93,7 @@ public class Product extends Entity implements Serializable {
 		this.platformSet = platformSet;
 	}
 	
-	@ManyToMany(targetEntity=Category.class)
+	@ManyToMany(targetEntity=Category.class, fetch=FetchType.EAGER)
 	private Set<Category> categorySet;
 
 	public Set<Category> getCategorySet() {
@@ -102,4 +103,8 @@ public class Product extends Entity implements Serializable {
 		this.categorySet = categorySet;
 	}
 	
+	@Override
+	public String toString(){
+		return this.productName;
+	}
 }

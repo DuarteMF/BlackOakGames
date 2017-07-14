@@ -12,12 +12,13 @@
 	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
 	<h:outputStylesheet library="css" name="mystyle.css"></h:outputStylesheet>
 
-	
+
 </h:head>
 <h:body>
 	<header>
 		<h1>Black Oak Games</h1>
 	</header>
+	<p:growl id="errorMsgs" showDetail="true"/> 
 	<h:form id="PlatformTable">
 		<p:growl id="platformTableMsgs" showDetail="true" />
 		<p:dataTable id="PlatformList" var="platform"
@@ -30,11 +31,18 @@
 			<p:column headerText="Name">
 				<h:outputText value="#{platform.platformName}" />
 			</p:column>
+			<p:column headerText="Games">
+				<h:outputText value="#{platform.productSet}" />
+			</p:column>
 			<p:column headerText="Opções">
-				<p:commandButton update=":EditPlatformSection" icon="ui-icon-pencil" title="Edit">
-                <f:setPropertyActionListener value="#{platform}" target="#{PlatformBean.editedPlatform}" />
-            </p:commandButton>
-            <p:commandButton update=":PlatformTable:PlatformList" action="#{PlatformBean.deletePlatform(platform)}" icon="ui-icon-trash" title="Delete"/>
+				<p:commandButton update=":EditPlatformSection" icon="ui-icon-pencil"
+					title="Edit">
+					<f:setPropertyActionListener value="#{platform}"
+						target="#{PlatformBean.editedPlatform}" />
+				</p:commandButton>
+				<p:commandButton update=":PlatformTable:PlatformList"
+					action="#{PlatformBean.deletePlatform(platform)}"
+					icon="ui-icon-trash" title="Delete" />
 			</p:column>
 		</p:dataTable>
 	</h:form>
@@ -73,11 +81,18 @@
 			<p:column headerText="Name">
 				<h:outputText value="#{category.categoryName}" />
 			</p:column>
+			<p:column headerText="Games">
+				<h:outputText value="#{category.productSet}" />
+			</p:column>
 			<p:column headerText="Opções">
-				<p:commandButton update=":EditCategorySection" icon="ui-icon-pencil" title="Edit">
-                <f:setPropertyActionListener value="#{category}" target="#{CategoryBean.editedCategory}" />
-            </p:commandButton>
-            <p:commandButton update=":CategoryTable:CategoryList" action="#{CategoryBean.deleteCategory(category)}" icon="ui-icon-trash" title="Delete"/>
+				<p:commandButton update=":EditCategorySection" icon="ui-icon-pencil"
+					title="Edit">
+					<f:setPropertyActionListener value="#{category}"
+						target="#{CategoryBean.editedCategory}" />
+				</p:commandButton>
+				<p:commandButton update=":CategoryTable:CategoryList"
+					action="#{CategoryBean.deleteCategory(category)}"
+					icon="ui-icon-trash" title="Delete" />
 			</p:column>
 		</p:dataTable>
 	</h:form>
@@ -93,7 +108,7 @@
 				action="#{CategoryBean.addCategory()}" />
 		</h:panelGrid>
 	</h:form>
-	
+
 	<h:form id="EditCategorySection">
 		<p:growl id="categoryEditMsgs" showDetail="true" />
 		<h:inputHidden value="#{CategoryBean.editedCategory.categoryId}" />
@@ -105,8 +120,8 @@
 				action="#{CategoryBean.editCategory()}" />
 		</h:panelGrid>
 	</h:form>
-	
-		<h:form id="ProductTable">
+
+	<h:form id="ProductTable">
 		<p:growl id="productTableMsgs" showDetail="true" />
 		<p:dataTable id="ProductList" var="product"
 			value="#{ProductBean.getList()}">
@@ -121,6 +136,12 @@
 			<p:column headerText="Year">
 				<h:outputText value="#{product.year}" />
 			</p:column>
+			<p:column headerText="Categories">
+				<h:outputText value="#{product.categorySet}" />
+			</p:column>
+			<p:column headerText="Platforms">
+				<h:outputText value="#{product.platformSet}" />
+			</p:column>
 			<p:column headerText="Publisher">
 				<h:outputText value="#{product.publisher}" />
 			</p:column>
@@ -134,14 +155,18 @@
 				<h:outputText value="#{product.availability}" />
 			</p:column>
 			<p:column headerText="Opções">
-				<p:commandButton update=":EditProductSection" icon="ui-icon-pencil" title="Edit">
-                <f:setPropertyActionListener value="#{product}" target="#{ProductBean.editedProduct}" />
-            </p:commandButton>
-            <p:commandButton update=":ProductTable:ProductList" action="#{ProductBean.deleteProduct(product)}" icon="ui-icon-trash" title="Delete"/>
+				<p:commandButton update=":EditProductSection, :errorMsgs" icon="ui-icon-pencil"
+					title="Edit" action="#{ProductBean.display(product)}">
+					<f:setPropertyActionListener value="#{product}"
+						target="#{ProductBean.editedProduct}" />
+				</p:commandButton>
+				<p:commandButton update=":ProductTable:ProductList"
+					action="#{ProductBean.deleteProduct(product)}" icon="ui-icon-trash"
+					title="Delete" />
 			</p:column>
 		</p:dataTable>
 	</h:form>
-	<div class="row">
+	<div class="row" id="teste">
 		<div class="col-xs-6">
 			<h:form id="AddProductSection">
 				<p:growl id="productAddMsgs" showDetail="true" />
@@ -149,12 +174,34 @@
 				
 					<p:outputLabel value="Nome:" for="addProductName" />
 					<p:inputText id="addProductName"
+<<<<<<< HEAD
 						value="#{ProductBean.newProduct.productName}" placeholder="Insert Product" />
 						
 					 <h:outputLabel for="addYear" value="Year:"/>                    
            			<p:spinner min="1980" max="2018" id="addYear" value="#{ProductBean.newProduct.year}" placeholder="1980-2018">
             		</p:spinner>
 					
+=======
+						value="#{ProductBean.newProduct.productName}" />
+					<p:outputLabel value="Year:" for="addYear" />
+					<p:inputText id="addYear" value="#{ProductBean.newProduct.year}" />
+					<p:outputLabel value="Categories:" for="addCategories"
+						rendered="#{not empty ProductBean.existingCategories()}" />
+					<p:selectCheckboxMenu id="addCategories"
+						value="#{ProductBean.categoryNameList}" label="Categories"
+						multiple="true"
+						rendered="#{not empty ProductBean.existingCategories()}">
+						<f:selectItems value="#{ProductBean.existingCategories()}" />
+					</p:selectCheckboxMenu>
+					<p:outputLabel value="Platforms:" for="addPlatforms"
+						rendered="#{not empty ProductBean.existingPlatforms()}" />
+					<p:selectCheckboxMenu id="addPlatforms"
+						value="#{ProductBean.platformNameList}" label="Platforms"
+						multiple="true"
+						rendered="#{not empty ProductBean.existingPlatforms()}">
+						<f:selectItems value="#{ProductBean.existingPlatforms()}" />
+					</p:selectCheckboxMenu>
+>>>>>>> Product
 					<p:outputLabel value="Publisher:" for="addPublisher" />
 					<p:inputText id="addPublisher"  placeholder="Insert Publisher"
 						value="#{ProductBean.newProduct.publisher}" />
@@ -180,7 +227,7 @@
 						<h:outputText id="display" />	
 						
 					<p:commandButton value="Adicionar"
-						update=":ProductTable:ProductList"
+						update=":ProductTable:ProductList,:PlatformTable:PlatformList, :CategoryTable:CategoryList"
 						action="#{ProductBean.addProduct()}" />
 				</h:panelGrid>
 			</h:form>
@@ -189,10 +236,13 @@
 			<h:form id="EditProductSection">
 				<p:growl id="productEditMsgs" showDetail="true" />
 				<h:inputHidden value="#{ProductBean.editedProduct.productId}" />
+				<h:inputHidden value="#{ProductBean.editedProduct.categorySet}" />
+				<h:inputHidden value="#{ProductBean.editedProduct.platformSet}" />
 				<h:panelGrid columns="2" cellpadding="5">
 						
 						<p:outputLabel value="Nome:" for="editProductName" />
 					<p:inputText id="editProductName"
+<<<<<<< HEAD
 						value="#{ProductBean.editedProduct.productName}" placeholder="Insert Product" />
 						
 					<h:outputLabel for="editYear" value="Year:"/>                    
@@ -201,6 +251,30 @@
 						
 								<p:outputLabel value="Publisher:" for="editPublisher" />
 					<p:inputText id="editPublisher"  placeholder="Insert Publisher"
+=======
+						value="#{ProductBean.editedProduct.productName}" />
+					<p:outputLabel value="Year:" for="editYear" />
+					<p:inputText id="editYear"
+						value="#{ProductBean.editedProduct.year}" />
+					<p:outputLabel value="Categories:" for="editCategories"
+						rendered="#{not empty ProductBean.existingCategories()}" />
+					<p:selectCheckboxMenu id="editCategories"
+						value="#{ProductBean.categoryNameList}" label="Categories"
+						multiple="true"
+						rendered="#{not empty ProductBean.existingCategories()}">
+						<f:selectItems value="#{ProductBean.existingCategories()}" />
+					</p:selectCheckboxMenu>
+					<p:outputLabel value="Platforms:" for="editPlatforms"
+						rendered="#{not empty ProductBean.existingPlatforms()}" />
+					<p:selectCheckboxMenu id="editPlatforms"
+						value="#{ProductBean.platformNameList}" label="Platforms"
+						multiple="true"
+						rendered="#{not empty ProductBean.existingPlatforms()}">
+						<f:selectItems value="#{ProductBean.existingPlatforms()}" />
+					</p:selectCheckboxMenu>
+					<p:outputLabel value="Publisher:" for="editPublisher" />
+					<p:inputText id="editPublisher"
+>>>>>>> Product
 						value="#{ProductBean.editedProduct.publisher}" />
 						
 					
@@ -217,10 +291,20 @@
            			 	<p:outputLabel value="Details:" for="editDetails" />
 					<p:inputTextarea maxlength="1000" cols="22" counter="display" counterTemplate="{0} characters remaining." id="editDetails" placeholder="Insert Details"
 						value="#{ProductBean.editedProduct.details}" />
+<<<<<<< HEAD
 						<div></div>
 						 <h:outputText id="display" />
            			 
 					<p:commandButton value="Editar" update=":ProductTable:ProductList"
+=======
+					<p:outputLabel value="Rental Price:" for="editRentalPrice" />
+					<p:inputText id="editRentalPrice"
+						value="#{ProductBean.editedProduct.rentalPrice}" />
+					<p:outputLabel value="Availability:" for="editAvailability" />
+					<p:inputText id="editAvailability"
+						value="#{ProductBean.editedProduct.availability}" />
+					<p:commandButton value="Editar" update=":ProductTable:ProductList,:PlatformTable:PlatformList, :CategoryTable:CategoryList"
+>>>>>>> Product
 						action="#{ProductBean.editProduct()}" />
 				</h:panelGrid>
 			</h:form>
