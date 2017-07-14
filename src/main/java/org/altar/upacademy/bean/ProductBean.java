@@ -71,8 +71,10 @@ public class ProductBean implements Serializable {
 	}
 
 	public void editProduct() {
+		System.out.println(1);
 		Set<Category> categorySet = categoryRepository.getCategoriesFromNames(categoryNameList);
 		Set<Platform> platformSet = platformRepository.getPlatformsFromNames(platformNameList);
+		System.out.println(2);
 		for(Category category: existingCategories()){
 			Set<Product> productSetTemp = category.getProductSet();
 			if(productSetTemp.contains(editedProduct) && !categorySet.contains(category)){
@@ -83,6 +85,7 @@ public class ProductBean implements Serializable {
 			category.setProductSet(productSetTemp);
 			categoryRepository.updateInDb(category);
 		}
+		System.out.println(3);
 		for(Platform platform: existingPlatforms()){
 			Set<Product> productSetTemp = platform.getProductSet();
 			if(productSetTemp.contains(editedProduct) && !categorySet.contains(platform)){
@@ -93,9 +96,13 @@ public class ProductBean implements Serializable {
 			platform.setProductSet(productSetTemp);
 			platformRepository.updateInDb(platform);			
 		}
+		System.out.println(4);
 		editedProduct.setCategorySet(categorySet);
+		System.out.println(5);
 		editedProduct.setPlatformSet(platformSet);
+		System.out.println(6);
 		productRepository.updateInDb(editedProduct);
+		System.out.println(7);
 	}
 
 	public void deleteProduct(Product product) {
@@ -146,11 +153,5 @@ public class ProductBean implements Serializable {
 
 	public void setPlatformNameList(List<String> platformNameList) {
 		this.platformNameList = platformNameList;
-	}
-	
-	public void display(Product product){
-		System.out.println(product.getCategorySet());
-		System.out.println(editedProduct.getCategorySet());
-		System.out.println(1);
 	}
 }

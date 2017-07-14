@@ -18,7 +18,7 @@
 	<header>
 		<h1>Black Oak Games</h1>
 	</header>
-	<p:growl id="errorMsgs" showDetail="true"/> 
+	<p:growl id="errorMsgs" showDetail="true" />
 	<h:form id="PlatformTable">
 		<p:growl id="platformTableMsgs" showDetail="true" />
 		<p:dataTable id="PlatformList" var="platform"
@@ -155,8 +155,8 @@
 				<h:outputText value="#{product.availability}" />
 			</p:column>
 			<p:column headerText="Opções">
-				<p:commandButton update=":EditProductSection, :errorMsgs" icon="ui-icon-pencil"
-					title="Edit" action="#{ProductBean.display(product)}">
+				<p:commandButton update=":EditProductSection, :errorMsgs"
+					icon="ui-icon-pencil" title="Edit">
 					<f:setPropertyActionListener value="#{product}"
 						target="#{ProductBean.editedProduct}" />
 				</p:commandButton>
@@ -171,20 +171,17 @@
 			<h:form id="AddProductSection">
 				<p:growl id="productAddMsgs" showDetail="true" />
 				<h:panelGrid columns="2" cellpadding="5">
-				
+
 					<p:outputLabel value="Nome:" for="addProductName" />
 					<p:inputText id="addProductName"
-<<<<<<< HEAD
-						value="#{ProductBean.newProduct.productName}" placeholder="Insert Product" />
-						
-					 <h:outputLabel for="addYear" value="Year:"/>                    
-           			<p:spinner min="1980" max="2018" id="addYear" value="#{ProductBean.newProduct.year}" placeholder="1980-2018">
-            		</p:spinner>
-					
-=======
-						value="#{ProductBean.newProduct.productName}" />
-					<p:outputLabel value="Year:" for="addYear" />
-					<p:inputText id="addYear" value="#{ProductBean.newProduct.year}" />
+						value="#{ProductBean.newProduct.productName}"
+						placeholder="Insert Product" />
+
+					<h:outputLabel for="addYear" value="Year:" />
+					<p:spinner min="1980" max="2018" id="addYear"
+						value="#{ProductBean.newProduct.year}" placeholder="1980-2018">
+					</p:spinner>
+
 					<p:outputLabel value="Categories:" for="addCategories"
 						rendered="#{not empty ProductBean.existingCategories()}" />
 					<p:selectCheckboxMenu id="addCategories"
@@ -201,31 +198,33 @@
 						rendered="#{not empty ProductBean.existingPlatforms()}">
 						<f:selectItems value="#{ProductBean.existingPlatforms()}" />
 					</p:selectCheckboxMenu>
->>>>>>> Product
+
 					<p:outputLabel value="Publisher:" for="addPublisher" />
-					<p:inputText id="addPublisher"  placeholder="Insert Publisher"
+					<p:inputText id="addPublisher" placeholder="Insert Publisher"
 						value="#{ProductBean.newProduct.publisher}" />
-						
-					
-						
-				
-					  <h:outputLabel for="addRentalPrice" value="Rental Price (€ per week):"/>                    
-            		<p:inputText id="addRentalPrice" value="#{ProductBean.newProduct.rentalPrice}" placeholder="1.00-35.00" converterMessage="Cannot convert to double.">
-                		<f:validateDoubleRange minimum="1.0" maximum="35.0" />
-           			 </p:inputText>	
-					
-					
-       
-					<h:outputLabel for="addAvailability" value="Availability 0-99:"/>                    
-            		<p:spinner min="0" max="99" id="addAvailability" value="#{ProductBean.newProduct.availability}" placeholder="00-99">
-           			 </p:spinner>
-           			 
-           			 <p:outputLabel value="Details:" for="addDetails" />
-					<p:inputTextarea maxlength="1000" cols="22"  counter="display" counterTemplate="{0} characters remaining." id="addDetails" placeholder="Insert Details"
+
+					<h:outputLabel for="addRentalPrice"
+						value="Rental Price (€ per week):" />
+					<p:inputText id="addRentalPrice"
+						value="#{ProductBean.newProduct.rentalPrice}"
+						placeholder="1.00-35.00"
+						converterMessage="Cannot convert to double.">
+						<f:validateDoubleRange minimum="1.0" maximum="35.0" />
+					</p:inputText>
+
+					<h:outputLabel for="addAvailability" value="Availability 0-99:" />
+					<p:spinner min="0" max="99" id="addAvailability"
+						value="#{ProductBean.newProduct.availability}" placeholder="00-99">
+					</p:spinner>
+
+					<p:outputLabel value="Details:" for="addDetails" />
+					<p:inputTextarea maxlength="1000" cols="22" counter="display"
+						counterTemplate="{0} characters remaining." id="addDetails"
+						placeholder="Insert Details"
 						value="#{ProductBean.newProduct.details}" />
-						<div></div>
-						<h:outputText id="display" />	
-						
+					<div></div>
+					<h:outputText id="display" />
+
 					<p:commandButton value="Adicionar"
 						update=":ProductTable:ProductList,:PlatformTable:PlatformList, :CategoryTable:CategoryList"
 						action="#{ProductBean.addProduct()}" />
@@ -239,23 +238,17 @@
 				<h:inputHidden value="#{ProductBean.editedProduct.categorySet}" />
 				<h:inputHidden value="#{ProductBean.editedProduct.platformSet}" />
 				<h:panelGrid columns="2" cellpadding="5">
-						
-						<p:outputLabel value="Nome:" for="editProductName" />
+
+					<p:outputLabel value="Nome:" for="editProductName" />
 					<p:inputText id="editProductName"
-<<<<<<< HEAD
-						value="#{ProductBean.editedProduct.productName}" placeholder="Insert Product" />
-						
-					<h:outputLabel for="editYear" value="Year:"/>                    
-           			<p:spinner min="1980" max="2018" id="editYear" value="#{ProductBean.editedProduct.year}" placeholder="1980-2018">
-                   		</p:spinner>
-						
-								<p:outputLabel value="Publisher:" for="editPublisher" />
-					<p:inputText id="editPublisher"  placeholder="Insert Publisher"
-=======
-						value="#{ProductBean.editedProduct.productName}" />
-					<p:outputLabel value="Year:" for="editYear" />
-					<p:inputText id="editYear"
-						value="#{ProductBean.editedProduct.year}" />
+						value="#{ProductBean.editedProduct.productName}"
+						placeholder="Insert Product" />
+
+					<h:outputLabel for="editYear" value="Year:" />
+					<p:spinner min="1980" max="2018" id="editYear"
+						value="#{ProductBean.editedProduct.year}" placeholder="1980-2018">
+					</p:spinner>
+					
 					<p:outputLabel value="Categories:" for="editCategories"
 						rendered="#{not empty ProductBean.existingCategories()}" />
 					<p:selectCheckboxMenu id="editCategories"
@@ -274,37 +267,34 @@
 					</p:selectCheckboxMenu>
 					<p:outputLabel value="Publisher:" for="editPublisher" />
 					<p:inputText id="editPublisher"
->>>>>>> Product
 						value="#{ProductBean.editedProduct.publisher}" />
-						
-					
-						
-						 <h:outputLabel for="editRentalPrice" value="Rental Price (€ per week):"/>                    
-            		<p:inputText id="editRentalPrice" value="#{ProductBean.editedProduct.rentalPrice}" placeholder="1.00-35.00" converterMessage="Cannot convert to double.">
-                		<f:validateDoubleRange minimum="1.0" maximum="35.0" />
-           			 </p:inputText>
-								
-					<h:outputLabel for="editAvailability" value="Availability 0-99:"/>                    
-            		<p:spinner min="0" max="99" id="editAvailability" value="#{ProductBean.editedProduct.availability}" placeholder="00-99">
-           			 </p:spinner>	
-           			 
-           			 	<p:outputLabel value="Details:" for="editDetails" />
-					<p:inputTextarea maxlength="1000" cols="22" counter="display" counterTemplate="{0} characters remaining." id="editDetails" placeholder="Insert Details"
-						value="#{ProductBean.editedProduct.details}" />
-<<<<<<< HEAD
-						<div></div>
-						 <h:outputText id="display" />
-           			 
-					<p:commandButton value="Editar" update=":ProductTable:ProductList"
-=======
-					<p:outputLabel value="Rental Price:" for="editRentalPrice" />
+
+
+					<h:outputLabel for="editRentalPrice"
+						value="Rental Price (€ per week):" />
 					<p:inputText id="editRentalPrice"
-						value="#{ProductBean.editedProduct.rentalPrice}" />
-					<p:outputLabel value="Availability:" for="editAvailability" />
-					<p:inputText id="editAvailability"
-						value="#{ProductBean.editedProduct.availability}" />
-					<p:commandButton value="Editar" update=":ProductTable:ProductList,:PlatformTable:PlatformList, :CategoryTable:CategoryList"
->>>>>>> Product
+						value="#{ProductBean.editedProduct.rentalPrice}"
+						placeholder="1.00-35.00"
+						converterMessage="Cannot convert to double.">
+						<f:validateDoubleRange minimum="1.0" maximum="35.0" />
+					</p:inputText>
+
+					<h:outputLabel for="editAvailability" value="Availability 0-99:" />
+					<p:spinner min="0" max="99" id="editAvailability"
+						value="#{ProductBean.editedProduct.availability}"
+						placeholder="00-99">
+					</p:spinner>
+
+					<p:outputLabel value="Details:" for="editDetails" />
+					<p:inputTextarea maxlength="1000" cols="22" counter="display"
+						counterTemplate="{0} characters remaining." id="editDetails"
+						placeholder="Insert Details"
+						value="#{ProductBean.editedProduct.details}" />
+					<div></div>
+					<h:outputText id="display" />
+
+					<p:commandButton value="Editar"
+						update=":errorMsgs, :ProductTable:ProductList,:PlatformTable:PlatformList, :CategoryTable:CategoryList"
 						action="#{ProductBean.editProduct()}" />
 				</h:panelGrid>
 			</h:form>
