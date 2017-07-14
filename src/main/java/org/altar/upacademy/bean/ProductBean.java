@@ -20,50 +20,7 @@ import org.altar.upacademy.repository.ProductRepository;
 @RequestScoped
 
 public class ProductBean implements Serializable {
-<<<<<<< HEAD
-private static final long serialVersionUID = 1L;
 
-private Product newProduct = new Product();
-
-public Product getNewProduct() {
-	return newProduct;
-}
-
-public void setNewProduct(Product newProduct) {
-	this.newProduct = newProduct;
-}
-
-private Product editedProduct = new Product();
-
-public Product getEditedProduct() {
-	return editedProduct;
-}
-
-public void setEditedProduct(Product editedProduct) {
-	this.editedProduct = editedProduct;
-}
-
-@Inject
-private ProductRepository productRepository;
-
-public List<Product> getList() {
-	return productRepository.getDbProduct();
-}
-
-
-public void addProduct() {
-	System.out.println(newProduct.getRentalPrice());
-	productRepository.addToDb(newProduct);
-}
-
-public void editProduct() {
-	productRepository.updateInDb(editedProduct);
-}
-
-public void deleteProduct(Product product) {
-	productRepository.removeFromDb(product);
-}
-=======
 	private static final long serialVersionUID = 1L;
 
 	private Product newProduct = new Product();
@@ -196,5 +153,4 @@ public void deleteProduct(Product product) {
 		System.out.println(editedProduct.getCategorySet());
 		System.out.println(1);
 	}
->>>>>>> Product
 }
