@@ -111,4 +111,8 @@ public class Product extends Entity implements Serializable {
 		this.categorySet = categorySet;
 	}
 	
+	@Override
+	public String toString(){
+		return this.productName;
+	}
 }

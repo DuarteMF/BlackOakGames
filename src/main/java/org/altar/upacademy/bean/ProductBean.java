@@ -3,6 +3,7 @@ package org.altar.upacademy.bean;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -49,33 +50,71 @@ public class ProductBean implements Serializable {
 	}
 
 	public void addProduct() {
-		System.out.println(1);
-		newProduct.setCategorySet(categoryRepository.getCategoriesFromNames(categoryNameList));
-		System.out.println(newProduct.getCategorySet());
-		newProduct.setPlatformSet(platformRepository.getPlatformsFromNames(platformNameList));
-		System.out.println(newProduct.getPlatformSet());
-		productRepository.addToDb(newProduct);
-		System.out.println(productRepository.getDbProduct());
+		Set<Category> categorySet = categoryRepository.getCategoriesFromNames(categoryNameList);
+		Set<Platform> platformSet = platformRepository.getPlatformsFromNames(platformNameList);
+		newProduct.setCategorySet(categorySet);
+		newProduct.setPlatformSet(platformSet);
+		productRepository.addToDb(newProduct);	
+		for(Category category: categorySet){
+			Set<Product> productSetTemp = category.getProductSet();
+			productSetTemp.add(newProduct);
+			category.setProductSet(productSetTemp);
+			categoryRepository.updateInDb(category);
+		}
+		for(Platform platform: platformSet){
+			Set<Product> productSetTemp = platform.getProductSet();
+			productSetTemp.add(newProduct);
+			platform.setProductSet(productSetTemp);
+			platformRepository.updateInDb(platform);
+		}	
 	}
 
 	public void editProduct() {
+		Set<Category> categorySet = categoryRepository.getCategoriesFromNames(categoryNameList);
+		Set<Platform> platformSet = platformRepository.getPlatformsFromNames(platformNameList);
+		for(Category category: existingCategories()){
+			Set<Product> productSetTemp = category.getProductSet();
+			if(productSetTemp.contains(editedProduct) && !categorySet.contains(category)){
+				productSetTemp.remove(editedProduct);
+			}else if(!productSetTemp.contains(editedProduct) && categorySet.contains(category)){
+				productSetTemp.add(editedProduct);
+			}
+			category.setProductSet(productSetTemp);
+			categoryRepository.updateInDb(category);
+		}
+		for(Platform platform: existingPlatforms()){
+			Set<Product> productSetTemp = platform.getProductSet();
+			if(productSetTemp.contains(editedProduct) && !categorySet.contains(platform)){
+				productSetTemp.remove(editedProduct);
+			}else if(!productSetTemp.contains(editedProduct) && categorySet.contains(platform)){
+				productSetTemp.add(editedProduct);
+			}
+			platform.setProductSet(productSetTemp);
+			platformRepository.updateInDb(platform);			
+		}
+		editedProduct.setCategorySet(categorySet);
+		editedProduct.setPlatformSet(platformSet);
 		productRepository.updateInDb(editedProduct);
 	}
 
 	public void deleteProduct(Product product) {
+		for(Category category: product.getCategorySet()){
+			Set<Product> productSetTemp = category.getProductSet();
+			productSetTemp.remove(product);
+			category.setProductSet(productSetTemp);
+			categoryRepository.updateInDb(category);
+		}
+		for(Platform platform: product.getPlatformSet()){
+			Set<Product> productSetTemp = platform.getProductSet();
+			productSetTemp.remove(product);
+			platform.setProductSet(productSetTemp);
+			platformRepository.updateInDb(platform);
+		}
 		productRepository.removeFromDb(product);
 	}
 	
 	@Inject
 	private PlatformRepository platformRepository;
-//	public List<String> existingPlatforms(){
-//		List<Platform> existingPlatformsList = platformRepository.getDbPlatforms();
-//		List<String> existingPlatformsName = new ArrayList<>();
-//		for(Platform platform:existingPlatformsList){
-//			existingPlatformsName.add(platform.getPlatformName());
-//		}
-//		return existingPlatformsName;
-//	}
 	
 	public List<Platform> existingPlatforms(){
 		return platformRepository.getDbPlatforms();
@@ -83,14 +122,6 @@ public class ProductBean implements Serializable {
 	
 	@Inject
 	private CategoryRepository categoryRepository;
-//	public List<String> existingCategories(){
-//		List<Category> existingCategoriesList = categoryRepository.getDbCategories();
-//		List<String> existingCategoriesName = new ArrayList<>();
-//		for(Category category:existingCategoriesList){
-//			existingCategoriesName.add(category.getCategoryName());
-//		}
-//		return existingCategoriesName;
-//	}
 	
 	public List<Category> existingCategories(){
 		return categoryRepository.getDbCategories();
@@ -116,7 +147,9 @@ public class ProductBean implements Serializable {
 		this.platformNameList = platformNameList;
 	}
 	
-	public void display(){
+	public void display(Product product){
+		System.out.println(product.getCategorySet());
+		System.out.println(editedProduct.getCategorySet());
 		System.out.println(1);
 	}
 }

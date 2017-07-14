@@ -17,6 +17,7 @@
 	<header>
 		<h1>Black Oak Games</h1>
 	</header>
+	<p:growl id="errorMsgs" showDetail="true"/> 
 	<h:form id="PlatformTable">
 		<p:growl id="platformTableMsgs" showDetail="true" />
 		<p:dataTable id="PlatformList" var="platform"
@@ -153,8 +154,8 @@
 				<h:outputText value="#{product.availability}" />
 			</p:column>
 			<p:column headerText="Opções">
-				<p:commandButton update=":EditProductSection" icon="ui-icon-pencil"
-					title="Edit">
+				<p:commandButton update=":EditProductSection, :errorMsgs" icon="ui-icon-pencil"
+					title="Edit" action="#{ProductBean.display(product)}">
 					<f:setPropertyActionListener value="#{product}"
 						target="#{ProductBean.editedProduct}" />
 				</p:commandButton>
@@ -164,7 +165,7 @@
 			</p:column>
 		</p:dataTable>
 	</h:form>
-	<div class="row">
+	<div class="row" id="teste">
 		<div class="col-xs-6">
 			<h:form id="AddProductSection">
 				<p:growl id="productAddMsgs" showDetail="true" />
@@ -203,10 +204,8 @@
 					<p:inputText id="addAvailability"
 						value="#{ProductBean.newProduct.availability}" />
 					<p:commandButton value="Adicionar"
-						update=":ProductTable:ProductList"
+						update=":ProductTable:ProductList,:PlatformTable:PlatformList, :CategoryTable:CategoryList"
 						action="#{ProductBean.addProduct()}" />
-					<p:commandButton value="Teste"
-						action="#{ProductBean.display()}" />
 				</h:panelGrid>
 			</h:form>
 		</div>
@@ -214,6 +213,8 @@
 			<h:form id="EditProductSection">
 				<p:growl id="productEditMsgs" showDetail="true" />
 				<h:inputHidden value="#{ProductBean.editedProduct.productId}" />
+				<h:inputHidden value="#{ProductBean.editedProduct.categorySet}" />
+				<h:inputHidden value="#{ProductBean.editedProduct.platformSet}" />
 				<h:panelGrid columns="2" cellpadding="5">
 					<p:outputLabel value="Nome:" for="editProductName" />
 					<p:inputText id="editProductName"
@@ -221,6 +222,22 @@
 					<p:outputLabel value="Year:" for="editYear" />
 					<p:inputText id="editYear"
 						value="#{ProductBean.editedProduct.year}" />
+					<p:outputLabel value="Categories:" for="editCategories"
+						rendered="#{not empty ProductBean.existingCategories()}" />
+					<p:selectCheckboxMenu id="editCategories"
+						value="#{ProductBean.categoryNameList}" label="Categories"
+						multiple="true"
+						rendered="#{not empty ProductBean.existingCategories()}">
+						<f:selectItems value="#{ProductBean.existingCategories()}" />
+					</p:selectCheckboxMenu>
+					<p:outputLabel value="Platforms:" for="editPlatforms"
+						rendered="#{not empty ProductBean.existingPlatforms()}" />
+					<p:selectCheckboxMenu id="editPlatforms"
+						value="#{ProductBean.platformNameList}" label="Platforms"
+						multiple="true"
+						rendered="#{not empty ProductBean.existingPlatforms()}">
+						<f:selectItems value="#{ProductBean.existingPlatforms()}" />
+					</p:selectCheckboxMenu>
 					<p:outputLabel value="Publisher:" for="editPublisher" />
 					<p:inputText id="editPublisher"
 						value="#{ProductBean.editedProduct.publisher}" />
@@ -233,7 +250,7 @@
 					<p:outputLabel value="Availability:" for="editAvailability" />
 					<p:inputText id="editAvailability"
 						value="#{ProductBean.editedProduct.availability}" />
-					<p:commandButton value="Editar" update=":ProductTable:ProductList"
+					<p:commandButton value="Editar" update=":ProductTable:ProductList,:PlatformTable:PlatformList, :CategoryTable:CategoryList"
 						action="#{ProductBean.editProduct()}" />
 				</h:panelGrid>
 			</h:form>
