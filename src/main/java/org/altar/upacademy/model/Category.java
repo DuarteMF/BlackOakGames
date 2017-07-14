@@ -21,7 +21,7 @@ public class Category extends Entity implements Serializable {
 	@Column(name = "Category_Id")
 	private Integer categoryId = 0;
 	@Column(name = "Category_Name")
-	private String categoryName = "CategoryName";
+	private String categoryName = null;
 
 	public Integer getCategoryId() {
 		return categoryId;

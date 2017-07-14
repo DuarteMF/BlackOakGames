@@ -24,14 +24,12 @@ public class Product extends Entity implements Serializable {
 	private Integer productId = 0;
 	@Column(name="Product_Name", nullable = true)
 	private String productName = null;
-//	@Column(name="Category_ID")
-//	private Integer categoryId = 0;
 	@Column(name="Year")
 	private Integer year = null;
 	@Column(name="Publisher")
-	private String publisher = "produtor";
+	private String publisher = null;
 	@Column(name="Details")
-	private String details = "descrição";
+	private String details = null;
 	@Column(name="Rental_Price")
 	private Double rentalPrice = null;
 	@Column(name="Availability")
@@ -49,12 +47,6 @@ public class Product extends Entity implements Serializable {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-//	public Integer getCategoryId() {
-//		return categoryId;
-//	}
-//	public void setCategoryId(Integer categoryId) {
-//		this.categoryId = categoryId;
-//	}
 	public Integer getYear() {
 		return year;
 	}

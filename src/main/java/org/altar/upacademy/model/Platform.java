@@ -21,7 +21,7 @@ public class Platform extends Entity implements Serializable {
 	@Column(name = "Platform_ID")
 	private Integer platformId = 0;
 	@Column(name = "Platform_Name", nullable = true)
-	private String platformName = "plataforma";
+	private String platformName = null;
 
 	public Integer getPlatformId() {
 		return platformId;
