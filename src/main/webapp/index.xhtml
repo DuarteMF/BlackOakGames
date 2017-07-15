@@ -292,8 +292,9 @@
 					<h:outputText id="display" />
 
 					<p:commandButton value="Editar"
-						update=":errorMsgs, :ProductTable:ProductList,:PlatformTable:PlatformList, :CategoryTable:CategoryList"
-						action="#{ProductBean.editProduct()}" />
+						update=":errorMsgs, :ProductTable:ProductList, :PlatformTable:PlatformList, :CategoryTable:CategoryList"
+						action="#{ProductBean.editProduct()}">
+					</p:commandButton>
 				</h:panelGrid>
 			</h:form>
 		</div>
