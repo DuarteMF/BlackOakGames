@@ -71,7 +71,6 @@ public class ProductBean implements Serializable {
 	}
 
 	public void editProduct() {
-		System.out.println(1);
 		Set<Category> categorySet = categoryRepository.getCategoriesFromNames(categoryNameList);
 		Set<Platform> platformSet = platformRepository.getPlatformsFromNames(platformNameList);
 		for(Category category: existingCategories()){
