@@ -45,6 +45,17 @@ body{
 	padding-top: 10px;
 
 }
+
+.ui-tabs.ui-widget.ui-widget-content.ui-corner-all.ui-hidden-container.ui-tabs-top{
+
+}
+
+.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-icon-left{
+	border-radius: 5px;
+	border-color: transparent;
+	background-color:#3b424f;
+	color: white;
+}
 .LoginButton, .SignUp, .CategoryButton, .PlatformButton {
 	border-radius: 5px;
 	border-color: transparent;
