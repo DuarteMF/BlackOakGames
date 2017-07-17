@@ -29,16 +29,16 @@ public class Product extends Entity implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="Product_ID")
 	private Integer productId = 0;
-	@Size(min=2,max=12)
+	@Size(min=2,max=30, message = "Product Name should be between 2 and 30 characters")
 	@Column(name="Product_Name", nullable = true)
 	private String productName = null;
 	@Min(1980) @Max(2018)
 	@Column(name="Year")
 	private Integer year = null;
-	@Size(min=2,max=12)
+	@Size(min=2,max=30, message = "Publisher Name should be between 2 and 30 characters")
 	@Column(name="Publisher")
 	private String publisher = null;
-	@Size(min=2,max=1000)
+	@Size(min=2,max=1000, message = "Should not exceed 1000 characters")
 	@Column(name="Details")
 	private String details = null;
 	@DecimalMax(value= "35.00", message = "Should not exceed 35.00€")
