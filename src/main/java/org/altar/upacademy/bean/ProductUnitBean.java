@@ -7,7 +7,11 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.altar.upacademy.model.Platform;
+import org.altar.upacademy.model.Product;
 import org.altar.upacademy.model.ProductUnit;
+import org.altar.upacademy.repository.PlatformRepository;
+import org.altar.upacademy.repository.ProductRepository;
 import org.altar.upacademy.repository.ProductUnitRepository;
 
 @Named("ProductUnitBean")
@@ -28,30 +32,64 @@ public class ProductUnitBean implements Serializable{
 		this.newProductUnit = newProductUnit;
 	}
 
-	public ProductUnit getEditedproductUnit() {
+	public ProductUnit getEditedProductUnit() {
 		return editedProductUnit;
 	}
 
-	public void setEditedproductUnit(ProductUnit editedProductUnit) {
+	public void setEditedProductUnit(ProductUnit editedProductUnit) {
 		this.editedProductUnit = editedProductUnit;
 	}
 	
 	@Inject
 	private ProductUnitRepository productUnitRepository;
 	
+	@Inject
+	private ProductRepository productRepository;
+	
+	@Inject
+	private PlatformRepository platformRepository;
+	
 	public List<ProductUnit> getList(){
 		return productUnitRepository.getDbProductUnit();
 	}
 	
 	public void addProductUnit() {
+		Product product = productRepository.getProductFromName(productName);
+		Platform platform = platformRepository.getPlatformFromName(platformName);
+		newProductUnit.setProduct(product);
+		newProductUnit.setProductPlatform(platform);
 		productUnitRepository.addToDb(newProductUnit);
 	}
 
 	public void editProductUnit() {
+		Product product = productRepository.getProductFromName(productName);
+		Platform platform = platformRepository.getPlatformFromName(platformName);
+		editedProductUnit.setProduct(product);
+		editedProductUnit.setProductPlatform(platform);
 		productUnitRepository.updateInDb(editedProductUnit);
 	}
 
 	public void deleteProductUnit(ProductUnit productUnit) {
 		productUnitRepository.removeFromDb(productUnit);
+	}
+	
+	private String productName;
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	
+	private String platformName;
+
+	public String getPlatformName() {
+		return platformName;
+	}
+
+	public void setPlatformName(String platformName) {
+		this.platformName = platformName;
 	}
 }

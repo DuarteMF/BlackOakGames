@@ -300,6 +300,88 @@
 			</h:form>
 		</div>
 	</div>
+
+	<h:form id="ProductUnitTable">
+		<p:growl id="productUnitTableMsgs" showDetail="true" />
+		<p:dataTable id="ProductUnitList" var="productUnit"
+			value="#{ProductUnitBean.getList()}">
+			<f:facet name="header">	Product units </f:facet>
+
+			<p:column headerText="Id">
+				<h:outputText value="#{productUnit.productUnitId}" />
+			</p:column>
+			<p:column headerText="Produto">
+				<h:outputText value="#{productUnit.product}" />
+			</p:column>
+			<p:column headerText="Plataforma">
+				<h:outputText value="#{productUnit.productPlatform}" />
+			</p:column>
+			<p:column headerText="Opções">
+				<p:commandButton update=":EditProductUnitSection, :errorMsgs"
+					icon="ui-icon-pencil" title="Edit">
+					<f:setPropertyActionListener value="#{productUnit}"
+						target="#{ProductUnitBean.editedProductUnit}" />
+				</p:commandButton>
+				<p:commandButton update=":ProductUnitTable:ProductUnitList"
+					action="#{ProductUnitBean.deleteProductUnit(productUnit)}" icon="ui-icon-trash"
+					title="Delete" />
+			</p:column>
+		</p:dataTable>
+	</h:form>
+	
+	<h:form id="AddProductUnitSection">
+				<p:growl id="productUnitAddMsgs" showDetail="true" />
+				<h:panelGrid columns="2" cellpadding="5">
+					
+					<p:outputLabel value="Produto:" for="addProduct"
+						rendered="#{not empty ProductBean.getList()}" />
+					<p:selectOneMenu id="addProduct"
+						value="#{ProductUnitBean.productName}" label="Produto"
+						rendered="#{not empty ProductBean.getList()}">
+						<f:selectItems value="#{ProductBean.getList()}" />
+					</p:selectOneMenu>
+					<p:outputLabel value="Plataforma:" for="addPlatform"
+						rendered="#{not empty ProductBean.getList()}" />
+					<p:selectOneMenu id="addPlatform"
+						value="#{ProductUnitBean.platformName}" label="Platform"
+						rendered="#{not empty ProductBean.getList()}">
+						<f:selectItems value="#{ProductBean.existingPlatforms()}" />
+					</p:selectOneMenu>
+					
+					<p:commandButton value="Adicionar"
+						update=":errorMsgs, :ProductUnitTable:ProductUnitList"
+						action="#{ProductUnitBean.addProductUnit()}">
+					</p:commandButton>
+				</h:panelGrid>
+			</h:form>
+			
+			<h:form id="EditProductUnitSection">
+				<p:growl id="productUnitEditMsgs" showDetail="true" />
+				<h:inputHidden value="#{ProductUnitBean.editedProductUnit.productUnitId}" />
+				<h:panelGrid columns="2" cellpadding="5">
+					
+					<p:outputLabel value="Produto:" for="addProduct"
+						rendered="#{not empty ProductBean.getList()}" />
+					<p:selectOneMenu id="addProduct"
+						value="#{ProductUnitBean.productName}" label="Produto"
+						rendered="#{not empty ProductBean.getList()}">
+						<f:selectItems value="#{ProductBean.getList()}" />
+					</p:selectOneMenu>
+					<p:outputLabel value="Plataforma:" for="addPlatform"
+						rendered="#{not empty ProductBean.getList()}" />
+					<p:selectOneMenu id="addPlatform"
+						value="#{ProductUnitBean.platformName}" label="Platform"
+						rendered="#{not empty ProductBean.getList()}">
+						<f:selectItems value="#{ProductBean.existingPlatforms()}" />
+					</p:selectOneMenu>
+					
+					<p:commandButton value="Editar"
+						update=":errorMsgs, :ProductUnitTable:ProductUnitList"
+						action="#{ProductUnitBean.editProductUnit()}">
+					</p:commandButton>
+				</h:panelGrid>
+			</h:form>
+
 	<footer>
 		<p>@2017</p>
 	</footer>

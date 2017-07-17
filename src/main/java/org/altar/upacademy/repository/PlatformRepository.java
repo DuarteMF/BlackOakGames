@@ -41,4 +41,12 @@ public class PlatformRepository extends EntityRepository<Platform> {
 		}
 		return platforms;
 	}
+	
+	public Platform getPlatformFromName(String platformName) {
+		TypedQuery<Platform> query = getDbConnection()
+				.createQuery("SELECT p FROM Platform AS p WHERE p.platformName = :name", Platform.class);
+		query.setParameter("name", platformName);
+		List<Platform> results = query.getResultList();
+		return results.get(0);
+	}
 }
