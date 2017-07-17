@@ -8,7 +8,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.altar.upacademy.model.Category;
-import org.altar.upacademy.model.Platform;
 import org.altar.upacademy.repository.CategoryRepository;
 
 

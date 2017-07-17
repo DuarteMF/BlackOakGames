@@ -3,6 +3,7 @@ package org.altar.upacademy.model;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.faces.bean.ManagedBean;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -10,16 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import java.util.Date;
-import javax.faces.bean.ManagedBean;
-import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.DecimalMax;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.Future;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @javax.persistence.Entity

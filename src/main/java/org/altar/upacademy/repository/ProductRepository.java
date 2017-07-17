@@ -10,7 +10,6 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
-import org.altar.upacademy.model.Category;
 import org.altar.upacademy.model.Product;
 
 @Named("productRepository")
