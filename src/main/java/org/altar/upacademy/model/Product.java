@@ -4,14 +4,27 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import java.util.Date;
+import javax.faces.bean.ManagedBean;
+import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @javax.persistence.Entity
 @Table(name="PRODUCT")
+@ManagedBean
 
 public class Product extends Entity implements Serializable {
 	/**
@@ -22,20 +35,24 @@ public class Product extends Entity implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="Product_ID")
 	private Integer productId = 0;
+	@Size(min=2,max=12)
 	@Column(name="Product_Name", nullable = true)
-	private String productName = "produto";
-//	@Column(name="Category_ID")
-//	private Integer categoryId = 0;
+	private String productName = null;
+	@Min(1980) @Max(2018)
 	@Column(name="Year")
-	private Integer year = 0000;
+	private Integer year = null;
+	@Size(min=2,max=12)
 	@Column(name="Publisher")
-	private String publisher = "produtor";
+	private String publisher = null;
+	@Size(min=2,max=1000)
 	@Column(name="Details")
-	private String details = "descrição";
+	private String details = null;
+	@DecimalMax(value= "35.00", message = "Should not exceed 35.00€")
 	@Column(name="Rental_Price")
-	private double rentalPrice = 0.0;
+	private Double rentalPrice = null;
+	@Max(99)
 	@Column(name="Availability")
-	private Integer availability = 0;
+	private Integer availability = null;
 	
 	public Integer getProductId() {
 		return productId;
@@ -49,12 +66,6 @@ public class Product extends Entity implements Serializable {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-//	public Integer getCategoryId() {
-//		return categoryId;
-//	}
-//	public void setCategoryId(Integer categoryId) {
-//		this.categoryId = categoryId;
-//	}
 	public Integer getYear() {
 		return year;
 	}
@@ -73,10 +84,10 @@ public class Product extends Entity implements Serializable {
 	public void setDetails(String details) {
 		this.details = details;
 	}
-	public double getRentalPrice() {
+	public Double getRentalPrice() {
 		return rentalPrice;
 	}
-	public void setRentalPrice(double rentalPrice) {
+	public void setRentalPrice(Double rentalPrice) {
 		this.rentalPrice = rentalPrice;
 	}
 	public Integer getAvailability() {
@@ -90,7 +101,7 @@ public class Product extends Entity implements Serializable {
 
 	}
 	
-	@ManyToMany(targetEntity=Platform.class)
+	@ManyToMany(targetEntity=Platform.class, fetch=FetchType.EAGER)
 	private Set<Platform> platformSet;
 
 	public Set<Platform> getPlatformSet() {
@@ -100,7 +111,7 @@ public class Product extends Entity implements Serializable {
 		this.platformSet = platformSet;
 	}
 	
-	@ManyToMany(targetEntity=Category.class)
+	@ManyToMany(targetEntity=Category.class, fetch=FetchType.EAGER)
 	private Set<Category> categorySet;
 
 	public Set<Category> getCategorySet() {
@@ -110,4 +121,8 @@ public class Product extends Entity implements Serializable {
 		this.categorySet = categorySet;
 	}
 	
+	@Override
+	public String toString(){
+		return this.productName;
+	}
 }
