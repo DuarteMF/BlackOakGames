@@ -4,7 +4,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -12,7 +13,7 @@
 	<h:outputStylesheet library="css" name="mystyle.css"></h:outputStylesheet>
 	
 </h:head>
-<h:body>
+<h:body style="background-color: #637ba0; color: #FFD200">
 	<header>
 		<div class="container-fluid">
 
@@ -26,8 +27,8 @@
 
 				<div class="container Login">
 					<h:form>
-						<h:commandButton class="LoginButton btn btn-default" value="Login" action="index" />
-						<h:commandButton class="SignUp btn btn-default" value="Sign Up"/>
+						<h:commandButton class="LoginButton" value="Login" action="index" />
+						<h:commandButton class="SignUp" value="Sign Up"/>
 					</h:form>
 				</div>
 				
@@ -41,13 +42,13 @@
 								<f:validateLength minimum="2" />
 							</p:inputText>
 
-							<p:menuButton class="CategoryButton btn btn-default" value="Category">
+							<p:menuButton look="primary" class="CategoryButton" value="Category">
 								<p:menuitem value="Action" />
 								<p:menuitem value="Adventure" />
 								<p:menuitem value="RPG" />
 							</p:menuButton>
 
-							<p:menuButton class="PlatformButton btn btn-default" value="Platform">
+							<p:menuButton class="PlatformButton" value="Platform">
 								<p:menuitem value="PS4" />
 								<p:menuitem value="XBOX" />
 								<p:menuitem value="Wii" />
@@ -60,13 +61,13 @@
 			</div>
 		</div>
 		
-		<div>
+		<div class="container-fluid">
 		
-			<p:tabView>
+			<b:tabView class="Tabs" contentStyle ="container" pills="true">
 
-				<p:tab title="Category">
+				<b:tab title="Category" class="TabCategory" contentStyle ="container">
 					<h:form id="cat">
-						<p:dataGrid var="Category" value="#{CategoryBean.getList()}" columns="3"
+						<p:dataGrid class="GridCategory" var="Category" value="#{CategoryBean.getList()}" columns="3"
 							layout="grid" rows="12" paginator="true" id="categories"
 							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 							rowsPerPageTemplate="6,12,24">
@@ -79,16 +80,16 @@
 								<h:panelGrid columns="1" style="width:100%">
 									<p:graphicImage name="bla bla" />
 
-									<h:commandButton class="CategoryButton btn btn-default" value="" action="index" />
+									<h:commandButton class="CategoryButton" value="" action="index" />
 								</h:panelGrid>
 							</p:panel>
 						</p:dataGrid>
         			</h:form>
-				</p:tab>
+				</b:tab>
 
-				<p:tab title="Platform">
+				<b:tab title="Platform" class="TabPlatform" contentStyle ="container">
 					<h:form id="pla">
-						<p:dataGrid var="Platform" value="#{PlatformBean.getList()}" columns="3"
+						<p:dataGrid class="GridPlatform" var="Platform" value="#{PlatformBean.getList()}" columns="3"
 							layout="grid" rows="12" paginator="true" id="platforms"
 							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 							rowsPerPageTemplate="6,12,24">
@@ -101,14 +102,14 @@
 								<h:panelGrid columns="1" style="width:100%">
 									<p:graphicImage name="bla bla" />
 
-									<h:commandButton class="PlatformButton btn btn-default" value="" action="index" />
+									<h:commandButton class="PlatformButton" value="" action="index" />
 								</h:panelGrid>
 							</p:panel>
 						</p:dataGrid>
         			</h:form>
-				</p:tab>
+				</b:tab>
 				 
-			</p:tabView> 
+			</b:tabView> 
 		
 		</div>
 	</header>

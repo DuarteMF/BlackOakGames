@@ -46,24 +46,30 @@ body{
 
 }
 
-.ui-tabs.ui-widget.ui-widget-content.ui-corner-all.ui-hidden-container.ui-tabs-top{
-
+/* Área da grid Categoria */
+.GridCategory, .GridPlatform{
+	background-color:#637ba0;
+	border: none;
+	
+}
+/* Área das Tabs Categoria e Plataformas na grid */
+.Tabs{
+	background-color:#637ba0;
+	text-align:center;
 }
 
-.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-icon-left{
-	border-radius: 5px;
-	border-color: transparent;
-	background-color:#3b424f;
-	color: white;
+.TabCategory, .TabPlatform{
+	text-align:center;
 }
-.LoginButton, .SignUp, .CategoryButton, .PlatformButton {
+
+.LoginButton, .SignUp, .TabCategory, .TabPlatform{
 	border-radius: 5px;
 	border-color: transparent;
 	background-color:#3b424f;
 	color: white;
 	
 }
-.LoginButton:hover, .SignUp:hover, .CategoryButton, .PlatformButton{
+.LoginButton:hover, .SignUp:hover, .TabCategory:hover, .TabPlatform:hover{
 	border-radius: 5px;
 	background-color:#395272;
 	border-color: transparent;
