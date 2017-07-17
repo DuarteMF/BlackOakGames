@@ -154,23 +154,4 @@ public class ProductBean implements Serializable {
 	public void setPlatformNameList(List<String> platformNameList) {
 		this.platformNameList = platformNameList;
 	}
-	
-//	private Set<Category> oldCategorySet;
-//	private Set<Platform> oldPlatformSet;
-//
-//	public Set<Category> getOldCategorySet() {
-//		return oldCategorySet;
-//	}
-//
-//	public void setOldCategorySet(Set<Category> oldCategorySet) {
-//		this.oldCategorySet = oldCategorySet;
-//	}
-//
-//	public Set<Platform> getOldPlatformSet() {
-//		return oldPlatformSet;
-//	}
-//
-//	public void setOldPlatformSet(Set<Platform> oldPlatformSet) {
-//		this.oldPlatformSet = oldPlatformSet;
-//	}
 }
