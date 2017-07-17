@@ -18,8 +18,24 @@ public class ClientBean implements Serializable{
 	
 	private Client newClient = new Client();
 	
-	private Client edtiedClient = new Client();
+	private Client editedClient = new Client();
 	
+	public Client getNewClient() {
+		return newClient;
+	}
+
+	public void setNewClient(Client newClient) {
+		this.newClient = newClient;
+	}
+
+	public Client getEditedClient() {
+		return editedClient;
+	}
+
+	public void setEditedClient(Client editedClient) {
+		this.editedClient = editedClient;
+	}
+
 	@Inject
 	private ClientRepository clientRepository;
 	
@@ -32,7 +48,7 @@ public class ClientBean implements Serializable{
 	}
 
 	public void editClient() {
-		clientRepository.updateInDb(edtiedClient);
+		clientRepository.updateInDb(editedClient);
 	}
 
 	public void deleteClient(Client client) {
