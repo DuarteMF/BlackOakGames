@@ -1,7 +1,9 @@
 package org.altar.upacademy.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -91,5 +93,27 @@ public class ProductUnitBean implements Serializable{
 
 	public void setPlatformName(String platformName) {
 		this.platformName = platformName;
+	}
+	
+	public List<Platform> getProductPlatformList(){
+		Product product = productRepository.getProductFromName(productName);
+		return new ArrayList<Platform>(product.getPlatformSet());
+	}
+	
+	private Set<Platform> platformList;
+
+	public Set<Platform> getPlatformList() {
+		return platformList;
+	}
+
+	public void setPlatformList(Set<Platform> platformList) {
+		this.platformList = platformList;
+	}
+	
+	public void display(){
+		System.out.println(productName);
+		System.out.println(productRepository.getProductFromName(productName));
+		System.out.println(productRepository.getProductFromName(productName).getPlatformSet());
+		System.out.println(platformName);
 	}
 }

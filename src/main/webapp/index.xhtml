@@ -183,19 +183,19 @@
 					</p:spinner>
 
 					<p:outputLabel value="Categories:" for="addCategories"
-						rendered="#{not empty ProductBean.existingCategories()}" />
+						rendered="#{not empty (ProductBean.existingCategories())}" />
 					<p:selectCheckboxMenu id="addCategories"
 						value="#{ProductBean.categoryNameList}" label="Categories"
 						multiple="true"
-						rendered="#{not empty ProductBean.existingCategories()}">
+						rendered="#{not empty (ProductBean.existingCategories())}">
 						<f:selectItems value="#{ProductBean.existingCategories()}" />
 					</p:selectCheckboxMenu>
 					<p:outputLabel value="Platforms:" for="addPlatforms"
-						rendered="#{not empty ProductBean.existingPlatforms()}" />
+						rendered="#{not empty (ProductBean.existingPlatforms())}" />
 					<p:selectCheckboxMenu id="addPlatforms"
 						value="#{ProductBean.platformNameList}" label="Platforms"
 						multiple="true"
-						rendered="#{not empty ProductBean.existingPlatforms()}">
+						rendered="#{not empty (ProductBean.existingPlatforms())}">
 						<f:selectItems value="#{ProductBean.existingPlatforms()}" />
 					</p:selectCheckboxMenu>
 
@@ -211,7 +211,7 @@
 						converterMessage="Cannot convert to double.">
 						<f:validateDoubleRange minimum="1.0" maximum="35.0" />
 					</p:inputText>
-					 
+
 
 					<h:outputLabel for="addAvailability" value="Availability 0-99:" />
 					<p:spinner min="0" max="99" id="addAvailability"
@@ -247,21 +247,21 @@
 					<p:spinner min="1980" max="2018" id="editYear"
 						value="#{ProductBean.editedProduct.year}" placeholder="1980-2018">
 					</p:spinner>
-					
+
 					<p:outputLabel value="Categories:" for="editCategories"
-						rendered="#{not empty ProductBean.existingCategories()}" />
+						rendered="#{not empty (ProductBean.existingCategories())}" />
 					<p:selectCheckboxMenu id="editCategories"
 						value="#{ProductBean.categoryNameList}" label="Categories"
 						multiple="true"
-						rendered="#{not empty ProductBean.existingCategories()}">
+						rendered="#{not empty (ProductBean.existingCategories())}">
 						<f:selectItems value="#{ProductBean.existingCategories()}" />
 					</p:selectCheckboxMenu>
 					<p:outputLabel value="Platforms:" for="editPlatforms"
-						rendered="#{not empty ProductBean.existingPlatforms()}" />
+						rendered="#{not empty (ProductBean.existingPlatforms())}" />
 					<p:selectCheckboxMenu id="editPlatforms"
 						value="#{ProductBean.platformNameList}" label="Platforms"
 						multiple="true"
-						rendered="#{not empty ProductBean.existingPlatforms()}">
+						rendered="#{not empty (ProductBean.existingPlatforms())}">
 						<f:selectItems value="#{ProductBean.existingPlatforms()}" />
 					</p:selectCheckboxMenu>
 					<p:outputLabel value="Publisher:" for="editPublisher" />
@@ -323,64 +323,74 @@
 						target="#{ProductUnitBean.editedProductUnit}" />
 				</p:commandButton>
 				<p:commandButton update=":ProductUnitTable:ProductUnitList"
-					action="#{ProductUnitBean.deleteProductUnit(productUnit)}" icon="ui-icon-trash"
-					title="Delete" />
+					action="#{ProductUnitBean.deleteProductUnit(productUnit)}"
+					icon="ui-icon-trash" title="Delete" />
 			</p:column>
 		</p:dataTable>
 	</h:form>
-	
-	<h:form id="AddProductUnitSection">
-				<p:growl id="productUnitAddMsgs" showDetail="true" />
-				<h:panelGrid columns="2" cellpadding="5">
-					
-					<p:outputLabel value="Produto:" for="addProduct"
-						rendered="#{not empty ProductBean.getList()}" />
-					<p:selectOneMenu id="addProduct"
-						value="#{ProductUnitBean.productName}" label="Produto"
-						rendered="#{not empty ProductBean.getList()}">
-						<f:selectItems value="#{ProductBean.getList()}" />
-					</p:selectOneMenu>
-					<p:outputLabel value="Plataforma:" for="addPlatform"
-						rendered="#{not empty ProductBean.getList()}" />
-					<p:selectOneMenu id="addPlatform"
-						value="#{ProductUnitBean.platformName}" label="Platform"
-						rendered="#{not empty ProductBean.getList()}">
-						<f:selectItems value="#{ProductBean.existingPlatforms()}" />
-					</p:selectOneMenu>
-					
-					<p:commandButton value="Adicionar"
-						update=":errorMsgs, :ProductUnitTable:ProductUnitList"
-						action="#{ProductUnitBean.addProductUnit()}">
-					</p:commandButton>
-				</h:panelGrid>
-			</h:form>
-			
-			<h:form id="EditProductUnitSection">
-				<p:growl id="productUnitEditMsgs" showDetail="true" />
-				<h:inputHidden value="#{ProductUnitBean.editedProductUnit.productUnitId}" />
-				<h:panelGrid columns="2" cellpadding="5">
-					
-					<p:outputLabel value="Produto:" for="addProduct"
-						rendered="#{not empty ProductBean.getList()}" />
-					<p:selectOneMenu id="addProduct"
-						value="#{ProductUnitBean.productName}" label="Produto"
-						rendered="#{not empty ProductBean.getList()}">
-						<f:selectItems value="#{ProductBean.getList()}" />
-					</p:selectOneMenu>
-					<p:outputLabel value="Plataforma:" for="addPlatform"
-						rendered="#{not empty ProductBean.getList()}" />
-					<p:selectOneMenu id="addPlatform"
-						value="#{ProductUnitBean.platformName}" label="Platform"
-						rendered="#{not empty ProductBean.getList()}">
-						<f:selectItems value="#{ProductBean.existingPlatforms()}" />
-					</p:selectOneMenu>
-					
-					<p:commandButton value="Editar"
-						update=":errorMsgs, :ProductUnitTable:ProductUnitList"
-						action="#{ProductUnitBean.editProductUnit()}">
-					</p:commandButton>
-				</h:panelGrid>
-			</h:form>
+
+	<h:form id="AddProductUnitChooseSection">
+		<h:panelGrid columns="3" cellpadding="5">
+			<p:outputLabel value="Produto:" for="addProduct"
+				rendered="#{not empty (ProductBean.getList())}" />
+			<p:selectOneMenu id="addProduct"
+				value="#{ProductUnitBean.productName}" label="Produto"
+				rendered="#{not empty (ProductBean.getList())}">
+				<f:selectItem itemLabel="Seleccione uma opção" itemValue="" />
+				<f:selectItems value="#{ProductBean.getList()}" />
+			</p:selectOneMenu>
+			<p:commandButton value="Escolher"
+				update=":errorMsgs, :AddProductUnitAdditionSection" />
+		</h:panelGrid>
+	</h:form>
+
+	<h:form id="AddProductUnitAdditionSection">
+			<h:inputHidden value="#{ProductUnitBean.productName}" />
+		<h:panelGrid columns="3" cellpadding="5">
+			<p:outputLabel value="Plataforma:" for="addPlatform"
+				rendered="#{not empty (ProductUnitBean.productName)}" />
+			<p:selectOneMenu id="addPlatform"
+				value="#{ProductUnitBean.platformName}" label="Platform"
+				rendered="#{not empty (ProductUnitBean.productName)}">
+				<f:selectItem itemLabel="Seleccione uma opção" itemDisabled="true" />
+				<f:selectItems value="#{ProductUnitBean.getProductPlatformList()}" var="platform" itemLabel="#{platform.platformName}" itemValue ="#{platform.platformName}"/>
+			</p:selectOneMenu>
+			<p:commandButton value="Adicionar"
+				update=":errorMsgs, :ProductUnitTable:ProductUnitList"
+				action="#{ProductUnitBean.display()}">
+			</p:commandButton>
+		</h:panelGrid>
+	</h:form>
+
+
+
+	<h:form id="EditProductUnitSection">
+		<p:growl id="productUnitEditMsgs" showDetail="true" />
+		<h:inputHidden
+			value="#{ProductUnitBean.editedProductUnit.productUnitId}" />
+		<h:panelGrid columns="2" cellpadding="5">
+
+			<p:outputLabel value="Produto:" for="addProduct"
+				rendered="#{not empty (ProductBean.getList())}" />
+			<p:selectOneMenu id="addProduct"
+				value="#{ProductUnitBean.productName}" label="Produto"
+				rendered="#{not empty (ProductBean.getList())}">
+				<f:selectItems value="#{ProductBean.getList()}" />
+			</p:selectOneMenu>
+			<p:outputLabel value="Plataforma:" for="addPlatform"
+				rendered="#{not empty (ProductBean.getList())}" />
+			<p:selectOneMenu id="addPlatform"
+				value="#{ProductUnitBean.platformName}" label="Platform"
+				rendered="#{not empty (ProductBean.getList())}">
+				<f:selectItems value="#{ProductBean.existingPlatforms()}" />
+			</p:selectOneMenu>
+
+			<p:commandButton value="Editar"
+				update=":errorMsgs, :ProductUnitTable:ProductUnitList"
+				action="#{ProductUnitBean.editProductUnit()}">
+			</p:commandButton>
+		</h:panelGrid>
+	</h:form>
 
 	<footer>
 		<p>@2017</p>
