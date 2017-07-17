@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -82,6 +83,7 @@ public class ProductUnitBean implements Serializable{
 	}
 
 	public void setProductName(String productName) {
+		System.out.println(2);
 		this.productName = productName;
 	}
 	
@@ -92,12 +94,13 @@ public class ProductUnitBean implements Serializable{
 	}
 
 	public void setPlatformName(String platformName) {
+		System.out.println(1);
 		this.platformName = platformName;
 	}
 	
-	public List<Platform> getProductPlatformList(){
+	public List<String> getProductPlatformList(){
 		Product product = productRepository.getProductFromName(productName);
-		return new ArrayList<Platform>(product.getPlatformSet());
+		return product.getPlatformSet().stream().map(n->n.getPlatformName()).collect(Collectors.toList());
 	}
 	
 	private Set<Platform> platformList;

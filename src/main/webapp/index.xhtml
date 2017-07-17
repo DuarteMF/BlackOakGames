@@ -336,11 +336,11 @@
 			<p:selectOneMenu id="addProduct"
 				value="#{ProductUnitBean.productName}" label="Produto"
 				rendered="#{not empty (ProductBean.getList())}">
-				<f:selectItem itemLabel="Seleccione uma opção" itemValue="" />
-				<f:selectItems value="#{ProductBean.getList()}" />
+				<f:selectItem itemLabel="Seleccione uma opção" itemValue="#{null}" />
+				<f:selectItems value="#{ProductBean.getList()}" var="product" itemLabel="#{product.productName}" itemValue="#{product.productName}" />
 			</p:selectOneMenu>
 			<p:commandButton value="Escolher"
-				update=":errorMsgs, :AddProductUnitAdditionSection" />
+				update=":errorMsgs, :AddProductUnitAdditionSection"/>
 		</h:panelGrid>
 	</h:form>
 
@@ -352,8 +352,8 @@
 			<p:selectOneMenu id="addPlatform"
 				value="#{ProductUnitBean.platformName}" label="Platform"
 				rendered="#{not empty (ProductUnitBean.productName)}">
-				<f:selectItem itemLabel="Seleccione uma opção" itemDisabled="true" />
-				<f:selectItems value="#{ProductUnitBean.getProductPlatformList()}" var="platform" itemLabel="#{platform.platformName}" itemValue ="#{platform.platformName}"/>
+				<f:selectItem itemLabel="Seleccione uma opção" itemValue="#{null}" />
+				<f:selectItems value="#{ProductUnitBean.getProductPlatformList()}"/>
 			</p:selectOneMenu>
 			<p:commandButton value="Adicionar"
 				update=":errorMsgs, :ProductUnitTable:ProductUnitList"
