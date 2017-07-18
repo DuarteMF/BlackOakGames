@@ -353,7 +353,7 @@
 			<p:selectOneMenu id="addPlatform"
 				value="#{productUnitPlatformName}" label="Platform"
 				rendered="#{not empty (ProductUnitBean.productName)}">
-				<f:selectItem itemLabel="Seleccione uma opção" itemValue="#{null}" />
+				<f:selectItem itemLabel="Seleccione uma opção" itemDisabled="true" />
 				<f:selectItems value="#{ProductUnitBean.getProductPlatformList()}"/>
 			</p:selectOneMenu>
 			<p:commandButton value="Adicionar"
