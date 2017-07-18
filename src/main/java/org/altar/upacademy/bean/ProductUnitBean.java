@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -17,7 +17,7 @@ import org.altar.upacademy.repository.ProductRepository;
 import org.altar.upacademy.repository.ProductUnitRepository;
 
 @Named("ProductUnitBean")
-@SessionScoped
+@RequestScoped
 public class ProductUnitBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
