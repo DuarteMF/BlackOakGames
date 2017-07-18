@@ -13,10 +13,8 @@
 	<h:outputStylesheet library="css" name="mystyle.css"></h:outputStylesheet>
 	
 </h:head>
-<h:body style="background-color: #637ba0; color: #FFD200">
-	<ui:composition template="commonLayout.xhtml">
-		<ui:define name="content">
-	<header>
+<h:body>
+
 		<div class="container-fluid">
 
 			<div class="row header">
@@ -44,7 +42,7 @@
 								<f:validateLength minimum="2" />
 							</p:inputText>
 
-							<p:menuButton look="primary" class="CategoryButton" value="Category">
+							<p:menuButton class="CategoryButton" value="Category" styleClass="">
 								<p:menuitem value="Action" />
 								<p:menuitem value="Adventure" />
 								<p:menuitem value="RPG" />
@@ -65,9 +63,10 @@
 		
 		<div class="container-fluid">
 		
-			<b:tabView class="Tabs" contentStyle ="container" pills="true">
-
-				<b:tab title="Category" class="TabCategory" contentStyle ="container">
+			<b:tabView  class="Tabs"  pills="true">
+				
+				<b:tab title="Category" contentStyle ="container" class = "TabCategory" >
+					
 					<h:form id="cat">
 						<p:dataGrid class="GridCategory" var="Category" value="#{CategoryBean.getList()}" columns="3"
 							layout="grid" rows="12" paginator="true" id="categories"
@@ -88,8 +87,9 @@
 						</p:dataGrid>
         			</h:form>
 				</b:tab>
-
-				<b:tab title="Platform" class="TabPlatform" contentStyle ="container">
+			
+				
+				<b:tab title="Platform" contentStyle ="container" class = "TabPlatform" >
 					<h:form id="pla">
 						<p:dataGrid class="GridPlatform" var="Platform" value="#{PlatformBean.getList()}" columns="3"
 							layout="grid" rows="12" paginator="true" id="platforms"
@@ -114,8 +114,6 @@
 			</b:tabView> 
 		
 		</div>
-	</header>
-		</ui:define>
-	</ui:composition>
+	
 </h:body>
 </html>

@@ -21,16 +21,16 @@
 } */
 
 body{
-	color: #FFD200;
-	background-color:#637ba0;
+	color: #FFD200 !important;
+	background-color:#637ba0 !important;
 }
 
-
+/* --------------------------Header----------------------------- */
 .header{
 	display:flex;
 	background-color:#3b424f;
 	align-items: center;
-	
+	margin-bottom: 50px;
 }
 .Título{
 	
@@ -46,6 +46,40 @@ body{
 
 }
 
+.Search{
+	display:flex;
+	padding-top: 10px;
+
+}
+
+/* botões Login e Sign Up */
+.LoginButton, .SignUp{
+	border-radius: 5px;
+	border-color: transparent;
+	background-color:#3b424f;
+	color: white;
+	
+}
+
+.LoginButton:hover, .SignUp:hover{
+	border-radius: 5px;
+	background-color:#395272;
+	border-color: transparent;
+	color: white;
+	
+}
+
+.CategoryButton{
+	border-radius: 5px;
+	background-color:#395272;
+	border-color: transparent;
+	color: white;
+}
+
+
+
+/* --------------------------Content------------------------------ */
+
 /* Área da grid Categoria */
 .GridCategory, .GridPlatform{
 	background-color:#637ba0;
@@ -55,30 +89,25 @@ body{
 /* Área das Tabs Categoria e Plataformas na grid */
 .Tabs{
 	background-color:#637ba0;
-	text-align:center;
-}
-
-.TabCategory, .TabPlatform{
-	text-align:center;
-}
-
-.LoginButton, .SignUp, .TabCategory, .TabPlatform{
-	border-radius: 5px;
-	border-color: transparent;
-	background-color:#3b424f;
-	color: white;
-	
-}
-.LoginButton:hover, .SignUp:hover, .TabCategory:hover, .TabPlatform:hover{
-	border-radius: 5px;
-	background-color:#395272;
-	border-color: transparent;
-	color: white;
-	
-}
-
-.Search{
+	text-align:center !important;
 	display:flex;
-	padding-top: 10px;
-
+	justify-content:center;
+	color:white !important;
 }
+
+/* Tabs Categoria e Plataformas na grid */
+#j_idt31_tab, #j_idt25_tab{
+	color:white;
+	/* background-color:#637ba0; */
+	margin-bottom: 20px;
+}
+
+#cat{  
+     font-size: 20px;  
+     text-decoration: none;  
+     color:orange;  
+     font-style: normal; 
+ } 
+
+
+
