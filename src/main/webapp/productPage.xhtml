@@ -16,17 +16,32 @@
 </h:head>
 <h:body>
 	<header>
-		<h1>Black Oak Games</h1>
+		<h1>
+			<h:outputText value="Título Placeholder"></h:outputText>
+		</h1>
+		<h3>
+			<h:outputText value="Editora: EA Games"></h:outputText>
+		</h3>
 	</header>
-	
-	<!-- <h:inputHidden value="productId"></h:inputHidden>
-	<h:outputText value="#{ProductBean.getProduct(productId).productName}"></h:outputText>
-	<h:outputText value="Disponível para: #{ProductBean.getProduct(productId).platformSet}"></h:outputText>
-	<h:outputText value="Categorias: #{ProductBean.getProduct(productId).categorySet}"></h:outputText>
-	<h:outputText value="Estúdio: #{ProductBean.getProduct(productId).publisher}"></h:outputText>
-	<h:outputText value="Informação: #{ProductBean.getProduct(productId).details}"></h:outputText>
-	<h:outputText value="Número de produtos disponíveis: #{ProductBean.getProduct(productId).availability}"></h:outputText>
-	<h:outputText value="Preço de Aluguer: #{ProductBean.getProduct(productId).rentalPrice}€"></h:outputText> -->
+	<p:panelGrid columns="2" columnClasses="ui-grid-col-4,ui-grid-col-8"
+		layout="grid" styleClass="ui-panelgrid-blank">
+		<p:graphicImage name="images/GTAV.jpg" alt="Imagem Placeholder" />
+		<h:outputText value="Informação: bla bla bla"></h:outputText>
+	</p:panelGrid>
+	<br></br>
+	<p:outputLabel for="platforms" value="Disponível para:" />
+	<br></br>
+	<p:selectOneRadio id="platforms" value="" layout="responsive"
+		columns="3">
+		<f:selectItems value="#{PlatformBean.getList()}" var="platform"
+			itemLabel="#{platform.platformName}" itemValue="#{platform}" />
+	</p:selectOneRadio>
+	<br></br>
+	<h:outputText value="Categorias: #{CategoryBean.getList()}"></h:outputText>
+	<br></br>
+	<h:outputText value="Número de produtos disponíveis: Disponível"></h:outputText>
+	<br></br>
+	<h:outputText value="Preço de Aluguer: 50€"></h:outputText>
 
 	<footer>
 		<p>@2017</p>
