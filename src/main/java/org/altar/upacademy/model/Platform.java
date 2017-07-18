@@ -12,7 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @javax.persistence.Entity
-@Table(name = "PLATFORMS")
+@Table(name = "PLATFORM")
 public class Platform extends Entity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
