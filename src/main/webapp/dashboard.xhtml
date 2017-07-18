@@ -33,30 +33,43 @@
 				</div>
 				
 				<div class="container Search">
-					<h:form>
-
-						<h:panelGrid columns="7" cellpadding="5">
-							<h:outputLabel for="Title" />
-							<p:inputText id="Title" value="" required="true" label="Text 1"
-								placeholder="Title">
-								<f:validateLength minimum="2" />
-							</p:inputText>
-
-							<p:menuButton class="CategoryButton" value="Category" styleClass="">
-								<p:menuitem value="Action" />
-								<p:menuitem value="Adventure" />
-								<p:menuitem value="RPG" />
-							</p:menuButton>
-
-							<p:menuButton class="PlatformButton" value="Platform">
-								<p:menuitem value="PS4" />
-								<p:menuitem value="XBOX" />
-								<p:menuitem value="Wii" />
-							</p:menuButton>
-						</h:panelGrid>
 						
-					</h:form>
+						
+							<div class="container GameSearch">
+								<h:form>
+									<h:outputLabel for="Title" />
+									<p:inputText id="Title" value="" required="true" label="Text 1"
+										placeholder="Title" >
+										<f:validateLength minimum="2" />
+									</p:inputText>
+								</h:form>
+							</div>
+							
+							<div class="CategorySearch">
+								<h:form>
+									<p:selectOneMenu 
+										value="#{ProductBean.categoryNameList}" label="Categories"
+										multiple="true"
+										rendered="#{not empty ProductBean.existingCategories()}">
+										<f:selectItems value="#{ProductBean.existingCategories()}" />
+									</p:selectOneMenu>
+								</h:form>
+							</div>
+							
+							<div class="PlatformSearch">
+								<h:form>
+									<p:selectOneMenu 
+										value="#{ProductBean.platformNameList}" label="Platforms"
+										multiple="true"
+										rendered="#{not empty ProductBean.existingPlatforms()}">
+										<f:selectItems value="#{ProductBean.existingPlatforms()}" />
+									</p:selectOneMenu>
+								</h:form>
+							</div>
+						
+						
 				</div>
+			
 
 			</div>
 		</div>

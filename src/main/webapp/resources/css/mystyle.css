@@ -33,15 +33,15 @@ body{
 	margin-bottom: 50px;
 }
 .Título{
-	
 	font-size: 20px;
 	display:flex;
+	justify-content:flex-start;
 	padding-top: 10px;
 	
 }
 .Login{
 	display:flex;
- 	justify-content: flex-end;
+ 	justify-content:flex-end;
 	padding-top: 10px;
 
 }
@@ -69,11 +69,19 @@ body{
 	
 }
 
-.CategoryButton{
-	border-radius: 5px;
-	background-color:#395272;
-	border-color: transparent;
-	color: white;
+.Search1{
+	display:flex;
+	background-color:#3b424f;
+	
+	
+}
+
+.GameSearch{
+	display:flex;
+	justify-content: flex-end;
+}	
+
+	
 }
 
 
