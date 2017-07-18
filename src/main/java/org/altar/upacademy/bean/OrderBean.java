@@ -16,6 +16,8 @@ import org.altar.upacademy.repository.OrderRepository;
 @RequestScoped
 public class OrderBean implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 private Order newOrder = new Order();
 	
 private Order editedOrder = new Order();
