@@ -80,7 +80,7 @@
 				
 				<b:tab title="Category" contentStyle ="container" class = "TabCategory" >
 					
-					<h:form id="cat">
+					<h:form>
 						<p:dataGrid class="GridCategory" var="Category" value="#{CategoryBean.getList()}" columns="3"
 							layout="grid" rows="12" paginator="true" id="categories"
 							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -103,7 +103,7 @@
 			
 				
 				<b:tab title="Platform" contentStyle ="container" class = "TabPlatform" >
-					<h:form id="pla">
+					<h:form>
 						<p:dataGrid class="GridPlatform" var="Platform" value="#{PlatformBean.getList()}" columns="3"
 							layout="grid" rows="12" paginator="true" id="platforms"
 							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"

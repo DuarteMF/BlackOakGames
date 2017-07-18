@@ -90,9 +90,9 @@ body{
 
 /* Área da grid Categoria */
 .GridCategory, .GridPlatform{
-	background-color:#637ba0;
+/* 	background-color:#637ba0;
 	border: none;
-	
+	 */
 }
 /* Área das Tabs Categoria e Plataformas na grid */
 .Tabs{
