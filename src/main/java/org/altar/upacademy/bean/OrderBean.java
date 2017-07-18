@@ -7,9 +7,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.altar.upacademy.model.Client;
 import org.altar.upacademy.model.Order;
-import org.altar.upacademy.repository.ClientRepository;
 import org.altar.upacademy.repository.OrderRepository;
 
 @Named("OrderBean")
