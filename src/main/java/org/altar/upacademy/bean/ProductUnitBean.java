@@ -1,12 +1,11 @@
 package org.altar.upacademy.bean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -18,7 +17,7 @@ import org.altar.upacademy.repository.ProductRepository;
 import org.altar.upacademy.repository.ProductUnitRepository;
 
 @Named("ProductUnitBean")
-@RequestScoped
+@SessionScoped
 public class ProductUnitBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -76,7 +75,7 @@ public class ProductUnitBean implements Serializable{
 		productUnitRepository.removeFromDb(productUnit);
 	}
 	
-	private String productName;
+	private String productName = "";
 
 	public String getProductName() {
 		return productName;
@@ -87,7 +86,7 @@ public class ProductUnitBean implements Serializable{
 		this.productName = productName;
 	}
 	
-	private String platformName;
+	private String platformName = null;
 
 	public String getPlatformName() {
 		return platformName;

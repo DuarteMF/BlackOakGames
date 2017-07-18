@@ -305,7 +305,7 @@
 		<p:growl id="productUnitTableMsgs" showDetail="true" />
 		<p:dataTable id="ProductUnitList" var="productUnit"
 			value="#{ProductUnitBean.getList()}">
-			<f:facet name="header">	Product units </f:facet>
+			<f:facet name="header">	Product Units </f:facet>
 
 			<p:column headerText="Id">
 				<h:outputText value="#{productUnit.productUnitId}" />
@@ -350,14 +350,16 @@
 			<p:outputLabel value="Plataforma:" for="addPlatform"
 				rendered="#{not empty (ProductUnitBean.productName)}" />
 			<p:selectOneMenu id="addPlatform"
-				value="#{ProductUnitBean.platformName}" label="Platform"
+				value="#{productUnitPlatformName}" label="Platform"
 				rendered="#{not empty (ProductUnitBean.productName)}">
 				<f:selectItem itemLabel="Seleccione uma opção" itemValue="#{null}" />
 				<f:selectItems value="#{ProductUnitBean.getProductPlatformList()}"/>
 			</p:selectOneMenu>
 			<p:commandButton value="Adicionar"
 				update=":errorMsgs, :ProductUnitTable:ProductUnitList"
-				action="#{ProductUnitBean.display()}">
+				action="#{ProductUnitBean.addProductUnit()}" >
+				<f:setPropertyActionListener value="#{productUnitPlatformName}"
+						target="#{ProductUnitBean.platformName}" />
 			</p:commandButton>
 		</h:panelGrid>
 	</h:form>
@@ -387,8 +389,7 @@
 
 			<p:commandButton value="Editar"
 				update=":errorMsgs, :ProductUnitTable:ProductUnitList"
-				action="#{ProductUnitBean.editProductUnit()}">
-			</p:commandButton>
+				action="#{ProductUnitBean.editProductUnit()}"/>
 		</h:panelGrid>
 	</h:form>
 
