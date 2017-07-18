@@ -3,23 +3,23 @@ package org.altar.upacademy.bean;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.transaction.Transactional;
 
 import org.altar.upacademy.model.Platform;
 import org.altar.upacademy.repository.PlatformRepository;
-
-
 
 @Named("PlatformBean")
 @RequestScoped
 public class PlatformBean implements Serializable {
 
-private static final long serialVersionUID = 1L;
-	
+	private static final long serialVersionUID = 1L;
+
 	private Platform newPlatform = new Platform();
-	
+
 	public Platform getNewPlatform() {
 		return newPlatform;
 	}
@@ -27,7 +27,7 @@ private static final long serialVersionUID = 1L;
 	public void setNewPlatform(Platform newPlatform) {
 		this.newPlatform = newPlatform;
 	}
-	
+
 	private Platform editedPlatform = new Platform();
 
 	public Platform getEditedPlatform() {
@@ -40,21 +40,38 @@ private static final long serialVersionUID = 1L;
 
 	@Inject
 	private PlatformRepository platformRepository;
-	
+
 	public List<Platform> getList() {
 		return platformRepository.getDbPlatforms();
 	}
 
-
 	public void addPlatform() {
 		platformRepository.addToDb(newPlatform);
 	}
-	
+
 	public void editPlatform() {
 		platformRepository.updateInDb(editedPlatform);
 	}
-	
+
 	public void deletePlatform(Platform platform) {
 		platformRepository.removeFromDb(platform);
 	}
+
+//	@PostConstruct
+//	public void init() {
+//		if (platformRepository.isEmpty()) {
+//			Platform firstPlatform = new Platform();
+//			firstPlatform.setPlatformName("PC");
+//			platformRepository.addToDb(firstPlatform);
+//			Platform secondPlatform = new Platform();
+//			secondPlatform.setPlatformName("PS4");
+//			platformRepository.addToDb(secondPlatform);
+//			Platform thirdPlatform = new Platform();
+//			thirdPlatform.setPlatformName("Xbox");
+//			platformRepository.addToDb(thirdPlatform);
+//			Platform fourthPlatform = new Platform();
+//			fourthPlatform.setPlatformName("Switch");
+//			platformRepository.addToDb(fourthPlatform);
+//		}
+//	}
 }

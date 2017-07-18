@@ -11,6 +11,7 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import org.altar.upacademy.model.Category;
+import org.altar.upacademy.model.Platform;
 
 @Named("categoryRepository")
 @ApplicationScoped
@@ -40,5 +41,11 @@ public class CategoryRepository extends EntityRepository<Category>{
 			categories.add(results.get(0));
 		}
 		return categories;
+	}
+	
+	public boolean isEmpty(){
+		TypedQuery<Category> query = getDbConnection().createQuery("SELECT c FROM Category",Category.class);
+		List<Category> results = query.getResultList();
+		return results.isEmpty();
 	}
 }

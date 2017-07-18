@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 import javax.persistence.Query;
@@ -16,6 +17,7 @@ import org.altar.upacademy.model.Platform;
 @ApplicationScoped
 public class PlatformRepository extends EntityRepository<Platform> {
 
+	@Transactional
 	public List<Platform> getDbPlatforms() {
 		Query query = getDbConnection().createQuery("FROM Platform");
 		List<Platform> dbPlatforms = (List<Platform>) query.getResultList();
@@ -48,5 +50,11 @@ public class PlatformRepository extends EntityRepository<Platform> {
 		query.setParameter("name", platformName);
 		List<Platform> results = query.getResultList();
 		return results.get(0);
+	}
+	
+	public boolean isEmpty(){
+		TypedQuery<Platform> query = getDbConnection().createQuery("SELECT p FROM Platform",Platform.class);
+		List<Platform> results = query.getResultList();
+		return results.isEmpty();
 	}
 }
