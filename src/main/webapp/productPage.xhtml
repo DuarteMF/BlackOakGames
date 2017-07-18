@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="mystyle.css"></h:outputStylesheet>
+
+
+</h:head>
+<h:body>
+	<header>
+		<h1>Black Oak Games</h1>
+	</header>
+	
+	<h:inputHidden value="productId"></h:inputHidden>
+	<h:outputText value="#{ProductBean.getProduct(productId).productName}"></h:outputText>
+	<h:outputText value="Disponível para: #{ProductBean.getProduct(productId).platformSet}"></h:outputText>
+	<h:outputText value="Categorias: #{ProductBean.getProduct(productId).categorySet}"></h:outputText>
+	<h:outputText value="Estúdio: #{ProductBean.getProduct(productId).publisher}"></h:outputText>
+	<h:outputText value="Informação: #{ProductBean.getProduct(productId).details}"></h:outputText>
+	<h:outputText value="Número de produtos disponíveis: #{ProductBean.getProduct(productId).availability}"></h:outputText>
+	<h:outputText value="Preço de Aluguer: #{ProductBean.getProduct(productId).rentalPrice}€"></h:outputText>
+
+	<footer>
+		<p>@2017</p>
+	</footer>
+</h:body>
+</html>
