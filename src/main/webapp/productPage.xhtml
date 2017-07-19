@@ -9,7 +9,7 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
-
+	
 
 </h:head>
 <h:body>
@@ -35,41 +35,55 @@
 	
 		<div>
 			<p:panelGrid columns="2" columnClasses="ui-grid-col-6,ui-grid-col-6"
-				layout="grid" styleClass="ui-panelgrid-blank">
-				<p:graphicImage name="images/stardewvalley.png" alt="stardew valley" id="imageGame" />
-				<div class="details">
-				<h:outputText value="Details:" id="detail"/>
-				</div>
-				
-				<div class="textDetailsGame">
-				<h:outputText value="You've inherited your grandfather's old farm plot in 
-				Stardew Valley. Armed with hand-me-down tools and a few coins, you set out to begin 
-				your new life. Can you learn to live off the land and turn these overgrown fields 
-				into a thriving home?" id="textdetail"/>
-				</div>
-			</p:panelGrid>
+				layout="grid" styleClass="ui-panelgrid-blank" >
+				<p:graphicImage name="images/stardewvalley.png" alt="stardew valley" 
+				id="imageGame" class="img-responsive" />
+				<h:form id="formDetails">
+					<h4 id="details">Details</h4>
+					<p:separator></p:separator>
+					<h:outputText
+						value="&lt;br   /&gt;You've inherited your grandfather's old 
+							farm plot in Stardew Valley. &lt;br /&gt; Armed with hand-me-down tools and a 
+							few coins, you set out to begin your new life. &lt;br /&gt; Can 
+							you learn to live off the land and turn these overgrown fields 
+							into a thriving home?"
+						id="detailsText" escape="false"  />
+				</h:form>
+
+		</p:panelGrid>
 		</div>
 	
-	
-	
-	
-		<p:outputLabel for="platforms" value="Available for:" />
-		<br></br>
-		<br></br>
-		<p:selectOneRadio id="platforms" value="" layout="responsive"
-			columns="3">
-			<f:selectItems value="#{PlatformBean.getList()}" var="platform"
-				itemLabel="#{platform.platformName}" itemValue="#{platform}" />
-		</p:selectOneRadio>
+		<div>
+			<p:outputLabel for="platforms" value="Available for:" id="availableFor"/>
+			
+			<br></br>
+			<br></br>
+			
+			<p:selectOneRadio id="platforms" value="" layout="responsive"
+				columns="3">
+				<f:selectItems value="#{PlatformBean.getList()}" var="platform"
+					itemLabel="#{platform.platformName}" itemValue="#{platform}" />
+			</p:selectOneRadio>
+			
+			<h:outputText value="Categorys: #{CategoryBean.getList()}" id="respectiveCategory"></h:outputText>
+			
+			<br></br>
+			<br></br>
+			
+			<h:outputText value="Product available: Yes" id="productAvaliability"></h:outputText>
+			
+			<br></br>
+			<br></br>
+			
+			<h:outputText value="Price: 10€" id="productPrice"></h:outputText>
+			
+			<br></br>
+			
+			<h:form id="addButton">
+				<p:commandButton value="Add to shopping cart" id="addToCart" actionListener="#" update="" icon="ui-icon-cart" class="btn btn-default" />
+			</h:form>
+		</div>
 		
-		
-		<h:outputText value="Categorys: #{CategoryBean.getList()}"></h:outputText>
-		<br></br>
-		<br></br>
-		<h:outputText value="Product available: Yes"></h:outputText>
-		<br></br>
-		<br></br>
-		<h:outputText value="Price: 10€"></h:outputText>
 
 
 </h:body>
