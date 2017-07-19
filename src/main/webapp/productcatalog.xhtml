@@ -10,7 +10,10 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
-	
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
 </h:head>
@@ -18,40 +21,60 @@
 	<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
 	<h:outputStylesheet library="css" name="memenu.css"></h:outputStylesheet>
 	<h:outputStylesheet library="css" name="productcatalog.css"></h:outputStylesheet>
+	
 	<header>
 		<h1>Black Oak Games - Product Page</h1>
 	</header>
 	<h:form id="form">
-    <p:dataGrid var="product" value="#{ProductBean.getList()}" columns="3" layout="grid"
-        rows="12" paginator="true" id="ProductList"
-        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-        rowsPerPageTemplate="6,12,16">
- 
-        <f:facet name="header">
+		<p:dataGrid var="product" value="#{ProductBean.getList()}" columns="3"
+			layout="grid" rows="12" paginator="true" id="ProductList"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="6,12,16">
+
+			<f:facet name="header">
            Videogames for rent
         </f:facet>
 
 			<p:panel header="#{product.productName}" style="text-align:center">
-				<h:panelGrid columns="1" style="width:100%">
-					<div>
-					<p:graphicImage class="casesimage" library="images" name="gamecase.jpg" />
 
-					
+				<h:panelGrid styleClass="gridprod" columns="1" style="width:100%">
+
+					<div class="col-xs-5">
+						<p:graphicImage library="images" name="gamecase.jpg" />
 					</div>
-				<div>
-				<h:outputText class="cat" value="#{product.categorySet}" />
-				<h:outputText class="cat" value="#{product.platformSet}" />
-				</div>
+					<div class="col-xs-5-offset-2">
+						<h:outputText value="Categorias: #{product.categorySet}" />
+						<h:outputText value="Plataformas: #{product.platformSet}" />
+						<h:outputText value="Preço: #{product.rentalPrice} €" />
+					</div>
+					<div class="container">
+
+						<span class="glyphicon glyphicon-shopping-cart"></span>
+						
+						<a href="#"> <span class="glyphicon glyphicon-shopping-cart"></span>
+						</a>
+
+
+						<button type="button" class="btn btn-default btn-sm">
+							<span class="glyphicon glyphicon-shopping-cart"></span>
+						</button>
+
+
+						<a href="#" class="btn btn-info btn-lg"> <span
+							class="glyphicon glyphicon-shopping-cart"></span>
+						</a> <span class="glyphicon">&#xe116;</span>
+
+					</div>
 				</h:panelGrid>
-				
+
 			</p:panel>
 
 		</p:dataGrid>
- 
 
-</h:form>
+
+	</h:form>
 </h:body>
-	<footer>
-		<p>@2017</p>
-	</footer>
+<footer>
+	<p>@2017</p>
+</footer>
 </html>

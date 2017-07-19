@@ -7,11 +7,15 @@ h1 {
 }
 
 .cat{
-	align: center;
-
+	display: inline-block;
 	float: right;
 }
 .casesimage{
+	align-text: center;
+	align-content: center;
+}
+
+.gridprod{
+	align-text: center;
 	display: inline-block;
-	float: left;
 }
