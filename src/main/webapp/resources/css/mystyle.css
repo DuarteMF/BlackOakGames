@@ -1,20 +1,121 @@
 @CHARSET "UTF-8";
 
-#footer {
-	text-align:center;
-}
 
- h1 {
+ #title {
   color: #FFD200;  
   font-size: 47px;
   margin-bottom: 15px;
   margin-top: 0;
   font-weight: lighter;
-  text-align:center;
+  text-align:left;
   
 }
 
- body{
-	background-image: url(https://newevolutiondesigns.com/images/freebies/black-wallpaper-10.jpg);
-	color: #FFD200;
-} 
+/* html{
+	padding-bottom: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+	height:100%;
+	width: 100%;
+} */
+
+body{
+	color: #FFD200 !important;
+	background-color:#637ba0 !important;
+}
+
+/* --------------------------Header----------------------------- */
+.header{
+	display:flex;
+	background-color:#3b424f;
+	align-items: center;
+	margin-bottom: 50px;
+}
+.Título{
+	font-size: 20px;
+	display:flex;
+	justify-content:flex-start;
+	padding-top: 10px;
+	
+}
+.Login{
+	display:flex;
+ 	justify-content:flex-end;
+	padding-top: 10px;
+
+}
+
+.Search{
+	display:flex;
+	padding-top: 10px;
+
+}
+
+/* botões Login e Sign Up */
+.LoginButton, .SignUp{
+	border-radius: 5px;
+	border-color: transparent;
+	background-color:#3b424f;
+	color: white;
+	
+}
+
+.LoginButton:hover, .SignUp:hover{
+	border-radius: 5px;
+	background-color:#395272;
+	border-color: transparent;
+	color: white;
+	
+}
+
+.Search1{
+	display:flex;
+	background-color:#3b424f;
+	
+	
+}
+
+.GameSearch{
+	display:flex;
+	justify-content: flex-end;
+}	
+
+	
+}
+
+
+
+/* --------------------------Content------------------------------ */
+
+/* Área da grid Categoria */
+.GridCategory, .GridPlatform{
+/* 	background-color:#637ba0;
+	border: none;
+	 */
+}
+/* Área das Tabs Categoria e Plataformas na grid */
+.Tabs{
+	background-color:#637ba0;
+	text-align:center !important;
+	display:flex;
+	justify-content:center;
+	color:white !important;
+}
+
+/* Tabs Categoria e Plataformas na grid */
+#j_idt31_tab, #j_idt25_tab{
+	color:white;
+	/* background-color:#637ba0; */
+	margin-bottom: 20px;
+}
+
+#cat{  
+     font-size: 20px;  
+     text-decoration: none;  
+     color:orange;  
+     font-style: normal; 
+ } 
+
+
+
