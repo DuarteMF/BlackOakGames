@@ -1,5 +1,28 @@
 @CHARSET "UTF-8";
 
+.search{
+	width:15%;
+}
+
+.categorySearch{
+	position: relative;
+	
+	width: 15%;
+	background-color: #fff;
+	margin-top: 11px;
+}
+
+.platformSearch{
+	position: relative;
+	float: left;
+	width: 15%;
+	background-color: #fff;
+	margin-top: 11px;
+}
+
+
+
+/* 
 
  #title {
   color: #FFD200;  
@@ -11,21 +34,22 @@
   
 }
 
-/* html{
+
+html{
 	padding-bottom: 0px;
 	padding-left: 0px;
 	padding-right: 0px;
 	padding-top: 0px;
 	height:100%;
 	width: 100%;
-} */
+}
 
 body{
 	color: #FFD200 !important;
 	background-color:#637ba0 !important;
 }
 
-/* --------------------------Header----------------------------- */
+/* --------------------------Header-----------------------------
 .header{
 	display:flex;
 	background-color:#3b424f;
@@ -52,7 +76,7 @@ body{
 
 }
 
-/* botões Login e Sign Up */
+botões Login e Sign Up
 .LoginButton, .SignUp{
 	border-radius: 5px;
 	border-color: transparent;
@@ -86,15 +110,15 @@ body{
 
 
 
-/* --------------------------Content------------------------------ */
+--------------------------Content------------------------------
 
-/* Área da grid Categoria */
+Área da grid Categoria
 .GridCategory, .GridPlatform{
-/* 	background-color:#637ba0;
+	background-color:#637ba0;
 	border: none;
-	 */
+	
 }
-/* Área das Tabs Categoria e Plataformas na grid */
+Área das Tabs Categoria e Plataformas na grid
 .Tabs{
 	background-color:#637ba0;
 	text-align:center !important;
@@ -103,10 +127,10 @@ body{
 	color:white !important;
 }
 
-/* Tabs Categoria e Plataformas na grid */
+Tabs Categoria e Plataformas na grid
 #j_idt31_tab, #j_idt25_tab{
 	color:white;
-	/* background-color:#637ba0; */
+	background-color:#637ba0;
 	margin-bottom: 20px;
 }
 
@@ -117,5 +141,5 @@ body{
      font-style: normal; 
  } 
 
-
+ */
 
