@@ -4,23 +4,12 @@
 	width:15%;
 }
 
-.categorySearch{
-	position: relative;
-	
-	width: 15%;
-	background-color: #fff;
-	margin-top: 11px;
-}
-
-.platformSearch{
-	position: relative;
+.search1, .search2{
+	position:relative;
 	float: left;
-	width: 15%;
-	background-color: #fff;
-	margin-top: 11px;
+  	background-color: #fff;
+    margin-top: 11px;
 }
-
-
 
 /* 
 

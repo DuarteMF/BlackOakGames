@@ -9,10 +9,9 @@
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
-	
 </h:head>
 <h:body>
+	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
 	<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
 	<h:outputStylesheet library="css" name="memenu.css"></h:outputStylesheet>
 	<h:outputStylesheet library="css" name="mystyle.css"></h:outputStylesheet>
@@ -43,7 +42,7 @@
 				</h:form>
 
 			</div>
-			<div class="search">
+			<div class="search1">
 				<h:form>
 					<p:selectOneMenu value="#{ProductBean.categoryNameList}"
 						label="Categories" multiple="true"
@@ -52,7 +51,7 @@
 					</p:selectOneMenu>
 				</h:form>
 			</div>
-			<div class="search">
+			<div class="search2">
 				<h:form>
 					<p:selectOneMenu value="#{ProductBean.platformNameList}"
 						label="Platforms" multiple="true"
@@ -61,11 +60,14 @@
 					</p:selectOneMenu>
 				</h:form>
 			</div>
+			<div class="clearfix">
+			</div>
 		</div>
 	</div>
 
 
-
+	<div>
+	</div>
 
 
 
@@ -135,8 +137,6 @@
 				</div>
 			</div>
 		</div>
-		A parte que não é o header começa aqui
-		
 		
 		<div class="container-fluid">
 		
