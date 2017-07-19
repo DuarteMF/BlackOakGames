@@ -176,6 +176,7 @@
 					<p:inputText id="addProductName"
 						value="#{ProductBean.newProduct.productName}"
 						placeholder="Insert Product" />
+						
 
 					<h:outputLabel for="addYear" value="Year:" />
 					<p:spinner min="1980" max="2018" id="addYear"
@@ -227,7 +228,7 @@
 					<h:outputText id="display" />
 
 					<p:commandButton value="Adicionar"
-						update=":ProductTable:ProductList,:PlatformTable:PlatformList, :CategoryTable:CategoryList"
+						update=":errorMsgs, :ProductTable:ProductList,:PlatformTable:PlatformList, :CategoryTable:CategoryList"
 						action="#{ProductBean.addProduct()}" />
 				</h:panelGrid>
 			</h:form>

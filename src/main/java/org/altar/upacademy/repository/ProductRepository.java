@@ -10,7 +10,6 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
-import org.altar.upacademy.model.Category;
 import org.altar.upacademy.model.Product;
 
 @Named("productRepository")
@@ -30,13 +29,11 @@ public class ProductRepository extends EntityRepository<Product> {
 		getDbConnection().remove(productToRemove);
 	}
 	
-	public Set<Product> getProductsFromNames(List<String> productNames){
+	public Set<Product> getProductsFromIds(List<Integer> productIds){
 		Set<Product> products = new HashSet<>();
-		for(String name: productNames){
-//			TypedQuery<Category> query = getDbConnection().createQuery("SELECT c FROM Category AS c WHERE c.categoryName = ?", Category.class);
-//			query.setParameter(1, name);
-			TypedQuery<Product> query = getDbConnection().createQuery("SELECT p FROM Product AS p WHERE p.productName = :name", Product.class);
-			query.setParameter("name", name);
+		for(Integer id: productIds){
+			TypedQuery<Product> query = getDbConnection().createQuery("SELECT p FROM Product AS p WHERE p.productId = :id", Product.class);
+			query.setParameter("id", id);
 			List<Product> results = query.getResultList();
 			products.add(results.get(0));
 		}

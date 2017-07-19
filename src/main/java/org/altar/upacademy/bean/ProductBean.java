@@ -78,25 +78,25 @@ public class ProductBean implements Serializable {
 		Set<String> platformSetNames = platformSet.stream().map(n->n.getPlatformName()).collect(Collectors.toSet());
 		for(Category category: existingCategories()){
 			Set<Product> productSetTemp = category.getProductSet();
-			List<String> productSetNames = productSetTemp.stream().map(n->n.getProductName()).collect(Collectors.toList());
-			if(productSetNames.contains(editedProduct.getProductName()) && !categorySetNames.contains(category.getCategoryName())){
-				productSetNames.remove(editedProduct.getProductName());
-			}else if(!productSetNames.contains(editedProduct.getProductName()) && categorySetNames.contains(category.getCategoryName())){
-				productSetNames.add(editedProduct.getProductName());
+			List<Integer> productSetIds = productSetTemp.stream().map(n->n.getProductId()).collect(Collectors.toList());
+			if(productSetIds.contains(editedProduct.getProductId()) && !categorySetNames.contains(category.getCategoryName())){
+				productSetIds.remove(editedProduct.getProductId());
+			}else if(!productSetIds.contains(editedProduct.getProductId()) && categorySetNames.contains(category.getCategoryName())){
+				productSetIds.add(editedProduct.getProductId());
 			}
-			Set<Product> newProductSetTemp = productRepository.getProductsFromNames(productSetNames);
+			Set<Product> newProductSetTemp = productRepository.getProductsFromIds(productSetIds);
 			category.setProductSet(newProductSetTemp);
 			categoryRepository.updateInDb(category);
 		}
 		for(Platform platform: existingPlatforms()){
 			Set<Product> productSetTemp = platform.getProductSet();
-			List<String> productSetNames = productSetTemp.stream().map(n->n.getProductName()).collect(Collectors.toList());
-			if(productSetNames.contains(editedProduct.getProductName()) && !platformSetNames.contains(platform.getPlatformName())){
-				productSetNames.remove(editedProduct.getProductName());
-			}else if(!productSetNames.contains(editedProduct.getProductName()) && platformSetNames.contains(platform.getPlatformName())){
-				productSetNames.add(editedProduct.getProductName());
+			List<Integer> productSetIds = productSetTemp.stream().map(n->n.getProductId()).collect(Collectors.toList());
+			if(productSetIds.contains(editedProduct.getProductId()) && !platformSetNames.contains(platform.getPlatformName())){
+				productSetIds.remove(editedProduct.getProductId());
+			}else if(!productSetIds.contains(editedProduct.getProductId()) && platformSetNames.contains(platform.getPlatformName())){
+				productSetIds.add(editedProduct.getProductId());
 			}
-			Set<Product> newProductSetTemp = productRepository.getProductsFromNames(productSetNames);
+			Set<Product> newProductSetTemp = productRepository.getProductsFromIds(productSetIds);
 			platform.setProductSet(newProductSetTemp);
 			platformRepository.updateInDb(platform);			
 		}
@@ -154,23 +154,4 @@ public class ProductBean implements Serializable {
 	public void setPlatformNameList(List<String> platformNameList) {
 		this.platformNameList = platformNameList;
 	}
-	
-//	private Set<Category> oldCategorySet;
-//	private Set<Platform> oldPlatformSet;
-//
-//	public Set<Category> getOldCategorySet() {
-//		return oldCategorySet;
-//	}
-//
-//	public void setOldCategorySet(Set<Category> oldCategorySet) {
-//		this.oldCategorySet = oldCategorySet;
-//	}
-//
-//	public Set<Platform> getOldPlatformSet() {
-//		return oldPlatformSet;
-//	}
-//
-//	public void setOldPlatformSet(Set<Platform> oldPlatformSet) {
-//		this.oldPlatformSet = oldPlatformSet;
-//	}
 }
