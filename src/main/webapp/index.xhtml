@@ -54,7 +54,7 @@
 			<p:inputText id="addPlatformName" placeholder="Insert Platform"
 				value="#{PlatformBean.newPlatform.platformName}" />
 			<p:commandButton value="Adicionar"
-				update=":PlatformTable:PlatformList"
+				update=":PlatformTable:PlatformList, AddProductSection, EditProductSection"
 				action="#{PlatformBean.addPlatform()}" />
 		</h:panelGrid>
 	</h:form>
@@ -66,7 +66,8 @@
 			<p:outputLabel value="Nome:" for="editPlatformName" />
 			<p:inputText id="editPlatformName" placeholder="Insert Platform"
 				value="#{PlatformBean.editedPlatform.platformName}" />
-			<p:commandButton value="Editar" update=":PlatformTable:PlatformList"
+			<p:commandButton value="Editar"
+				update=":PlatformTable:PlatformList, AddProductSection, EditProductSection"
 				action="#{PlatformBean.editPlatform()}" />
 		</h:panelGrid>
 	</h:form>
@@ -104,7 +105,7 @@
 			<p:inputText id="addCategoryName" placeholder="Insert Category"
 				value="#{CategoryBean.newCategory.categoryName}" />
 			<p:commandButton value="Adicionar"
-				update=":CategoryTable:CategoryList"
+				update=":CategoryTable:CategoryList, AddProductSection, EditProductSection"
 				action="#{CategoryBean.addCategory()}" />
 		</h:panelGrid>
 	</h:form>
@@ -116,7 +117,8 @@
 			<p:outputLabel value="Nome:" for="editCategoryName" />
 			<p:inputText id="editCategoryName" placeholder="Insert Category"
 				value="#{CategoryBean.editedCategory.categoryName}" />
-			<p:commandButton value="Editar" update=":CategoryTable:CategoryList"
+			<p:commandButton value="Editar"
+				update=":CategoryTable:CategoryList, AddProductSection, EditProductSection"
 				action="#{CategoryBean.editCategory()}" />
 		</h:panelGrid>
 	</h:form>
@@ -160,7 +162,8 @@
 					<f:setPropertyActionListener value="#{product}"
 						target="#{ProductBean.editedProduct}" />
 				</p:commandButton>
-				<p:commandButton update=":ProductTable:ProductList"
+				<p:commandButton
+					update=":ProductTable:ProductList, :PlatformTable:PlatformList, :CategoryTable:CategoryList"
 					action="#{ProductBean.deleteProduct(product)}" icon="ui-icon-trash"
 					title="Delete" />
 			</p:column>
@@ -176,7 +179,7 @@
 					<p:inputText id="addProductName"
 						value="#{ProductBean.newProduct.productName}"
 						placeholder="Insert Product" />
-						
+
 
 					<h:outputLabel for="addYear" value="Year:" />
 					<p:spinner min="1980" max="2018" id="addYear"
@@ -228,7 +231,7 @@
 					<h:outputText id="display" />
 
 					<p:commandButton value="Adicionar"
-						update=":errorMsgs, :ProductTable:ProductList,:PlatformTable:PlatformList, :CategoryTable:CategoryList"
+						update=":errorMsgs, :ProductTable:ProductList,:PlatformTable:PlatformList, :CategoryTable:CategoryList, :AddProductUnitSection"
 						action="#{ProductBean.addProduct()}" />
 				</h:panelGrid>
 			</h:form>
@@ -294,7 +297,7 @@
 					<h:outputText id="display" />
 
 					<p:commandButton value="Editar"
-						update=":errorMsgs, :ProductTable:ProductList, :PlatformTable:PlatformList, :CategoryTable:CategoryList"
+						update=":errorMsgs, :ProductTable:ProductList, :PlatformTable:PlatformList, :CategoryTable:CategoryList, :AddProductUnitSection"
 						action="#{ProductBean.editProduct()}">
 					</p:commandButton>
 				</h:panelGrid>
@@ -330,43 +333,44 @@
 		</p:dataTable>
 	</h:form>
 
-	<h:form id="AddProductUnitChooseSection">
+	<h:form id="AddProductUnitSection">
 		<h:panelGrid columns="3" cellpadding="5">
 			<p:outputLabel value="Produto:" for="addProduct"
 				rendered="#{not empty (ProductBean.getList())}" />
 			<p:selectOneMenu id="addProduct"
-				value="#{ProductUnitBean.productName}" label="Produto"
-				rendered="#{not empty (ProductBean.getList())}">
+				value="#{ProductUnitBean.testProduct}" label="Produto"
+				rendered="#{not empty (ProductBean.getList())}"
+				converter="productConverter">
 				<f:selectItem itemLabel="Seleccione uma opção" itemValue="#{null}" />
-				<f:selectItems value="#{ProductBean.getList()}" var="product" itemLabel="#{product.productName}" itemValue="#{product.productName}" />
+				<f:selectItems value="#{ProductBean.getList()}" var="product" itemLabel="#{product.productId}"/>
 			</p:selectOneMenu>
-			<p:commandButton value="Escolher"
-				update=":errorMsgs, :AddProductUnitAdditionSection"/>
-		</h:panelGrid>
-	</h:form>
+			<p:commandButton value="Escolher" update=":errorMsgs, addPlatform" />
 
-	<h:form id="AddProductUnitAdditionSection">
-			<h:inputHidden value="#{ProductUnitBean.productName}" />
-		<h:panelGrid columns="3" cellpadding="5">
-			<p:outputLabel value="Plataforma:" for="addPlatform"
-				rendered="#{not empty (ProductUnitBean.productName)}" />
-			<p:selectOneMenu id="addPlatform"
-				value="#{productUnitPlatformName}" label="Platform"
-				rendered="#{not empty (ProductUnitBean.productName)}">
+			<p:outputLabel value="Plataforma:" for="addPlatform" />
+			<p:selectOneMenu id="addPlatform" value="#{productUnitPlatformName}"
+				label="Platform">
 				<f:selectItem itemLabel="Seleccione uma opção" itemDisabled="true" />
-				<f:selectItems value="#{ProductUnitBean.getProductPlatformList()}"/>
+				<f:selectItem itemLabel="PC" itemValue="PC" />
 			</p:selectOneMenu>
 			<p:commandButton value="Adicionar"
 				update=":errorMsgs, :ProductUnitTable:ProductUnitList"
-				action="#{ProductUnitBean.addProductUnit()}" >
+				action="#{ProductUnitBean.addProductUnit()}">
 				<f:setPropertyActionListener value="#{productUnitPlatformName}"
-						target="#{ProductUnitBean.platformName}" />
+					target="#{ProductUnitBean.platformName}" />
 			</p:commandButton>
 		</h:panelGrid>
 	</h:form>
 
-<h:form id="EditProductUnitChooseSection">
-			<h:inputHidden value="#{ProductUnitBean.editedProductUnit.productUnitId}" />
+	<h:form id="AddProductUnitAdditionSection">
+		<h:inputHidden value="#{ProductUnitBean.productName}" />
+		<h:panelGrid columns="3" cellpadding="5">
+
+		</h:panelGrid>
+	</h:form>
+
+	<h:form id="EditProductUnitSection">
+		<h:inputHidden
+			value="#{ProductUnitBean.editedProductUnit.productUnitId}" />
 		<h:panelGrid columns="3" cellpadding="5">
 			<p:outputLabel value="Produto:" for="editProduct"
 				rendered="#{not empty (ProductBean.getList())}" />
@@ -374,30 +378,33 @@
 				value="#{ProductUnitBean.productName}" label="Produto"
 				rendered="#{not empty (ProductBean.getList())}">
 				<f:selectItem itemLabel="Seleccione uma opção" itemValue="#{null}" />
-				<f:selectItems value="#{ProductBean.getList()}" var="product" itemLabel="#{product.productName}" itemValue="#{product.productName}" />
+				<f:selectItems value="#{ProductBean.getList()}" var="product"
+					itemLabel="#{product.productName}"
+					itemValue="#{product.productName}" />
 			</p:selectOneMenu>
 			<p:commandButton value="Escolher"
-				update=":errorMsgs, :EditProductUnitAdditionSection"/>
+				update=":errorMsgs, :EditProductUnitAdditionSection" />
 		</h:panelGrid>
 	</h:form>
 
 	<h:form id="EditProductUnitAdditionSection">
-			<h:inputHidden value="#{ProductUnitBean.editedProductUnit.productUnitId}" />
-			<h:inputHidden value="#{ProductUnitBean.productName}" />
+		<h:inputHidden
+			value="#{ProductUnitBean.editedProductUnit.productUnitId}" />
+		<h:inputHidden value="#{ProductUnitBean.productName}" />
 		<h:panelGrid columns="3" cellpadding="5">
 			<p:outputLabel value="Plataforma:" for="editPlatform"
 				rendered="#{not empty (ProductUnitBean.productName)}" />
-			<p:selectOneMenu id="editPlatform"
-				value="#{productUnitPlatformName}" label="Platform"
+			<p:selectOneMenu id="editPlatform" value="#{productUnitPlatformName}"
+				label="Platform"
 				rendered="#{not empty (ProductUnitBean.productName)}">
 				<f:selectItem itemLabel="Seleccione uma opção" itemValue="#{null}" />
-				<f:selectItems value="#{ProductUnitBean.getProductPlatformList()}"/>
+				<f:selectItems value="#{ProductUnitBean.getProductPlatformList()}" />
 			</p:selectOneMenu>
 			<p:commandButton value="Adicionar"
 				update=":errorMsgs, :ProductUnitTable:ProductUnitList"
-				action="#{ProductUnitBean.editProductUnit()}" >
+				action="#{ProductUnitBean.editProductUnit()}">
 				<f:setPropertyActionListener value="#{productUnitPlatformName}"
-						target="#{ProductUnitBean.platformName}" />
+					target="#{ProductUnitBean.platformName}" />
 			</p:commandButton>
 		</h:panelGrid>
 	</h:form>

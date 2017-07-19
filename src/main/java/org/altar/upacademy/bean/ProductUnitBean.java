@@ -82,6 +82,7 @@ public class ProductUnitBean implements Serializable{
 	}
 
 	public void setProductName(String productName) {
+		System.out.println(productName);
 		this.productName = productName;
 	}
 	
@@ -116,5 +117,16 @@ public class ProductUnitBean implements Serializable{
 		System.out.println(productRepository.getProductFromName(productName));
 		System.out.println(productRepository.getProductFromName(productName).getPlatformSet());
 		System.out.println(platformName);
+	}
+	
+	private Product testProduct = new Product();
+
+	public Product getTestProduct() {
+		return testProduct;
+	}
+
+	public void setTestProduct(Product testProduct) {
+		System.out.println(testProduct);
+		this.testProduct = testProduct;
 	}
 }

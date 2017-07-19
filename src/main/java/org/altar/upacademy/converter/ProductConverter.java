@@ -1,0 +1,48 @@
+package org.altar.upacademy.converter;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.convert.Converter;
+import javax.faces.convert.ConverterException;
+import javax.faces.convert.FacesConverter;
+import javax.inject.Inject;
+
+import org.altar.upacademy.model.Product;
+import org.altar.upacademy.repository.ProductRepository;
+
+@FacesConverter("productConverter")
+//@FacesConverter(forClass=Product.class)
+public class ProductConverter implements Converter {
+	
+	@Inject
+	private ProductRepository productRepository;
+
+	@Override
+	public Object getAsObject(FacesContext context, UIComponent component, String productId) {
+	    if (productId == null || productId.isEmpty()) {
+	        return null;
+	    }
+
+	    try {
+	        return productRepository.find(Integer.valueOf(productId));
+//	        return productRepository.find(productId);
+	    } catch (NumberFormatException e) {
+	        throw new ConverterException(new FacesMessage(productId + " is not a valid Product ID"), e);
+	    }
+	}
+
+	@Override
+	public String getAsString(FacesContext context, UIComponent component, Object product) {
+		if (product == null) {
+	        return "";
+	    }
+
+	    if (product instanceof Product) {
+//	        return ((Product) product).getProductName();
+	        return "" + ((Product) product).getProductId();
+	    } else {
+	        throw new ConverterException(new FacesMessage(product + " is not a valid Product"));
+	    }
+	}
+}
