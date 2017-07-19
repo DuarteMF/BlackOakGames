@@ -9,41 +9,68 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
-	<h:outputStylesheet library="css" name="mystyle.css"></h:outputStylesheet>
 
 
 </h:head>
 <h:body>
-	<header>
-		<h1>
-			<h:outputText value="Título Placeholder"></h:outputText>
-		</h1>
-		<h3>
-			<h:outputText value="Editora: EA Games"></h:outputText>
-		</h3>
-	</header>
-	<p:panelGrid columns="2" columnClasses="ui-grid-col-4,ui-grid-col-8"
-		layout="grid" styleClass="ui-panelgrid-blank">
-		<p:graphicImage name="images/GTAV.jpg" alt="Imagem Placeholder" />
-		<h:outputText value="Informação: bla bla bla"></h:outputText>
-	</p:panelGrid>
-	<br></br>
-	<p:outputLabel for="platforms" value="Disponível para:" />
-	<br></br>
-	<p:selectOneRadio id="platforms" value="" layout="responsive"
-		columns="3">
-		<f:selectItems value="#{PlatformBean.getList()}" var="platform"
-			itemLabel="#{platform.platformName}" itemValue="#{platform}" />
-	</p:selectOneRadio>
-	<br></br>
-	<h:outputText value="Categorias: #{CategoryBean.getList()}"></h:outputText>
-	<br></br>
-	<h:outputText value="Número de produtos disponíveis: Disponível"></h:outputText>
-	<br></br>
-	<h:outputText value="Preço de Aluguer: 50€"></h:outputText>
+	<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="memenu.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="productPage.css"></h:outputStylesheet>
+	
 
-	<footer>
-		<p>@2017</p>
-	</footer>
+	<header>
+		<div class="fit-top">
+			<h1 class="shop-top" id="titleProduct">
+				<h:outputText value="Stardew Valley" ></h:outputText>
+			</h1>
+		</div>
+		
+		<div>
+			<h4 id="titlePublisher">
+				<h:outputText value="Publisher: Chucklefish Ltd"></h:outputText>
+			</h4>
+		</div>
+		
+	</header>
+	
+		<div>
+			<p:panelGrid columns="2" columnClasses="ui-grid-col-6,ui-grid-col-6"
+				layout="grid" styleClass="ui-panelgrid-blank">
+				<p:graphicImage name="images/stardewvalley.png" alt="stardew valley" id="imageGame" />
+				<div class="details">
+				<h:outputText value="Details:" id="detail"/>
+				</div>
+				
+				<div class="textDetailsGame">
+				<h:outputText value="You've inherited your grandfather's old farm plot in 
+				Stardew Valley. Armed with hand-me-down tools and a few coins, you set out to begin 
+				your new life. Can you learn to live off the land and turn these overgrown fields 
+				into a thriving home?" id="textdetail"/>
+				</div>
+			</p:panelGrid>
+		</div>
+	
+	
+	
+	
+		<p:outputLabel for="platforms" value="Available for:" />
+		<br></br>
+		<br></br>
+		<p:selectOneRadio id="platforms" value="" layout="responsive"
+			columns="3">
+			<f:selectItems value="#{PlatformBean.getList()}" var="platform"
+				itemLabel="#{platform.platformName}" itemValue="#{platform}" />
+		</p:selectOneRadio>
+		
+		
+		<h:outputText value="Categorys: #{CategoryBean.getList()}"></h:outputText>
+		<br></br>
+		<br></br>
+		<h:outputText value="Product available: Yes"></h:outputText>
+		<br></br>
+		<br></br>
+		<h:outputText value="Price: 10€"></h:outputText>
+
+
 </h:body>
 </html>

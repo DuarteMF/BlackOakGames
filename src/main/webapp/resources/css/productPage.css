@@ -1,0 +1,35 @@
+@CHARSET "UTF-8";
+
+#titleProduct{
+	margin-top:150px;
+	margin-left:100px;
+	font-style:oblique;
+	
+}
+
+#titlePublisher{
+	margin-left:120px;
+}
+
+#imageGame{
+	display:block;
+	padding:100px;
+	width:500px;
+	height:600px;
+	position:relative;
+    
+}
+
+.details{
+	display:block;
+	text-align:center;
+	margin-top:150px;
+	
+}
+
+.textDetailsGame{
+	display:block;
+	text-align:center;
+	
+}
+
