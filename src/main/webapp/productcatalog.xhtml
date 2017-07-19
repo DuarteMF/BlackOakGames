@@ -10,15 +10,46 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
-	<h:outputStylesheet library="css" name="mystyle.css"></h:outputStylesheet>
+	
 
 
 </h:head>
 <h:body>
+	<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="memenu.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="productcatalog.css"></h:outputStylesheet>
 	<header>
-		<h1>Black Oak Games</h1>
+		<h1>Black Oak Games - Product Page</h1>
 	</header>
-	
+	<h:form id="form">
+    <p:dataGrid var="product" value="#{ProductBean.getList()}" columns="3" layout="grid"
+        rows="12" paginator="true" id="ProductList"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="6,12,16">
+ 
+        <f:facet name="header">
+           Videogames for rent
+        </f:facet>
+
+			<p:panel header="#{product.productName}" style="text-align:center">
+				<h:panelGrid columns="1" style="width:100%">
+					<div>
+					<p:graphicImage class="casesimage" library="images" name="gamecase.jpg" />
+
+					
+					</div>
+				<div>
+				<h:outputText class="cat" value="#{product.categorySet}" />
+				<h:outputText class="cat" value="#{product.platformSet}" />
+				</div>
+				</h:panelGrid>
+				
+			</p:panel>
+
+		</p:dataGrid>
+ 
+
+</h:form>
 </h:body>
 	<footer>
 		<p>@2017</p>
