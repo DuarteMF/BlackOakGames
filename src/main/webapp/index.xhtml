@@ -5,7 +5,9 @@
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions">
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -189,9 +191,9 @@
 					<p:outputLabel value="Categories:" for="addCategories"
 						rendered="#{not empty (ProductBean.existingCategories())}" />
 					<p:selectCheckboxMenu id="addCategories"
-						value="#{ProductBean.categoryList}" label="Categories"
+						value="#{ProductBean.categoryNameList}" label="Categories"
 						multiple="true"
-						rendered="#{not empty (ProductBean.existingCategories())}" converter="categoryConverter">
+						rendered="#{not empty (ProductBean.existingCategories())}">
 						<f:selectItems value="#{ProductBean.existingCategories()}" />
 					</p:selectCheckboxMenu>
 					<p:outputLabel value="Platforms:" for="addPlatforms"
@@ -338,31 +340,36 @@
 			<p:outputLabel value="Produto:" for="addProduct"
 				rendered="#{not empty (ProductBean.getList())}" />
 			<p:selectOneMenu id="addProduct"
-				value="#{ProductUnitBean.testProduct}" label="Produto"
+				value="#{ProductUnitBean.product}" label="Produto"
 				rendered="#{not empty (ProductBean.getList())}"
-				converter="productConverter">
-				<f:selectItem itemLabel="Seleccione uma opção" itemValue="#{null}" />
-				<f:selectItems value="#{ProductBean.getList()}"/>
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItem itemLabel="Seleccione uma opção" noSelectionOption="true" />
+				<f:selectItems value="#{ProductBean.getList()}" var="product" itemLabel="#{product.productName}" itemValue="#{product}"/>
+				<f:ajax render="addPlatform"></f:ajax>
 			</p:selectOneMenu>
-			<p:commandButton value="Escolher" update=":errorMsgs, :AddProductUnitAdditionSection" action="#{ProductUnitBean.display()}"/>
+			<p:commandButton value="Escolher"
+				update=":errorMsgs"
+				rendered="#{not empty (ProductBean.getList())}"/>
+				
+				<p:outputLabel value="Plataforma:" for="addPlatform"
+				rendered="#{not empty (ProductUnitBean.product)}" />
+			<p:selectOneMenu id="addPlatform" value="#{ProductUnitBean.platform}"
+				label="Plataforma"
+				rendered="#{not empty (ProductUnitBean.product)}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItem itemLabel="Seleccione uma opção" noSelectionOption="true" />
+				<f:selectItems value="#{ProductUnitBean.product.platformSet}" var="platform" itemLabel="#{platform.platformName}" itemValue="#{platform}"/>
+			</p:selectOneMenu>
+			<p:commandButton value="Adicionar"
+				update=":errorMsgs, :ProductUnitTable:ProductUnitList"
+				action="#{ProductUnitBean.addProductUnit()}"
+				rendered="#{not empty (ProductUnitBean.product)}">
+				</p:commandButton>
 		</h:panelGrid>
 	</h:form>
 
 	<h:form id="AddProductUnitAdditionSection">
-		<h:inputHidden value="#{ProductUnitBean.productName}" />
 		<h:panelGrid columns="3" cellpadding="5">
-<p:outputLabel value="Plataforma:" for="addPlatform" />
-			<p:selectOneMenu id="addPlatform" value="#{productUnitPlatformName}"
-				label="Platform" rendered="#{not empty (ProductUnitBean.productName)}">
-				<f:selectItem itemLabel="Seleccione uma opção" itemDisabled="true" />
-				<f:selectItems value="#{ProductUnitBean.getProductPlatformList()}"/>
-			</p:selectOneMenu>
-			<p:commandButton value="Adicionar"
-				update=":errorMsgs, :ProductUnitTable:ProductUnitList"
-				action="#{ProductUnitBean.addProductUnit()}">
-				<f:setPropertyActionListener value="#{productUnitPlatformName}"
-					target="#{ProductUnitBean.platformName}" />
-			</p:commandButton>
 		</h:panelGrid>
 	</h:form>
 

@@ -119,4 +119,10 @@ public class Product extends Entity implements Serializable {
 	public String toString(){
 		return this.productName;
 	}
+	
+	@Override
+	public boolean equals(Object product){
+		return this.productId.equals(((Product) product).getProductId());
+	}
+	
 }

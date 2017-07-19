@@ -58,4 +58,9 @@ public class Platform extends Entity implements Serializable {
 	public String toString(){
 		return this.platformName;
 	}
+	
+	@Override
+	public boolean equals(Object platform){
+		return this.platformId.equals(((Platform) platform).getPlatformId());
+	}
 }

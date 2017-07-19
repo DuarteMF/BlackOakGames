@@ -1,5 +1,6 @@
 package org.altar.upacademy.converter;
 
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -13,6 +14,7 @@ import org.altar.upacademy.repository.ProductRepository;
 
 @FacesConverter("productConverter")
 //@FacesConverter(forClass=Product.class)
+@RequestScoped
 public class ProductConverter implements Converter {
 	
 	@Inject
@@ -20,21 +22,18 @@ public class ProductConverter implements Converter {
 
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String productId) {
-		System.out.println(productId);
 	    if (productId == null || productId.isEmpty()) {
 	        return null;
 	    }
 
 	    try {
-			System.out.println(productId + "4");
-			System.out.println(productId.getClass() + "5");
-			System.out.println(Integer.parseInt(productId) + "6");
 	        return productRepository.readFromDb(Integer.parseInt(productId));
 //	        return productRepository.find(productId);
 //	    	return productRepository.getProductFromName(productId);
 	    } catch (NumberFormatException e) {
 	        throw new ConverterException(new FacesMessage(productId + " is not a valid Product ID"), e);
 	    } catch (NullPointerException e){
+	    	System.out.println(productId + " 7");
 	    	throw new ConverterException(new FacesMessage("This is some stupid Null Pointer!"));
 	    }
 	}

@@ -59,4 +59,9 @@ public class Category extends Entity implements Serializable {
 	public String toString(){
 		return this.categoryName;
 	}
+	
+	@Override
+	public boolean equals(Object category){
+		return this.categoryId.equals(((Category) category).getCategoryId());
+	}
 }

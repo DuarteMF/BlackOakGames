@@ -56,18 +56,24 @@ public class ProductUnitBean implements Serializable{
 	}
 	
 	public void addProductUnit() {
-		Product product = productRepository.getProductFromName(productName);
-		Platform platform = platformRepository.getPlatformFromName(platformName);
-		newProductUnit.setProduct(product);
-		newProductUnit.setProductPlatform(platform);
+		System.out.println(product.getProductId());
+		System.out.println(platform.getPlatformId());
+		Product testProduct = (Product) productRepository.readFromDb(product.getProductId());
+		Platform testPlatform = (Platform) platformRepository.readFromDb(platform.getPlatformId());
+//		newProductUnit.setProduct(product);
+		System.out.println(testProduct.getProductId());
+		newProductUnit.setProduct((Product) productRepository.readFromDb(product.getProductId()));
+//		newProductUnit.setProductPlatform(platform);
+		System.out.println(testPlatform.getPlatformId());
+		newProductUnit.setProductPlatform((Platform) platformRepository.readFromDb(platform.getPlatformId()));
 		productUnitRepository.addToDb(newProductUnit);
 	}
 
 	public void editProductUnit() {
-		Product product = productRepository.getProductFromName(productName);
-		Platform platform = platformRepository.getPlatformFromName(platformName);
-		editedProductUnit.setProduct(product);
-		editedProductUnit.setProductPlatform(platform);
+		Product testProduct = (Product) productRepository.readFromDb(product.getProductId());
+		Platform testPlatform = (Platform) platformRepository.readFromDb(platform.getPlatformId());
+		editedProductUnit.setProduct(testProduct);
+		editedProductUnit.setProductPlatform(testPlatform);
 		productUnitRepository.updateInDb(editedProductUnit);
 	}
 
@@ -75,60 +81,29 @@ public class ProductUnitBean implements Serializable{
 		productUnitRepository.removeFromDb(productUnit);
 	}
 	
-	private String productName = "";
+	private Product product = new Product();
 
-	public String getProductName() {
-		return productName;
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public void setProduct(Product product) {
+		System.out.println(product.getProductId() + " " + product);
+		this.product = product;
 	}
 	
-	private String platformName = "";
+	private Platform platform = new Platform();
 
-	public String getPlatformName() {
-		return platformName;
+	public Platform getPlatform() {
+		return platform;
 	}
 
-	public void setPlatformName(String platformName) {
-		this.platformName = platformName;
+	public void setPlatform(Platform platform) {
+		System.out.println(platform.getPlatformId() + " " + platform);
+		this.platform = platform;
 	}
 	
-	public List<String> getProductPlatformNameList(){
-		Product product = productRepository.getProductFromName(productName);
-		return product.getPlatformSet().stream().map(n->n.getPlatformName()).collect(Collectors.toList());
-	}
-	
-	public Set<Platform> getProductPlatformList(){
-		Product product = productRepository.getProductFromName(productName);
-		return product.getPlatformSet();
-	}
-	
-	private Set<Platform> platformList;
-
-	public Set<Platform> getPlatformList() {
-		return platformList;
-	}
-
-	public void setPlatformList(Set<Platform> platformList) {
-		this.platformList = platformList;
-	}
-	
-	public void display(){
-		System.out.println(productName);
-		System.out.println(productRepository.getProductFromName(productName));
-		System.out.println(productRepository.getProductFromName(productName).getPlatformSet());
-	}
-	
-	private Product testProduct = new Product();
-
-	public Product getTestProduct() {
-		return testProduct;
-	}
-
-	public void setTestProduct(Product testProduct) {
-		System.out.println(testProduct + "1");
-		this.testProduct = testProduct;
+	public Product getProduct(int productId){
+		return productRepository.getProductFromId(productId);
 	}
 }
