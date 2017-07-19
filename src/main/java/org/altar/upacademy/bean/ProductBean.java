@@ -51,38 +51,34 @@ public class ProductBean implements Serializable {
 	public List<Product> getList() {
 		return productRepository.getDbProduct();
 	}
-
+	
 	public void addProduct() {
-		Set<Category> categorySet = categoryRepository.getCategoriesFromNames(categoryNameList);
-		Set<Platform> platformSet = platformRepository.getPlatformsFromNames(platformNameList);
-		newProduct.setCategorySet(categorySet);
-		newProduct.setPlatformSet(platformSet);
+		newProduct.setCategorySet(categoryList);
+		newProduct.setPlatformSet(platformList);
 		productRepository.addToDb(newProduct);	
-		for(Category category: categorySet){
+		for(Category category: categoryList){
 			Set<Product> productSetTemp = category.getProductSet();
 			productSetTemp.add(newProduct);
 			category.setProductSet(productSetTemp);
 			categoryRepository.updateInDb(category);
 		}
-		for(Platform platform: platformSet){
+		for(Platform platform: platformList){
 			Set<Product> productSetTemp = platform.getProductSet();
 			productSetTemp.add(newProduct);
 			platform.setProductSet(productSetTemp);
 			platformRepository.updateInDb(platform);
 		}	
 	}
-
+	
 	public void editProduct() {
-		Set<Category> categorySet = categoryRepository.getCategoriesFromNames(categoryNameList);
-		Set<String> categorySetNames = categorySet.stream().map(n->n.getCategoryName()).collect(Collectors.toSet());
-		Set<Platform> platformSet = platformRepository.getPlatformsFromNames(platformNameList);
-		Set<String> platformSetNames = platformSet.stream().map(n->n.getPlatformName()).collect(Collectors.toSet());
+		Set<Integer> categorySetIds = categoryList.stream().map(n->n.getCategoryId()).collect(Collectors.toSet());
+		Set<Integer> platformSetIds = platformList.stream().map(n->n.getPlatformId()).collect(Collectors.toSet());
 		for(Category category: existingCategories()){
 			Set<Product> productSetTemp = category.getProductSet();
 			List<Integer> productSetIds = productSetTemp.stream().map(n->n.getProductId()).collect(Collectors.toList());
-			if(productSetIds.contains(editedProduct.getProductId()) && !categorySetNames.contains(category.getCategoryName())){
+			if(productSetIds.contains(editedProduct.getProductId()) && !categorySetIds.contains(category.getCategoryId())){
 				productSetIds.remove(editedProduct.getProductId());
-			}else if(!productSetIds.contains(editedProduct.getProductId()) && categorySetNames.contains(category.getCategoryName())){
+			}else if(!productSetIds.contains(editedProduct.getProductId()) && categorySetIds.contains(category.getCategoryId())){
 				productSetIds.add(editedProduct.getProductId());
 			}
 			Set<Product> newProductSetTemp = productRepository.getProductsFromIds(productSetIds);
@@ -92,17 +88,17 @@ public class ProductBean implements Serializable {
 		for(Platform platform: existingPlatforms()){
 			Set<Product> productSetTemp = platform.getProductSet();
 			List<Integer> productSetIds = productSetTemp.stream().map(n->n.getProductId()).collect(Collectors.toList());
-			if(productSetIds.contains(editedProduct.getProductId()) && !platformSetNames.contains(platform.getPlatformName())){
+			if(productSetIds.contains(editedProduct.getProductId()) && !platformSetIds.contains(platform.getPlatformId())){
 				productSetIds.remove(editedProduct.getProductId());
-			}else if(!productSetIds.contains(editedProduct.getProductId()) && platformSetNames.contains(platform.getPlatformName())){
+			}else if(!productSetIds.contains(editedProduct.getProductId()) && platformSetIds.contains(platform.getPlatformId())){
 				productSetIds.add(editedProduct.getProductId());
 			}
 			Set<Product> newProductSetTemp = productRepository.getProductsFromIds(productSetIds);
 			platform.setProductSet(newProductSetTemp);
 			platformRepository.updateInDb(platform);			
 		}
-		editedProduct.setCategorySet(categorySet);
-		editedProduct.setPlatformSet(platformSet);
+		editedProduct.setCategorySet(categoryList);
+		editedProduct.setPlatformSet(platformList);
 		productRepository.updateInDb(editedProduct);
 	}
 
@@ -136,23 +132,23 @@ public class ProductBean implements Serializable {
 		return categoryRepository.getDbCategories();
 	}
 	
-	private List<String> categoryNameList = new ArrayList<>();
+	private Set<Category> categoryList = new HashSet<>();
 
-	public List<String> getCategoryNameList() {
-		return categoryNameList;
+	public Set<Category> getCategoryList() {
+		return categoryList;
 	}
 
-	public void setCategoryNameList(List<String> categoryNameList) {
-		this.categoryNameList = categoryNameList;
+	public void setCategoryList(Set<Category> categoryList) {
+		this.categoryList = categoryList;
 	}
 	
-	private List<String> platformNameList = new ArrayList<>();
+	private Set<Platform> platformList = new HashSet<>();
 
-	public List<String> getPlatformNameList() {
-		return categoryNameList;
+	public Set<Platform> getPlatformList() {
+		return platformList;
 	}
 
-	public void setPlatformNameList(List<String> platformNameList) {
-		this.platformNameList = platformNameList;
+	public void setPlatformList(Set<Platform> platformList) {
+		this.platformList = platformList;
 	}
 }
