@@ -189,9 +189,9 @@
 					<p:outputLabel value="Categories:" for="addCategories"
 						rendered="#{not empty (ProductBean.existingCategories())}" />
 					<p:selectCheckboxMenu id="addCategories"
-						value="#{ProductBean.categoryNameList}" label="Categories"
+						value="#{ProductBean.categoryList}" label="Categories"
 						multiple="true"
-						rendered="#{not empty (ProductBean.existingCategories())}">
+						rendered="#{not empty (ProductBean.existingCategories())}" converter="categoryConverter">
 						<f:selectItems value="#{ProductBean.existingCategories()}" />
 					</p:selectCheckboxMenu>
 					<p:outputLabel value="Platforms:" for="addPlatforms"
@@ -342,15 +342,20 @@
 				rendered="#{not empty (ProductBean.getList())}"
 				converter="productConverter">
 				<f:selectItem itemLabel="Seleccione uma opção" itemValue="#{null}" />
-				<f:selectItems value="#{ProductBean.getList()}" var="product" itemLabel="#{product.productId}"/>
+				<f:selectItems value="#{ProductBean.getList()}"/>
 			</p:selectOneMenu>
-			<p:commandButton value="Escolher" update=":errorMsgs, addPlatform" />
+			<p:commandButton value="Escolher" update=":errorMsgs, :AddProductUnitAdditionSection" action="#{ProductUnitBean.display()}"/>
+		</h:panelGrid>
+	</h:form>
 
-			<p:outputLabel value="Plataforma:" for="addPlatform" />
+	<h:form id="AddProductUnitAdditionSection">
+		<h:inputHidden value="#{ProductUnitBean.productName}" />
+		<h:panelGrid columns="3" cellpadding="5">
+<p:outputLabel value="Plataforma:" for="addPlatform" />
 			<p:selectOneMenu id="addPlatform" value="#{productUnitPlatformName}"
-				label="Platform">
+				label="Platform" rendered="#{not empty (ProductUnitBean.productName)}">
 				<f:selectItem itemLabel="Seleccione uma opção" itemDisabled="true" />
-				<f:selectItem itemLabel="PC" itemValue="PC" />
+				<f:selectItems value="#{ProductUnitBean.getProductPlatformList()}"/>
 			</p:selectOneMenu>
 			<p:commandButton value="Adicionar"
 				update=":errorMsgs, :ProductUnitTable:ProductUnitList"
@@ -358,13 +363,6 @@
 				<f:setPropertyActionListener value="#{productUnitPlatformName}"
 					target="#{ProductUnitBean.platformName}" />
 			</p:commandButton>
-		</h:panelGrid>
-	</h:form>
-
-	<h:form id="AddProductUnitAdditionSection">
-		<h:inputHidden value="#{ProductUnitBean.productName}" />
-		<h:panelGrid columns="3" cellpadding="5">
-
 		</h:panelGrid>
 	</h:form>
 

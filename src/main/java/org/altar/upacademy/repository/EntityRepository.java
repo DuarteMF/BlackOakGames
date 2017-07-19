@@ -21,8 +21,9 @@ public class EntityRepository<E extends Entity> {
 	}
 	
 	@Transactional
-	public void readFromDb(E entity){
-		em.find(Entity.class, entity);
+	public Entity readFromDb(Integer id){
+		System.out.println(2);
+		return em.find(Entity.class, id);
 	}
 	
 	@Transactional

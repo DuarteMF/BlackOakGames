@@ -82,24 +82,27 @@ public class ProductUnitBean implements Serializable{
 	}
 
 	public void setProductName(String productName) {
-		System.out.println(productName);
 		this.productName = productName;
 	}
 	
-	private String platformName = null;
+	private String platformName = "";
 
 	public String getPlatformName() {
 		return platformName;
 	}
 
 	public void setPlatformName(String platformName) {
-		System.out.println(platformName);
 		this.platformName = platformName;
 	}
 	
-	public List<String> getProductPlatformList(){
+	public List<String> getProductPlatformNameList(){
 		Product product = productRepository.getProductFromName(productName);
 		return product.getPlatformSet().stream().map(n->n.getPlatformName()).collect(Collectors.toList());
+	}
+	
+	public Set<Platform> getProductPlatformList(){
+		Product product = productRepository.getProductFromName(productName);
+		return product.getPlatformSet();
 	}
 	
 	private Set<Platform> platformList;
@@ -116,7 +119,6 @@ public class ProductUnitBean implements Serializable{
 		System.out.println(productName);
 		System.out.println(productRepository.getProductFromName(productName));
 		System.out.println(productRepository.getProductFromName(productName).getPlatformSet());
-		System.out.println(platformName);
 	}
 	
 	private Product testProduct = new Product();
@@ -126,7 +128,7 @@ public class ProductUnitBean implements Serializable{
 	}
 
 	public void setTestProduct(Product testProduct) {
-		System.out.println(testProduct);
+		System.out.println(testProduct + "1");
 		this.testProduct = testProduct;
 	}
 }

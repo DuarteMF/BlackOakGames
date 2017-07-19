@@ -2,6 +2,7 @@ package org.altar.upacademy.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -157,5 +158,15 @@ public class ProductBean implements Serializable {
 	
 	public Product getProduct(int productId){
 		return productRepository.getProductFromId(productId);
+	}
+	
+	public Set<Category> categoryList = new HashSet<>();
+
+	public Set<Category> getCategoryList() {
+		return categoryList;
+	}
+
+	public void setCategoryList(Set<Category> categoryList) {
+		this.categoryList = categoryList;
 	}
 }
