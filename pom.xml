@@ -23,6 +23,13 @@
 			<artifactId>primefaces</artifactId>
 			<version>6.1</version>
 		</dependency>
+		
+		<dependency>
+   			<groupId>net.bootsfaces</groupId>
+    		<artifactId>bootsfaces</artifactId>
+    		<version>1.1.1</version>
+    		<scope>compile</scope>
+		</dependency>
 	
 <!-- 		<dependency>
 		    <groupId>org.primefaces.themes</groupId>
@@ -31,14 +38,14 @@
 		</dependency> -->
 	</dependencies>
 	
-<!-- 	<repositories>
+ 	<repositories>
 	    <repository>
 	        <id>prime-repo</id>
 	        <name>PrimeFaces Maven Repository</name>
 	        <url>http://repository.primefaces.org</url>
 	        <layout>default</layout>
 	   	</repository>
-	</repositories> -->
+	</repositories>
 
 	<build>
 		<finalName>BLACK_OAK_GAMES</finalName>
