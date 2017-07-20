@@ -21,7 +21,7 @@ public class Platform extends Entity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Platform_ID")
 	private Integer platformId = 0;
-	@Column(name = "Platform_Name", nullable = true)
+	@Column(name = "Platform_Name", nullable = true, unique = true)
 	private String platformName = null;
 
 	public Integer getPlatformId() {
@@ -57,5 +57,10 @@ public class Platform extends Entity implements Serializable {
 	@Override
 	public String toString(){
 		return this.platformName;
+	}
+	
+	@Override
+	public boolean equals(Object platform){
+		return this.platformId.equals(((Platform) platform).getPlatformId());
 	}
 }

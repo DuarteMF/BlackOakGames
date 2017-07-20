@@ -4,11 +4,11 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:b="http://bootsfaces.net/ui">
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
 </h:head>
 <h:body>
 	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
@@ -20,7 +20,7 @@
 	<div class="header">
 		<div class="header-top">
 			<div class="container">
-				<div id="title"  class="search">
+				<div id="title" class="search">
 					<p>Black Oak Games</p>
 				</div>
 				<div class="header-left">
@@ -46,18 +46,24 @@
 					<div class="searchCatPlat">
 						<div class="searchCat">
 							<h:form>
-								<p:selectOneMenu value="#{ProductBean.categoryNameList}"
+								<p:selectOneMenu value="#{ProductBean.categoryList}"
 									label="Categories" multiple="true"
-									rendered="#{not empty ProductBean.existingCategories()}">
+									rendered="#{not empty (ProductBean.existingCategories())}"
+									converter="omnifaces.SelectItemsConverter">
+									<f:selectItem itemLabel="Seleccione uma opção"
+										noSelectionOption="true" />
 									<f:selectItems value="#{ProductBean.existingCategories()}" />
 								</p:selectOneMenu>
 							</h:form>
 						</div>
 						<div class="searchPlat">
 							<h:form>
-								<p:selectOneMenu value="#{ProductBean.platformNameList}"
+								<p:selectOneMenu value="#{ProductBean.platformList}"
 									label="Platforms" multiple="true"
-									rendered="#{not empty ProductBean.existingPlatforms()}">
+									rendered="#{not empty (ProductBean.existingPlatforms())}"
+									converter="omnifaces.SelectItemsConverter">
+									<f:selectItem itemLabel="Seleccione uma opção"
+										noSelectionOption="true" />
 									<f:selectItems value="#{ProductBean.existingPlatforms()}" />
 								</p:selectOneMenu>
 							</h:form>
@@ -66,7 +72,8 @@
 				</div>
 				<div class="h_menu4">
 					<ul class="memenu skyblue">
-						<li class="active grid" style="display: inline;"><a class="color8" href="dashboard.xhtml">Home</a></li>
+						<li class="active grid" style="display: inline;"><a
+							class="color8" href="dashboard.xhtml">Home</a></li>
 					</ul>
 				</div>
 			</div>
@@ -74,6 +81,7 @@
 	</div>
 
 	<div class="container-fluid">
+
 
 		<b:tabView class="Tabs" pills="true">
 
@@ -198,47 +206,54 @@
 				
 				</div>
 			</div>
-		</div>
-		
-		<div class="container-fluid">
-		
-			<b:tabView  class="Tabs"  pills="true">
-				
-				<b:tab title="Category" contentStyle ="container" class = "TabCategory" >
-					
-					<h:form>
-						<p:dataGrid class="GridCategory" var="Category" value="#{CategoryBean.getList()}" columns="3"
-							layout="grid" rows="12" paginator="true" id="categories"
-							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-							rowsPerPageTemplate="6,12,24">
 
-							<f:facet name="header">
+
+		</div>
+	</div>
+
+	<div class="container-fluid">
+
+		<b:tabView class="Tabs" pills="true">
+
+			<b:tab title="Category" contentStyle="container" class="TabCategory">
+
+				<h:form>
+					<p:dataGrid class="GridCategory" var="Category"
+						value="#{CategoryBean.getList()}" columns="3" layout="grid"
+						rows="12" paginator="true" id="categories"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="6,12,24">
+
+						<f:facet name="header">
            					Available categories
         					</f:facet>
 
-							<p:panel header="#{Category.categoryName}" style="text-align:center">
-								<h:panelGrid columns="1" style="width:100%">
-									<p:graphicImage name="bla bla" />
+						<p:panel header="#{Category.categoryName}"
+							style="text-align:center">
+							<h:panelGrid columns="1" style="width:100%">
+								<p:graphicImage name="bla bla" />
 
-									<h:commandButton class="CategoryButton" value="" action="index" />
-								</h:panelGrid>
-							</p:panel>
-						</p:dataGrid>
-        			</h:form>
-				</b:tab>
-			
-				
-				<b:tab title="Platform" contentStyle ="container" class = "TabPlatform" >
-					<h:form>
-						<p:dataGrid class="GridPlatform" var="Platform" value="#{PlatformBean.getList()}" columns="3"
-							layout="grid" rows="12" paginator="true" id="platforms"
-							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-							rowsPerPageTemplate="6,12,24">
+								<h:commandButton class="CategoryButton" value="" action="index" />
+							</h:panelGrid>
+						</p:panel>
+					</p:dataGrid>
+				</h:form>
+			</b:tab>
 
-							<f:facet name="header">
+
+			<b:tab title="Platform" contentStyle="container" class="TabPlatform">
+				<h:form>
+					<p:dataGrid class="GridPlatform" var="Platform"
+						value="#{PlatformBean.getList()}" columns="3" layout="grid"
+						rows="12" paginator="true" id="platforms"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="6,12,24">
+
+						<f:facet name="header">
            					Available platforms
         					</f:facet>
 
+<<<<<<< HEAD
 							<p:panel header="#{Platform.platformName}" style="text-align:center">
 								<h:panelGrid columns="1" style="width:100%">
 									<p:graphicImage name="bla bla" />
@@ -253,5 +268,22 @@
 			</b:tabView> 
 		
 		</div> -->
+				=======
+				<p:panel header="#{Platform.platformName}" style="text-align:center">
+		<h:panelGrid columns="1" style="width:100%">
+			<p:graphicImage name="bla bla" />
+
+			<h:commandButton class="PlatformButton" value="" action="index" />
+		</h:panelGrid>
+	</p:panel>
+	</p:dataGrid>
+	</h:form>
+	</b:tab>
+
+	</b:tabView>
+
+	</div>
+
+			>>>>>>> origin/dev
 </h:body>
 </html>
