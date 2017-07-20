@@ -3,11 +3,11 @@ package org.altar.upacademy.bean;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.transaction.Transactional;
 
 import org.altar.upacademy.model.Platform;
 import org.altar.upacademy.repository.PlatformRepository;
@@ -43,6 +43,22 @@ public class PlatformBean implements Serializable {
 
 	public List<Platform> getList() {
 		return platformRepository.getDbPlatforms();
+	}
+	
+	public void checkPlatformName() {
+		boolean platformNameAlreadyExists = false;
+		for (Platform iteratedPlatform : platformRepository.getDbPlatforms()) {
+			if (newPlatform.getPlatformName().equals(iteratedPlatform.getPlatformName())) {
+				platformNameAlreadyExists = true;
+				break;
+			}
+		}
+		if (!platformNameAlreadyExists) {
+			addPlatform();
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!",
+					"There is already a platform with the same name. Please choose another name."));
+		}
 	}
 
 	public void addPlatform() {

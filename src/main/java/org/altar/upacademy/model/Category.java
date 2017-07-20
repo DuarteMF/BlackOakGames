@@ -21,7 +21,7 @@ public class Category extends Entity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Category_Id")
 	private Integer categoryId = 0;
-	@Column(name = "Category_Name")
+	@Column(name = "Category_Name", unique = true)
 	private String categoryName = null;
 
 	public Integer getCategoryId() {

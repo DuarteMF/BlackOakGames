@@ -57,7 +57,7 @@
 				value="#{PlatformBean.newPlatform.platformName}" />
 			<p:commandButton value="Adicionar"
 				update=":PlatformTable:PlatformList, AddProductSection, EditProductSection"
-				action="#{PlatformBean.addPlatform()}" />
+				action="#{PlatformBean.checkPlatformName()}" />
 		</h:panelGrid>
 	</h:form>
 
@@ -108,7 +108,7 @@
 				value="#{CategoryBean.newCategory.categoryName}" />
 			<p:commandButton value="Adicionar"
 				update=":CategoryTable:CategoryList, AddProductSection, EditProductSection"
-				action="#{CategoryBean.addCategory()}" />
+				action="#{CategoryBean.checkCategoryName()}" />
 		</h:panelGrid>
 	</h:form>
 
@@ -195,8 +195,11 @@
 						multiple="true"
 						rendered="#{not empty (ProductBean.existingCategories())}"
 						converter="omnifaces.SelectItemsConverter">
-						<f:selectItem itemLabel="Seleccione uma opção" noSelectionOption="true" />
-						<f:selectItems value="#{ProductBean.existingCategories()}" var="category" itemLabel="#{category.categoryName}" itemValue="#{category}"/>
+						<f:selectItem itemLabel="Seleccione uma opção"
+							noSelectionOption="true" />
+						<f:selectItems value="#{ProductBean.existingCategories()}"
+							var="category" itemLabel="#{category.categoryName}"
+							itemValue="#{category}" />
 					</p:selectCheckboxMenu>
 					<p:outputLabel value="Platforms:" for="addPlatforms"
 						rendered="#{not empty (ProductBean.existingPlatforms())}" />
@@ -205,8 +208,11 @@
 						multiple="true"
 						rendered="#{not empty (ProductBean.existingPlatforms())}"
 						converter="omnifaces.SelectItemsConverter">
-						<f:selectItem itemLabel="Seleccione uma opção" noSelectionOption="true" />
-						<f:selectItems value="#{ProductBean.existingPlatforms()}"  var="platform" itemLabel="#{platform.platformName}" itemValue="#{platform}"/>
+						<f:selectItem itemLabel="Seleccione uma opção"
+							noSelectionOption="true" />
+						<f:selectItems value="#{ProductBean.existingPlatforms()}"
+							var="platform" itemLabel="#{platform.platformName}"
+							itemValue="#{platform}" />
 					</p:selectCheckboxMenu>
 
 					<p:outputLabel value="Publisher:" for="addPublisher" />
@@ -238,7 +244,7 @@
 
 					<p:commandButton value="Adicionar"
 						update=":errorMsgs, :ProductTable:ProductList,:PlatformTable:PlatformList, :CategoryTable:CategoryList, :AddProductUnitSection"
-						action="#{ProductBean.addProduct()}" />
+						action="#{ProductBean.checkProductName()}" />
 				</h:panelGrid>
 			</h:form>
 		</div>
@@ -265,8 +271,11 @@
 						multiple="true"
 						rendered="#{not empty (ProductBean.existingCategories())}"
 						converter="omnifaces.SelectItemsConverter">
-						<f:selectItem itemLabel="Seleccione uma opção" noSelectionOption="true" />
-						<f:selectItems value="#{ProductBean.existingCategories()}" var="category" itemLabel="#{category.categoryName}" itemValue="#{category}"/>
+						<f:selectItem itemLabel="Seleccione uma opção"
+							noSelectionOption="true" />
+						<f:selectItems value="#{ProductBean.existingCategories()}"
+							var="category" itemLabel="#{category.categoryName}"
+							itemValue="#{category}" />
 					</p:selectCheckboxMenu>
 					<p:outputLabel value="Platforms:" for="addPlatforms"
 						rendered="#{not empty (ProductBean.existingPlatforms())}" />
@@ -275,11 +284,14 @@
 						multiple="true"
 						rendered="#{not empty (ProductBean.existingPlatforms())}"
 						converter="omnifaces.SelectItemsConverter">
-						<f:selectItem itemLabel="Seleccione uma opção" noSelectionOption="true" />
-						<f:selectItems value="#{ProductBean.existingPlatforms()}"  var="platform" itemLabel="#{platform.platformName}" itemValue="#{platform}"/>
+						<f:selectItem itemLabel="Seleccione uma opção"
+							noSelectionOption="true" />
+						<f:selectItems value="#{ProductBean.existingPlatforms()}"
+							var="platform" itemLabel="#{platform.platformName}"
+							itemValue="#{platform}" />
 					</p:selectCheckboxMenu>
-					
-					
+
+
 					<p:outputLabel value="Publisher:" for="editPublisher" />
 					<p:inputText id="editPublisher"
 						value="#{ProductBean.editedProduct.publisher}" />
@@ -346,35 +358,34 @@
 	</h:form>
 
 	<h:form id="AddProductUnitSection">
-		<h:panelGrid columns="3" cellpadding="5">
+		<h:panelGrid columns="2" cellpadding="5">
 			<p:outputLabel value="Produto:" for="addProduct"
 				rendered="#{not empty (ProductBean.getList())}" />
-			<p:selectOneMenu id="addProduct"
-				value="#{ProductUnitBean.product}" label="Produto"
-				rendered="#{not empty (ProductBean.getList())}"
+			<p:selectOneMenu id="addProduct" value="#{ProductUnitBean.product}"
+				label="Produto" rendered="#{not empty (ProductBean.getList())}"
 				converter="omnifaces.SelectItemsConverter">
-				<f:selectItem itemLabel="Seleccione uma opção" noSelectionOption="true" />
-				<f:selectItems value="#{ProductBean.getList()}" var="product" itemLabel="#{product.productName}" itemValue="#{product}"/>
-				<f:ajax render="addPlatform"></f:ajax>
+				<f:selectItem itemLabel="Seleccione uma opção"
+					noSelectionOption="true" />
+				<f:selectItems value="#{ProductBean.getList()}" var="product"
+					itemLabel="#{product.productName}" itemValue="#{product}" />
 			</p:selectOneMenu>
-			<p:commandButton value="Escolher"
-				update=":errorMsgs"
-				rendered="#{not empty (ProductBean.getList())}"/>
-				
-				<p:outputLabel value="Plataforma:" for="addPlatform"
-				rendered="#{not empty (ProductUnitBean.product)}" />
+
+			<p:outputLabel value="Plataforma:" for="addPlatform"
+				rendered="#{not empty (ProductBean.getList())}" />
 			<p:selectOneMenu id="addPlatform" value="#{ProductUnitBean.platform}"
-				label="Plataforma"
-				rendered="#{not empty (ProductUnitBean.product)}"
+				label="Plataforma" rendered="#{not empty (ProductBean.getList())}"
 				converter="omnifaces.SelectItemsConverter">
-				<f:selectItem itemLabel="Seleccione uma opção" noSelectionOption="true" />
-				<f:selectItems value="#{ProductUnitBean.product.platformSet}" var="platform" itemLabel="#{platform.platformName}" itemValue="#{platform}"/>
+				<f:selectItem itemLabel="Seleccione uma opção"
+					noSelectionOption="true" />
+				<f:selectItems value="#{PlatformBean.getList()}" var="platform"
+					itemLabel="#{platform.platformName}" itemValue="#{platform}" />
 			</p:selectOneMenu>
+
 			<p:commandButton value="Adicionar"
 				update=":errorMsgs, :ProductUnitTable:ProductUnitList"
-				action="#{ProductUnitBean.addProductUnit()}"
-				rendered="#{not empty (ProductUnitBean.product)}">
-				</p:commandButton>
+				action="#{ProductUnitBean.checkPlatform('Addition')}"
+				rendered="#{not empty (ProductBean.getList())}">
+			</p:commandButton>
 		</h:panelGrid>
 	</h:form>
 
@@ -384,11 +395,11 @@
 	</h:form>
 
 	<h:form id="EditProductUnitSection">
-		
+
 	</h:form>
 
 	<h:form id="EditProductUnitAdditionSection">
-		
+
 	</h:form>
 
 	<footer>

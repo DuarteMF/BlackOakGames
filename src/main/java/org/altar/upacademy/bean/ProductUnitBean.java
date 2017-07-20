@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -53,17 +55,28 @@ public class ProductUnitBean implements Serializable{
 		return productUnitRepository.getDbProductUnit();
 	}
 	
+	public void checkPlatform(String typeOfOperation){
+		boolean moveToNextStep = false;
+		for(Platform iteratedPlatform: product.getPlatformSet()){
+			if(iteratedPlatform.getPlatformId() == platform.getPlatformId()){
+				moveToNextStep = true;
+				break;
+			}
+		}
+		if(moveToNextStep){
+			if(typeOfOperation.equals("Addition")){
+				addProductUnit();
+			}else if(typeOfOperation.equals("Edition")){
+				editProductUnit();
+			}
+		}else{
+	        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "The product you are trying to add/change is not supported for the platform you chose."));
+		}
+	}
+	
 	public void addProductUnit() {
-		System.out.println(product.getProductId());
-		System.out.println(platform.getPlatformId());
-		Product testProduct = (Product) productRepository.readFromDb(product.getProductId());
-		Platform testPlatform = (Platform) platformRepository.readFromDb(platform.getPlatformId());
-//		newProductUnit.setProduct(product);
-		System.out.println(testProduct.getProductId());
-		newProductUnit.setProduct((Product) productRepository.readFromDb(product.getProductId()));
-//		newProductUnit.setProductPlatform(platform);
-		System.out.println(testPlatform.getPlatformId());
-		newProductUnit.setProductPlatform((Platform) platformRepository.readFromDb(platform.getPlatformId()));
+		newProductUnit.setProduct(product);
+		newProductUnit.setProductPlatform(platform);
 		productUnitRepository.addToDb(newProductUnit);
 	}
 
@@ -86,7 +99,6 @@ public class ProductUnitBean implements Serializable{
 	}
 
 	public void setProduct(Product product) {
-		System.out.println(product.getProductId() + " " + product);
 		this.product = product;
 	}
 	
@@ -97,7 +109,6 @@ public class ProductUnitBean implements Serializable{
 	}
 
 	public void setPlatform(Platform platform) {
-		System.out.println(platform.getPlatformId() + " " + platform);
 		this.platform = platform;
 	}
 	

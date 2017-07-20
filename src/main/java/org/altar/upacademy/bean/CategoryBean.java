@@ -3,11 +3,11 @@ package org.altar.upacademy.bean;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.transaction.Transactional;
 
 import org.altar.upacademy.model.Category;
 import org.altar.upacademy.repository.CategoryRepository;
@@ -43,6 +43,22 @@ public class CategoryBean implements Serializable {
 
 	public void setEditedCategory(Category editedCategory) {
 		this.editedCategory = editedCategory;
+	}
+	
+	public void checkCategoryName() {
+		boolean categoryNameAlreadyExists = false;
+		for (Category iteratedCategory : categoryRepository.getDbCategories()) {
+			if (newCategory.getCategoryName().equals(iteratedCategory.getCategoryName())) {
+				categoryNameAlreadyExists = true;
+				break;
+			}
+		}
+		if (!categoryNameAlreadyExists) {
+			addCategory();
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!",
+					"There is already a category with the same name. Please choose another name."));
+		}
 	}
 
 	public void addCategory() {
