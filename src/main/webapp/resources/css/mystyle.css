@@ -14,9 +14,13 @@
 	float: left;
   	background-color: #fff;
     flex-direction: column;
+    width: 20%;
 }
 .searchTitle form{
 	margin-bottom: 0px;
+}
+.searchTitle .ui-inputfield {
+	width:100%;
 }
 
 .searchCatPlat{

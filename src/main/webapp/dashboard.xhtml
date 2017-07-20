@@ -66,14 +66,70 @@
 				</div>
 				<div class="h_menu4">
 					<ul class="memenu skyblue">
-						<li class="active grid" style="display: inline;"><a class="color8" href="index.xhtml">Home</a></li>
+						<li class="active grid" style="display: inline;"><a class="color8" href="dashboard.xhtml">Home</a></li>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
 
+	<div class="container-fluid">
 
+		<b:tabView class="Tabs" pills="true">
+
+			<b:tab title="Category" contentStyle="container" class="TabCategory">
+
+				<h:form>
+					<p:dataGrid class="GridCategory" var="Category"
+						value="#{CategoryBean.getList()}" columns="3" layout="grid"
+						rows="12" paginator="true" id="categories"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="6,12,24">
+
+						<f:facet name="header">
+           					Available categories
+        					</f:facet>
+
+						<p:panel header="#{Category.categoryName}"
+							style="text-align:center">
+							<h:panelGrid columns="1" style="width:100%">
+								<p:graphicImage name="bla bla" />
+
+								<h:commandButton class="CategoryButton" value="" action="index" />
+							</h:panelGrid>
+						</p:panel>
+					</p:dataGrid>
+				</h:form>
+			</b:tab>
+
+
+			<b:tab title="Platform" contentStyle="container" class="TabPlatform">
+				<h:form>
+					<p:dataGrid class="GridPlatform" var="Platform"
+						value="#{PlatformBean.getList()}" columns="3" layout="grid"
+						rows="12" paginator="true" id="platforms"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="6,12,24">
+
+						<f:facet name="header">
+           					Available platforms
+        					</f:facet>
+
+						<p:panel header="#{Platform.platformName}"
+							style="text-align:center">
+							<h:panelGrid columns="1" style="width:100%">
+								<p:graphicImage name="bla bla" />
+
+								<h:commandButton class="PlatformButton" value="" action="index" />
+							</h:panelGrid>
+						</p:panel>
+					</p:dataGrid>
+				</h:form>
+			</b:tab>
+
+		</b:tabView>
+
+	</div>
 
 
 
