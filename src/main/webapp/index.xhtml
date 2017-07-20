@@ -195,8 +195,6 @@
 						multiple="true"
 						rendered="#{not empty (ProductBean.existingCategories())}"
 						converter="omnifaces.SelectItemsConverter">
-						<f:selectItem itemLabel="Seleccione uma opção"
-							noSelectionOption="true" />
 						<f:selectItems value="#{ProductBean.existingCategories()}"
 							var="category" itemLabel="#{category.categoryName}"
 							itemValue="#{category}" />
@@ -208,8 +206,6 @@
 						multiple="true"
 						rendered="#{not empty (ProductBean.existingPlatforms())}"
 						converter="omnifaces.SelectItemsConverter">
-						<f:selectItem itemLabel="Seleccione uma opção"
-							noSelectionOption="true" />
 						<f:selectItems value="#{ProductBean.existingPlatforms()}"
 							var="platform" itemLabel="#{platform.platformName}"
 							itemValue="#{platform}" />
@@ -381,6 +377,12 @@
 					itemLabel="#{platform.platformName}" itemValue="#{platform}" />
 			</p:selectOneMenu>
 
+			<p:outputLabel value="Quantidade:" for="UnitQuantity"
+				rendered="#{not empty (ProductBean.getList())}" />
+			<p:spinner min="0" max="1000" id="UnitQuantity"
+				value="#{ProductUnitBean.unitQuantity}" placeholder="00-1000">
+			</p:spinner>
+
 			<p:commandButton value="Adicionar"
 				update=":errorMsgs, :ProductUnitTable:ProductUnitList"
 				action="#{ProductUnitBean.checkPlatform('Addition')}"
@@ -389,13 +391,8 @@
 		</h:panelGrid>
 	</h:form>
 
-	<h:form id="AddProductUnitAdditionSection">
-		<h:panelGrid columns="3" cellpadding="5">
-		</h:panelGrid>
-	</h:form>
-
 	<h:form id="EditProductUnitSection">
-
+<h1>Falar com o Vasco sobre isto de editar</h1>
 	</h:form>
 
 	<h:form id="EditProductUnitAdditionSection">

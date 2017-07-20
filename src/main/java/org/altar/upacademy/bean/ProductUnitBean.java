@@ -1,6 +1,8 @@
 package org.altar.upacademy.bean;
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -114,5 +116,40 @@ public class ProductUnitBean implements Serializable{
 	
 	public Product getProduct(int productId){
 		return productRepository.getProductFromId(productId);
+	}
+	
+	private int unitQuantity;
+
+	public int getUnitQuantity() {
+		return unitQuantity;
+	}
+
+	public void setUnitQuantity(int unitQuantity) {
+		this.unitQuantity = unitQuantity;
+	}
+	
+	public void addBatchProductUnit(){
+//		newProductUnit.setProduct(product);
+//		newProductUnit.setProductPlatform(platform);
+		
+		String sql = "INSERT INTO ProductUnit (Product, Platform) values (?, ?)";
+		Connection connection = new getConnection();
+		PreparedStatement ps = connection.prepareStatement(sql);
+
+		final int batchSize = 1000;
+
+		for (int count = 0; count < batchSize ;count++) {
+			
+			ps.setObject(1, product);
+			ps.setObject(2, platform);
+			ps.addBatch();
+			
+			if(++count % batchSize == 0) {
+				ps.executeBatch();
+			}
+		}
+		ps.executeBatch(); // insert remaining records
+		ps.close();
+		connection.close();
 	}
 }

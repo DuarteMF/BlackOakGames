@@ -11,7 +11,6 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import org.altar.upacademy.model.Category;
-import org.altar.upacademy.model.Platform;
 
 @Named("categoryRepository")
 @ApplicationScoped

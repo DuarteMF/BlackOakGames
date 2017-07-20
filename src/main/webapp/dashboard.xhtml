@@ -50,9 +50,10 @@
 							<div class="CategorySearch">
 								<h:form>
 									<p:selectOneMenu 
-										value="#{ProductBean.categoryNameList}" label="Categories"
+										value="#{ProductBean.categoryList}" label="Categories"
 										multiple="true"
-										rendered="#{not empty ProductBean.existingCategories()}">
+										rendered="#{not empty (ProductBean.existingCategories())}"
+										converter="omnifaces.SelectItemsConverter">
 										<f:selectItems value="#{ProductBean.existingCategories()}" />
 									</p:selectOneMenu>
 								</h:form>
@@ -61,9 +62,10 @@
 							<div class="PlatformSearch">
 								<h:form>
 									<p:selectOneMenu 
-										value="#{ProductBean.platformNameList}" label="Platforms"
+										value="#{ProductBean.platformList}" label="Platforms"
 										multiple="true"
-										rendered="#{not empty ProductBean.existingPlatforms()}">
+										rendered="#{not empty (ProductBean.existingPlatforms())}"
+										converter="omnifaces.SelectItemsConverter">
 										<f:selectItems value="#{ProductBean.existingPlatforms()}" />
 									</p:selectOneMenu>
 								</h:form>
