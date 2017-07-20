@@ -16,6 +16,7 @@ import org.altar.upacademy.model.Platform;
 @ApplicationScoped
 public class PlatformRepository extends EntityRepository<Platform> {
 
+	@Transactional
 	public List<Platform> getDbPlatforms() {
 		Query query = getDbConnection().createQuery("FROM Platform");
 		List<Platform> dbPlatforms = (List<Platform>) query.getResultList();
@@ -40,5 +41,19 @@ public class PlatformRepository extends EntityRepository<Platform> {
 			platforms.add(results.get(0));
 		}
 		return platforms;
+	}
+	
+	public Platform getPlatformFromName(String platformName) {
+		TypedQuery<Platform> query = getDbConnection()
+				.createQuery("SELECT p FROM Platform AS p WHERE p.platformName = :name", Platform.class);
+		query.setParameter("name", platformName);
+		List<Platform> results = query.getResultList();
+		return results.get(0);
+	}
+	
+	public boolean isEmpty(){
+		TypedQuery<Platform> query = getDbConnection().createQuery("SELECT p FROM Platform",Platform.class);
+		List<Platform> results = query.getResultList();
+		return results.isEmpty();
 	}
 }

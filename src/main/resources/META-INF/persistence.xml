@@ -8,7 +8,11 @@
 	<persistence-unit name="database" transaction-type="JTA">
 		<description>Database connection for project</description>
 		<jta-data-source>java:/MySqlDS</jta-data-source>
-		
+		<class>org.altar.upacademy.model.Entity</class>
+		<class>org.altar.upacademy.model.Platform</class>
+		<class>org.altar.upacademy.model.Category</class>
+		<class>org.altar.upacademy.model.Product</class>
+		<class>org.altar.upacademy.model.ProductUnit</class>
 		<properties>
 			<property name="javax.persistence.schema-generation.database.action"
 				value="drop-and-create" />
