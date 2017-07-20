@@ -21,86 +21,94 @@
 	<header>
 	</header>
 	
-		<div class="fit-top">
-			<h1 id="titleProduct">
-				<h:outputText value="Stardew Valley" ></h:outputText>
-			</h1>
-			
-			<h4 id="titlePublisher">
-				<h:outputText value="Publisher: Chucklefish Ltd"></h:outputText>
-			</h4>
-		</div>
 		
-	
-	
-		<div class="container">
-		<div class="w3-row-padding">
-			<p:panelGrid columns="2" columnClasses="ui-grid-col-6,ui-grid-col-6"
-				layout="grid" styleClass="ui-panelgrid-blank" >
+			<div class="fit-top ">
+				<div class="title">
+				<h1 id="titleProduct">
+					<h:outputText value="Stardew Valley" ></h:outputText>
+				</h1>
 				
-				<p:graphicImage name="images/stardewvalley.png" alt="stardew valley" 
-				id="imageGame" class="img-responsive" />
-
-				<iframe width="560" height="315" src="https://www.youtube.com/embed/S9U86Jb7b94"
-						id="video" class="responsive">
-				</iframe>
-
-			</p:panelGrid>
-		</div>
-		</div>
-		
-		<div class="container description w3-container w3-hide-small ">
-			<h:form id="formDescription">
-				<h4 id="description">Description</h4>
-				<p:separator></p:separator>
-				<h:outputText
-						value="&lt;br   /&gt;You've inherited your grandfather's old 
-							farm plot in Stardew Valley. &lt;br /&gt; Armed with hand-me-down tools and a 
-							few coins, you set out to begin your new life. &lt;br /&gt; Can 
-							you learn to live off the land and turn these overgrown fields 
-							into a thriving home?"
-						id="detailsText" escape="false"  />
-			</h:form>	
-		</div>
+				<h4 id="titlePublisher">
+					<h:outputText value="Publisher: Chucklefish Ltd"></h:outputText>
+				</h4>
+				</div>
+			</div>
 	
-		<div class="container columns w3-container w3-hide-small">
+	
+		<div class="container-fluid">
 			<div class="row">
-				<h4 id="details">Product Details</h4>
-				<p:separator></p:separator>
 				
-				<div class="col-xs-6 col-sm-3 a">
-					<h5 id="a1">Available for:</h5>
-					<p:outputLabel for="platforms" id="availableFor" />
-			
-					<p:selectOneRadio id="platforms" value="" layout="responsive"
-						columns="3">
-						<f:selectItems value="#{PlatformBean.getList()}" var="platform"
-							itemLabel="#{platform.platformName}" itemValue="#{platform}" />
-					</p:selectOneRadio>
-				</div>
+				<p:panelGrid columns="2" columnClasses="ui-grid-col-6,ui-grid-col-6"
+					layout="grid" styleClass="ui-panelgrid-blank" >
+					
+					<p:graphicImage name="images/stardewvalley.png" alt="stardew valley" 
+					id="imageGame" class="img-responsive center-block;" />
+					
+					<iframe width="470" height="315" src="https://www.youtube.com/embed/S9U86Jb7b94"
+							id="video" class="embed-responsive-item">
+					</iframe>
 				
-				<div class="col-xs-6 col-sm-3 b" >
-					<h5 id="a2">Categories:</h5>
-					<h:outputText value=" #{CategoryBean.getList()}" id="respectiveCategory" 
-					></h:outputText>
-				</div>
-
-				<div class="col-xs-6 col-sm-3 c">
+				</p:panelGrid>
+			</div>
+		</div>
+		
+		<div class="container-fluid description w3-container w3-hide-small ">
+			<div class="row">
+				<h:form id="formDescription">
+					<h4 id="description">Description</h4>
+					<p:separator></p:separator>
+					<div>
+						<h:outputText
+								value="&lt;br   /&gt;You've inherited your grandfather's old 
+									farm plot in Stardew Valley. &lt;br /&gt; Armed with hand-me-down tools and a 
+									few coins, you set out to begin your new life. &lt;br /&gt; Can 
+									you learn to live off the land and turn these overgrown fields 
+									into a thriving home?"
+								id="detailsText" escape="false"  />
+					</div>
+				</h:form>
+			</div>	
+		</div>
+	
+		<div class="container-fluid columns w3-container w3-hide-small">
+			<div class="row">
+				<h:form id="formDetails">
+					<h4 id="details">Product Details</h4>
+					<p:separator></p:separator>
+					
+					<div class="col-xs-6 col-sm-3 a">
+						<h5 id="a1">Available for:</h5>
+						<p:outputLabel for="platforms" id="availableFor" />
 				
-					<h5 id="a3">Available:</h5>
-					<h:outputText value="Yes" id="productAvaliability"></h:outputText>
-				</div>
-
-				<div class="col-xs-6 col-sm-3 d">
-					<h5 id="a4">Price:</h5>
-					<h:outputText value="10€" id="productPrice"></h:outputText>
-				
-					<h:form id="addButton">
-						<p:commandButton value="Add to cart" id="addToCart" actionListener="#" 
-										update="" icon="ui-icon-cart" class="btn btn-default w3-button w3-mobile" />
-					</h:form>
-				</div>
-				
+						<p:selectOneRadio id="platforms" value="" layout="responsive"
+							columns="3">
+							<f:selectItems value="#{PlatformBean.getList()}" var="platform"
+								itemLabel="#{platform.platformName}" itemValue="#{platform}" />
+						</p:selectOneRadio>
+					</div>
+					
+					<div class="col-xs-6 col-sm-3 b" >
+						<h5 id="a2">Categories:</h5>
+						<h:outputText value=" #{CategoryBean.getList()}" id="respectiveCategory" 
+						></h:outputText>
+					</div>
+	
+					<div class="col-xs-6 col-sm-3 c">
+					
+						<h5 id="a3">Available:</h5>
+						<h:outputText value="Yes" id="productAvaliability"></h:outputText>
+					</div>
+	
+					<div class="col-xs-6 col-sm-3 d">
+						<h5 id="a4">Price:</h5>
+						<h:outputText value="10€" id="productPrice"></h:outputText>
+					
+						<div id="addButton">
+							<p:commandButton value="Add to cart" id="addToCart" actionListener="#" 
+											update="" icon="ui-icon-cart" class="btn btn-warning w3-button w3-mobile" />
+						</div>
+					</div>
+				</h:form>	
 			</div>
 		</div>
 

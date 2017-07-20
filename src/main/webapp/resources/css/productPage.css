@@ -1,19 +1,31 @@
 @CHARSET "UTF-8";
 
+/* @media screen and (max-width: 1024px) and (min-width: 300px){
+	.body{
+	
+	}
+} */
+
 .fit-top{
 	background-color:#f49b42;
 }
 
+.title{
+	margin-left:100px; 
+	margin-right:100px; 
+}
+
+
 #titleProduct{
 	margin-top:auto;
 	margin-bottom:20px;
-	margin-left:130px;
+	/* margin-left:130px; */
 	font-style:oblique;
 	
 }
 
 #titlePublisher{
-	margin-left:130px;
+	/* margin-left:130px; */
 }
 
 .ui-panelgrid-blank{
@@ -21,29 +33,32 @@
 }
 
 #imageGame{
-	display:inline-block;
-	padding:60px;
+	margin-top:40px;
+	margin-left:90px;
+	border-radius: 5px;
+	border-color:transparent;
 	width:300px;
-	height:auto;
-	max-width: 100%;
+	height:315px;
+	
+	
 } 
 
 #video{
 	margin-top:40px;
 	border-radius: 5px;
 	border-color:transparent;
+	
 }
 
 .description{
 	margin-top:10px;
-	margin-left:50px;
+	/* margin-left:50px; */
 }
 
-#formDescription{
+#formDescription, #formDetails{
 	
-	margin-left:100px;
-	
-	
+	margin-left:100px; 
+	margin-right:100px; 
 }   
 
 #description{
@@ -56,12 +71,14 @@
 
 #details{
 	font-weight: bold;
+	
 }
 
 #detailsText{
 	display:block;
 	text-align: justify;
 	text-justify: inter-word;
+	margin-top:10px;
 	
 }
 
@@ -73,7 +90,7 @@
 	text-align:left;
 	margin-top:60px;
 	margin-bottom:100px;
-	margin-left:160px;
+	/* margin-left:160px; */
 }
 
 #a1, #a2, #a3, #a4{
@@ -81,13 +98,13 @@
 }
 
 #availableFor, #respectiveCategory, #productAvaliability, #productPrice{
-	margin-left:70px;
+	/* margin-left:70px; */
 	text-align:center;
 
 }
 
 #addButton{
-	margin-left:70px;
+	margin-top:10px;
 	
 }
 
@@ -95,6 +112,8 @@
 	display:flex;
 	border-radius: 5px;
 	justify-content:space-around;
+	background-color:orange;
 	
 }
+
 
