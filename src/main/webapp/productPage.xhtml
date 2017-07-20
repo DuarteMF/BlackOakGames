@@ -33,7 +33,8 @@
 		
 	
 	
-		<div class="">
+		<div class="container">
+		<div class="w3-row-padding">
 			<p:panelGrid columns="2" columnClasses="ui-grid-col-6,ui-grid-col-6"
 				layout="grid" styleClass="ui-panelgrid-blank" >
 				
@@ -41,15 +42,16 @@
 				id="imageGame" class="img-responsive" />
 
 				<iframe width="560" height="315" src="https://www.youtube.com/embed/S9U86Jb7b94"
-						id="video">
+						id="video" class="responsive">
 				</iframe>
 
 			</p:panelGrid>
 		</div>
+		</div>
 		
-		<div class="description">
-			<h:form id="formDetails">
-				<h4 id="details">Description</h4>
+		<div class="container description w3-container w3-hide-small ">
+			<h:form id="formDescription">
+				<h4 id="description">Description</h4>
 				<p:separator></p:separator>
 				<h:outputText
 						value="&lt;br   /&gt;You've inherited your grandfather's old 
@@ -61,10 +63,11 @@
 			</h:form>	
 		</div>
 	
-		<div class="container columns">
-			<div class="row col-centered">
-				<h4 id="details">Details</h4>
+		<div class="container columns w3-container w3-hide-small">
+			<div class="row">
+				<h4 id="details">Product Details</h4>
 				<p:separator></p:separator>
+				
 				<div class="col-xs-6 col-sm-3 a">
 					<h5 id="a1">Available for:</h5>
 					<p:outputLabel for="platforms" id="availableFor" />
@@ -76,23 +79,25 @@
 					</p:selectOneRadio>
 				</div>
 				
-				<div class="col-xs-6 col-sm-3 b">
+				<div class="col-xs-6 col-sm-3 b" >
 					<h5 id="a2">Categories:</h5>
-					<h:outputText value=" #{CategoryBean.getList()}"  id="respectiveCategory" class="col-xs-6 col-sm-3"></h:outputText>
+					<h:outputText value=" #{CategoryBean.getList()}" id="respectiveCategory" 
+					></h:outputText>
 				</div>
 
 				<div class="col-xs-6 col-sm-3 c">
 				
-					<h5 id="a3">Product available:</h5>
-					<h:outputText value="Yes" id="productAvaliability" class="col-xs-6 col-sm-3"></h:outputText>
+					<h5 id="a3">Available:</h5>
+					<h:outputText value="Yes" id="productAvaliability"></h:outputText>
 				</div>
 
 				<div class="col-xs-6 col-sm-3 d">
 					<h5 id="a4">Price:</h5>
-					<h:outputText value="10€" id="productPrice" class="col-xs-6 col-sm-3"></h:outputText>
+					<h:outputText value="10€" id="productPrice"></h:outputText>
 				
 					<h:form id="addButton">
-						<p:commandButton value="Add to shopping cart" id="addToCart" actionListener="#" update="" icon="ui-icon-cart" class="btn btn-default" />
+						<p:commandButton value="Add to cart" id="addToCart" actionListener="#" 
+										update="" icon="ui-icon-cart" class="btn btn-default w3-button w3-mobile" />
 					</h:form>
 				</div>
 				

@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 
 .fit-top{
-	background-color:#e5ac57;
+	background-color:#f49b42;
 }
 
 #titleProduct{
@@ -21,18 +21,12 @@
 }
 
 #imageGame{
-	display:flex;
-	justify-content:center;
+	display:inline-block;
 	padding:60px;
 	width:300px;
-	height:400px;
-	
+	height:auto;
+	max-width: 100%;
 } 
-
-div.ui-panelgrid-cell.ui-grid-col-6{
-	display:flex;
-	
-}
 
 #video{
 	margin-top:40px;
@@ -45,14 +39,14 @@ div.ui-panelgrid-cell.ui-grid-col-6{
 	margin-left:50px;
 }
 
-#formDetails{
-	margin-right:100px;
+#formDescription{
+	
 	margin-left:100px;
 	
 	
 }   
 
-#details{
+#description{
 	text-align:left;
 	text-wight:300;
 	margin-top:20px;
@@ -60,24 +54,26 @@ div.ui-panelgrid-cell.ui-grid-col-6{
 	
 }
 
+#details{
+	font-weight: bold;
+}
+
 #detailsText{
 	display:block;
 	text-align: justify;
 	text-justify: inter-word;
 	
-
 }
 
 .a, .b, .c, .d {
-	
+	text-align:center;
 }
 
 .columns{
-	text-align:center;
+	text-align:left;
 	margin-top:60px;
-	border:black;
 	margin-bottom:100px;
-
+	margin-left:160px;
 }
 
 #a1, #a2, #a3, #a4{
@@ -86,17 +82,19 @@ div.ui-panelgrid-cell.ui-grid-col-6{
 
 #availableFor, #respectiveCategory, #productAvaliability, #productPrice{
 	margin-left:70px;
-	text-align:left;
+	text-align:center;
 
 }
 
 #addButton{
-		margin-left:70px;
+	margin-left:70px;
 	
 }
 
 #addToCart{
+	display:flex;
 	border-radius: 5px;
+	justify-content:space-around;
 	
 }
 
