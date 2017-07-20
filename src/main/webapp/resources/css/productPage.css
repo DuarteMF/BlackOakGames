@@ -1,14 +1,19 @@
 @CHARSET "UTF-8";
 
+.fit-top{
+	background-color:#e5ac57;
+}
+
 #titleProduct{
-	margin-top:150px;
-	margin-left:50px;
+	margin-top:auto;
+	margin-bottom:20px;
+	margin-left:130px;
 	font-style:oblique;
 	
 }
 
 #titlePublisher{
-	margin-left:70px;
+	margin-left:130px;
 }
 
 .ui-panelgrid-blank{
@@ -16,13 +21,29 @@
 }
 
 #imageGame{
-	display:block;
+	display:flex;
+	justify-content:center;
 	padding:60px;
 	width:300px;
 	height:400px;
-	align-content:center;
 	
 } 
+
+div.ui-panelgrid-cell.ui-grid-col-6{
+	display:flex;
+	
+}
+
+#video{
+	margin-top:40px;
+	border-radius: 5px;
+	border-color:transparent;
+}
+
+.description{
+	margin-top:10px;
+	margin-left:50px;
+}
 
 #formDetails{
 	margin-right:100px;
@@ -34,7 +55,7 @@
 #details{
 	text-align:left;
 	text-wight:300;
-	margin-top:200px;
+	margin-top:20px;
 	font-weight: bold;
 	
 }
@@ -47,19 +68,26 @@
 
 }
 
-.container{
-	text-align:center;
-	margin-top:50px;
+.a, .b, .c, .d {
+	
 }
 
+.columns{
+	text-align:center;
+	margin-top:60px;
+	border:black;
+	margin-bottom:100px;
 
+}
 
-
+#a1, #a2, #a3, #a4{
+	margin-bottom:15px;
+}
 
 #availableFor, #respectiveCategory, #productAvaliability, #productPrice{
 	margin-left:70px;
-	text-align:center;
-	
+	text-align:left;
+
 }
 
 #addButton{

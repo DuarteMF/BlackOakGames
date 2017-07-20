@@ -19,33 +19,37 @@
 	
 
 	<header>
+	</header>
+	
 		<div class="fit-top">
-			<h1 class="shop-top" id="titleProduct">
+			<h1 id="titleProduct">
 				<h:outputText value="Stardew Valley" ></h:outputText>
 			</h1>
-		</div>
-		
-		<div>
+			
 			<h4 id="titlePublisher">
 				<h:outputText value="Publisher: Chucklefish Ltd"></h:outputText>
 			</h4>
 		</div>
 		
-	</header>
 	
-		<div>
+	
+		<div class="">
 			<p:panelGrid columns="2" columnClasses="ui-grid-col-6,ui-grid-col-6"
 				layout="grid" styleClass="ui-panelgrid-blank" >
+				
 				<p:graphicImage name="images/stardewvalley.png" alt="stardew valley" 
 				id="imageGame" class="img-responsive" />
 
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/S9U86Jb7b94"
+						id="video">
+				</iframe>
 
 			</p:panelGrid>
 		</div>
 		
-		<div class="">
+		<div class="description">
 			<h:form id="formDetails">
-				<h4 id="details">Details</h4>
+				<h4 id="details">Description</h4>
 				<p:separator></p:separator>
 				<h:outputText
 						value="&lt;br   /&gt;You've inherited your grandfather's old 
@@ -57,11 +61,12 @@
 			</h:form>	
 		</div>
 	
-		<div class="container">
+		<div class="container columns">
 			<div class="row col-centered">
-			
-				<div class="col-xs-6 col-sm-3">
-					<h5>Available for:</h5>
+				<h4 id="details">Details</h4>
+				<p:separator></p:separator>
+				<div class="col-xs-6 col-sm-3 a">
+					<h5 id="a1">Available for:</h5>
 					<p:outputLabel for="platforms" id="availableFor" />
 			
 					<p:selectOneRadio id="platforms" value="" layout="responsive"
@@ -71,19 +76,19 @@
 					</p:selectOneRadio>
 				</div>
 				
-				<div class="col-xs-6 col-sm-3">
-					<h5>Categories:</h5>
-					<h:outputText value=" #{CategoryBean.getList()}" id="respectiveCategory" class="col-xs-6 col-sm-3"></h:outputText>
+				<div class="col-xs-6 col-sm-3 b">
+					<h5 id="a2">Categories:</h5>
+					<h:outputText value=" #{CategoryBean.getList()}"  id="respectiveCategory" class="col-xs-6 col-sm-3"></h:outputText>
 				</div>
 
-				<div class="col-xs-6 col-sm-3">
+				<div class="col-xs-6 col-sm-3 c">
 				
-					<h5>Product available:</h5>
+					<h5 id="a3">Product available:</h5>
 					<h:outputText value="Yes" id="productAvaliability" class="col-xs-6 col-sm-3"></h:outputText>
 				</div>
 
-				<div class="col-xs-6 col-sm-3 ">
-					<h5>Price:</h5>
+				<div class="col-xs-6 col-sm-3 d">
+					<h5 id="a4">Price:</h5>
 					<h:outputText value="10€" id="productPrice" class="col-xs-6 col-sm-3"></h:outputText>
 				
 					<h:form id="addButton">
