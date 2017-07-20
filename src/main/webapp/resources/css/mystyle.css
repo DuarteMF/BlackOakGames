@@ -1,14 +1,38 @@
 @CHARSET "UTF-8";
 
-.search{
-	width:15%;
-}
+#title{
+	width:20%;
+	font-size:20px;
+	text-align:center;
+	color:#EF5F21;
+	background-color: #000;
 
-.search1, .search2{
+}
+.search1{
+	display:flex;
 	position:relative;
 	float: left;
   	background-color: #fff;
-    margin-top: 11px;
+    flex-direction: column;
+}
+.searchTitle form{
+	margin-bottom: 0px;
+}
+
+.searchCatPlat{
+	display:flex;
+	flex-direction:row;
+}
+.searchCat{
+	margin-top: 0px;
+	width:50%;
+}
+.ui-selectonemenu.ui-widget.ui-state-default.ui-corner-all{
+	width:100%;
+}
+.searchPlat{
+	margin-top: 0px;
+	width:50%;
 }
 
 /* 

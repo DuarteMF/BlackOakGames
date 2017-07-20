@@ -20,7 +20,7 @@
 	<div class="header">
 		<div class="header-top">
 			<div class="container">
-				<div class="search">
+				<div id="title"  class="search">
 					<p>Black Oak Games</p>
 				</div>
 				<div class="header-left">
@@ -32,42 +32,48 @@
 			</div>
 		</div>
 		<div class="container">
-			<div class="search">
-				<h:form>
-					<h:outputLabel for="Title" />
-					<p:inputText id="Title" value="" required="true" label="Text 1"
-						placeholder="Title">
-						<f:validateLength minimum="2" />
-					</p:inputText>
-				</h:form>
-
-			</div>
-			<div class="search1">
-				<h:form>
-					<p:selectOneMenu value="#{ProductBean.categoryNameList}"
-						label="Categories" multiple="true"
-						rendered="#{not empty ProductBean.existingCategories()}">
-						<f:selectItems value="#{ProductBean.existingCategories()}" />
-					</p:selectOneMenu>
-				</h:form>
-			</div>
-			<div class="search2">
-				<h:form>
-					<p:selectOneMenu value="#{ProductBean.platformNameList}"
-						label="Platforms" multiple="true"
-						rendered="#{not empty ProductBean.existingPlatforms()}">
-						<f:selectItems value="#{ProductBean.existingPlatforms()}" />
-					</p:selectOneMenu>
-				</h:form>
-			</div>
-			<div class="clearfix">
+			<div class="head-top">
+				<div class="search1">
+					<div class="searchTitle">
+						<h:form>
+							<h:outputLabel for="Title" />
+							<p:inputText id="Title" value="" required="true" label="Text 1"
+								placeholder="Title">
+								<f:validateLength minimum="2" />
+							</p:inputText>
+						</h:form>
+					</div>
+					<div class="searchCatPlat">
+						<div class="searchCat">
+							<h:form>
+								<p:selectOneMenu value="#{ProductBean.categoryNameList}"
+									label="Categories" multiple="true"
+									rendered="#{not empty ProductBean.existingCategories()}">
+									<f:selectItems value="#{ProductBean.existingCategories()}" />
+								</p:selectOneMenu>
+							</h:form>
+						</div>
+						<div class="searchPlat">
+							<h:form>
+								<p:selectOneMenu value="#{ProductBean.platformNameList}"
+									label="Platforms" multiple="true"
+									rendered="#{not empty ProductBean.existingPlatforms()}">
+									<f:selectItems value="#{ProductBean.existingPlatforms()}" />
+								</p:selectOneMenu>
+							</h:form>
+						</div>
+					</div>
+				</div>
+				<div class="h_menu4">
+					<ul class="memenu skyblue">
+						<li class="active grid" style="display: inline;"><a class="color8" href="index.xhtml">Home</a></li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
 
 
-	<div>
-	</div>
 
 
 
@@ -191,6 +197,5 @@
 			</b:tabView> 
 		
 		</div> -->
-	
 </h:body>
 </html>
