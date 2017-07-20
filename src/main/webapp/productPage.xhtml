@@ -38,52 +38,61 @@
 				layout="grid" styleClass="ui-panelgrid-blank" >
 				<p:graphicImage name="images/stardewvalley.png" alt="stardew valley" 
 				id="imageGame" class="img-responsive" />
-				<h:form id="formDetails">
-					<h4 id="details">Details</h4>
-					<p:separator></p:separator>
-					<h:outputText
+
+
+			</p:panelGrid>
+		</div>
+		
+		<div class="">
+			<h:form id="formDetails">
+				<h4 id="details">Details</h4>
+				<p:separator></p:separator>
+				<h:outputText
 						value="&lt;br   /&gt;You've inherited your grandfather's old 
 							farm plot in Stardew Valley. &lt;br /&gt; Armed with hand-me-down tools and a 
 							few coins, you set out to begin your new life. &lt;br /&gt; Can 
 							you learn to live off the land and turn these overgrown fields 
 							into a thriving home?"
 						id="detailsText" escape="false"  />
-				</h:form>
-
-		</p:panelGrid>
+			</h:form>	
 		</div>
 	
-		<div>
-			<p:outputLabel for="platforms" value="Available for:" id="availableFor"/>
+		<div class="container">
+			<div class="row col-centered">
 			
-			<br></br>
-			<br></br>
+				<div class="col-xs-6 col-sm-3">
+					<h5>Available for:</h5>
+					<p:outputLabel for="platforms" id="availableFor" />
 			
-			<p:selectOneRadio id="platforms" value="" layout="responsive"
-				columns="3">
-				<f:selectItems value="#{PlatformBean.getList()}" var="platform"
-					itemLabel="#{platform.platformName}" itemValue="#{platform}" />
-			</p:selectOneRadio>
-			
-			<h:outputText value="Categorys: #{CategoryBean.getList()}" id="respectiveCategory"></h:outputText>
-			
-			<br></br>
-			<br></br>
-			
-			<h:outputText value="Product available: Yes" id="productAvaliability"></h:outputText>
-			
-			<br></br>
-			<br></br>
-			
-			<h:outputText value="Price: 10€" id="productPrice"></h:outputText>
-			
-			<br></br>
-			
-			<h:form id="addButton">
-				<p:commandButton value="Add to shopping cart" id="addToCart" actionListener="#" update="" icon="ui-icon-cart" class="btn btn-default" />
-			</h:form>
+					<p:selectOneRadio id="platforms" value="" layout="responsive"
+						columns="3">
+						<f:selectItems value="#{PlatformBean.getList()}" var="platform"
+							itemLabel="#{platform.platformName}" itemValue="#{platform}" />
+					</p:selectOneRadio>
+				</div>
+				
+				<div class="col-xs-6 col-sm-3">
+					<h5>Categories:</h5>
+					<h:outputText value=" #{CategoryBean.getList()}" id="respectiveCategory" class="col-xs-6 col-sm-3"></h:outputText>
+				</div>
+
+				<div class="col-xs-6 col-sm-3">
+				
+					<h5>Product available:</h5>
+					<h:outputText value="Yes" id="productAvaliability" class="col-xs-6 col-sm-3"></h:outputText>
+				</div>
+
+				<div class="col-xs-6 col-sm-3 ">
+					<h5>Price:</h5>
+					<h:outputText value="10€" id="productPrice" class="col-xs-6 col-sm-3"></h:outputText>
+				
+					<h:form id="addButton">
+						<p:commandButton value="Add to shopping cart" id="addToCart" actionListener="#" update="" icon="ui-icon-cart" class="btn btn-default" />
+					</h:form>
+				</div>
+				
+			</div>
 		</div>
-		
 
 
 </h:body>
