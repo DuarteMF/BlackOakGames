@@ -6,16 +6,14 @@ h1 {
 	margin-bottom: 30px;
 }
 
-.cat{
-	display: inline-block;
-	float: right;
+ .row{
+ align-content: right;
+ }
+ .paramum{
+ font-weight: bold !important;
+ margin-bottom:0px;
+ }
+#form:/ProductList:/0:/j_idt22{
+	width: 2px !important;
 }
-.casesimage{
-	align-text: center;
-	align-content: center;
-}
-
-.gridprod{
-	align-text: center;
-	display: inline-block;
 }
