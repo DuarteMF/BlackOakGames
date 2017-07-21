@@ -4,7 +4,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:b="http://bootsfaces.net/ui"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:o="http://omnifaces.org/ui"
 	xmlns:of="http://omnifaces.org/functions">
@@ -25,7 +26,7 @@
 	<header>
 		<h1>Black Oak Games - Product Catalog</h1>
 	</header>
-	<h:form id="form">
+	<h:form id="form" >
 
 		<p:dataTable var="product" value="#{ProductBean.list}"
 			style="margin-bottom:40px" paginator="true" id="ProductList" rows="5"
@@ -48,19 +49,30 @@
 			<p:column filterBy="#{product.categorySet}" filterMatchMode="in"
 				headerText="Categorias" sortBy="#{product.categorySet}">
 				<f:facet name="filter">
-					<p:selectCheckboxMenu label="Categorias"
+					<p:selectCheckboxMenu label="Escolha" 
 						onchange="PF('productTable').filter()" panelStyle="width:125px"
 						scrollHeight="150" converter="omnifaces.SelectItemsConverter">
-						<f:selectItems value="#{CategoryBean.getList()}" var="category" itemLabel="#{category.categoryName}" itemValue="#{category.categoryName}"/>
+						<f:selectItems value="#{CategoryBean.getList()}" var="category"
+							itemLabel="#{category.categoryName}"
+							itemValue="#{category.categoryName}" />
 					</p:selectCheckboxMenu>
 				</f:facet>
 				<h:outputText value="#{product.categorySet}" />
 			</p:column>
 
 
-			<p:column filterBy="#{product.platformSet}"
-				filterMatchMode="contains" headerText="Platafomas"
-				sortBy="#{product.platformSet}">
+
+			<p:column filterBy="#{product.platformSet}" filterMatchMode="in"
+				headerText="Plataformas" sortBy="#{product.platformSet}">
+				<f:facet name="filter">
+					<p:selectCheckboxMenu label="Escolha"
+						onchange="PF('productTable').filter()" panelStyle="width:125px"
+						scrollHeight="150" converter="omnifaces.SelectItemsConverter">
+						<f:selectItems value="#{PlatformBean.getList()}" var="platform"
+							itemLabel="#{platform.platformName}"
+							itemValue="#{platform.platformName}" />
+					</p:selectCheckboxMenu>
+				</f:facet>
 				<h:outputText value="#{product.platformSet}" />
 			</p:column>
 
@@ -80,8 +92,7 @@
 
 	</h:form>
 
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </h:body>
 <footer>
 	<p>@2017</p>

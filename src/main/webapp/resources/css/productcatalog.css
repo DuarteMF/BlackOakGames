@@ -13,7 +13,8 @@ h1 {
  font-weight: bold !important;
  margin-bottom:0px;
  }
-#form:/ProductList:/0:/j_idt22{
-	width: 2px !important;
+.ui-datatable thead th, .ui-datatable tbody td, .ui-datatable tfoot td, .ui-datatable tfoot th{
+	border-width: 0px;
+	text-align: center;
 }
 }
