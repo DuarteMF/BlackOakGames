@@ -40,11 +40,15 @@ public class ProductRepository extends EntityRepository<Product> {
 		return products;
 	}
 	
-	public Product getProductFromId(Integer productId) {
-		TypedQuery<Product> query = getDbConnection().createQuery("SELECT p FROM Product AS p WHERE p.productId = :id",
-				Product.class);
+	public Product getProductFromName(String productName){
+		TypedQuery<Product> query = getDbConnection().createQuery("SELECT p FROM Product AS p WHERE p.productName = :name", Product.class);
+		query.setParameter("name", productName);
+		return query.getSingleResult();
+	}
+	
+	public Product getProductFromId(Integer productId){
+		TypedQuery<Product> query = getDbConnection().createQuery("SELECT p FROM Product AS p WHERE p.productId = :id", Product.class);
 		query.setParameter("id", productId);
-		List<Product> results = query.getResultList();
-		return results.get(0);
+		return query.getSingleResult();
 	}
 }

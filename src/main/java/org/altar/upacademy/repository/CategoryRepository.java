@@ -41,4 +41,10 @@ public class CategoryRepository extends EntityRepository<Category>{
 		}
 		return categories;
 	}
+	
+	public boolean isEmpty(){
+		TypedQuery<Category> query = getDbConnection().createQuery("SELECT c FROM Category",Category.class);
+		List<Category> results = query.getResultList();
+		return results.isEmpty();
+	}
 }

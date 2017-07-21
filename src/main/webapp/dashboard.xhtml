@@ -4,131 +4,138 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:b="http://bootsfaces.net/ui">
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
-	
+
 </h:head>
 <h:body>
 	<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
 	<h:outputStylesheet library="css" name="memenu.css"></h:outputStylesheet>
-	
 
-		<div class="container-fluid">
 
-			<div class="row header">
+	<div class="container-fluid">
 
-				<div class="container Título">
+		<div class="row header">
 
-						<p>Black Oak Games</p>
-				
-				</div>
+			<div class="container Título">
 
-				<div class="container Login">
-					<h:form>
-						<h:commandButton class="LoginButton" value="Login" action="index" />
-						<h:commandButton class="SignUp" value="Sign Up"/>
-					</h:form>
-				</div>
-				
-				<div class="container Search">
-						
-						
-							<div class="container GameSearch">
-								<h:form>
-									<h:outputLabel for="Title" />
-									<p:inputText id="Title" value="" required="true" label="Text 1"
-										placeholder="Title" >
-										<f:validateLength minimum="2" />
-									</p:inputText>
-								</h:form>
-							</div>
-							
-							<div class="CategorySearch">
-								<h:form>
-									<p:selectOneMenu 
-										value="#{ProductBean.categoryNameList}" label="Categories"
-										multiple="true"
-										rendered="#{not empty ProductBean.existingCategories()}">
-										<f:selectItems value="#{ProductBean.existingCategories()}" />
-									</p:selectOneMenu>
-								</h:form>
-							</div>
-							
-							<div class="PlatformSearch">
-								<h:form>
-									<p:selectOneMenu 
-										value="#{ProductBean.platformNameList}" label="Platforms"
-										multiple="true"
-										rendered="#{not empty ProductBean.existingPlatforms()}">
-										<f:selectItems value="#{ProductBean.existingPlatforms()}" />
-									</p:selectOneMenu>
-								</h:form>
-							</div>
-						
-						
-				</div>
-			
+				<p>Black Oak Games</p>
 
 			</div>
-		</div>
-		
-		<div class="container-fluid">
-		
-			<b:tabView  class="Tabs"  pills="true">
-				
-				<b:tab title="Category" contentStyle ="container" class = "TabCategory" >
-					
-					<h:form>
-						<p:dataGrid class="GridCategory" var="Category" value="#{CategoryBean.getList()}" columns="3"
-							layout="grid" rows="12" paginator="true" id="categories"
-							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-							rowsPerPageTemplate="6,12,24">
 
-							<f:facet name="header">
+			<div class="container Login">
+				<h:form>
+					<h:commandButton class="LoginButton" value="Login" action="index" />
+					<h:commandButton class="SignUp" value="Sign Up" />
+				</h:form>
+			</div>
+
+			<div class="container Search">
+
+
+				<div class="container GameSearch">
+					<h:form>
+						<h:outputLabel for="Title" />
+						<p:inputText id="Title" value="" required="true" label="Text 1"
+							placeholder="Title">
+							<f:validateLength minimum="2" />
+						</p:inputText>
+					</h:form>
+				</div>
+
+				<div class="CategorySearch">
+					<h:form>
+						<p:selectOneMenu value="#{ProductBean.categoryList}"
+							label="Categories" multiple="true"
+							rendered="#{not empty (ProductBean.existingCategories())}"
+							converter="omnifaces.SelectItemsConverter">
+							<f:selectItem itemLabel="Seleccione uma opção"
+								noSelectionOption="true" />
+							<f:selectItems value="#{ProductBean.existingCategories()}" />
+						</p:selectOneMenu>
+					</h:form>
+				</div>
+
+				<div class="PlatformSearch">
+					<h:form>
+						<p:selectOneMenu value="#{ProductBean.platformList}"
+							label="Platforms" multiple="true"
+							rendered="#{not empty (ProductBean.existingPlatforms())}"
+							converter="omnifaces.SelectItemsConverter">
+							<f:selectItem itemLabel="Seleccione uma opção"
+								noSelectionOption="true" />
+							<f:selectItems value="#{ProductBean.existingPlatforms()}" />
+						</p:selectOneMenu>
+					</h:form>
+				</div>
+
+
+			</div>
+
+
+		</div>
+	</div>
+
+	<div class="container-fluid">
+
+		<b:tabView class="Tabs" pills="true">
+
+			<b:tab title="Category" contentStyle="container" class="TabCategory">
+
+				<h:form>
+					<p:dataGrid class="GridCategory" var="Category"
+						value="#{CategoryBean.getList()}" columns="3" layout="grid"
+						rows="12" paginator="true" id="categories"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="6,12,24">
+
+						<f:facet name="header">
            					Available categories
         					</f:facet>
 
-							<p:panel header="#{Category.categoryName}" style="text-align:center">
-								<h:panelGrid columns="1" style="width:100%">
-									<p:graphicImage name="bla bla" />
+						<p:panel header="#{Category.categoryName}"
+							style="text-align:center">
+							<h:panelGrid columns="1" style="width:100%">
+								<p:graphicImage name="bla bla" />
 
-									<h:commandButton class="CategoryButton" value="" action="index" />
-								</h:panelGrid>
-							</p:panel>
-						</p:dataGrid>
-        			</h:form>
-				</b:tab>
-			
-				
-				<b:tab title="Platform" contentStyle ="container" class = "TabPlatform" >
-					<h:form>
-						<p:dataGrid class="GridPlatform" var="Platform" value="#{PlatformBean.getList()}" columns="3"
-							layout="grid" rows="12" paginator="true" id="platforms"
-							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-							rowsPerPageTemplate="6,12,24">
+								<h:commandButton class="CategoryButton" value="" action="index" />
+							</h:panelGrid>
+						</p:panel>
+					</p:dataGrid>
+				</h:form>
+			</b:tab>
 
-							<f:facet name="header">
+
+			<b:tab title="Platform" contentStyle="container" class="TabPlatform">
+				<h:form>
+					<p:dataGrid class="GridPlatform" var="Platform"
+						value="#{PlatformBean.getList()}" columns="3" layout="grid"
+						rows="12" paginator="true" id="platforms"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="6,12,24">
+
+						<f:facet name="header">
            					Available platforms
         					</f:facet>
 
-							<p:panel header="#{Platform.platformName}" style="text-align:center">
-								<h:panelGrid columns="1" style="width:100%">
-									<p:graphicImage name="bla bla" />
+						<p:panel header="#{Platform.platformName}"
+							style="text-align:center">
+							<h:panelGrid columns="1" style="width:100%">
+								<p:graphicImage name="bla bla" />
 
-									<h:commandButton class="PlatformButton" value="" action="index" />
-								</h:panelGrid>
-							</p:panel>
-						</p:dataGrid>
-        			</h:form>
-				</b:tab>
-				 
-			</b:tabView> 
-		
-		</div>
-	
+								<h:commandButton class="PlatformButton" value="" action="index" />
+							</h:panelGrid>
+						</p:panel>
+					</p:dataGrid>
+				</h:form>
+			</b:tab>
+
+		</b:tabView>
+
+	</div>
+
 </h:body>
 </html>

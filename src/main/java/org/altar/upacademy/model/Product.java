@@ -30,7 +30,7 @@ public class Product extends Entity implements Serializable {
 	@Column(name="Product_ID")
 	private Integer productId = 0;
 	@Size(min=2,max=30, message = "Product Name should be between 2 and 30 characters")
-	@Column(name="Product_Name", nullable = true)
+	@Column(name="Product_Name", nullable = true, unique = true)
 	private String productName = null;
 	@Min(1980) @Max(2018)
 	@Column(name="Year")
@@ -119,4 +119,10 @@ public class Product extends Entity implements Serializable {
 	public String toString(){
 		return this.productName;
 	}
+	
+	@Override
+	public boolean equals(Object product){
+		return this.productId.equals(((Product) product).getProductId());
+	}
+	
 }
