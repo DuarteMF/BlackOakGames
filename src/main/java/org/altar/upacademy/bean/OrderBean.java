@@ -15,43 +15,43 @@ import org.altar.upacademy.repository.OrderRepository;
 public class OrderBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-private Order newOrder = new Order();
-	
-private Order editedOrder = new Order();
 
-public Order getNewOrder() {
-	return newOrder;
-}
+	private Order newOrder = new Order();
 
-public void setNewOrder(Order newOrder) {
-	this.newOrder = newOrder;
-}
+	private Order editedOrder = new Order();
 
-public Order getEditedOrder() {
-	return editedOrder;
-}
+	public Order getNewOrder() {
+		return newOrder;
+	}
 
-public void setEditedOrder(Order editedOrder) {
-	this.editedOrder = editedOrder;
-}
-@Inject
-private OrderRepository orderRepository;
+	public void setNewOrder(Order newOrder) {
+		this.newOrder = newOrder;
+	}
 
-public List<Order> getList(){
-	return orderRepository.getDbOrder();
-}
+	public Order getEditedOrder() {
+		return editedOrder;
+	}
 
-public void addOrder() {
-	orderRepository.addToDb(newOrder);
-}
+	public void setEditedOrder(Order editedOrder) {
+		this.editedOrder = editedOrder;
+	}
 
-public void editOrder() {
-	orderRepository.updateInDb(editedOrder);
-}
+	@Inject
+	private OrderRepository orderRepository;
 
-public void deleteClient(Order order) {
-	orderRepository.removeFromDb(order);
-}
-}
+	public List<Order> getList() {
+		return orderRepository.getDbOrder();
+	}
 
+	public void addOrder() {
+		orderRepository.addToDb(newOrder);
+	}
+
+	public void editOrder() {
+		orderRepository.updateInDb(editedOrder);
+	}
+
+	public void deleteOrder(Order order) {
+		orderRepository.removeFromDb(order);
+	}
+}

@@ -601,6 +601,117 @@
 		</div>
 	</div>
 
+	<h:form id="OrderTable">
+		<p:growl id="orderTableMsgs" showDetail="true" />
+		<p:dataTable id="OrderList" var="order"
+			value="#{OrderBean.getList()}">
+			<f:facet name="header">	Orders </f:facet>
+
+			<p:column headerText="Id">
+				<h:outputText value="#{order.orderId}" />
+			</p:column>
+			<p:column headerText="Client">
+				<h:outputText value="#{order.client}" />
+			</p:column>
+			<p:column headerText="Seller">
+				<h:outputText value="#{order.seller}" />
+			</p:column>
+			<p:column headerText="Start Date">
+				<h:outputText value="#{order.start}" />
+			</p:column>
+			<p:column headerText="End Date">
+				<h:outputText value="#{order.end}" />
+			</p:column>
+			<p:column headerText="Expected Price">
+				<h:outputText value="#{order.expectedPrice}€" />
+			</p:column>
+			<p:column headerText="Delivery Date">
+				<h:outputText value="#{order.delivery}" />
+			</p:column>
+			<p:column headerText="Delivery Status">
+				<h:outputText value="#{order.deliveryStatus}" />
+			</p:column>
+			<p:column headerText="Final Price">
+				<h:outputText value="#{order.finalPrice}€" />
+			</p:column>
+			<p:column headerText="Opções">
+				<p:commandButton update=":EditOrderSection, :errorMsgs"
+					icon="ui-icon-pencil" title="Edit">
+					<f:setPropertyActionListener value="#{order}"
+						target="#{OrderBean.editedOrder}" />
+				</p:commandButton>
+				<p:commandButton update=":OrderTable:OrderList"
+					action="#{OrderBean.deleteOrder(order)}"
+					icon="ui-icon-trash" title="Delete" />
+			</p:column>
+		</p:dataTable>
+	</h:form>
+	<div class="row">
+		<div class="col-xs-6">
+			<h:form id="AddOrderSection">
+				<p:growl id="orderAddMsgs" showDetail="true" />
+				<h:panelGrid columns="2" cellpadding="5">
+
+					<p:outputLabel value="Name:" for="addOrderName" />
+					<p:inputText id="addOrderName"
+						value="#{OrderBean.newOrder.orderName}"
+						placeholder="Insert Order's Name" />
+
+					<h:outputLabel for="addOrderAddress" value="Adress:" />
+					<p:inputText id="addOrderAddress"
+						value="#{OrderBean.newOrder.orderAddress}"
+						placeholder="Insert Order's Address" />
+
+					<p:outputLabel value="E-mail:" for="addOrderEmail" />
+					<p:inputText id="addOrderEmail"
+						value="#{OrderBean.newOrder.orderEmail}"
+						placeholder="Insert Order's Email" />
+						
+					<p:outputLabel value="Phone Number:" for="addOrderPhoneNumber" />
+					<p:inputText id="addOrderPhoneNumber"
+						value="#{OrderBean.newOrder.orderPhoneNumber}"
+						placeholder="Insert Order's Phone Number" />
+
+					<p:commandButton value="Adicionar"
+						update=":errorMsgs, :OrderTable:OrderList"
+						action="#{OrderBean.addOrder()}" />
+				</h:panelGrid>
+			</h:form>
+		</div>
+		<div class="col-xs-6">
+			<h:form id="EditOrderSection">
+				<p:growl id="orderEditMsgs" showDetail="true" />
+				<h:inputHidden value="#{OrderBean.editedOrder.orderId}" />
+				<h:panelGrid columns="2" cellpadding="5">
+
+					<p:outputLabel value="Name:" for="editOrderName" />
+					<p:inputText id="editOrderName"
+						value="#{OrderBean.editedOrder.orderName}"
+						placeholder="Insert Order's Name" />
+
+					<h:outputLabel for="editOrderAddress" value="Adress:" />
+					<p:inputText id="editOrderAddress"
+						value="#{OrderBean.editedOrder.orderAddress}"
+						placeholder="Insert Order's Address" />
+
+					<p:outputLabel value="E-mail:" for="editOrderEmail" />
+					<p:inputText id="editOrderEmail"
+						value="#{OrderBean.editedOrder.orderEmail}"
+						placeholder="Insert Order's Email" />
+						
+					<p:outputLabel value="Phone Number:" for="editOrderPhoneNumber" />
+					<p:inputText id="editOrderPhoneNumber"
+						value="#{OrderBean.editedOrder.orderPhoneNumber}"
+						placeholder="Insert Order's Phone Number" />
+
+					<p:commandButton value="Editar"
+						update=":errorMsgs, :OrderTable:OrderList"
+						action="#{OrderBean.editOrder()}">
+					</p:commandButton>
+				</h:panelGrid>
+			</h:form>
+		</div>
+	</div>
 	<footer>
 		<p>@2017</p>
 	</footer>
