@@ -1,17 +1,29 @@
 @CHARSET "UTF-8";
 
-/* @media screen and (max-width: 1024px) and (min-width: 300px){
-	.body{
+/*  @media screen and (max-width: 1024px) and (min-width: 300px){
 	
-	}
-} */
+}  */
+.flexbox{
+	display:flex;
+	justify-content:space-between;
+	flex-wrap:wrap;
+	padding-left:5%;
+}
+
+.flexbox > *{
+	flex-grow:1;
+	text-align:center;
+	
+	
+	
+}
 
 .fit-top{
-	background-color:#f49b42;
+	background-color:#7f8a9b;
 }
 
 .title{
-	margin-left:100px; 
+	margin-left:70px; 
 	margin-right:100px; 
 }
 
@@ -32,14 +44,17 @@
 	
 }
 
+
+
 #imageGame{
+	
 	margin-top:40px;
-	margin-left:90px;
+	/* margin-left:90px; */
 	border-radius: 5px;
 	border-color:transparent;
-	width:300px;
-	height:315px;
-	
+	width:270px;
+	height:314px;
+	border-radius: 5px;
 	
 } 
 
@@ -47,19 +62,28 @@
 	margin-top:40px;
 	border-radius: 5px;
 	border-color:transparent;
+	margin-bottom:5px;
+	
+	
 	
 }
 
 .description{
-	margin-top:10px;
+	/* margin-top:10px; */
 	/* margin-left:50px; */
 }
 
-#formDescription, #formDetails{
+#formDescription{
+	font-size:12pt;
+	margin-top:40px;
 	
-	margin-left:100px; 
-	margin-right:100px; 
-}   
+}
+
+#formDescription, #formDetails{
+	margin-left:5%; 
+	margin-right:5%;
+	 
+} 
 
 #description{
 	text-align:left;
@@ -68,6 +92,7 @@
 	font-weight: bold;
 	
 }
+
 
 #details{
 	font-weight: bold;
@@ -79,6 +104,7 @@
 	text-align: justify;
 	text-justify: inter-word;
 	margin-top:10px;
+
 	
 }
 
@@ -116,4 +142,6 @@
 	
 }
 
-
+h5{
+	font-size:13pt;
+}

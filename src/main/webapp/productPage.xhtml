@@ -36,19 +36,20 @@
 	
 	
 		<div class="container-fluid">
-			<div class="row">
-				
-				<p:panelGrid columns="2" columnClasses="ui-grid-col-6,ui-grid-col-6"
-					layout="grid" styleClass="ui-panelgrid-blank" >
+			<div class="row imagevideo ">
 					
-					<p:graphicImage name="images/stardewvalley.png" alt="stardew valley" 
-					id="imageGame" class="img-responsive center-block;" />
+				<div class="flexbox">
+					<div >
+						<p:graphicImage name="images/stardewvalley.png" alt="stardew valley" 
+						id="imageGame" class="img-responsive" />
+					</div>
 					
-					<iframe width="470" height="315" src="https://www.youtube.com/embed/S9U86Jb7b94"
-							id="video" class="embed-responsive-item">
-					</iframe>
-				
-				</p:panelGrid>
+					<div >
+						<iframe width="470" height="315" src="https://www.youtube.com/embed/S9U86Jb7b94"
+								id="video" class="embed-responsive-item ">
+						</iframe>
+					</div>
+				</div>
 			</div>
 		</div>
 		
@@ -57,7 +58,7 @@
 				<h:form id="formDescription">
 					<h4 id="description">Description</h4>
 					<p:separator></p:separator>
-					<div>
+					<div class="text">
 						<h:outputText
 								value="&lt;br   /&gt;You've inherited your grandfather's old 
 									farm plot in Stardew Valley. &lt;br /&gt; Armed with hand-me-down tools and a 
@@ -89,8 +90,13 @@
 					
 					<div class="col-xs-6 col-sm-3 b" >
 						<h5 id="a2">Categories:</h5>
-						<h:outputText value=" #{CategoryBean.getList()}" id="respectiveCategory" 
-						></h:outputText>
+	
+						<!-- <h:outputText value=" #{CategoryBean.getList()}" id="respectiveCategory" 
+						></h:outputText> -->
+						<h:form id="catList">
+						    <p:dataList value="#{CategoryBean.getList()}" var="cat" type="ordered">
+						    </p:dataList>
+						</h:form> 
 					</div>
 	
 					<div class="col-xs-6 col-sm-3 c">
