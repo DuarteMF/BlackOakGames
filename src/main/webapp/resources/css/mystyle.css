@@ -1,20 +1,36 @@
 @CHARSET "UTF-8";
 
-#title{
-	width:20%;
+/* Zona do titulo e logo */
+#gameTitle{
+	min-width:25%;
+	width:25%;
 	font-size:20px;
 	text-align:center;
 	color:#EF5F21;
-	background-color: #000;
-
+	background-color: #fff;
 }
+@media (max-width: 1250px){
+	#gameTitle img{
+	width:25px;
+	height:25px;
+	}
+}
+	
+#gameTitle img{
+	width:95px;
+	height:65px;
+}
+#gameTitle p{
+	font-weigth:bold;
+}
+/* Zona do search */
 .search1{
 	display:flex;
 	position:relative;
 	float: left;
-  	background-color: #fff;
+  	background-color: #000;
     flex-direction: column;
-    width: 20%;
+    min-width: 25%;
 }
 .searchTitle form{
 	margin-bottom: 0px;
@@ -31,12 +47,12 @@
 	margin-top: 0px;
 	width:50%;
 }
-.ui-selectonemenu.ui-widget.ui-state-default.ui-corner-all{
-	width:100%;
-}
 .searchPlat{
 	margin-top: 0px;
 	width:50%;
+}
+.ui-selectonemenu.ui-widget.ui-state-default.ui-corner-all{
+	width:100%;
 }
 
 /* 
