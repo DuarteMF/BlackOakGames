@@ -18,7 +18,6 @@ import javax.validation.constraints.Size;
 
 @javax.persistence.Entity
 @Table(name="PRODUCT")
-@ManagedBean
 
 public class Product extends Entity implements Serializable {
 	/**
