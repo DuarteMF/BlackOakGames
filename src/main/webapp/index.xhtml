@@ -497,6 +497,109 @@
 			</h:form>
 		</div>
 	</div>
+	
+	<h:form id="SellerTable">
+		<p:growl id="sellerTableMsgs" showDetail="true" />
+		<p:dataTable id="SellerList" var="seller"
+			value="#{SellerBean.getList()}">
+			<f:facet name="header">	Sellers </f:facet>
+
+			<p:column headerText="Id">
+				<h:outputText value="#{seller.sellerId}" />
+			</p:column>
+			<p:column headerText="Name">
+				<h:outputText value="#{seller.sellerName}" />
+			</p:column>
+			<p:column headerText="Address">
+				<h:outputText value="#{seller.sellerAddress}" />
+			</p:column>
+			<p:column headerText="E-mail">
+				<h:outputText value="#{seller.sellerEmail}" />
+			</p:column>
+			<p:column headerText="Phone Number">
+				<h:outputText value="#{seller.sellerPhoneNumber}" />
+			</p:column>
+			<p:column headerText="Feedback">
+				<h:outputText value="#{seller.sellerFeedback}/5" />
+			</p:column>
+			<p:column headerText="Opções">
+				<p:commandButton update=":EditSellerSection, :errorMsgs"
+					icon="ui-icon-pencil" title="Edit">
+					<f:setPropertyActionListener value="#{seller}"
+						target="#{SellerBean.editedSeller}" />
+				</p:commandButton>
+				<p:commandButton update=":SellerTable:SellerList"
+					action="#{SellerBean.deleteSeller(seller)}"
+					icon="ui-icon-trash" title="Delete" />
+			</p:column>
+		</p:dataTable>
+	</h:form>
+	<div class="row">
+		<div class="col-xs-6">
+			<h:form id="AddSellerSection">
+				<p:growl id="sellerAddMsgs" showDetail="true" />
+				<h:panelGrid columns="2" cellpadding="5">
+
+					<p:outputLabel value="Name:" for="addSellerName" />
+					<p:inputText id="addSellerName"
+						value="#{SellerBean.newSeller.sellerName}"
+						placeholder="Insert Seller's Name" />
+
+					<h:outputLabel for="addSellerAddress" value="Adress:" />
+					<p:inputText id="addSellerAddress"
+						value="#{SellerBean.newSeller.sellerAddress}"
+						placeholder="Insert Seller's Address" />
+
+					<p:outputLabel value="E-mail:" for="addSellerEmail" />
+					<p:inputText id="addSellerEmail"
+						value="#{SellerBean.newSeller.sellerEmail}"
+						placeholder="Insert Seller's Email" />
+						
+					<p:outputLabel value="Phone Number:" for="addSellerPhoneNumber" />
+					<p:inputText id="addSellerPhoneNumber"
+						value="#{SellerBean.newSeller.sellerPhoneNumber}"
+						placeholder="Insert Seller's Phone Number" />
+
+					<p:commandButton value="Adicionar"
+						update=":errorMsgs, :SellerTable:SellerList"
+						action="#{SellerBean.addSeller()}" />
+				</h:panelGrid>
+			</h:form>
+		</div>
+		<div class="col-xs-6">
+			<h:form id="EditSellerSection">
+				<p:growl id="sellerEditMsgs" showDetail="true" />
+				<h:inputHidden value="#{SellerBean.editedSeller.sellerId}" />
+				<h:panelGrid columns="2" cellpadding="5">
+
+					<p:outputLabel value="Name:" for="editSellerName" />
+					<p:inputText id="editSellerName"
+						value="#{SellerBean.editedSeller.sellerName}"
+						placeholder="Insert Seller's Name" />
+
+					<h:outputLabel for="editSellerAddress" value="Adress:" />
+					<p:inputText id="editSellerAddress"
+						value="#{SellerBean.editedSeller.sellerAddress}"
+						placeholder="Insert Seller's Address" />
+
+					<p:outputLabel value="E-mail:" for="editSellerEmail" />
+					<p:inputText id="editSellerEmail"
+						value="#{SellerBean.editedSeller.sellerEmail}"
+						placeholder="Insert Seller's Email" />
+						
+					<p:outputLabel value="Phone Number:" for="editSellerPhoneNumber" />
+					<p:inputText id="editSellerPhoneNumber"
+						value="#{SellerBean.editedSeller.sellerPhoneNumber}"
+						placeholder="Insert Seller's Phone Number" />
+
+					<p:commandButton value="Editar"
+						update=":errorMsgs, :SellerTable:SellerList"
+						action="#{SellerBean.editSeller()}">
+					</p:commandButton>
+				</h:panelGrid>
+			</h:form>
+		</div>
+	</div>
 
 	<footer>
 		<p>@2017</p>
