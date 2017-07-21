@@ -171,7 +171,7 @@
 			</p:column>
 		</p:dataTable>
 	</h:form>
-	<div class="row" id="teste">
+	<div class="row">
 		<div class="col-xs-6">
 			<h:form id="AddProductSection">
 				<p:growl id="productAddMsgs" showDetail="true" />
@@ -395,9 +395,108 @@
 		<h3>Feature to be added later</h3>
 	</h:form>
 
-	<h:form id="EditProductUnitAdditionSection">
+	<h:form id="ClientTable">
+		<p:growl id="clientTableMsgs" showDetail="true" />
+		<p:dataTable id="ClientList" var="client"
+			value="#{ClientBean.getList()}">
+			<f:facet name="header">	Clients </f:facet>
 
+			<p:column headerText="Id">
+				<h:outputText value="#{client.clientId}" />
+			</p:column>
+			<p:column headerText="Name">
+				<h:outputText value="#{client.clientName}" />
+			</p:column>
+			<p:column headerText="Address">
+				<h:outputText value="#{client.clientAddress}" />
+			</p:column>
+			<p:column headerText="E-mail">
+				<h:outputText value="#{client.clientEmail}" />
+			</p:column>
+			<p:column headerText="Phone Number">
+				<h:outputText value="#{client.clientPhoneNumber}" />
+			</p:column>
+			<p:column headerText="Feedback">
+				<h:outputText value="#{client.clientFeedback}/5" />
+			</p:column>
+			<p:column headerText="Opções">
+				<p:commandButton update=":EditClientSection, :errorMsgs"
+					icon="ui-icon-pencil" title="Edit">
+					<f:setPropertyActionListener value="#{client}"
+						target="#{ClientBean.editedClient}" />
+				</p:commandButton>
+				<p:commandButton update=":ClientTable:ClientList"
+					action="#{ClientBean.deleteClient(client)}"
+					icon="ui-icon-trash" title="Delete" />
+			</p:column>
+		</p:dataTable>
 	</h:form>
+	<div class="row">
+		<div class="col-xs-6">
+			<h:form id="AddClientSection">
+				<p:growl id="clientAddMsgs" showDetail="true" />
+				<h:panelGrid columns="2" cellpadding="5">
+
+					<p:outputLabel value="Name:" for="addClientName" />
+					<p:inputText id="addClientName"
+						value="#{ClientBean.newClient.clientName}"
+						placeholder="Insert Client's Name" />
+
+					<h:outputLabel for="addClientAddress" value="Adress:" />
+					<p:inputText id="addClientAddress"
+						value="#{ClientBean.newClient.clientAddress}"
+						placeholder="Insert Client's Address" />
+
+					<p:outputLabel value="E-mail:" for="addClientEmail" />
+					<p:inputText id="addClientEmail"
+						value="#{ClientBean.newClient.clientEmail}"
+						placeholder="Insert Client's Email" />
+						
+					<p:outputLabel value="Phone Number:" for="addClientPhoneNumber" />
+					<p:inputText id="addClientPhoneNumber"
+						value="#{ClientBean.newClient.clientPhoneNumber}"
+						placeholder="Insert Client's Phone Number" />
+
+					<p:commandButton value="Adicionar"
+						update=":errorMsgs, :ClientTable:ClientList"
+						action="#{ClientBean.addClient()}" />
+				</h:panelGrid>
+			</h:form>
+		</div>
+		<div class="col-xs-6">
+			<h:form id="EditClientSection">
+				<p:growl id="clientEditMsgs" showDetail="true" />
+				<h:inputHidden value="#{ClientBean.editedClient.clientId}" />
+				<h:panelGrid columns="2" cellpadding="5">
+
+					<p:outputLabel value="Name:" for="editClientName" />
+					<p:inputText id="editClientName"
+						value="#{ClientBean.editedClient.clientName}"
+						placeholder="Insert Client's Name" />
+
+					<h:outputLabel for="editClientAddress" value="Adress:" />
+					<p:inputText id="editClientAddress"
+						value="#{ClientBean.editedClient.clientAddress}"
+						placeholder="Insert Client's Address" />
+
+					<p:outputLabel value="E-mail:" for="editClientEmail" />
+					<p:inputText id="editClientEmail"
+						value="#{ClientBean.editedClient.clientEmail}"
+						placeholder="Insert Client's Email" />
+						
+					<p:outputLabel value="Phone Number:" for="editClientPhoneNumber" />
+					<p:inputText id="editClientPhoneNumber"
+						value="#{ClientBean.editedClient.clientPhoneNumber}"
+						placeholder="Insert Client's Phone Number" />
+
+					<p:commandButton value="Editar"
+						update=":errorMsgs, :ClientTable:ClientList"
+						action="#{ClientBean.editClient()}">
+					</p:commandButton>
+				</h:panelGrid>
+			</h:form>
+		</div>
+	</div>
 
 	<footer>
 		<p>@2017</p>
