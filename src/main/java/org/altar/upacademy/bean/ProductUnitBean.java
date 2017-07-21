@@ -127,8 +127,6 @@ public class ProductUnitBean implements Serializable{
 	}
 	
 //	public void addBatchProductUnit(){
-////		newProductUnit.setProduct(product);
-////		newProductUnit.setProductPlatform(platform);
 //		
 //		String sql = "INSERT INTO ProductUnit (Product, Platform) values (?, ?)";
 //		Connection connection = new getConnection();
@@ -136,7 +134,7 @@ public class ProductUnitBean implements Serializable{
 //
 //		final int batchSize = 1000;
 //
-//		for (int count = 0; count < batchSize ;count++) {
+//		for (int count = 0; count < unitQuantity ;count++) {
 //			
 //			ps.setObject(1, product);
 //			ps.setObject(2, platform);
