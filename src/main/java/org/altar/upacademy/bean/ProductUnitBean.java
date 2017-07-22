@@ -77,7 +77,7 @@ public class ProductUnitBean implements Serializable{
 	public void addProductUnit() {
 		newProductUnit.setProduct(product);
 		newProductUnit.setProductPlatform(platform);
-		productUnitRepository.addToDb(newProductUnit);
+		productUnitRepository.addBatch(newProductUnit, unitQuantity);
 	}
 
 	public void editProductUnit() {
@@ -125,27 +125,4 @@ public class ProductUnitBean implements Serializable{
 	public void setUnitQuantity(int unitQuantity) {
 		this.unitQuantity = unitQuantity;
 	}
-	
-//	public void addBatchProductUnit(){
-//		
-//		String sql = "INSERT INTO ProductUnit (Product, Platform) values (?, ?)";
-//		Connection connection = new getConnection();
-//		PreparedStatement ps = connection.prepareStatement(sql);
-//
-//		final int batchSize = 1000;
-//
-//		for (int count = 0; count < unitQuantity ;count++) {
-//			
-//			ps.setObject(1, product);
-//			ps.setObject(2, platform);
-//			ps.addBatch();
-//			
-//			if(++count % batchSize == 0) {
-//				ps.executeBatch();
-//			}
-//		}
-//		ps.executeBatch(); // insert remaining records
-//		ps.close();
-//		connection.close();
-//	}
 }
