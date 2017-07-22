@@ -458,7 +458,7 @@
 						placeholder="Insert Client's Phone Number" />
 
 					<p:commandButton value="Adicionar"
-						update=":errorMsgs, :ClientTable:ClientList"
+						update=":errorMsgs, :ClientTable:ClientList, :AddOrderSection, :EditOrderSection"
 						action="#{ClientBean.addClient()}" />
 				</h:panelGrid>
 			</h:form>
@@ -561,7 +561,7 @@
 						placeholder="Insert Seller's Phone Number" />
 
 					<p:commandButton value="Adicionar"
-						update=":errorMsgs, :SellerTable:SellerList"
+						update=":errorMsgs, :SellerTable:SellerList, :AddOrderSection, :EditOrderSection"
 						action="#{SellerBean.addSeller()}" />
 				</h:panelGrid>
 			</h:form>
@@ -646,46 +646,49 @@
 			</p:column>
 		</p:dataTable>
 	</h:form>
+
 	<div class="row">
 		<div class="col-xs-6">
 			<h:form id="AddOrderSection">
 				<p:growl id="orderAddMsgs" showDetail="true" />
 				<h:panelGrid columns="2" cellpadding="5">
-				
-				<p:outputLabel value="Client" for="addClient"
-				rendered="#{not empty (ClientBean.getList())}" />
-			<p:selectOneMenu id="addClient" value="#{OrderBean.newOrder.client}"
-				label="Client" rendered="#{not empty (ClientBean.getList())}"
-				converter="omnifaces.SelectItemsConverter">
-				<f:selectItem itemLabel="Seleccione uma opção"
-					noSelectionOption="true" />
-				<f:selectItems value="#{ClientBean.getList()}" var="client"
-					itemLabel="#{client.clientName}" itemValue="#{client}" />
-			</p:selectOneMenu>
-			
-			<p:outputLabel value="Seller" for="addSeller"
-				rendered="#{not empty (SellerBean.getList())}" />
-			<p:selectOneMenu id="addSeller" value="#{OrderBean.newOrder.seller}"
-				label="Seller" rendered="#{not empty (ClientBean.getList())}"
-				converter="omnifaces.SelectItemsConverter">
-				<f:selectItem itemLabel="Seleccione uma opção"
-					noSelectionOption="true" />
-				<f:selectItems value="#{SellerBean.getList()}" var="seller"
-					itemLabel="#{seller.sellerName}" itemValue="#{seller}" />
-			</p:selectOneMenu>
+
+					<p:outputLabel value="Client" for="addClient"
+						rendered="#{not empty (ClientBean.getList())}" />
+					<p:selectOneMenu id="addClient"
+						value="#{OrderBean.client}" label="Client"
+						rendered="#{not empty (ClientBean.getList())}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="Seleccione uma opção"
+							noSelectionOption="true" />
+						<f:selectItems value="#{ClientBean.getList()}" var="client"
+							itemLabel="#{client.clientName}" itemValue="#{client}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="Seller" for="addSeller"
+						rendered="#{not empty (SellerBean.getList())}" />
+					<p:selectOneMenu id="addSeller"
+						value="#{OrderBean.seller}" label="Seller"
+						rendered="#{not empty (ClientBean.getList())}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="Seleccione uma opção"
+							noSelectionOption="true" />
+						<f:selectItems value="#{SellerBean.getList()}" var="seller"
+							itemLabel="#{seller.sellerName}" itemValue="#{seller}" />
+					</p:selectOneMenu>
 
 					<p:outputLabel value="Start Date:" for="addOrderStartDate" />
-					<p:calendar id="addOrderStartDate" value="#{orderBean.newOrder.start}"
-						pattern="dd/MM/yyyy" required="true" />
+					<p:calendar id="addOrderStartDate"
+						value="#{OrderBean.newOrder.start}" pattern="dd/MM/yyyy"
+						required="true" />
 
 					<p:outputLabel value="End Date:" for="addOrderEndDate" />
-					<p:calendar id="addOrderEndDate" value="#{orderBean.newOrder.end}"
+					<p:calendar id="addOrderEndDate" value="#{OrderBean.newOrder.end}"
 						pattern="dd/MM/yyyy" required="true" />
 
 					<p:outputLabel value="Expected Price:" for="addExpectedPrice" />
 					<p:inputText id="addExpectedPrice"
-						value="#{OrderBean.newOrder.expectedPrice}€"
-						readonly="true" />
+						value="#{OrderBean.newOrder.expectedPrice}€" readonly="true" />
 
 					<p:commandButton value="Adicionar"
 						update=":errorMsgs, :OrderTable:OrderList"
@@ -695,7 +698,49 @@
 		</div>
 		<div class="col-xs-6">
 			<h:form id="EditOrderSection">
-				
+				<p:growl id="orderEditMsgs" showDetail="true" />
+				<h:inputHidden value="#{OrderBean.editedOrder.orderId}"/>
+				<h:panelGrid columns="2" cellpadding="5">
+			
+				<p:outputLabel value="Client" for="editClient"
+					rendered="#{not empty (ClientBean.getList())}" />
+				<p:selectOneMenu id="editClient" value="#{OrderBean.client}"
+					label="Client" rendered="#{not empty (ClientBean.getList())}"
+					converter="omnifaces.SelectItemsConverter">
+					<f:selectItem itemLabel="Seleccione uma opção"
+						noSelectionOption="true" />
+					<f:selectItems value="#{ClientBean.getList()}" var="client"
+						itemLabel="#{client.clientName}" itemValue="#{client}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Seller" for="editSeller"
+					rendered="#{not empty (SellerBean.getList())}" />
+				<p:selectOneMenu id="editSeller" value="#{OrderBean.seller}"
+					label="Seller" rendered="#{not empty (ClientBean.getList())}"
+					converter="omnifaces.SelectItemsConverter">
+					<f:selectItem itemLabel="Seleccione uma opção"
+						noSelectionOption="true" />
+					<f:selectItems value="#{SellerBean.getList()}" var="seller"
+						itemLabel="#{seller.sellerName}" itemValue="#{seller}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Start Date:" for="editOrderStartDate" />
+				<p:calendar id="editOrderStartDate"
+					value="#{OrderBean.editedOrder.start}" pattern="dd/MM/yyyy"
+					required="true" />
+
+				<p:outputLabel value="End Date:" for="editOrderEndDate" />
+				<p:calendar id="editOrderEndDate" value="#{OrderBean.editedOrder.end}"
+					pattern="dd/MM/yyyy" required="true" />
+
+				<p:outputLabel value="Expected Price:" for="editExpectedPrice" />
+				<p:inputText id="editExpectedPrice"
+					value="#{OrderBean.editedOrder.expectedPrice}€" readonly="true" />
+
+				<p:commandButton value="Editar"
+					update=":errorMsgs, :OrderTable:OrderList"
+					action="#{OrderBean.editOrder()}" />
+					</h:panelGrid>
 			</h:form>
 		</div>
 	</div>

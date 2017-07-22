@@ -9,9 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @javax.persistence.Entity
-@Table(name="ORDERLIST")
+@Table(name="OrderList")
 public class Order extends Entity implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -26,13 +28,16 @@ public class Order extends Entity implements Serializable{
     @OneToOne
     private Seller seller;
     
-	@Column(name="Start Date")
+	@Column(name="Start_Date")
+	@Temporal(TemporalType.TIMESTAMP)
     private Date start;
-	@Column(name="End Date")
+	@Column(name="End_Date")
+	@Temporal(TemporalType.TIMESTAMP)
     private Date end;
 	@Column(name="Expected_Price")
     private Double expectedPrice = null;
-	@Column(name="Delivery Date")
+	@Column(name="Delivery_Date")
+	@Temporal(TemporalType.TIMESTAMP)
     private Date delivery;
 	@Column(name="Delivery_Status")
     private Boolean deliveryStatus = null;

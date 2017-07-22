@@ -69,4 +69,14 @@ public class Client extends Entity implements Serializable{
 	public void setClientFeedback(double clientFeedback) {
 		this.clientFeedback = clientFeedback;
 	}
+	
+	@Override
+	public String toString(){
+		return this.clientName;
+	}
+	
+	@Override
+	public boolean equals(Object client){
+		return this.clientId.equals(((Client) client).getClientId());
+	}
 }

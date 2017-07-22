@@ -67,4 +67,14 @@ public class Seller extends Entity implements Serializable{
 	public void setSellerFeedback(double sellerFeedback) {
 		this.sellerFeedback = sellerFeedback;
 	}
+	
+	@Override
+	public String toString(){
+		return this.sellerName;
+	}
+	
+	@Override
+	public boolean equals(Object seller){
+		return this.sellerId.equals(((Seller) seller).getSellerId());
+	}
 }

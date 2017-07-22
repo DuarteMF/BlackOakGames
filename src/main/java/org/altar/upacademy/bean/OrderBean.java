@@ -7,7 +7,9 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.altar.upacademy.model.Client;
 import org.altar.upacademy.model.Order;
+import org.altar.upacademy.model.Seller;
 import org.altar.upacademy.repository.OrderRepository;
 
 @Named("OrderBean")
@@ -44,14 +46,38 @@ public class OrderBean implements Serializable {
 	}
 
 	public void addOrder() {
+		newOrder.setClient(client);
+		newOrder.setSeller(seller);
 		orderRepository.addToDb(newOrder);
 	}
 
 	public void editOrder() {
+		editedOrder.setClient(client);
+		editedOrder.setSeller(seller);
 		orderRepository.updateInDb(editedOrder);
 	}
 
 	public void deleteOrder(Order order) {
 		orderRepository.removeFromDb(order);
+	}
+	
+	private Client client;
+	
+	private Seller seller;
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public Seller getSeller() {
+		return seller;
+	}
+
+	public void setSeller(Seller seller) {
+		this.seller = seller;
 	}
 }
