@@ -183,7 +183,7 @@
 						placeholder="Insert Product" />
 
 
-					<h:outputLabel for="addYear" value="Year:" />
+					<p:outputLabel for="addYear" value="Year:" />
 					<p:spinner min="1980" max="2018" id="addYear"
 						value="#{ProductBean.newProduct.year}" placeholder="1980-2018">
 					</p:spinner>
@@ -215,7 +215,7 @@
 					<p:inputText id="addPublisher" placeholder="Insert Publisher"
 						value="#{ProductBean.newProduct.publisher}" />
 
-					<h:outputLabel for="addRentalPrice"
+					<p:outputLabel for="addRentalPrice"
 						value="Rental Price (€ per week):" />
 					<p:inputText id="addRentalPrice"
 						value="#{ProductBean.newProduct.rentalPrice}"
@@ -225,7 +225,7 @@
 					</p:inputText>
 
 
-					<h:outputLabel for="addAvailability" value="Availability 0-99:" />
+					<p:outputLabel for="addAvailability" value="Availability 0-99:" />
 					<p:spinner min="0" max="99" id="addAvailability"
 						value="#{ProductBean.newProduct.availability}" placeholder="00-99">
 					</p:spinner>
@@ -255,7 +255,7 @@
 						value="#{ProductBean.editedProduct.productName}"
 						placeholder="Insert Product" />
 
-					<h:outputLabel for="editYear" value="Year:" />
+					<p:outputLabel for="editYear" value="Year:" />
 					<p:spinner min="1980" max="2018" id="editYear"
 						value="#{ProductBean.editedProduct.year}" placeholder="1980-2018">
 					</p:spinner>
@@ -293,7 +293,7 @@
 						value="#{ProductBean.editedProduct.publisher}" />
 
 
-					<h:outputLabel for="editRentalPrice"
+					<p:outputLabel for="editRentalPrice"
 						value="Rental Price (€ per week):" />
 					<p:inputText id="editRentalPrice"
 						value="#{ProductBean.editedProduct.rentalPrice}"
@@ -302,7 +302,7 @@
 						<f:validateDoubleRange minimum="1.0" maximum="35.0" />
 					</p:inputText>
 
-					<h:outputLabel for="editAvailability" value="Availability 0-99:" />
+					<p:outputLabel for="editAvailability" value="Availability 0-99:" />
 					<p:spinner min="0" max="99" id="editAvailability"
 						value="#{ProductBean.editedProduct.availability}"
 						placeholder="00-99">
@@ -442,7 +442,7 @@
 						value="#{ClientBean.newClient.clientName}"
 						placeholder="Insert Client's Name" />
 
-					<h:outputLabel for="addClientAddress" value="Adress:" />
+					<p:outputLabel for="addClientAddress" value="Adress:" />
 					<p:inputText id="addClientAddress"
 						value="#{ClientBean.newClient.clientAddress}"
 						placeholder="Insert Client's Address" />
@@ -474,7 +474,7 @@
 						value="#{ClientBean.editedClient.clientName}"
 						placeholder="Insert Client's Name" />
 
-					<h:outputLabel for="editClientAddress" value="Adress:" />
+					<p:outputLabel for="editClientAddress" value="Adress:" />
 					<p:inputText id="editClientAddress"
 						value="#{ClientBean.editedClient.clientAddress}"
 						placeholder="Insert Client's Address" />
@@ -545,7 +545,7 @@
 						value="#{SellerBean.newSeller.sellerName}"
 						placeholder="Insert Seller's Name" />
 
-					<h:outputLabel for="addSellerAddress" value="Adress:" />
+					<p:outputLabel for="addSellerAddress" value="Adress:" />
 					<p:inputText id="addSellerAddress"
 						value="#{SellerBean.newSeller.sellerAddress}"
 						placeholder="Insert Seller's Address" />
@@ -577,7 +577,7 @@
 						value="#{SellerBean.editedSeller.sellerName}"
 						placeholder="Insert Seller's Name" />
 
-					<h:outputLabel for="editSellerAddress" value="Adress:" />
+					<p:outputLabel for="editSellerAddress" value="Adress:" />
 					<p:inputText id="editSellerAddress"
 						value="#{SellerBean.editedSeller.sellerAddress}"
 						placeholder="Insert Seller's Address" />
@@ -651,26 +651,41 @@
 			<h:form id="AddOrderSection">
 				<p:growl id="orderAddMsgs" showDetail="true" />
 				<h:panelGrid columns="2" cellpadding="5">
+				
+				<p:outputLabel value="Client" for="addClient"
+				rendered="#{not empty (ClientBean.getList())}" />
+			<p:selectOneMenu id="addClient" value="#{OrderBean.newOrder.client}"
+				label="Client" rendered="#{not empty (ClientBean.getList())}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItem itemLabel="Seleccione uma opção"
+					noSelectionOption="true" />
+				<f:selectItems value="#{ClientBean.getList()}" var="client"
+					itemLabel="#{client.clientName}" itemValue="#{client}" />
+			</p:selectOneMenu>
+			
+			<p:outputLabel value="Seller" for="addSeller"
+				rendered="#{not empty (SellerBean.getList())}" />
+			<p:selectOneMenu id="addSeller" value="#{OrderBean.newOrder.seller}"
+				label="Seller" rendered="#{not empty (ClientBean.getList())}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItem itemLabel="Seleccione uma opção"
+					noSelectionOption="true" />
+				<f:selectItems value="#{SellerBean.getList()}" var="seller"
+					itemLabel="#{seller.sellerName}" itemValue="#{seller}" />
+			</p:selectOneMenu>
 
-					<p:outputLabel value="Name:" for="addOrderName" />
-					<p:inputText id="addOrderName"
-						value="#{OrderBean.newOrder.orderName}"
-						placeholder="Insert Order's Name" />
+					<p:outputLabel value="Start Date:" for="addOrderStartDate" />
+					<p:calendar id="addOrderStartDate" value="#{orderBean.newOrder.start}"
+						pattern="dd/MM/yyyy" required="true" />
 
-					<h:outputLabel for="addOrderAddress" value="Adress:" />
-					<p:inputText id="addOrderAddress"
-						value="#{OrderBean.newOrder.orderAddress}"
-						placeholder="Insert Order's Address" />
+					<p:outputLabel value="End Date:" for="addOrderEndDate" />
+					<p:calendar id="addOrderEndDate" value="#{orderBean.newOrder.end}"
+						pattern="dd/MM/yyyy" required="true" />
 
-					<p:outputLabel value="E-mail:" for="addOrderEmail" />
-					<p:inputText id="addOrderEmail"
-						value="#{OrderBean.newOrder.orderEmail}"
-						placeholder="Insert Order's Email" />
-						
-					<p:outputLabel value="Phone Number:" for="addOrderPhoneNumber" />
-					<p:inputText id="addOrderPhoneNumber"
-						value="#{OrderBean.newOrder.orderPhoneNumber}"
-						placeholder="Insert Order's Phone Number" />
+					<p:outputLabel value="Expected Price:" for="addExpectedPrice" />
+					<p:inputText id="addExpectedPrice"
+						value="#{OrderBean.newOrder.expectedPrice}€"
+						readonly="true" />
 
 					<p:commandButton value="Adicionar"
 						update=":errorMsgs, :OrderTable:OrderList"
@@ -680,35 +695,7 @@
 		</div>
 		<div class="col-xs-6">
 			<h:form id="EditOrderSection">
-				<p:growl id="orderEditMsgs" showDetail="true" />
-				<h:inputHidden value="#{OrderBean.editedOrder.orderId}" />
-				<h:panelGrid columns="2" cellpadding="5">
-
-					<p:outputLabel value="Name:" for="editOrderName" />
-					<p:inputText id="editOrderName"
-						value="#{OrderBean.editedOrder.orderName}"
-						placeholder="Insert Order's Name" />
-
-					<h:outputLabel for="editOrderAddress" value="Adress:" />
-					<p:inputText id="editOrderAddress"
-						value="#{OrderBean.editedOrder.orderAddress}"
-						placeholder="Insert Order's Address" />
-
-					<p:outputLabel value="E-mail:" for="editOrderEmail" />
-					<p:inputText id="editOrderEmail"
-						value="#{OrderBean.editedOrder.orderEmail}"
-						placeholder="Insert Order's Email" />
-						
-					<p:outputLabel value="Phone Number:" for="editOrderPhoneNumber" />
-					<p:inputText id="editOrderPhoneNumber"
-						value="#{OrderBean.editedOrder.orderPhoneNumber}"
-						placeholder="Insert Order's Phone Number" />
-
-					<p:commandButton value="Editar"
-						update=":errorMsgs, :OrderTable:OrderList"
-						action="#{OrderBean.editOrder()}">
-					</p:commandButton>
-				</h:panelGrid>
+				
 			</h:form>
 		</div>
 	</div>

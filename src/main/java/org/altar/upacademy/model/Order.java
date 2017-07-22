@@ -1,6 +1,7 @@
 package org.altar.upacademy.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -10,14 +11,14 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @javax.persistence.Entity
-@Table(name="ORDERS")
+@Table(name="ORDERLIST")
 public class Order extends Entity implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="OrderID")
+	@Column(name="Order_ID")
 	private Integer orderId = null;
 	
 	@OneToOne
@@ -25,14 +26,14 @@ public class Order extends Entity implements Serializable{
     @OneToOne
     private Seller seller;
     
-	@Column(name="Start")
-    private int start = 0;
-	@Column(name="End")
-    private int end = 0;
+	@Column(name="Start Date")
+    private Date start;
+	@Column(name="End Date")
+    private Date end;
 	@Column(name="Expected_Price")
     private Double expectedPrice = null;
-	@Column(name="Delivery")
-    private int delivery = 0;
+	@Column(name="Delivery Date")
+    private Date delivery;
 	@Column(name="Delivery_Status")
     private Boolean deliveryStatus = null;
 	@Column(name="Final_Price")
@@ -56,16 +57,16 @@ public class Order extends Entity implements Serializable{
 	public void setSeller(Seller seller) {
 		this.seller = seller;
 	}
-	public int getStart() {
+	public Date getStart() {
 		return start;
 	}
-	public void setStart(int start) {
+	public void setStart(Date start) {
 		this.start = start;
 	}
-	public int getEnd() {
+	public Date getEnd() {
 		return end;
 	}
-	public void setEnd(int end) {
+	public void setEnd(Date end) {
 		this.end = end;
 	}
 	public Double getExpectedPrice() {
@@ -74,10 +75,10 @@ public class Order extends Entity implements Serializable{
 	public void setExpectedPrice(Double expectedPrice) {
 		this.expectedPrice = expectedPrice;
 	}
-	public int getDelivery() {
+	public Date getDelivery() {
 		return delivery;
 	}
-	public void setDelivery(int delivery) {
+	public void setDelivery(Date delivery) {
 		this.delivery = delivery;
 	}
 	public Boolean getDeliveryStatus() {
