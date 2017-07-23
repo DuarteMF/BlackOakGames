@@ -24,7 +24,7 @@
 					<div class="searchTitle">
 						<h:form>
 							<p:inputText id="Title" value="" required="true" label="Text 1"
-								placeholder="Title">
+								placeholder="Search">
 								<f:validateLength minimum="2" />
 							</p:inputText>
 						</h:form>
@@ -86,63 +86,75 @@
 		</div>
 	</div>
 
-	<div class="container-fluid">
+	<div class="CategoriesAndPlatforms content">
+		<div class="container">
+
+			<b:tabView class="Tabs" contentStyle="border: 1px solid #ddd;padding:10px">
+
+				<b:tab title="Categories" contentStyle="container" class="TabCategory">
+
+					<h:form>
+						<p:dataGrid class="GridCategory" var="Category"
+							value="#{CategoryBean.getList()}" columns="3" layout="grid">
+
+							<p:panel footer="#{Category.categoryName}"
+								style="text-align:center">
+								<h:panelGrid columns="1" style="width:100%">
+									<p:graphicImage name="bla bla" />
+
+									<h:commandButton class="CategoryButton" value="" action="index" />
+								</h:panelGrid>
+							</p:panel>
+						</p:dataGrid>
+					</h:form>
+				</b:tab>
 
 
-		<b:tabView class="Tabs" pills="true">
+				<b:tab title="Platforms" contentStyle="container" class="TabPlatform">
+					<h:form>
+						<p:dataGrid class="GridPlatform" var="Platform"
+							value="#{PlatformBean.getList()}" columns="3" layout="grid">
 
-			<b:tab title="Category" contentStyle="container" class="TabCategory">
+							<p:panel footer="#{Platform.platformName}"
+								style="text-align:center">
+								<h:panelGrid columns="1" style="width:100%">
+									<p:graphicImage name="bla bla" />
 
-				<h:form>
-					<p:dataGrid class="GridCategory" var="Category"
-						value="#{CategoryBean.getList()}" columns="3" layout="grid"
-						rows="12" paginator="true" id="categories"
-						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-						rowsPerPageTemplate="6,12,24">
+									<h:commandButton class="PlatformButton" value="" action="index" />
+								</h:panelGrid>
+							</p:panel>
+						</p:dataGrid>
+					</h:form>
+				</b:tab>
 
-						<f:facet name="header">
-           					Available categories
-        					</f:facet>
-
-						<p:panel header="#{Category.categoryName}"
-							style="text-align:center">
-							<h:panelGrid columns="1" style="width:100%">
-								<p:graphicImage name="bla bla" />
-
-								<h:commandButton class="CategoryButton" value="" action="index" />
-							</h:panelGrid>
-						</p:panel>
-					</p:dataGrid>
-				</h:form>
-			</b:tab>
-
-
-			<b:tab title="Platform" contentStyle="container" class="TabPlatform">
-				<h:form>
-					<p:dataGrid class="GridPlatform" var="Platform"
-						value="#{PlatformBean.getList()}" columns="3" layout="grid"
-						rows="12" paginator="true" id="platforms"
-						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-						rowsPerPageTemplate="6,12,24">
-
-						<f:facet name="header">
-           					Available platforms
-        					</f:facet>
-
-						<p:panel header="#{Platform.platformName}"
-							style="text-align:center">
-							<h:panelGrid columns="1" style="width:100%">
-								<p:graphicImage name="bla bla" />
-
-								<h:commandButton class="PlatformButton" value="" action="index" />
-							</h:panelGrid>
-						</p:panel>
-					</p:dataGrid>
-				</h:form>
-			</b:tab>
-
-		</b:tabView>
-
+			</b:tabView>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="container">
+			<div class="footer-top-at">
+				<div class="col-xs-4 amet-sed">
+					<h4>MORE INFO</h4>
+					<ul class="nav-bottom">
+						<li>
+							<a href="#">Work Description</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-xs-4 amet-sed">
+					<h4>CONTACTS</h4>
+					<p>a.preto@campus.fct.unl.pt</p>
+					<p>duartepferreira@hotmail.com</p>
+					<p>mf.soares@campus.fct.unl.pt</p>
+					<p>valeriagirlus@gmail.com</p>
+					<ul></ul>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<div class="footer-class">
+			<p>André Preto, Duarte Ferreira, Miguel Soares, Elena Girlus 2017</p>
+		</div>
 	</div>
 </h:body>
 </html>

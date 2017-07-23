@@ -4,16 +4,9 @@
 #gameTitle{
 	min-width:25%;
 	width:25%;
-	font-size:20px;
 	text-align:center;
 	color:#EF5F21;
 	background-color: #fff;
-}
-@media (max-width: 1250px){
-	#gameTitle img{
-	width:25px;
-	height:25px;
-	}
 }
 	
 #gameTitle img{
@@ -21,9 +14,22 @@
 	height:65px;
 }
 #gameTitle p{
-	font-weigth:bold;
+	font-weight:700;
+	font-size:30px;
+	line-height:0.9;
+	text-align:center;
 }
+@media(max-width:1200px){
+	#gameTitle img{
+		display:none;
+	}
+	#gameTitle p{
+	width:100%;
+	}
+}
+
 /* Zona do search */
+
 .search1{
 	display:flex;
 	position:relative;
@@ -31,28 +37,95 @@
   	background-color: #000;
     flex-direction: column;
     min-width: 25%;
+    border-radius: 0px !important;
+    font-weight: bold;
+    border: 1px solid black;
+}
+.search1 .ui-state-default, .search1 .ui-widget-content.ui-state-default, .search1 .ui-widget-header.ui-state-default{
+	border
+}
+.search1 .ui-inputfield {
+	border-radius: 0px !important;
+	width:100%;
+	box-shadow:none;
+	border: 1px;
+	border-color: black;
+}
+
+.searchTitle{
+	border-radius: 0px !important;
 }
 .searchTitle form{
+	border-radius: 0px !important;
 	margin-bottom: 0px;
+	border: 1px solid black;
 }
-.searchTitle .ui-inputfield {
-	width:100%;
+.searchCatPlat form{
+	border: 1px solid black;
 }
 
 .searchCatPlat{
 	display:flex;
 	flex-direction:row;
+	border-radius: 0px !important;
 }
 .searchCat{
 	margin-top: 0px;
 	width:50%;
+	border-radius: 0px !important;
 }
+
 .searchPlat{
 	margin-top: 0px;
 	width:50%;
+	border-radius: 0px !important;
 }
-.ui-selectonemenu.ui-widget.ui-state-default.ui-corner-all{
+.search1 .ui-selectonemenu.ui-widget.ui-state-default.ui-corner-all{
 	width:100%;
+	min-width:inherit !important;
+	border-radius: 0px !important;
+	padding-right: 0px;
+	border-right: none;
+}
+
+.search1 label{
+	border-radius: 0px !important;
+}
+.search1 .ui-selectonemenu-trigger.ui-state-default.ui-corner-right{
+	border-radius: 0px !important;
+	width: 25px;
+
+}
+
+/* Zona de display das Categorias e das Plataformas */
+
+.CategoriesAndPlatforms{
+  	margin-top: 50px;
+  	margin-bottom: 50px;
+}
+
+.Tabs{
+	text-align:center !important;
+	display:flex;
+	justify-content:center;
+	color:white !important;
+	margin-bottom: 20px !important;
+	border-color: black !important;
+}
+
+.tab-panel{
+	background-color: #333333;
+	border:1px solid #333333;
+}
+.TabCategory, .TabPlatform{
+	width:100%;
+}
+.tab-content{
+	border-color: #333333 !important;
+}
+.GridCategory .ui-panel-footer.ui-widget-content, .GridPlatform .ui-panel-footer.ui-widget-content{
+	text-align: center !important;
+	
 }
 
 /* 
