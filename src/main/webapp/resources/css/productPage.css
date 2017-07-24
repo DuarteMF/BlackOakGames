@@ -1,8 +1,6 @@
 @CHARSET "UTF-8";
 
-/*  @media screen and (max-width: 1024px) and (min-width: 300px){
-	
-}  */
+
 .flexbox{
 	display:flex;
 	justify-content:space-between;
@@ -12,18 +10,12 @@
 
 .flexbox > *{
 	flex-grow:1;
-	text-align:center;
 	
 	
-	
-}
-
-.fit-top{
-	background-color:#7f8a9b;
 }
 
 .title{
-	margin-left:70px; 
+	
 	margin-right:100px; 
 }
 
@@ -63,8 +55,8 @@
 	border-radius: 5px;
 	border-color:transparent;
 	margin-bottom:5px;
-	
-	
+	max-width: 100%; 
+
 	
 }
 
@@ -80,8 +72,8 @@
 }
 
 #formDescription, #formDetails{
-	margin-left:5%; 
-	margin-right:5%;
+	margin-left:; 
+	margin-right:;
 	 
 } 
 
@@ -96,15 +88,13 @@
 
 #details{
 	font-weight: bold;
-	
 }
 
 #detailsText{
 	display:block;
 	text-align: justify;
 	text-justify: inter-word;
-	margin-top:10px;
-
+	
 	
 }
 
@@ -116,7 +106,7 @@
 	text-align:left;
 	margin-top:60px;
 	margin-bottom:100px;
-	/* margin-left:160px; */
+
 }
 
 #a1, #a2, #a3, #a4{
@@ -124,7 +114,7 @@
 }
 
 #availableFor, #respectiveCategory, #productAvaliability, #productPrice{
-	/* margin-left:70px; */
+
 	text-align:center;
 
 }
@@ -143,5 +133,13 @@
 }
 
 h5{
-	font-size:13pt;
+	font-size:12pt;
+	font-weight:bold;
 }
+
+.ui-datalist-content.ui-widget-content{
+	border:0 !important;
+	font-weight:normal;
+}
+
+
