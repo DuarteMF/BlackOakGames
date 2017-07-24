@@ -16,7 +16,7 @@ public class ProductUnit extends Entity implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int productUnitId;
+	private Integer productUnitId;
 	
 	@ManyToOne
 	private Product product;
@@ -24,11 +24,11 @@ public class ProductUnit extends Entity implements Serializable {
 	@ManyToOne
 	private Platform productPlatform;
 
-	public int getProductUnitId() {
+	public Integer getProductUnitId() {
 		return productUnitId;
 	}
 
-	public void setProductUnitId(int productUnitId) {
+	public void setProductUnitId(Integer productUnitId) {
 		this.productUnitId = productUnitId;
 	}
 
@@ -48,4 +48,13 @@ public class ProductUnit extends Entity implements Serializable {
 		this.productPlatform = productPlatform;
 	}
 
+	@Override
+	public String toString(){
+		return this.product.getProductName();
+	}
+	
+	@Override
+	public boolean equals(Object productUnit){
+		return this.productUnitId.equals(((ProductUnit) productUnit).getProductUnitId());
+	}
 }

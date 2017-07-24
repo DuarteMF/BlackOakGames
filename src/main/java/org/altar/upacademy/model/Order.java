@@ -2,11 +2,14 @@ package org.altar.upacademy.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -43,6 +46,9 @@ public class Order extends Entity implements Serializable{
     private Boolean deliveryStatus = null;
 	@Column(name="Final_Price")
     private Double finalPrice = null;
+	
+	@OneToMany(targetEntity=ProductUnit.class, fetch=FetchType.EAGER)
+	private Set<ProductUnit> productUnitSet;
 	
 	public Integer getOrderId() {
 		return orderId;
@@ -97,5 +103,11 @@ public class Order extends Entity implements Serializable{
 	}
 	public void setFinalPrice(Double finalPrice) {
 		this.finalPrice = finalPrice;
+	}
+	public Set<ProductUnit> getProductUnitSet() {
+		return productUnitSet;
+	}
+	public void setProductUnitSet(Set<ProductUnit> productUnitSet) {
+		this.productUnitSet = productUnitSet;
 	}
 }

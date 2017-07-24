@@ -610,6 +610,9 @@
 			<p:column headerText="Id">
 				<h:outputText value="#{order.orderId}" />
 			</p:column>
+			<p:column headerText="Units">
+				<h:outputText value="#{order.productUnitSet}" />
+			</p:column>
 			<p:column headerText="Client">
 				<h:outputText value="#{order.client}" />
 			</p:column>
@@ -652,6 +655,16 @@
 			<h:form id="AddOrderSection">
 				<p:growl id="orderAddMsgs" showDetail="true" />
 				<h:panelGrid columns="2" cellpadding="5">
+
+					<p:outputLabel value="ProductUnits" for="addProductUnit"
+						rendered="#{not empty (ProductUnitBean.getList())}" />
+					<p:selectCheckboxMenu id="addProductUnit" value="#{OrderBean.productUnitSet}"
+						label="ProductUnit" rendered="#{not empty (ProductUnitBean.getList())}"
+						multiple="true"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItems value="#{ProductUnitBean.getList()}" var="productUnit"
+							itemLabel="#{productUnit.product.productName}: #{productUnit.productPlatform.platformName}" itemValue="#{productUnit}" />
+					</p:selectCheckboxMenu>		
 
 					<p:outputLabel value="Client" for="addClient"
 						rendered="#{not empty (ClientBean.getList())}" />
@@ -701,6 +714,16 @@
 				<p:growl id="orderEditMsgs" showDetail="true" />
 				<h:inputHidden value="#{OrderBean.editedOrder.orderId}"/>
 				<h:panelGrid columns="2" cellpadding="5">
+				
+				<p:outputLabel value="ProductUnits" for="addProductUnit"
+						rendered="#{not empty (ProductUnitBean.getList())}" />
+					<p:selectCheckboxMenu id="addProductUnit" value="#{OrderBean.productUnitSet}"
+						label="ProductUnit" rendered="#{not empty (ProductUnitBean.getList())}"
+						multiple="true"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItems value="#{ProductUnitBean.getList()}" var="productUnit"
+							itemLabel="#{productUnit.product.productName}: #{productUnit.productPlatform.platformName}" itemValue="#{productUnit}" />
+					</p:selectCheckboxMenu>	
 			
 				<p:outputLabel value="Client" for="editClient"
 					rendered="#{not empty (ClientBean.getList())}" />
