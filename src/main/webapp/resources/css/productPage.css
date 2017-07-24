@@ -3,20 +3,18 @@
 
 .flexbox{
 	display:flex;
-	justify-content:space-between;
+	justify-content:space-around;
 	flex-wrap:wrap;
-	padding-left:5%;
+	
 }
 
 .flexbox > *{
-	flex-grow:1;
-	
-	
+	/* flex-grow:1; */
+
 }
 
 .title{
-	
-	margin-right:100px; 
+	padding-left:5%;
 }
 
 
@@ -28,25 +26,16 @@
 	
 }
 
-#titlePublisher{
-	/* margin-left:130px; */
-}
-
-.ui-panelgrid-blank{
-	
-}
-
-
-
 #imageGame{
 	
 	margin-top:40px;
-	/* margin-left:90px; */
+/* 	margin-left:100px; */ 
 	border-radius: 5px;
 	border-color:transparent;
-	width:270px;
+	width:240px;
 	height:314px;
 	border-radius: 5px;
+	
 	
 } 
 
@@ -56,14 +45,10 @@
 	border-color:transparent;
 	margin-bottom:5px;
 	max-width: 100%; 
-
+	
 	
 }
 
-.description{
-	/* margin-top:10px; */
-	/* margin-left:50px; */
-}
 
 #formDescription{
 	font-size:12pt;
@@ -72,9 +57,9 @@
 }
 
 #formDescription, #formDetails{
-	margin-left:; 
-	margin-right:;
-	 
+
+	padding-left:5%;
+	padding-right:5%; 
 } 
 
 #description{
@@ -110,7 +95,7 @@
 }
 
 #a1, #a2, #a3, #a4{
-	margin-bottom:15px;
+	margin-bottom:25px;
 }
 
 #availableFor, #respectiveCategory, #productAvaliability, #productPrice{
@@ -135,6 +120,7 @@
 h5{
 	font-size:12pt;
 	font-weight:bold;
+	margin-top:20px;
 }
 
 .ui-datalist-content.ui-widget-content{

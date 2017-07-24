@@ -47,6 +47,10 @@ public class Product extends Entity implements Serializable {
 	@Max(99)
 	@Column(name="Availability")
 	private Integer availability = null;
+	@Column(name="Product_Image")
+	private String productImageName = null;
+	@Column(name="Product_Video")
+	private String productVideoUrl = null;
 	
 	public Integer getProductId() {
 		return productId;
@@ -91,6 +95,18 @@ public class Product extends Entity implements Serializable {
 		this.availability = availability;
 	}
 	
+	public String getProductImageName() {
+		return productImageName;
+	}
+	public void setProductImageName(String productImageName) {
+		this.productImageName = productImageName;
+	}
+	public String getProductVideoUrl() {
+		return productVideoUrl;
+	}
+	public void setProductVideoUrl(String productVideoUrl) {
+		this.productVideoUrl = productVideoUrl;
+	}
 	public Product() {
 
 	}

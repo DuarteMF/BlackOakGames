@@ -14,10 +14,14 @@
 </h:head>
 <h:body>
 
-<h:form>
-<p:commandButton value = "teste" action="productPage2.xhtml">
-	<f:setPropertyActionListener target="#{ProductPageBean.productId}" value="1"/>
-</p:commandButton>
-</h:form>
+	<h:form>
+	
+	 <p:commandButton value = "teste" action="productPage2.xhtml">
+		<f:setPropertyActionListener target="#{ProductPageBean.productId}" value="1" ajax="false" />
+	</p:commandButton> 
+	
+	
+	
+	</h:form>
 </h:body>
 </html>
