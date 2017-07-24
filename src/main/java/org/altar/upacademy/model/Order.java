@@ -1,7 +1,7 @@
 package org.altar.upacademy.model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -32,16 +32,13 @@ public class Order extends Entity implements Serializable{
     private Seller seller;
     
 	@Column(name="Start_Date")
-	@Temporal(TemporalType.TIMESTAMP)
-    private Date start;
+    private LocalDate start;
 	@Column(name="End_Date")
-	@Temporal(TemporalType.TIMESTAMP)
-    private Date end;
+    private LocalDate end;
 	@Column(name="Expected_Price")
     private Double expectedPrice = null;
 	@Column(name="Delivery_Date")
-	@Temporal(TemporalType.TIMESTAMP)
-    private Date delivery;
+    private LocalDate delivery;
 	@Column(name="Delivery_Status")
     private Boolean deliveryStatus = null;
 	@Column(name="Final_Price")
@@ -68,16 +65,16 @@ public class Order extends Entity implements Serializable{
 	public void setSeller(Seller seller) {
 		this.seller = seller;
 	}
-	public Date getStart() {
+	public LocalDate getStart() {
 		return start;
 	}
-	public void setStart(Date start) {
+	public void setStart(LocalDate start) {
 		this.start = start;
 	}
-	public Date getEnd() {
+	public LocalDate getEnd() {
 		return end;
 	}
-	public void setEnd(Date end) {
+	public void setEnd(LocalDate end) {
 		this.end = end;
 	}
 	public Double getExpectedPrice() {
@@ -86,10 +83,10 @@ public class Order extends Entity implements Serializable{
 	public void setExpectedPrice(Double expectedPrice) {
 		this.expectedPrice = expectedPrice;
 	}
-	public Date getDelivery() {
+	public LocalDate getDelivery() {
 		return delivery;
 	}
-	public void setDelivery(Date delivery) {
+	public void setDelivery(LocalDate delivery) {
 		this.delivery = delivery;
 	}
 	public Boolean getDeliveryStatus() {
