@@ -1,12 +1,18 @@
 package org.altar.upacademy.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.altar.upacademy.model.Category;
+import org.altar.upacademy.model.Platform;
 import org.altar.upacademy.model.Product;
+import org.altar.upacademy.model.Category;
+import org.altar.upacademy.repository.CategoryRepository;
+import org.altar.upacademy.repository.PlatformRepository;
 import org.altar.upacademy.repository.ProductRepository;
 
 @Named("ProductCatalogBean") 
@@ -16,38 +22,39 @@ public class ProductCatalogBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private String searchProduct = null;
-	private Integer categoryId = null;
-	private Integer platformId = null;
+	private Integer searchCategory = null;
+	private Integer searchPlatform = null;
 	
-	public String getSearchProduct() {
-		return searchProduct;
-	}
-
-	public void setSearchProduct(String searchProduct) {
-		this.searchProduct = searchProduct;
-	}
-
-	public Integer getCategoryId() {
-		return categoryId;
-	}
-
-	public void setCategoryId(Integer categoryId) {
-		this.categoryId = categoryId;
-	}
-
-	public Integer getPlatformId() {
-		return platformId;
-	}
-
-	public void setPlatformId(Integer platformId) {
-		this.platformId = platformId;
-	}
-
-	@Inject
-	private ProductRepository productRepository;
+	public void searchBar(){
+		
 	
-	public Product searchProduct(){
-		return productRepository.searchProductFromCatalog();
-	}
+// os getters e os setters das variaveis??
+
+//	@Inject
+//	private ProductRepository productRepository;
+//	
+//	public List<Product> getProductList() {
+//		return productRepository.getDbProduct();
+//	}
+//	
+//	@Inject
+//	private CategoryRepository categoryRepository;
+//	
+//	public List<Category> getCategoryList() {
+//		return categoryRepository.getDbCategories();
+//	}
+//	
+//	@Inject
+//	private PlatformRepository platformRepository;
+//	
+//	public List<Platform> getPlatformList() {
+//		return platformRepository.getDbPlatforms();
+//	}
 	
+	
+//	public Product searchProduct(){
+//		return productRepository.searchFromCatalog();
+//	}
+	
+	}
 }
