@@ -4,138 +4,157 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:b="http://bootsfaces.net/ui">
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
-
 </h:head>
 <h:body>
+	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
 	<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
 	<h:outputStylesheet library="css" name="memenu.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="mystyle.css"></h:outputStylesheet>
 
 
-	<div class="container-fluid">
-
-		<div class="row header">
-
-			<div class="container Título">
-
-				<p>Black Oak Games</p>
-
-			</div>
-
-			<div class="container Login">
-				<h:form>
-					<h:commandButton class="LoginButton" value="Login" action="index" />
-					<h:commandButton class="SignUp" value="Sign Up" />
-				</h:form>
-			</div>
-
-			<div class="container Search">
-
-
-				<div class="container GameSearch">
-					<h:form>
-						<h:outputLabel for="Title" />
-						<p:inputText id="Title" value="" required="true" label="Text 1"
-							placeholder="Title">
-							<f:validateLength minimum="2" />
-						</p:inputText>
-					</h:form>
+	<div class="header">
+		<div class="header-top">
+			<div class="container">
+				<div class="search1">
+					<div class="searchTitle">
+						<h:form>
+							<p:inputText id="Title" value="" required="true" label="Text 1"
+								placeholder="Search">
+								<f:validateLength minimum="2" />
+							</p:inputText>
+						</h:form>
+					</div>
+					<div class="searchCatPlat">
+						<div class="searchCat">
+							<h:form>
+								<p:selectOneMenu value="#{ProductBean.categoryList}"
+									label="Categories" multiple="true"
+									rendered="#{not empty (ProductBean.existingCategories())}"
+									converter="omnifaces.SelectItemsConverter">
+									<f:selectItem itemLabel="Category"
+										noSelectionOption="true" />
+									<f:selectItems value="#{ProductBean.existingCategories()}" />
+								</p:selectOneMenu>
+							</h:form>
+						</div>
+						<div class="searchPlat">
+							<h:form>
+								<p:selectOneMenu value="#{ProductBean.platformList}"
+									label="Platforms" multiple="true"
+									rendered="#{not empty (ProductBean.existingPlatforms())}"
+									converter="omnifaces.SelectItemsConverter">
+									<f:selectItem itemLabel="Platform"
+										noSelectionOption="true" />
+									<f:selectItems value="#{ProductBean.existingPlatforms()}" />
+								</p:selectOneMenu>
+							</h:form>
+						</div>
+					</div>
 				</div>
-
-				<div class="CategorySearch">
-					<h:form>
-						<p:selectOneMenu value="#{ProductBean.categoryList}"
-							label="Categories" multiple="true"
-							rendered="#{not empty (ProductBean.existingCategories())}"
-							converter="omnifaces.SelectItemsConverter">
-							<f:selectItem itemLabel="Seleccione uma opção"
-								noSelectionOption="true" />
-							<f:selectItems value="#{ProductBean.existingCategories()}" />
-						</p:selectOneMenu>
-					</h:form>
+				<div class="header-left">
+					<ul>
+						<li class="active grid" style="display: inline;"><a
+							class="color8" href="index.xhtml">Login</a></li>
+						<li class="active grid" style="display: inline;"><a
+							class="color8" href="">Sign Up</a></li>
+					</ul>
 				</div>
-
-				<div class="PlatformSearch">
-					<h:form>
-						<p:selectOneMenu value="#{ProductBean.platformList}"
-							label="Platforms" multiple="true"
-							rendered="#{not empty (ProductBean.existingPlatforms())}"
-							converter="omnifaces.SelectItemsConverter">
-							<f:selectItem itemLabel="Seleccione uma opção"
-								noSelectionOption="true" />
-							<f:selectItems value="#{ProductBean.existingPlatforms()}" />
-						</p:selectOneMenu>
-					</h:form>
-				</div>
-
-
 			</div>
-
-
+		</div>
+		<div class="container">
+			<div class="head-top">
+				<div id="gameTitle" class="logo">
+					<div class="row container-fluid">
+						<img class="col-xs-4"
+							src="https://d30y9cdsu7xlg0.cloudfront.net/png/195040-200.png"></img>
+						<p class="col-xs-8">Black Oak Games</p>
+					</div>
+				</div>
+				<div class="h_menu4">
+					<ul class="memenu skyblue">
+						<li class="active grid" style="display: inline;">
+							<a class="color8" href="dashboard.xhtml">Home</a>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 
-	<div class="container-fluid">
+	<div class="CategoriesAndPlatforms content">
+		<div class="container">
 
-		<b:tabView class="Tabs" pills="true">
+			<b:tabView class="Tabs" contentStyle="border: 1px solid #ddd;padding:10px">
 
-			<b:tab title="Category" contentStyle="container" class="TabCategory">
+				<b:tab title="Categories" contentStyle="container" class="TabCategory">
 
-				<h:form>
-					<p:dataGrid class="GridCategory" var="Category"
-						value="#{CategoryBean.getList()}" columns="3" layout="grid"
-						rows="12" paginator="true" id="categories"
-						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-						rowsPerPageTemplate="6,12,24">
+					<h:form>
+						<p:dataGrid class="GridCategory" var="Category"
+							value="#{CategoryBean.getList()}" columns="3" layout="grid">
 
-						<f:facet name="header">
-           					Available categories
-        					</f:facet>
+							<p:panel footer="#{Category.categoryName}"
+								style="text-align:center">
+								<h:panelGrid columns="1" style="width:100%">
+									<p:graphicImage name="bla bla" />
 
-						<p:panel header="#{Category.categoryName}"
-							style="text-align:center">
-							<h:panelGrid columns="1" style="width:100%">
-								<p:graphicImage name="bla bla" />
-
-								<h:commandButton class="CategoryButton" value="" action="index" />
-							</h:panelGrid>
-						</p:panel>
-					</p:dataGrid>
-				</h:form>
-			</b:tab>
+									<h:commandButton class="CategoryButton" value="" action="index" />
+								</h:panelGrid>
+							</p:panel>
+						</p:dataGrid>
+					</h:form>
+				</b:tab>
 
 
-			<b:tab title="Platform" contentStyle="container" class="TabPlatform">
-				<h:form>
-					<p:dataGrid class="GridPlatform" var="Platform"
-						value="#{PlatformBean.getList()}" columns="3" layout="grid"
-						rows="12" paginator="true" id="platforms"
-						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-						rowsPerPageTemplate="6,12,24">
+				<b:tab title="Platforms" contentStyle="container" class="TabPlatform">
+					<h:form>
+						<p:dataGrid class="GridPlatform" var="Platform"
+							value="#{PlatformBean.getList()}" columns="3" layout="grid">
 
-						<f:facet name="header">
-           					Available platforms
-        					</f:facet>
+							<p:panel footer="#{Platform.platformName}"
+								style="text-align:center">
+								<h:panelGrid columns="1" style="width:100%">
+									<p:graphicImage name="bla bla" />
 
-						<p:panel header="#{Platform.platformName}"
-							style="text-align:center">
-							<h:panelGrid columns="1" style="width:100%">
-								<p:graphicImage name="bla bla" />
+									<h:commandButton class="PlatformButton" value="" action="index" />
+								</h:panelGrid>
+							</p:panel>
+						</p:dataGrid>
+					</h:form>
+				</b:tab>
 
-								<h:commandButton class="PlatformButton" value="" action="index" />
-							</h:panelGrid>
-						</p:panel>
-					</p:dataGrid>
-				</h:form>
-			</b:tab>
-
-		</b:tabView>
-
+			</b:tabView>
+		</div>
 	</div>
-
+	<div class="footer">
+		<div class="container">
+			<div class="footer-top-at">
+				<div class="col-xs-4 amet-sed">
+					<h4>MORE INFO</h4>
+					<ul class="nav-bottom">
+						<li>
+							<a href="#">Work Description</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-xs-4 amet-sed">
+					<h4>CONTACTS</h4>
+					<p>a.preto@campus.fct.unl.pt</p>
+					<p>duartepferreira@hotmail.com</p>
+					<p>mf.soares@campus.fct.unl.pt</p>
+					<p>valeriagirlus@gmail.com</p>
+					<ul></ul>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<div class="footer-class">
+			<p>André Preto, Duarte Ferreira, Miguel Soares, Elena Girlus 2017</p>
+		</div>
+	</div>
 </h:body>
 </html>

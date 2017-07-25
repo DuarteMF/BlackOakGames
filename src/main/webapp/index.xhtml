@@ -171,7 +171,7 @@
 			</p:column>
 		</p:dataTable>
 	</h:form>
-	<div class="row" id="teste">
+	<div class="row">
 		<div class="col-xs-6">
 			<h:form id="AddProductSection">
 				<p:growl id="productAddMsgs" showDetail="true" />
@@ -183,7 +183,7 @@
 						placeholder="Insert Product" />
 
 
-					<h:outputLabel for="addYear" value="Year:" />
+					<p:outputLabel for="addYear" value="Year:" />
 					<p:spinner min="1980" max="2018" id="addYear"
 						value="#{ProductBean.newProduct.year}" placeholder="1980-2018">
 					</p:spinner>
@@ -215,7 +215,7 @@
 					<p:inputText id="addPublisher" placeholder="Insert Publisher"
 						value="#{ProductBean.newProduct.publisher}" />
 
-					<h:outputLabel for="addRentalPrice"
+					<p:outputLabel for="addRentalPrice"
 						value="Rental Price (€ per week):" />
 					<p:inputText id="addRentalPrice"
 						value="#{ProductBean.newProduct.rentalPrice}"
@@ -225,7 +225,7 @@
 					</p:inputText>
 
 
-					<h:outputLabel for="addAvailability" value="Availability 0-99:" />
+					<p:outputLabel for="addAvailability" value="Availability 0-99:" />
 					<p:spinner min="0" max="99" id="addAvailability"
 						value="#{ProductBean.newProduct.availability}" placeholder="00-99">
 					</p:spinner>
@@ -255,7 +255,7 @@
 						value="#{ProductBean.editedProduct.productName}"
 						placeholder="Insert Product" />
 
-					<h:outputLabel for="editYear" value="Year:" />
+					<p:outputLabel for="editYear" value="Year:" />
 					<p:spinner min="1980" max="2018" id="editYear"
 						value="#{ProductBean.editedProduct.year}" placeholder="1980-2018">
 					</p:spinner>
@@ -293,7 +293,7 @@
 						value="#{ProductBean.editedProduct.publisher}" />
 
 
-					<h:outputLabel for="editRentalPrice"
+					<p:outputLabel for="editRentalPrice"
 						value="Rental Price (€ per week):" />
 					<p:inputText id="editRentalPrice"
 						value="#{ProductBean.editedProduct.rentalPrice}"
@@ -302,7 +302,7 @@
 						<f:validateDoubleRange minimum="1.0" maximum="35.0" />
 					</p:inputText>
 
-					<h:outputLabel for="editAvailability" value="Availability 0-99:" />
+					<p:outputLabel for="editAvailability" value="Availability 0-99:" />
 					<p:spinner min="0" max="99" id="editAvailability"
 						value="#{ProductBean.editedProduct.availability}"
 						placeholder="00-99">
@@ -392,13 +392,381 @@
 	</h:form>
 
 	<h:form id="EditProductUnitSection">
-<h1>Falar com o Vasco sobre isto de editar</h1>
+		<h3>Feature to be added later</h3>
 	</h:form>
 
-	<h:form id="EditProductUnitAdditionSection">
+	<h:form id="ClientTable">
+		<p:growl id="clientTableMsgs" showDetail="true" />
+		<p:dataTable id="ClientList" var="client"
+			value="#{ClientBean.getList()}">
+			<f:facet name="header">	Clients </f:facet>
 
+			<p:column headerText="Id">
+				<h:outputText value="#{client.clientId}" />
+			</p:column>
+			<p:column headerText="Name">
+				<h:outputText value="#{client.clientName}" />
+			</p:column>
+			<p:column headerText="Address">
+				<h:outputText value="#{client.clientAddress}" />
+			</p:column>
+			<p:column headerText="E-mail">
+				<h:outputText value="#{client.clientEmail}" />
+			</p:column>
+			<p:column headerText="Phone Number">
+				<h:outputText value="#{client.clientPhoneNumber}" />
+			</p:column>
+			<p:column headerText="Feedback">
+				<h:outputText value="#{client.clientFeedback}/5" />
+			</p:column>
+			<p:column headerText="Opções">
+				<p:commandButton update=":EditClientSection, :errorMsgs"
+					icon="ui-icon-pencil" title="Edit">
+					<f:setPropertyActionListener value="#{client}"
+						target="#{ClientBean.editedClient}" />
+				</p:commandButton>
+				<p:commandButton update=":ClientTable:ClientList"
+					action="#{ClientBean.deleteClient(client)}"
+					icon="ui-icon-trash" title="Delete" />
+			</p:column>
+		</p:dataTable>
+	</h:form>
+	<div class="row">
+		<div class="col-xs-6">
+			<h:form id="AddClientSection">
+				<p:growl id="clientAddMsgs" showDetail="true" />
+				<h:panelGrid columns="2" cellpadding="5">
+
+					<p:outputLabel value="Name:" for="addClientName" />
+					<p:inputText id="addClientName"
+						value="#{ClientBean.newClient.clientName}"
+						placeholder="Insert Client's Name" />
+
+					<p:outputLabel for="addClientAddress" value="Adress:" />
+					<p:inputText id="addClientAddress"
+						value="#{ClientBean.newClient.clientAddress}"
+						placeholder="Insert Client's Address" />
+
+					<p:outputLabel value="E-mail:" for="addClientEmail" />
+					<p:inputText id="addClientEmail"
+						value="#{ClientBean.newClient.clientEmail}"
+						placeholder="Insert Client's Email" />
+						
+					<p:outputLabel value="Phone Number:" for="addClientPhoneNumber" />
+					<p:inputText id="addClientPhoneNumber"
+						value="#{ClientBean.newClient.clientPhoneNumber}"
+						placeholder="Insert Client's Phone Number" />
+
+					<p:commandButton value="Adicionar"
+						update=":errorMsgs, :ClientTable:ClientList, :AddOrderSection, :EditOrderSection"
+						action="#{ClientBean.addClient()}" />
+				</h:panelGrid>
+			</h:form>
+		</div>
+		<div class="col-xs-6">
+			<h:form id="EditClientSection">
+				<p:growl id="clientEditMsgs" showDetail="true" />
+				<h:inputHidden value="#{ClientBean.editedClient.clientId}" />
+				<h:panelGrid columns="2" cellpadding="5">
+
+					<p:outputLabel value="Name:" for="editClientName" />
+					<p:inputText id="editClientName"
+						value="#{ClientBean.editedClient.clientName}"
+						placeholder="Insert Client's Name" />
+
+					<p:outputLabel for="editClientAddress" value="Adress:" />
+					<p:inputText id="editClientAddress"
+						value="#{ClientBean.editedClient.clientAddress}"
+						placeholder="Insert Client's Address" />
+
+					<p:outputLabel value="E-mail:" for="editClientEmail" />
+					<p:inputText id="editClientEmail"
+						value="#{ClientBean.editedClient.clientEmail}"
+						placeholder="Insert Client's Email" />
+						
+					<p:outputLabel value="Phone Number:" for="editClientPhoneNumber" />
+					<p:inputText id="editClientPhoneNumber"
+						value="#{ClientBean.editedClient.clientPhoneNumber}"
+						placeholder="Insert Client's Phone Number" />
+
+					<p:commandButton value="Editar"
+						update=":errorMsgs, :ClientTable:ClientList"
+						action="#{ClientBean.editClient()}">
+					</p:commandButton>
+				</h:panelGrid>
+			</h:form>
+		</div>
+	</div>
+	
+	<h:form id="SellerTable">
+		<p:growl id="sellerTableMsgs" showDetail="true" />
+		<p:dataTable id="SellerList" var="seller"
+			value="#{SellerBean.getList()}">
+			<f:facet name="header">	Sellers </f:facet>
+
+			<p:column headerText="Id">
+				<h:outputText value="#{seller.sellerId}" />
+			</p:column>
+			<p:column headerText="Name">
+				<h:outputText value="#{seller.sellerName}" />
+			</p:column>
+			<p:column headerText="Address">
+				<h:outputText value="#{seller.sellerAddress}" />
+			</p:column>
+			<p:column headerText="E-mail">
+				<h:outputText value="#{seller.sellerEmail}" />
+			</p:column>
+			<p:column headerText="Phone Number">
+				<h:outputText value="#{seller.sellerPhoneNumber}" />
+			</p:column>
+			<p:column headerText="Feedback">
+				<h:outputText value="#{seller.sellerFeedback}/5" />
+			</p:column>
+			<p:column headerText="Opções">
+				<p:commandButton update=":EditSellerSection, :errorMsgs"
+					icon="ui-icon-pencil" title="Edit">
+					<f:setPropertyActionListener value="#{seller}"
+						target="#{SellerBean.editedSeller}" />
+				</p:commandButton>
+				<p:commandButton update=":SellerTable:SellerList"
+					action="#{SellerBean.deleteSeller(seller)}"
+					icon="ui-icon-trash" title="Delete" />
+			</p:column>
+		</p:dataTable>
+	</h:form>
+	<div class="row">
+		<div class="col-xs-6">
+			<h:form id="AddSellerSection">
+				<p:growl id="sellerAddMsgs" showDetail="true" />
+				<h:panelGrid columns="2" cellpadding="5">
+
+					<p:outputLabel value="Name:" for="addSellerName" />
+					<p:inputText id="addSellerName"
+						value="#{SellerBean.newSeller.sellerName}"
+						placeholder="Insert Seller's Name" />
+
+					<p:outputLabel for="addSellerAddress" value="Adress:" />
+					<p:inputText id="addSellerAddress"
+						value="#{SellerBean.newSeller.sellerAddress}"
+						placeholder="Insert Seller's Address" />
+
+					<p:outputLabel value="E-mail:" for="addSellerEmail" />
+					<p:inputText id="addSellerEmail"
+						value="#{SellerBean.newSeller.sellerEmail}"
+						placeholder="Insert Seller's Email" />
+						
+					<p:outputLabel value="Phone Number:" for="addSellerPhoneNumber" />
+					<p:inputText id="addSellerPhoneNumber"
+						value="#{SellerBean.newSeller.sellerPhoneNumber}"
+						placeholder="Insert Seller's Phone Number" />
+
+					<p:commandButton value="Adicionar"
+						update=":errorMsgs, :SellerTable:SellerList, :AddOrderSection, :EditOrderSection"
+						action="#{SellerBean.addSeller()}" />
+				</h:panelGrid>
+			</h:form>
+		</div>
+		<div class="col-xs-6">
+			<h:form id="EditSellerSection">
+				<p:growl id="sellerEditMsgs" showDetail="true" />
+				<h:inputHidden value="#{SellerBean.editedSeller.sellerId}" />
+				<h:panelGrid columns="2" cellpadding="5">
+
+					<p:outputLabel value="Name:" for="editSellerName" />
+					<p:inputText id="editSellerName"
+						value="#{SellerBean.editedSeller.sellerName}"
+						placeholder="Insert Seller's Name" />
+
+					<p:outputLabel for="editSellerAddress" value="Adress:" />
+					<p:inputText id="editSellerAddress"
+						value="#{SellerBean.editedSeller.sellerAddress}"
+						placeholder="Insert Seller's Address" />
+
+					<p:outputLabel value="E-mail:" for="editSellerEmail" />
+					<p:inputText id="editSellerEmail"
+						value="#{SellerBean.editedSeller.sellerEmail}"
+						placeholder="Insert Seller's Email" />
+						
+					<p:outputLabel value="Phone Number:" for="editSellerPhoneNumber" />
+					<p:inputText id="editSellerPhoneNumber"
+						value="#{SellerBean.editedSeller.sellerPhoneNumber}"
+						placeholder="Insert Seller's Phone Number" />
+
+					<p:commandButton value="Editar"
+						update=":errorMsgs, :SellerTable:SellerList"
+						action="#{SellerBean.editSeller()}">
+					</p:commandButton>
+				</h:panelGrid>
+			</h:form>
+		</div>
+	</div>
+
+	<h:form id="OrderTable">
+		<p:growl id="orderTableMsgs" showDetail="true" />
+		<p:dataTable id="OrderList" var="order"
+			value="#{OrderBean.getList()}">
+			<f:facet name="header">	Orders </f:facet>
+
+			<p:column headerText="Id">
+				<h:outputText value="#{order.orderId}" />
+			</p:column>
+			<p:column headerText="Units">
+				<h:outputText value="#{order.productUnitSet}" />
+			</p:column>
+			<p:column headerText="Client">
+				<h:outputText value="#{order.client}" />
+			</p:column>
+			<p:column headerText="Seller">
+				<h:outputText value="#{order.seller}" />
+			</p:column>
+			<p:column headerText="Start Date">
+				<h:outputText value="#{order.start}" />
+			</p:column>
+			<p:column headerText="End Date">
+				<h:outputText value="#{order.end}" />
+			</p:column>
+			<p:column headerText="Expected Price">
+				<h:outputText value="#{order.expectedPrice}€" />
+			</p:column>
+			<p:column headerText="Delivery Date">
+				<h:outputText value="#{order.delivery}" />
+			</p:column>
+			<p:column headerText="Delivery Status">
+				<h:outputText value="#{order.deliveryStatus}" />
+			</p:column>
+			<p:column headerText="Final Price">
+				<h:outputText value="#{order.finalPrice}€" />
+			</p:column>
+			<p:column headerText="Opções">
+				<p:commandButton update=":EditOrderSection, :errorMsgs"
+					icon="ui-icon-pencil" title="Edit">
+					<f:setPropertyActionListener value="#{order}"
+						target="#{OrderBean.editedOrder}" />
+				</p:commandButton>
+				<p:commandButton update=":OrderTable:OrderList"
+					action="#{OrderBean.deleteOrder(order)}"
+					icon="ui-icon-trash" title="Delete" />
+			</p:column>
+		</p:dataTable>
 	</h:form>
 
+	<div class="row">
+		<div class="col-xs-6">
+			<h:form id="AddOrderSection">
+				<p:growl id="orderAddMsgs" showDetail="true" />
+				<h:panelGrid columns="2" cellpadding="5">
+
+					<p:outputLabel value="ProductUnits" for="addProductUnit"
+						rendered="#{not empty (ProductUnitBean.getList())}" />
+					<p:selectCheckboxMenu id="addProductUnit" value="#{OrderBean.productUnitSet}"
+						label="ProductUnit" rendered="#{not empty (ProductUnitBean.getList())}"
+						multiple="true"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItems value="#{ProductUnitBean.getList()}" var="productUnit"
+							itemLabel="#{productUnit.product.productName}: #{productUnit.productPlatform.platformName}" itemValue="#{productUnit}" />
+					</p:selectCheckboxMenu>		
+
+					<p:outputLabel value="Client" for="addClient"
+						rendered="#{not empty (ClientBean.getList())}" />
+					<p:selectOneMenu id="addClient"
+						value="#{OrderBean.client}" label="Client"
+						rendered="#{not empty (ClientBean.getList())}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="Seleccione uma opção"
+							noSelectionOption="true" />
+						<f:selectItems value="#{ClientBean.getList()}" var="client"
+							itemLabel="#{client.clientName}" itemValue="#{client}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="Seller" for="addSeller"
+						rendered="#{not empty (SellerBean.getList())}" />
+					<p:selectOneMenu id="addSeller"
+						value="#{OrderBean.seller}" label="Seller"
+						rendered="#{not empty (ClientBean.getList())}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="Seleccione uma opção"
+							noSelectionOption="true" />
+						<f:selectItems value="#{SellerBean.getList()}" var="seller"
+							itemLabel="#{seller.sellerName}" itemValue="#{seller}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="Start Date:" for="addOrderStartDate" />
+					<p:calendar id="addOrderStartDate"
+						value="#{OrderBean.newOrder.start}" pattern="dd/MM/yyyy"
+						required="true" />
+
+					<p:outputLabel value="End Date:" for="addOrderEndDate" />
+					<p:calendar id="addOrderEndDate" value="#{OrderBean.newOrder.end}"
+						pattern="dd/MM/yyyy" required="true" />
+
+					<p:outputLabel value="Expected Price:" for="addExpectedPrice" />
+					<p:inputText id="addExpectedPrice"
+						value="#{OrderBean.newOrder.expectedPrice}€" readonly="true" />
+
+					<p:commandButton value="Adicionar"
+						update=":errorMsgs, :OrderTable:OrderList"
+						action="#{OrderBean.addOrder()}" />
+				</h:panelGrid>
+			</h:form>
+		</div>
+		<div class="col-xs-6">
+			<h:form id="EditOrderSection">
+				<p:growl id="orderEditMsgs" showDetail="true" />
+				<h:inputHidden value="#{OrderBean.editedOrder.orderId}"/>
+				<h:panelGrid columns="2" cellpadding="5">
+				
+				<p:outputLabel value="ProductUnits" for="addProductUnit"
+						rendered="#{not empty (ProductUnitBean.getList())}" />
+					<p:selectCheckboxMenu id="addProductUnit" value="#{OrderBean.productUnitSet}"
+						label="ProductUnit" rendered="#{not empty (ProductUnitBean.getList())}"
+						multiple="true"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItems value="#{ProductUnitBean.getList()}" var="productUnit"
+							itemLabel="#{productUnit.product.productName}: #{productUnit.productPlatform.platformName}" itemValue="#{productUnit}" />
+					</p:selectCheckboxMenu>	
+			
+				<p:outputLabel value="Client" for="editClient"
+					rendered="#{not empty (ClientBean.getList())}" />
+				<p:selectOneMenu id="editClient" value="#{OrderBean.client}"
+					label="Client" rendered="#{not empty (ClientBean.getList())}"
+					converter="omnifaces.SelectItemsConverter">
+					<f:selectItem itemLabel="Seleccione uma opção"
+						noSelectionOption="true" />
+					<f:selectItems value="#{ClientBean.getList()}" var="client"
+						itemLabel="#{client.clientName}" itemValue="#{client}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Seller" for="editSeller"
+					rendered="#{not empty (SellerBean.getList())}" />
+				<p:selectOneMenu id="editSeller" value="#{OrderBean.seller}"
+					label="Seller" rendered="#{not empty (ClientBean.getList())}"
+					converter="omnifaces.SelectItemsConverter">
+					<f:selectItem itemLabel="Seleccione uma opção"
+						noSelectionOption="true" />
+					<f:selectItems value="#{SellerBean.getList()}" var="seller"
+						itemLabel="#{seller.sellerName}" itemValue="#{seller}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Start Date:" for="editOrderStartDate" />
+				<p:calendar id="editOrderStartDate"
+					value="#{OrderBean.editedOrder.start}" pattern="dd/MM/yyyy"
+					required="true" />
+
+				<p:outputLabel value="End Date:" for="editOrderEndDate" />
+				<p:calendar id="editOrderEndDate" value="#{OrderBean.editedOrder.end}"
+					pattern="dd/MM/yyyy" required="true" />
+
+				<p:outputLabel value="Expected Price:" for="editExpectedPrice" />
+				<p:inputText id="editExpectedPrice"
+					value="#{OrderBean.editedOrder.expectedPrice}€" readonly="true" />
+
+				<p:commandButton value="Editar"
+					update=":errorMsgs, :OrderTable:OrderList"
+					action="#{OrderBean.editOrder()}" />
+					</h:panelGrid>
+			</h:form>
+		</div>
+	</div>
 	<footer>
 		<p>@2017</p>
 	</footer>

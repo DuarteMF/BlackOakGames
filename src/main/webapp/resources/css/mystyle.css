@@ -1,5 +1,134 @@
 @CHARSET "UTF-8";
 
+/* Zona do titulo e logo */
+#gameTitle{
+	min-width:25%;
+	width:25%;
+	text-align:center;
+	color:#EF5F21;
+	background-color: #fff;
+}
+	
+#gameTitle img{
+	width:95px;
+	height:65px;
+}
+#gameTitle p{
+	font-weight:700;
+	font-size:30px;
+	line-height:0.9;
+	text-align:center;
+}
+@media(max-width:1200px){
+	#gameTitle img{
+		display:none;
+	}
+	#gameTitle p{
+	width:100%;
+	}
+}
+
+/* Zona do search */
+
+.search1{
+	display:flex;
+	position:relative;
+	float: left;
+  	background-color: #000;
+    flex-direction: column;
+    min-width: 25%;
+    border-radius: 0px !important;
+    font-weight: bold;
+    border: 1px solid black;
+}
+.search1 .ui-state-default, .search1 .ui-widget-content.ui-state-default, .search1 .ui-widget-header.ui-state-default{
+	border
+}
+.search1 .ui-inputfield {
+	border-radius: 0px !important;
+	width:100%;
+	box-shadow:none;
+	border: 1px;
+	border-color: black;
+}
+
+.searchTitle{
+	border-radius: 0px !important;
+}
+.searchTitle form{
+	border-radius: 0px !important;
+	margin-bottom: 0px;
+	border: 1px solid black;
+}
+.searchCatPlat form{
+	border: 1px solid black;
+}
+
+.searchCatPlat{
+	display:flex;
+	flex-direction:row;
+	border-radius: 0px !important;
+}
+.searchCat{
+	margin-top: 0px;
+	width:50%;
+	border-radius: 0px !important;
+}
+
+.searchPlat{
+	margin-top: 0px;
+	width:50%;
+	border-radius: 0px !important;
+}
+.search1 .ui-selectonemenu.ui-widget.ui-state-default.ui-corner-all{
+	width:100%;
+	min-width:inherit !important;
+	border-radius: 0px !important;
+	padding-right: 0px;
+	border-right: none;
+}
+
+.search1 label{
+	border-radius: 0px !important;
+}
+.search1 .ui-selectonemenu-trigger.ui-state-default.ui-corner-right{
+	border-radius: 0px !important;
+	width: 25px;
+
+}
+
+/* Zona de display das Categorias e das Plataformas */
+
+.CategoriesAndPlatforms{
+  	margin-top: 50px;
+  	margin-bottom: 50px;
+}
+
+.Tabs{
+	text-align:center !important;
+	display:flex;
+	justify-content:center;
+	color:white !important;
+	margin-bottom: 20px !important;
+	border-color: black !important;
+}
+
+.tab-panel{
+	background-color: #333333;
+	border:1px solid #333333;
+}
+.TabCategory, .TabPlatform{
+	width:100%;
+}
+.tab-content{
+	border-color: #333333 !important;
+}
+.GridCategory .ui-panel-footer.ui-widget-content, .GridPlatform .ui-panel-footer.ui-widget-content{
+	text-align: center !important;
+	
+}
+
+/* 
 
  #title {
   color: #FFD200;  
@@ -11,21 +140,22 @@
   
 }
 
-/* html{
+
+html{
 	padding-bottom: 0px;
 	padding-left: 0px;
 	padding-right: 0px;
 	padding-top: 0px;
 	height:100%;
 	width: 100%;
-} */
+}
 
 body{
 	color: #FFD200 !important;
 	background-color:#637ba0 !important;
 }
 
-/* --------------------------Header----------------------------- */
+/* --------------------------Header-----------------------------
 .header{
 	display:flex;
 	background-color:#3b424f;
@@ -52,7 +182,7 @@ body{
 
 }
 
-/* botões Login e Sign Up */
+botões Login e Sign Up
 .LoginButton, .SignUp{
 	border-radius: 5px;
 	border-color: transparent;
@@ -86,15 +216,15 @@ body{
 
 
 
-/* --------------------------Content------------------------------ */
+--------------------------Content------------------------------
 
-/* Área da grid Categoria */
+Área da grid Categoria
 .GridCategory, .GridPlatform{
-/* 	background-color:#637ba0;
+	background-color:#637ba0;
 	border: none;
-	 */
+	
 }
-/* Área das Tabs Categoria e Plataformas na grid */
+Área das Tabs Categoria e Plataformas na grid
 .Tabs{
 	background-color:#637ba0;
 	text-align:center !important;
@@ -103,10 +233,10 @@ body{
 	color:white !important;
 }
 
-/* Tabs Categoria e Plataformas na grid */
+Tabs Categoria e Plataformas na grid
 #j_idt31_tab, #j_idt25_tab{
 	color:white;
-	/* background-color:#637ba0; */
+	background-color:#637ba0;
 	margin-bottom: 20px;
 }
 
@@ -117,5 +247,5 @@ body{
      font-style: normal; 
  } 
 
-
+ */
 

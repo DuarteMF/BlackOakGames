@@ -174,4 +174,8 @@ public class ProductBean implements Serializable {
 	public void setPlatformList(Set<Platform> platformList) {
 		this.platformList = platformList;
 	}
+	
+	public Product getProduct(Integer productId){
+		return productRepository.getProductFromId(productId);
+	}
 }
