@@ -23,12 +23,18 @@
 	<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
 	<h:outputStylesheet library="css" name="memenu.css"></h:outputStylesheet>
 	<h:outputStylesheet library="css" name="productcatalog.css"></h:outputStylesheet>
+	<f:metadata>
+		<f:viewParam name="productName" value="#{ProductCatalogBean.searchProduct}"/>
+		<f:viewParam name="categoryId" value="#{ProductCatalogBean.searchCategory}"/>
+		<f:viewParam name="platformId" value="#{ProductCatalogBean.searchPlatform}"/>
+	</f:metadata>
+	
 	<header>
 		<h1>Black Oak Games - Product Catalog</h1>
 	</header>
 	<h:form id="form" >
 
-		<p:dataTable var="product" value="#{ProductBean.list}" 
+		<p:dataTable var="product" value="#{ProductCatalogBean.searchBar()}" 
 			style="margin-bottom:40px" paginator="true" id="ProductList" rows="5"
 			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 			rowsPerPageTemplate="5,10,15" widgetVar="productTable">

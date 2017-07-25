@@ -55,6 +55,7 @@ public class ProductRepository extends EntityRepository<Product> {
 	
 	public List<Product> searchFromCatalog(String searchProduct, Integer categoryId, Integer platformId){
 		StringBuilder queryString = new StringBuilder("SELECT p FROM Product AS p");
+		System.out.println(searchProduct);
 		if(searchProduct!=null || categoryId!=null || platformId!=null){
 			queryString.append(" WHERE 1");
 		}
@@ -67,6 +68,7 @@ public class ProductRepository extends EntityRepository<Product> {
 		if(platformId!=null){
 			queryString.append(" AND " + platformId + " MEMBER OF p.platformSet.categoryId");
 		}
+		System.out.println(queryString.toString());
 		TypedQuery<Product> query = getDbConnection().createQuery(queryString.toString(), Product.class);
 		return query.getResultList();
 	}
