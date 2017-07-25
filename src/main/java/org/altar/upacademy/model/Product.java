@@ -3,7 +3,6 @@ package org.altar.upacademy.model;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.faces.bean.ManagedBean;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -18,7 +17,6 @@ import javax.validation.constraints.Size;
 
 @javax.persistence.Entity
 @Table(name="PRODUCT")
-@ManagedBean
 
 public class Product extends Entity implements Serializable {
 	/**
