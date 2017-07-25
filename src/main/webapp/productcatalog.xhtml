@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
+	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+</h:head>
+<h:body>
+	<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="memenu.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="productcatalog.css"></h:outputStylesheet>
+	<header>
+		<h1>Black Oak Games - Product Catalog</h1>
+	</header>
+	<h:form id="form">
+		<p:dataGrid var="product" value="#{ProductBean.getList()}" columns="3"
+			layout="grid" rows="6" paginator="true" id="ProductList"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="6,12,16">
+
+			<f:facet name="header">
+           Videogames for rent
+        </f:facet>
+
+			<p:panel header="#{product.productName}" style="text-align:center">
+
+				<h:panelGrid styleClass="gridprod" columns="1" style="width:100%">
+
+					<b:row>
+						<b:column col-xs="6" col-md="6">
+							<p:graphicImage library="images" name="gamecase.jpg"
+								style="width:50%" />
+						</b:column>
+						<b:column col-xs="6" col-md="6">
+							<b:row>
+								<p class="paramum">Categorias:</p>
+								<h:outputText value="#{product.categorySet}" />
+							</b:row >
+							<b:row>
+								<p class="paramum">Plataformas:</p>
+								<h:outputText value="#{product.platformSet}" />
+							</b:row>
+							<b:row>
+								<p class="paramum">Ano:</p>
+								<h:outputText value="#{product.year}" />
+							</b:row>
+							<b:row>
+								<p class="paramum">Preço:</p>
+								<h:outputText value="#{product.rentalPrice} €" />
+							</b:row>
+							<b:row>
+								<p class="paramum">Disponibilidade:</p>
+								<h:outputText value="#{product.availability} und" />
+
+							</b:row>
+						</b:column>
+					</b:row>
+
+				</h:panelGrid>
+
+			</p:panel>
+
+		</p:dataGrid>
+
+
+	</h:form>
+</h:body>
+<footer>
+	<p>@2017</p>
+</footer>
+</html>

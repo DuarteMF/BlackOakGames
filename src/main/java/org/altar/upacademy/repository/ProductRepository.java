@@ -51,4 +51,15 @@ public class ProductRepository extends EntityRepository<Product> {
 		query.setParameter("id", productId);
 		return query.getSingleResult();
 	}
+	
+//	public Product searchFromCatalog(String searchProduct, Integer categoryId, Integer platformId){
+//		TypedQuery<Product> query = getDbConnection().createQuery("SELECT * FROM Product  WHERE Product_Name = :title", Product.class);
+//		
+//		query.setParameter("title", searchProduct);
+//		query.setParameter("searchCategory", categoryId);
+//		query.setParameter("searchPlatform", platformId);
+//		return query.getSingleResult();
+//	}
+//  como é que faço as 3 queries, é uma só query ou são 3 separadas?
+//	SELECT * FROM Product WHERE Product_Name = 'serh' AND Availability > 6
 }

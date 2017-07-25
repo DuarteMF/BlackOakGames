@@ -1,0 +1,131 @@
+@CHARSET "UTF-8";
+
+
+.flexbox{
+	display:flex;
+	justify-content:space-around;
+	flex-wrap:wrap;
+	
+}
+
+.flexbox > *{
+	/* flex-grow:1; */
+
+}
+
+.title{
+	padding-left:5%;
+}
+
+
+#titleProduct{
+	margin-top:auto;
+	margin-bottom:20px;
+	/* margin-left:130px; */
+	font-style:oblique;
+	
+}
+
+#imageGame{
+	
+	margin-top:40px;
+/* 	margin-left:100px; */ 
+	border-radius: 5px;
+	border-color:transparent;
+	width:240px;
+	height:314px;
+	border-radius: 5px;
+	
+	
+} 
+
+#video{
+	margin-top:40px;
+	border-radius: 5px;
+	border-color:transparent;
+	margin-bottom:5px;
+	max-width: 100%; 
+	
+	
+}
+
+
+#formDescription{
+	font-size:12pt;
+	margin-top:40px;
+	
+}
+
+#formDescription, #formDetails{
+
+	padding-left:5%;
+	padding-right:5%; 
+} 
+
+#description{
+	text-align:left;
+	text-wight:300;
+	margin-top:20px;
+	font-weight: bold;
+	
+}
+
+
+#details{
+	font-weight: bold;
+}
+
+#detailsText{
+	display:block;
+	text-align: justify;
+	text-justify: inter-word;
+	
+	
+}
+
+.a, .b, .c, .d {
+	text-align:center;
+}
+
+.columns{
+	text-align:left;
+	margin-top:60px;
+	margin-bottom:100px;
+
+}
+
+#a1, #a2, #a3, #a4{
+	margin-bottom:25px;
+}
+
+#availableFor, #respectiveCategory, #productAvaliability, #productPrice{
+
+	text-align:center;
+
+}
+
+#addButton{
+	margin-top:10px;
+	
+}
+
+#addToCart{
+	display:flex;
+	border-radius: 5px;
+	justify-content:space-around;
+	background-color:orange;
+	
+}
+
+h5{
+	font-size:12pt;
+	font-weight:bold;
+	margin-top:20px;
+}
+
+.ui-datalist-content.ui-widget-content{
+	border:0 !important;
+	font-weight:normal;
+}
+
+
