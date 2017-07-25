@@ -20,16 +20,16 @@
 
 	<header>
 	</header>
-	<h:inputHidden value="#{ProductPageBean.productId}" />
+	
 		<div class="container">
 			<div class="row">
 				<div class="title">
 					<h1 id="titleProduct">
-						<h:outputText value="#{ProductPageBean.product.productName}" ></h:outputText>
+						<h:outputText value="Stardew Valley" ></h:outputText>
 					</h1>
 					
 					<h4 id="titlePublisher">
-						<h:outputText value="Publisher: #{ProductPageBean.product.publisher}"></h:outputText>
+						<h:outputText value="Publisher: Chucklefish Ltd"></h:outputText>
 					</h4>
 				</div>
 			</div>
@@ -61,7 +61,11 @@
 					<p:separator></p:separator>
 					<div class="text">
 						<h:outputText
-								value="#{ProductPageBean.product.details}"
+								value="&lt;br   /&gt;You've inherited your grandfather's old 
+									farm plot in Stardew Valley. &lt;br /&gt; Armed with hand-me-down tools and a 
+									few coins, you set out to begin your new life. &lt;br /&gt; Can 
+									you learn to live off the land and turn these overgrown fields 
+									into a thriving home?"
 								id="detailsText" escape="false"  />
 					</div>
 				</h:form>
@@ -80,7 +84,7 @@
 				
 						<p:selectOneRadio id="platforms" value="" layout="responsive"
 							columns="2">
-							<f:selectItems value="#{ProductPageBean.product.platformSet}" var="platform"
+							<f:selectItems value="#{PlatformBean.getList()}" var="platform"
 								itemLabel="#{platform.platformName}" itemValue="#{platform}" />
 						</p:selectOneRadio>
 					</div>
@@ -89,7 +93,7 @@
 						<h5 id="a2">Categories:</h5>
 						
 						<div id="catList">
-						    <p:dataList value="#{ProductPageBean.product.categorySet}" var="cat" type="definition">
+						    <p:dataList value="#{CategoryBean.getList()}" var="cat" type="definition">
 						    #{cat.categoryName}
 						    </p:dataList>
 						</div> 
@@ -98,12 +102,12 @@
 					<div class="col-xs-6 col-sm-3 c">
 					
 						<h5 id="a3">Available:</h5>
-						<h:outputText value="#{ProductPageBean.product.availability}" id="productAvaliability"></h:outputText>
+						<h:outputText value="#{product.availability}" id="productAvaliability"></h:outputText>
 					</div>
 	
 					<div class="col-xs-6 col-sm-3 d">
 						<h5 id="a4">Price:</h5>
-						<h:outputText value="#{ProductPageBean.product.rentalPrice}" id="productPrice"></h:outputText>
+						<h:outputText value="#{product.rentalPrice}" id="productPrice"></h:outputText>
 					
 						<div id="addButton">
 							<p:commandButton value="Add to cart" id="addToCart" actionListener="#" 
