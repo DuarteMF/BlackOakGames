@@ -23,6 +23,16 @@ public class Category extends Entity implements Serializable {
 	private Integer categoryId = 0;
 	@Column(name = "Category_Name", unique = true)
 	private String categoryName = null;
+	@Column(name="Category_Image")
+	private String categoryImageName = null;
+
+	public String getCategoryImageName() {
+		return categoryImageName;
+	}
+
+	public void setCategoryImageName(String categoryImageName) {
+		this.categoryImageName = categoryImageName;
+	}
 
 	public Integer getCategoryId() {
 		return categoryId;

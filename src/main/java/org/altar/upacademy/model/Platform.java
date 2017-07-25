@@ -23,6 +23,16 @@ public class Platform extends Entity implements Serializable {
 	private Integer platformId = 0;
 	@Column(name = "Platform_Name", nullable = true, unique = true)
 	private String platformName = null;
+	@Column(name="Platform_Image")
+	private String platformImageName = null;
+
+	public String getPlatformImageName() {
+		return platformImageName;
+	}
+
+	public void setPlatformImageName(String platformImageName) {
+		this.platformImageName = platformImageName;
+	}
 
 	public Integer getPlatformId() {
 		return platformId;
