@@ -5,7 +5,6 @@
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:o="http://omnifaces.org/ui"
 	xmlns:of="http://omnifaces.org/functions">
 
@@ -17,6 +16,51 @@
 
 </h:head>
 <h:body>
+<p:growl id="errorMsgs" showDetail="true" />
+
+<div class="title">
+	<h1>Shopping Cart</h1>
+</div>
+
+<div>
+<p:dataTable id="ShoppingCart" var="productUnit"
+			value="#{ShoppingCartBean.cart}">
+
+			<p:column>
+				<p:graphicImage library="images" name="#{productUnit.product.productImageName}" />
+			</p:column>
+			<p:column>
+				<h:outputText value="#{productUnit.product.productName}" />
+			</p:column>
+			<p:column>
+				<h:outputText value="#{ProductUnit.productPlatform}" />
+			</p:column>
+			<p:column>
+				<h:outputText value="#{ProductUnit.product.rentalPrice}" />
+			</p:column>
+			<p:column>
+				<p:commandButton update=":ShoppingCart"
+					action="#{ShoppingCartBean.removeFromCart(productUnit)}"
+					icon="ui-icon-trash" title="Delete" />
+			</p:column>
+		</p:dataTable>
+		
+		<h:form>
+			<p:outputLabel value="Start Date:" for="addOrderStartDate" />
+					<p:calendar id="addOrderStartDate"
+						value="#{OrderBean.newOrder.start}" pattern="dd/MM/yyyy"
+						required="true" />
+
+					<p:outputLabel value="End Date:" for="addOrderEndDate" />
+					<p:calendar id="addOrderEndDate" value="#{OrderBean.newOrder.end}"
+						pattern="dd/MM/yyyy" required="true" />
+		</h:form>
+		
+		<div>
+			<h2>Total Price:</h2>
+			<h:outputText value="#{ShoppingCart.calculateExpectedPrice()}"/>
+		</div>
+</div>
 
 </h:body>
 </html>
