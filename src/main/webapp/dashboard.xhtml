@@ -4,8 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" 
-	xmlns:b="http://bootsfaces.net/ui">
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -16,46 +15,39 @@
 	<h:outputStylesheet library="css" name="memenu.css"></h:outputStylesheet>
 	<h:outputStylesheet library="css" name="mystyle.css"></h:outputStylesheet>
 
-
+<p:growl id="errors" showDetails="true"/>
 	<div class="header">
 		<div class="header-top">
 			<div class="container">
-				<div class="search1">
-					<div class="searchTitle">
-						<h:form>
-							<p:inputText id="Title" value="" required="true" label="Text 1"
+				<h:form>
+					<div class="search1">
+						<div class="searchTitle">
+							<p:inputText id="Title" value="#{ProductCatalogBean.searchProduct}" required="true" label="Text 1"
 								placeholder="Search">
 								<f:validateLength minimum="2" />
 							</p:inputText>
-						</h:form>
-					</div>
-					<div class="searchCatPlat">
-						<div class="searchCat">
-							<h:form>
-								<p:selectOneMenu value="#{ProductBean.categoryList}"
-									label="Categories" multiple="true"
-									rendered="#{not empty (ProductBean.existingCategories())}"
-									converter="omnifaces.SelectItemsConverter">
-									<f:selectItem itemLabel="Category"
-										noSelectionOption="true" />
-									<f:selectItems value="#{ProductBean.existingCategories()}" />
-								</p:selectOneMenu>
-							</h:form>
 						</div>
-						<div class="searchPlat">
-							<h:form>
-								<p:selectOneMenu value="#{ProductBean.platformList}"
-									label="Platforms" multiple="true"
-									rendered="#{not empty (ProductBean.existingPlatforms())}"
+						<div class="searchCatPlat">
+							<div class="searchCat">
+								<p:selectOneMenu value="#{ProductCatalogBean.searchCategory}"
+									label="Categories" rendered="#{not empty (ProductBean.existingCategories())}"
 									converter="omnifaces.SelectItemsConverter">
-									<f:selectItem itemLabel="Platform"
-										noSelectionOption="true" />
-									<f:selectItems value="#{ProductBean.existingPlatforms()}" />
+									<f:selectItem itemLabel="Category" noSelectionOption="true" />
+									<f:selectItems value="#{ProductBean.existingCategories()}" var="category" itemLabel="#{category.categoryName}" itemValue="#{category.categoryId}"/>
 								</p:selectOneMenu>
-							</h:form>
+							</div>
+							<div class="searchPlat">
+								<p:selectOneMenu value="#{ProductCatalogBean.searchPlatform}"
+									label="Platforms" rendered="#{not empty (ProductBean.existingPlatforms())}"
+									converter="omnifaces.SelectItemsConverter">
+									<f:selectItem itemLabel="Platform" noSelectionOption="true" />
+									<f:selectItems value="#{ProductBean.existingPlatforms()}" var="platform" itemLabel="#{platform.platformName}" itemValue="#{platform.platformId}"/>
+								</p:selectOneMenu>
+							</div>
 						</div>
 					</div>
-				</div>
+					<p:commandButton icon="ui-icon-search" update="errors"/>
+				</h:form>
 				<div class="header-left">
 					<ul>
 						<li class="active grid" style="display: inline;"><a
@@ -77,9 +69,8 @@
 				</div>
 				<div class="h_menu4">
 					<ul class="memenu skyblue">
-						<li class="active grid" style="display: inline;">
-							<a class="color8" href="dashboard.xhtml">Home</a>
-						</li>
+						<li class="active grid" style="display: inline;"><a
+							class="color8" href="dashboard.xhtml">Home</a></li>
 					</ul>
 				</div>
 			</div>
@@ -89,9 +80,11 @@
 	<div class="CategoriesAndPlatforms content">
 		<div class="container">
 
-			<b:tabView class="Tabs" contentStyle="border: 1px solid #ddd;padding:10px">
+			<b:tabView class="Tabs"
+				contentStyle="border: 1px solid #ddd;padding:10px">
 
-				<b:tab title="Categories" contentStyle="container" class="TabCategory">
+				<b:tab title="Categories" contentStyle="container"
+					class="TabCategory">
 
 					<h:form>
 						<p:dataGrid class="GridCategory" var="Category"
@@ -110,7 +103,8 @@
 				</b:tab>
 
 
-				<b:tab title="Platforms" contentStyle="container" class="TabPlatform">
+				<b:tab title="Platforms" contentStyle="container"
+					class="TabPlatform">
 					<h:form>
 						<p:dataGrid class="GridPlatform" var="Platform"
 							value="#{PlatformBean.getList()}" columns="3" layout="grid">
@@ -136,9 +130,7 @@
 				<div class="col-xs-4 amet-sed">
 					<h4>MORE INFO</h4>
 					<ul class="nav-bottom">
-						<li>
-							<a href="#">Work Description</a>
-						</li>
+						<li><a href="#">Work Description</a></li>
 					</ul>
 				</div>
 				<div class="col-xs-4 amet-sed">

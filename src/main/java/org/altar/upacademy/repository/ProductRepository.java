@@ -52,14 +52,23 @@ public class ProductRepository extends EntityRepository<Product> {
 		return query.getSingleResult();
 	}
 	
-//	public Product searchFromCatalog(String searchProduct, Integer categoryId, Integer platformId){
-//		TypedQuery<Product> query = getDbConnection().createQuery("SELECT * FROM Product  WHERE Product_Name = :title", Product.class);
-//		
-//		query.setParameter("title", searchProduct);
-//		query.setParameter("searchCategory", categoryId);
-//		query.setParameter("searchPlatform", platformId);
-//		return query.getSingleResult();
-//	}
-//  como é que faço as 3 queries, é uma só query ou são 3 separadas?
-//	SELECT * FROM Product WHERE Product_Name = 'serh' AND Availability > 6
+	public List<Product> searchFromCatalog(String searchProduct, Integer categoryId, Integer platformId){
+		StringBuilder queryString = new StringBuilder("SELECT p FROM Product AS p");
+		if(searchProduct!=null || categoryId!=null || platformId!=null){
+			queryString.append(" WHERE 1");
+		}
+		if(searchProduct!=null){
+			queryString.append(" AND p.productName LIKE '" + searchProduct + "'");
+		}
+		if(categoryId!=null){
+			queryString.append(" AND " + categoryId + " MEMBER OF p.categorySet");
+		}
+		if(platformId!=null){
+			queryString.append(" AND " + platformId + " MEMBER OF p.platformSet");
+		}
+		TypedQuery<Product> query = getDbConnection().createQuery(queryString.toString(), Product.class);
+		return query.getResultList();
+	}
+
+
 }

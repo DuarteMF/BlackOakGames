@@ -1,18 +1,11 @@
 package org.altar.upacademy.bean;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.altar.upacademy.model.Category;
-import org.altar.upacademy.model.Platform;
-import org.altar.upacademy.model.Product;
-import org.altar.upacademy.model.Category;
-import org.altar.upacademy.repository.CategoryRepository;
-import org.altar.upacademy.repository.PlatformRepository;
 import org.altar.upacademy.repository.ProductRepository;
 
 @Named("ProductCatalogBean") 
@@ -25,36 +18,39 @@ public class ProductCatalogBean implements Serializable {
 	private Integer searchCategory = null;
 	private Integer searchPlatform = null;
 	
-	public void searchBar(){
-		
 	
-// os getters e os setters das variaveis??
-
-//	@Inject
-//	private ProductRepository productRepository;
-//	
-//	public List<Product> getProductList() {
-//		return productRepository.getDbProduct();
-//	}
-//	
-//	@Inject
-//	private CategoryRepository categoryRepository;
-//	
-//	public List<Category> getCategoryList() {
-//		return categoryRepository.getDbCategories();
-//	}
-//	
-//	@Inject
-//	private PlatformRepository platformRepository;
-//	
-//	public List<Platform> getPlatformList() {
-//		return platformRepository.getDbPlatforms();
-//	}
-	
-	
-//	public Product searchProduct(){
-//		return productRepository.searchFromCatalog();
-//	}
-	
+	public String getSearchProduct() {
+		return searchProduct;
 	}
+	
+	public void setSearchProduct(String searchProduct) {
+		System.out.println(searchProduct);
+		this.searchProduct = searchProduct;
+	}
+
+	public Integer getSearchCategory() {
+		return searchCategory;
+	}
+
+	public void setSearchCategory(Integer searchCategory) {
+		System.out.println(searchCategory);
+		this.searchCategory = searchCategory;
+	}
+
+	public Integer getSearchPlatform() {
+		return searchPlatform;
+	}
+
+	public void setSearchPlatform(Integer searchPlatform) {
+		System.out.println(searchPlatform);
+		this.searchPlatform = searchPlatform;
+	}
+
+	@Inject
+	private ProductRepository productRepository;
+	
+	public void searchBar(){
+		productRepository.searchFromCatalog(searchProduct, searchCategory, searchPlatform);
+	}
+	
 }
