@@ -10,6 +10,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
+import org.altar.upacademy.model.Category;
 import org.altar.upacademy.model.Product;
 
 @Named("productRepository")
@@ -61,14 +62,30 @@ public class ProductRepository extends EntityRepository<Product> {
 			queryString.append(" AND p.productName LIKE '" + searchProduct + "'");
 		}
 		if(categoryId!=null){
-			queryString.append(" AND " + categoryId + " MEMBER OF p.categorySet");
+			queryString.append(" AND " + categoryId + " MEMBER OF p.categorySet.categoryId");
 		}
 		if(platformId!=null){
-			queryString.append(" AND " + platformId + " MEMBER OF p.platformSet");
+			queryString.append(" AND " + platformId + " MEMBER OF p.platformSet.categoryId");
 		}
 		TypedQuery<Product> query = getDbConnection().createQuery(queryString.toString(), Product.class);
 		return query.getResultList();
 	}
 
-
+//	public List<Product> searchFromCatalog(String searchProduct, Category category, Platform platform){
+//		StringBuilder queryString = new StringBuilder("SELECT p FROM Product AS p");
+//		if(searchProduct!=null || category.getCategoryId()!=null || platform.getPlatformId()!=null){
+//			queryString.append(" WHERE 1");
+//		}
+//		if(searchProduct!=null){
+//			queryString.append(" AND p.productName LIKE '" + searchProduct + "'");
+//		}
+//		if(category.getCategoryId()!=null){
+//			queryString.append(" AND " + category + " MEMBER OF p.categorySet");
+//		}
+//		if(platform.getPlatformId()!=null){
+//			queryString.append(" AND " + platform + " MEMBER OF p.platformSet");
+//		}
+//		TypedQuery<Product> query = getDbConnection().createQuery(queryString.toString(), Product.class);
+//		return query.getResultList();
+//	}
 }

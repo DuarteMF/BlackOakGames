@@ -6,6 +6,10 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.altar.upacademy.model.Category;
+import org.altar.upacademy.model.Platform;
+import org.altar.upacademy.repository.CategoryRepository;
+import org.altar.upacademy.repository.PlatformRepository;
 import org.altar.upacademy.repository.ProductRepository;
 
 @Named("ProductCatalogBean") 
@@ -53,4 +57,15 @@ public class ProductCatalogBean implements Serializable {
 		productRepository.searchFromCatalog(searchProduct, searchCategory, searchPlatform);
 	}
 	
+	@Inject
+	private CategoryRepository categoryRepository;
+	
+	@Inject
+	private PlatformRepository platformRepository;
+	
+//	public void searchBar(){
+//		Category category = (Category) categoryRepository.readFromDb(searchCategory);
+//		Platform platform = (Platform) platformRepository.readFromDb(searchPlatform);
+//		productRepository.searchFromCatalog(searchProduct, category, platform);
+//	}
 }
