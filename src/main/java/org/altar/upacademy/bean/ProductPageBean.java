@@ -3,7 +3,6 @@ package org.altar.upacademy.bean;
 import java.io.Serializable;
 
 import javax.enterprise.context.RequestScoped;
-import javax.faces.bean.ManagedProperty;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -16,7 +15,6 @@ public class ProductPageBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@ManagedProperty("#(param.productId)")
 	private Integer productId = null;
 
 	public Integer getProductId() {
@@ -30,7 +28,13 @@ public class ProductPageBean implements Serializable {
 	@Inject
 	private ProductRepository productRepository;
 	
+	private Product product;
+	
 	public Product getProduct(){
-		return productRepository.getProductFromId(productId);
+		return this.product;
+	}
+	
+	public void setProduct(){
+		this.product = productRepository.getProductFromId(productId);
 	}
 }

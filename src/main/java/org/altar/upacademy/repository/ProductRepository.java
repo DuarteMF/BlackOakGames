@@ -51,6 +51,7 @@ public class ProductRepository extends EntityRepository<Product> {
 	public Product getProductFromId(Integer productId){
 		TypedQuery<Product> query = getDbConnection().createQuery("SELECT p FROM Product AS p WHERE p.productId = :id", Product.class);
 		query.setParameter("id", productId);
+		System.out.println(productId);
 		return query.getSingleResult();
 	}
 	

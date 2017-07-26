@@ -38,9 +38,12 @@ public class ShoppingCartBean implements Serializable {
 	
 	@Inject
 	private ProductUnitRepository productUnitRepository;
+	
+	@Inject
+	private ProductPageBean productPageBean;
 
 	public void setProductUnit() {
-		ProductUnit productUnit = productUnitRepository.getAvaliableProductUnitFromProductIdAndPlatform(productId, productUnitPlatformId);
+		ProductUnit productUnit = productUnitRepository.getAvaliableProductUnitFromProductIdAndPlatform(productPageBean.getProductId(), productUnitPlatformId);
 		this.productUnit = productUnit;
 	}
 
@@ -111,16 +114,5 @@ public class ShoppingCartBean implements Serializable {
 	public void setProductUnitPlatformId(Integer productUnitPlatformId) {
 		System.out.println(productUnitPlatformId);
 		this.productUnitPlatformId = productUnitPlatformId;
-	}
-	
-	private Integer productId;
-
-	public Integer getProductId() {
-		return productId;
-	}
-
-	public void setProductId(Integer productId) {
-		System.out.println(productId);
-		this.productId = productId;
 	}
 }

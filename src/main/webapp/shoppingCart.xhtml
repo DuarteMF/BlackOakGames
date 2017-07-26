@@ -26,9 +26,7 @@
 <p:dataTable id="ShoppingCart" var="productUnit"
 			value="#{ShoppingCartBean.cart}">
 
-			<p:column>
-				<p:graphicImage library="images" name="#{productUnit.product.productImageName}" />
-			</p:column>
+			
 			<p:column>
 				<h:outputText value="#{productUnit.product.productName}" />
 			</p:column>

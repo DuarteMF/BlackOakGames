@@ -8,7 +8,6 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
-import org.altar.upacademy.model.Product;
 import org.altar.upacademy.model.ProductUnit;
 
 @Named("productUnitRepository")
@@ -37,6 +36,6 @@ public class ProductUnitRepository extends EntityRepository<ProductUnit> {
 		Query query = getDbConnection().createNativeQuery("SELECT * FROM PRODUCT_UNITS WHERE product_Product_ID = :productId AND productPlatform_Platform_ID = :platformId", ProductUnit.class);
 		query.setParameter("productId", productId);
 		query.setParameter("platformId", platformId);
-		return (ProductUnit) query.getSingleResult();
+		return (ProductUnit) query.getResultList().get(0);
 	}
 }
