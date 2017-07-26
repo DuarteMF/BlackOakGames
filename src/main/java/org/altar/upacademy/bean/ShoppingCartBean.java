@@ -7,10 +7,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.altar.upacademy.model.Order;
 import org.altar.upacademy.model.ProductUnit;
+import org.altar.upacademy.repository.ProductUnitRepository;
 
 @Named("ShoppingCartBean")
 @SessionScoped
@@ -33,8 +35,12 @@ public class ShoppingCartBean implements Serializable {
 	public ProductUnit getProductUnit() {
 		return productUnit;
 	}
+	
+	@Inject
+	private ProductUnitRepository productUnitRepository;
 
-	public void setProductUnit(ProductUnit productUnit) {
+	public void setProductUnit() {
+		ProductUnit productUnit = productUnitRepository.getAvaliableProductUnitFromProductIdAndPlatform(productId, productUnitPlatformId);
 		this.productUnit = productUnit;
 	}
 
@@ -67,8 +73,9 @@ public class ShoppingCartBean implements Serializable {
 		this.expectedPrice = expectedPrice;
 	}
 	
-	public void addToCart(){
+	public String addToCart(){
 		cart.add(productUnit);
+		return "success";
 	}
 	
 	public void removeFromCart(){
@@ -93,5 +100,27 @@ public class ShoppingCartBean implements Serializable {
 		}
 		int numberOfDaysRental = Period.between(endDate, startDate).getDays();
 		return totalPricePerWeek * (numberOfDaysRental/7);
+	}
+	
+	private Integer productUnitPlatformId;
+
+	public Integer getProductUnitPlatformId() {
+		return productUnitPlatformId;
+	}
+
+	public void setProductUnitPlatformId(Integer productUnitPlatformId) {
+		System.out.println(productUnitPlatformId);
+		this.productUnitPlatformId = productUnitPlatformId;
+	}
+	
+	private Integer productId;
+
+	public Integer getProductId() {
+		return productId;
+	}
+
+	public void setProductId(Integer productId) {
+		System.out.println(productId);
+		this.productId = productId;
 	}
 }

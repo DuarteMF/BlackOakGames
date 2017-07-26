@@ -30,6 +30,13 @@ public class ProductUnitRepository extends EntityRepository<ProductUnit> {
 	public ProductUnit getProductUnitFromProductId(Integer productId){
 		TypedQuery<ProductUnit> query = getDbConnection().createQuery("SELECT p FROM ProductUnit AS p WHERE p.product.productId = :id", ProductUnit.class);
 		query.setParameter("id", productId);
-		return query.getResultList().get(0);
+		return query.getSingleResult();
+	}
+	
+	public ProductUnit getAvaliableProductUnitFromProductIdAndPlatform(Integer productId, Integer platformId){
+		Query query = getDbConnection().createNativeQuery("SELECT * FROM PRODUCT_UNITS WHERE product_Product_ID = :productId AND productPlatform_Platform_ID = :platformId", ProductUnit.class);
+		query.setParameter("productId", productId);
+		query.setParameter("platformId", platformId);
+		return (ProductUnit) query.getSingleResult();
 	}
 }
