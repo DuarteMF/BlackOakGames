@@ -43,8 +43,8 @@
             Videogames for rent
         </f:facet>
 			<p:column headerText="Capa" update=":form"> 
-				<p:graphicImage library="images" name="gamecase.jpg"
-					style="width:50%" />
+				<p:graphicImage library="images" name="#{product.productImageName}"
+					style="width:30%; text-align: center" />
 			</p:column>
 			<p:column filterBy="#{product.productName}"
 				filterMatchMode="contains" headerText="Nome" update=":form" actionListener="#{product.productName}"

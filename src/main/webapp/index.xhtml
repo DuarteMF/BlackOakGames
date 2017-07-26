@@ -36,6 +36,10 @@
 			<p:column headerText="Games">
 				<h:outputText value="#{platform.productSet}" />
 			</p:column>
+					<p:column headerText="Image">
+					<p:graphicImage library="images" name="#{platform.platformImageName}"
+					style="width:30%; text-align: center" />
+			</p:column>
 			<p:column headerText="Opções">
 				<p:commandButton update=":EditPlatformSection" icon="ui-icon-pencil"
 					title="Edit">
@@ -51,10 +55,13 @@
 
 	<h:form id="AddPlatformSection">
 		<p:growl id="platformAddMsgs" showDetail="true" />
-		<h:panelGrid columns="3" cellpadding="5">
+		<h:panelGrid columns="2" cellpadding="5">
 			<p:outputLabel value="Nome:" for="addPlatformName" />
 			<p:inputText id="addPlatformName" placeholder="Insert Platform"
 				value="#{PlatformBean.newPlatform.platformName}" />
+				<p:outputLabel value="Imagem:" for="addPlatformImageName" />
+			<p:inputText id="addPlatformImageName" placeholder="Insert Platform Image"
+				value="#{PlatformBean.newPlatform.platformImageName}" required="true" />
 			<p:commandButton value="Adicionar"
 				update=":PlatformTable:PlatformList, AddProductSection, EditProductSection"
 				action="#{PlatformBean.checkPlatformName()}" />
@@ -64,10 +71,13 @@
 	<h:form id="EditPlatformSection">
 		<p:growl id="platformEditMsgs" showDetail="true" />
 		<h:inputHidden value="#{PlatformBean.editedPlatform.platformId}" />
-		<h:panelGrid columns="3" cellpadding="5">
+		<h:panelGrid columns="2" cellpadding="5">
 			<p:outputLabel value="Nome:" for="editPlatformName" />
 			<p:inputText id="editPlatformName" placeholder="Insert Platform"
 				value="#{PlatformBean.editedPlatform.platformName}" />
+						<p:outputLabel value="Imagem:" for="editPlatformImageName" />
+			<p:inputText id="editPlatformImageName" placeholder="Insert Platform Image"
+				value="#{PlatformBean.editedPlatform.platformImageName}" required="true"/>
 			<p:commandButton value="Editar"
 				update=":PlatformTable:PlatformList, AddProductSection, EditProductSection"
 				action="#{PlatformBean.editPlatform()}" />
@@ -87,6 +97,7 @@
 			<p:column headerText="Games">
 				<h:outputText value="#{category.productSet}" />
 			</p:column>
+			
 			<p:column headerText="Opções">
 				<p:commandButton update=":EditCategorySection" icon="ui-icon-pencil"
 					title="Edit">
@@ -181,6 +192,15 @@
 					<p:inputText id="addProductName"
 						value="#{ProductBean.newProduct.productName}"
 						placeholder="Insert Product" />
+						
+						<p:outputLabel value="Imagem:" for="addProductImageName" />
+			<p:inputText id="addProductImageName" placeholder="Insert Product Image"
+				value="#{ProductBean.newProduct.productImageName}" required="true"/>
+				
+				<p:outputLabel value="Vídeo" for="addProductVideoUrl" />
+					<p:inputText id="addProductVideoUrl"
+						value="#{ProductBean.newProduct.productVideoUrl}"
+						placeholder="Insert Product Video url" required="true"/>
 
 
 					<p:outputLabel for="addYear" value="Year:" />
