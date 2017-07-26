@@ -10,147 +10,73 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </h:head>
 <h:body>
-	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
-	<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
-	<h:outputStylesheet library="css" name="memenu.css"></h:outputStylesheet>
-	<h:outputStylesheet library="css" name="mystyle.css"></h:outputStylesheet>
 
-<p:growl id="errors" showDetails="true"/>
-	<div class="header">
-		<div class="header-top">
-			<div class="container">
-				<h:form onsubmit="productCatalog.xhtml">
-					<div class="search1">
-						<div class="searchTitle">
-							<p:inputText id="Title" value="#{ProductCatalogBean.searchProduct}" required="true" label="Text 1"
-								placeholder="Search">
-								<f:validateLength minimum="2" />
-							</p:inputText>
-						</div>
-						<div class="searchCatPlat">
-							<div class="searchCat">
-								<p:selectOneMenu value="#{ProductCatalogBean.searchCategory}"
-									label="Categories" rendered="#{not empty (ProductBean.existingCategories())}"
-									converter="omnifaces.SelectItemsConverter">
-									<f:selectItem itemLabel="Category" noSelectionOption="true" />
-									<f:selectItems value="#{ProductBean.existingCategories()}" var="category" itemLabel="#{category.categoryName}" itemValue="#{category.categoryId}"/>
-								</p:selectOneMenu>
-							</div>
-							<div class="searchPlat">
-								<p:selectOneMenu value="#{ProductCatalogBean.searchPlatform}"
-									label="Platforms" rendered="#{not empty (ProductBean.existingPlatforms())}"
-									converter="omnifaces.SelectItemsConverter">
-									<f:selectItem itemLabel="Platform" noSelectionOption="true" />
-									<f:selectItems value="#{ProductBean.existingPlatforms()}" var="platform" itemLabel="#{platform.platformName}" itemValue="#{platform.platformId}"/>
-								</p:selectOneMenu>
-							</div>
-						</div>
-					</div>
-					<p:commandButton icon="ui-icon-search" update="errors" action="#{ProductCatalogBean.submitSearch}"/>
-				</h:form>
-				<div class="header-left">
-					<ul>
-						<li class="active grid" style="display: inline;"><a
-							class="color8" href="index.xhtml">Login</a></li>
-						<li class="active grid" style="display: inline;"><a
-							class="color8" href="">Sign Up</a></li>
-					</ul>
+	<ui:composition template="commonLayout.xhtml">
+		<ui:define name="content">
+			<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
+			<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+			<h:outputStylesheet library="css" name="memenu.css"></h:outputStylesheet>
+			<h:outputStylesheet library="css" name="mystyle.css"></h:outputStylesheet>
+			
+			<div class="CategoriesAndPlatforms content">
+				
+				<div class="container">
+				
+					<b:tabView class="Tabs"
+						contentStyle="border: 1px solid #ddd;padding:10px">
+						
+						<b:tab title="Categories" contentStyle="container"
+							class="TabCategory">
+							
+							<h:form>
+							
+								<p:dataGrid class="GridCategory" var="Category"
+									value="#{CategoryBean.getList()}" columns="3" layout="grid">
+									<p:panel footer="#{Category.categoryName}"
+										style="text-align:center">
+										<h:panelGrid columns="1" style="width:100%">
+											<p:graphicImage name="bla bla" />
+		
+											<h:commandButton class="CategoryButton" value="See Games" action="#{ProductCatalogBean.submitSearch}">
+												<f:setPropertyActionListener value="#{Category.categoryId}" target="#{ProductCatalogBean.searchCategory}"/>
+											</h:commandButton>
+											
+										</h:panelGrid>
+									</p:panel>
+								</p:dataGrid>
+								
+							</h:form>
+							
+						</b:tab>
+		
+		
+						<b:tab title="Platforms" contentStyle="container"
+							class="TabPlatform">
+							
+							<h:form>
+							
+								<p:dataGrid class="GridPlatform" var="Platform"
+									value="#{PlatformBean.getList()}" columns="3" layout="grid">
+									<p:panel footer="#{Platform.platformName}"
+										style="text-align:center">
+										<h:panelGrid columns="1" style="width:100%">
+											<p:graphicImage name="bla bla" />
+		
+											<h:commandButton class="PlatformButton" value="See Games" action="#{ProductCatalogBean.submitSearch}">
+												<f:setPropertyActionListener value="#{Platform.platformId}" target="#{ProductCatalogBean.searchPlatform}"/>
+											</h:commandButton>
+										</h:panelGrid>
+									</p:panel>
+								</p:dataGrid>
+								
+							</h:form>
+							
+						</b:tab>
+					</b:tabView>
 				</div>
 			</div>
-		</div>
-		<div class="container">
-			<div class="head-top">
-				<div id="gameTitle" class="logo">
-					<div class="row container-fluid">
-						<img class="col-xs-4"
-							src="https://d30y9cdsu7xlg0.cloudfront.net/png/195040-200.png"></img>
-						<p class="col-xs-8">Black Oak Games</p>
-					</div>
-				</div>
-				<div class="h_menu4">
-					<ul class="memenu skyblue">
-						<li class="active grid" style="display: inline;"><a
-							class="color8" href="dashboard.xhtml">Home</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="CategoriesAndPlatforms content">
-		<div class="container">
-
-			<b:tabView class="Tabs"
-				contentStyle="border: 1px solid #ddd;padding:10px">
-
-				<b:tab title="Categories" contentStyle="container"
-					class="TabCategory">
-
-					<h:form>
-						<p:dataGrid class="GridCategory" var="Category"
-							value="#{CategoryBean.getList()}" columns="3" layout="grid">
-
-							<p:panel footer="#{Category.categoryName}"
-								style="text-align:center">
-								<h:panelGrid columns="1" style="width:100%">
-									<p:graphicImage name="bla bla" />
-
-									<h:commandButton class="CategoryButton" value="See Games" action="#{ProductCatalogBean.submitSearch}">
-										<f:setPropertyActionListener value="#{Category.categoryId}" target="#{ProductCatalogBean.searchCategory}"/>
-									</h:commandButton>
-								</h:panelGrid>
-							</p:panel>
-						</p:dataGrid>
-					</h:form>
-				</b:tab>
-
-
-				<b:tab title="Platforms" contentStyle="container"
-					class="TabPlatform">
-					<h:form>
-						<p:dataGrid class="GridPlatform" var="Platform"
-							value="#{PlatformBean.getList()}" columns="3" layout="grid">
-
-							<p:panel footer="#{Platform.platformName}"
-								style="text-align:center">
-								<h:panelGrid columns="1" style="width:100%">
-									<p:graphicImage name="bla bla" />
-
-									<h:commandButton class="PlatformButton" value="See Games" action="#{ProductCatalogBean.submitSearch}">
-										<f:setPropertyActionListener value="#{Platform.platformId}" target="#{ProductCatalogBean.searchPlatform}"/>
-									</h:commandButton>
-								</h:panelGrid>
-							</p:panel>
-						</p:dataGrid>
-					</h:form>
-				</b:tab>
-
-			</b:tabView>
-		</div>
-	</div>
-	<div class="footer">
-		<div class="container">
-			<div class="footer-top-at">
-				<div class="col-xs-4 amet-sed">
-					<h4>MORE INFO</h4>
-					<ul class="nav-bottom">
-						<li><a href="#">Work Description</a></li>
-					</ul>
-				</div>
-				<div class="col-xs-4 amet-sed">
-					<h4>CONTACTS</h4>
-					<p>a.preto@campus.fct.unl.pt</p>
-					<p>duartepferreira@hotmail.com</p>
-					<p>mf.soares@campus.fct.unl.pt</p>
-					<p>valeriagirlus@gmail.com</p>
-					<ul></ul>
-				</div>
-				<div class="clearfix"></div>
-			</div>
-		</div>
-		<div class="footer-class">
-			<p>André Preto, Duarte Ferreira, Miguel Soares, Elena Girlus 2017</p>
-		</div>
-	</div>
+			
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>
