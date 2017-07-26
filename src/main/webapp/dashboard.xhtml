@@ -95,7 +95,9 @@
 								<h:panelGrid columns="1" style="width:100%">
 									<p:graphicImage name="bla bla" />
 
-									<h:commandButton class="CategoryButton" value="" action="index" />
+									<h:commandButton class="CategoryButton" value="See Games" action="#{ProductCatalogBean.submitSearch}">
+										<f:setPropertyActionListener value="#{Category.categoryId}" target="#{ProductCatalogBean.searchCategory}"/>
+									</h:commandButton>
 								</h:panelGrid>
 							</p:panel>
 						</p:dataGrid>
@@ -114,7 +116,9 @@
 								<h:panelGrid columns="1" style="width:100%">
 									<p:graphicImage name="bla bla" />
 
-									<h:commandButton class="PlatformButton" value="" action="index" />
+									<h:commandButton class="PlatformButton" value="See Games" action="#{ProductCatalogBean.submitSearch}">
+										<f:setPropertyActionListener value="#{Platform.platformId}" target="#{ProductCatalogBean.searchPlatform}"/>
+									</h:commandButton>
 								</h:panelGrid>
 							</p:panel>
 						</p:dataGrid>
