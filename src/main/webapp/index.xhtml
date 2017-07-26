@@ -97,10 +97,7 @@
 			<p:column headerText="Games">
 				<h:outputText value="#{category.productSet}" />
 			</p:column>
-					<p:column headerText="Image">
-					<p:graphicImage library="images" name="#{category.categoryImageName}"
-					style="width:50%" />
-			</p:column>
+			
 			<p:column headerText="Opções">
 				<p:commandButton update=":EditCategorySection" icon="ui-icon-pencil"
 					title="Edit">
@@ -195,6 +192,10 @@
 					<p:inputText id="addProductName"
 						value="#{ProductBean.newProduct.productName}"
 						placeholder="Insert Product" />
+						
+						<p:outputLabel value="Imagem:" for="addProductImageName" />
+			<p:inputText id="addProductImageName" placeholder="Insert Product Image"
+				value="#{ProductBean.newProduct.productImageName}" />
 
 
 					<p:outputLabel for="addYear" value="Year:" />
