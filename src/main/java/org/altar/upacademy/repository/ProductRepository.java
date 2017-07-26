@@ -11,6 +11,7 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import org.altar.upacademy.model.Category;
+import org.altar.upacademy.model.Platform;
 import org.altar.upacademy.model.Product;
 
 @Named("productRepository")
@@ -54,40 +55,26 @@ public class ProductRepository extends EntityRepository<Product> {
 	}
 	
 	public List<Product> searchFromCatalog(String searchProduct, Integer categoryId, Integer platformId){
-		StringBuilder queryString = new StringBuilder("SELECT p FROM Product AS p");
-		System.out.println(searchProduct);
-		if(searchProduct!=null || categoryId!=null || platformId!=null){
-			queryString.append(" WHERE 1");
-		}
-		if(searchProduct!=null){
-			queryString.append(" AND p.productName LIKE '" + searchProduct + "'");
-		}
-		if(categoryId!=null){
-			queryString.append(" AND " + categoryId + " MEMBER OF p.categorySet.categoryId");
-		}
-		if(platformId!=null){
-			queryString.append(" AND " + platformId + " MEMBER OF p.platformSet.categoryId");
-		}
-		System.out.println(queryString.toString());
-		TypedQuery<Product> query = getDbConnection().createQuery(queryString.toString(), Product.class);
-		return query.getResultList();
+	StringBuilder queryString = new StringBuilder("SELECT * FROM PRODUCT");
+	if(categoryId!=null){
+		queryString.append(" JOIN PRODUCT_CATEGORIES ON PRODUCT.Product_ID = PRODUCT_CATEGORIES.Product_Product_ID");
 	}
-
-//	public List<Product> searchFromCatalog(String searchProduct, Category category, Platform platform){
-//		StringBuilder queryString = new StringBuilder("SELECT p FROM Product AS p");
-//		if(searchProduct!=null || category.getCategoryId()!=null || platform.getPlatformId()!=null){
-//			queryString.append(" WHERE 1");
-//		}
-//		if(searchProduct!=null){
-//			queryString.append(" AND p.productName LIKE '" + searchProduct + "'");
-//		}
-//		if(category.getCategoryId()!=null){
-//			queryString.append(" AND " + category + " MEMBER OF p.categorySet");
-//		}
-//		if(platform.getPlatformId()!=null){
-//			queryString.append(" AND " + platform + " MEMBER OF p.platformSet");
-//		}
-//		TypedQuery<Product> query = getDbConnection().createQuery(queryString.toString(), Product.class);
-//		return query.getResultList();
-//	}
+	if(platformId!=null){
+		queryString.append(" JOIN PRODUCT_PLATFORM ON PRODUCT.Product_ID = PRODUCT_PLATFORM.Product_Product_ID");
+	}
+	if(searchProduct!=null || categoryId!=null || platformId!=null){
+		queryString.append(" WHERE 1=1");
+	}
+	if(searchProduct!=null){
+		queryString.append(" AND Product_Name LIKE '%" + searchProduct + "%'");
+	}
+	if(categoryId!=null){
+		queryString.append(" AND PRODUCT_CATEGORIES.categorySet_Category_ID = " + categoryId);
+	}
+	if(platformId!=null){
+		queryString.append(" AND PRODUCT_PLATFORM.platformSet_Platform_ID = " + platformId);
+	}
+	Query query = getDbConnection().createNativeQuery(queryString.toString(), Product.class);
+	return (List<Product>) query.getResultList();
+	}
 }

@@ -1,15 +1,13 @@
 package org.altar.upacademy.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.altar.upacademy.model.Category;
-import org.altar.upacademy.model.Platform;
-import org.altar.upacademy.repository.CategoryRepository;
-import org.altar.upacademy.repository.PlatformRepository;
+import org.altar.upacademy.model.Product;
 import org.altar.upacademy.repository.ProductRepository;
 
 @Named("ProductCatalogBean") 
@@ -28,7 +26,6 @@ public class ProductCatalogBean implements Serializable {
 	}
 	
 	public void setSearchProduct(String searchProduct) {
-		System.out.println(searchProduct);
 		this.searchProduct = searchProduct;
 	}
 
@@ -37,7 +34,6 @@ public class ProductCatalogBean implements Serializable {
 	}
 
 	public void setSearchCategory(Integer searchCategory) {
-		System.out.println(searchCategory);
 		this.searchCategory = searchCategory;
 	}
 
@@ -46,26 +42,17 @@ public class ProductCatalogBean implements Serializable {
 	}
 
 	public void setSearchPlatform(Integer searchPlatform) {
-		System.out.println(searchPlatform);
 		this.searchPlatform = searchPlatform;
 	}
 
 	@Inject
 	private ProductRepository productRepository;
 	
-	public void searchBar(){
-		productRepository.searchFromCatalog(searchProduct, searchCategory, searchPlatform);
+	public List<Product> searchBar(){
+		return productRepository.searchFromCatalog(searchProduct, searchCategory, searchPlatform);
 	}
 	
-	@Inject
-	private CategoryRepository categoryRepository;
-	
-	@Inject
-	private PlatformRepository platformRepository;
-	
-//	public void searchBar(){
-//		Category category = (Category) categoryRepository.readFromDb(searchCategory);
-//		Platform platform = (Platform) platformRepository.readFromDb(searchPlatform);
-//		productRepository.searchFromCatalog(searchProduct, category, platform);
-//	}
+	public String submitSearch(){
+		return "success";
+	}
 }

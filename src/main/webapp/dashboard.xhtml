@@ -19,7 +19,7 @@
 	<div class="header">
 		<div class="header-top">
 			<div class="container">
-				<h:form >
+				<h:form onsubmit="productCatalog.xhtml">
 					<div class="search1">
 						<div class="searchTitle">
 							<p:inputText id="Title" value="#{ProductCatalogBean.searchProduct}" required="true" label="Text 1"
@@ -46,12 +46,7 @@
 							</div>
 						</div>
 					</div>
-					<p:commandButton icon="ui-icon-search" update="errors" action="productCatalog?faces-redirect=true">
-					<f:param name="productName" value="#{ProductCatalogBean.searchProduct}"/>
-					<f:param name="categoryId" value="#{ProductCatalogBean.searchCategory}"/>
-					<f:param name="platformId" value="#{ProductCatalogBean.searchPlatform}"/>
-					
-					</p:commandButton>
+					<p:commandButton icon="ui-icon-search" update="errors" action="#{ProductCatalogBean.submitSearch}"/>
 				</h:form>
 				<div class="header-left">
 					<ul>
