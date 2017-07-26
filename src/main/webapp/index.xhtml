@@ -61,7 +61,7 @@
 				value="#{PlatformBean.newPlatform.platformName}" />
 				<p:outputLabel value="Imagem:" for="addPlatformImageName" />
 			<p:inputText id="addPlatformImageName" placeholder="Insert Platform Image"
-				value="#{PlatformBean.newPlatform.platformImageName}" />
+				value="#{PlatformBean.newPlatform.platformImageName}" required="true" />
 			<p:commandButton value="Adicionar"
 				update=":PlatformTable:PlatformList, AddProductSection, EditProductSection"
 				action="#{PlatformBean.checkPlatformName()}" />
@@ -77,7 +77,7 @@
 				value="#{PlatformBean.editedPlatform.platformName}" />
 						<p:outputLabel value="Imagem:" for="editPlatformImageName" />
 			<p:inputText id="editPlatformImageName" placeholder="Insert Platform Image"
-				value="#{PlatformBean.editedPlatform.platformImageName}" />
+				value="#{PlatformBean.editedPlatform.platformImageName}" required="true"/>
 			<p:commandButton value="Editar"
 				update=":PlatformTable:PlatformList, AddProductSection, EditProductSection"
 				action="#{PlatformBean.editPlatform()}" />
@@ -195,7 +195,12 @@
 						
 						<p:outputLabel value="Imagem:" for="addProductImageName" />
 			<p:inputText id="addProductImageName" placeholder="Insert Product Image"
-				value="#{ProductBean.newProduct.productImageName}" />
+				value="#{ProductBean.newProduct.productImageName}" required="true"/>
+				
+				<p:outputLabel value="Vídeo" for="addProductVideoUrl" />
+					<p:inputText id="addProductVideoUrl"
+						value="#{ProductBean.newProduct.productVideoUrl}"
+						placeholder="Insert Product Video url" required="true"/>
 
 
 					<p:outputLabel for="addYear" value="Year:" />
