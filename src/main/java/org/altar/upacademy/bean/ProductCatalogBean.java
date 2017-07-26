@@ -7,12 +7,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.altar.upacademy.model.Category;
-import org.altar.upacademy.model.Platform;
 import org.altar.upacademy.model.Product;
-import org.altar.upacademy.model.Category;
-import org.altar.upacademy.repository.CategoryRepository;
-import org.altar.upacademy.repository.PlatformRepository;
 import org.altar.upacademy.repository.ProductRepository;
 
 @Named("ProductCatalogBean") 
@@ -25,36 +20,39 @@ public class ProductCatalogBean implements Serializable {
 	private Integer searchCategory = null;
 	private Integer searchPlatform = null;
 	
-	public void searchBar(){
-		
 	
-// os getters e os setters das variaveis??
+	public String getSearchProduct() {
+		return searchProduct;
+	}
+	
+	public void setSearchProduct(String searchProduct) {
+		this.searchProduct = searchProduct;
+	}
 
-//	@Inject
-//	private ProductRepository productRepository;
-//	
-//	public List<Product> getProductList() {
-//		return productRepository.getDbProduct();
-//	}
-//	
-//	@Inject
-//	private CategoryRepository categoryRepository;
-//	
-//	public List<Category> getCategoryList() {
-//		return categoryRepository.getDbCategories();
-//	}
-//	
-//	@Inject
-//	private PlatformRepository platformRepository;
-//	
-//	public List<Platform> getPlatformList() {
-//		return platformRepository.getDbPlatforms();
-//	}
+	public Integer getSearchCategory() {
+		return searchCategory;
+	}
+
+	public void setSearchCategory(Integer searchCategory) {
+		this.searchCategory = searchCategory;
+	}
+
+	public Integer getSearchPlatform() {
+		return searchPlatform;
+	}
+
+	public void setSearchPlatform(Integer searchPlatform) {
+		this.searchPlatform = searchPlatform;
+	}
+
+	@Inject
+	private ProductRepository productRepository;
 	
+	public List<Product> searchBar(){
+		return productRepository.searchFromCatalog(searchProduct, searchCategory, searchPlatform);
+	}
 	
-//	public Product searchProduct(){
-//		return productRepository.searchFromCatalog();
-//	}
-	
+	public String submitSearch(){
+		return "success";
 	}
 }
