@@ -28,7 +28,7 @@ public class Login extends Entity implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Login_Id")
-	private Integer loginId = 0;
+	private Integer loginId;
 	@Column(name = "Username")
 	private String username;
 	@Column(name= "Password")

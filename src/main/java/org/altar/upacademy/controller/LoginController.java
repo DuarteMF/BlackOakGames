@@ -6,6 +6,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 
 import org.altar.upacademy.query.DataQuery;
 import org.primefaces.context.RequestContext;
@@ -19,11 +20,12 @@ public class LoginController implements Serializable{
 	
 	private String username = null;
 	private String password = null;
+	@Inject
 	private DataQuery query = new DataQuery();
 	
 	public String loginControl(){
 		if(query.loginControl(username, password)){
-			return "dashboard.xhtml?faces-redirect=true";
+			return "dashboard.xhtml";
 		}
 		RequestContext.getCurrentInstance().update("growl");
 		FacesContext context = FacesContext.getCurrentInstance();

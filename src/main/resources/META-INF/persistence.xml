@@ -13,6 +13,7 @@
 		<class>org.altar.upacademy.model.Category</class>
 		<class>org.altar.upacademy.model.Product</class>
 		<class>org.altar.upacademy.model.ProductUnit</class>
+		<class>org.altar.upacademy.model.Login</class>
 		<properties>
 			<property name="javax.persistence.schema-generation.database.action"
 				value="drop-and-create" />
