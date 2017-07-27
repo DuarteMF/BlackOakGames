@@ -20,6 +20,8 @@ public class LoginController implements Serializable{
 	
 	private String username = null;
 	private String password = null;
+	
+	
 	@Inject
 	private DataQuery query = new DataQuery();
 	

@@ -29,9 +29,9 @@ public class Login extends Entity implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Login_Id")
 	private Integer loginId;
-	@Column(name = "Username")
+	@Column(name = "Username", columnDefinition = "VARCHAR(250) COLLATE latin1_general_cs")
 	private String username;
-	@Column(name= "Password")
+	@Column(name= "Password", columnDefinition = "VARCHAR(250) COLLATE latin1_general_cs")
 	private String password;
 	
 	

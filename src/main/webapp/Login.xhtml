@@ -14,6 +14,26 @@
 <h:body>
 	<p:growl id="growl" sticky="true" showDetail="true"/>
 	
+	<h:form id="AddAccountSection">
+		<p:growl id="platformAddMsgs" showDetail="true" />
+		<h:panelGrid columns="2" cellpadding="5">
+		
+			<h:outputLabel value="Username:" for="addUserName" />
+			<h:inputText id="addUserName"
+				value="#{LoginBean.newAccount.username}"
+				placeholder="Insert UserName" />
+				
+			<h:outputLabel value="Password:" for="addPassword" />
+			<h:inputSecret  id="addPassWord"
+				value="#{LoginBean.newAccount.password}"
+				placeholder="Insert Password" />
+			
+			<p:commandButton value="Submit"
+				action="#{LoginBean.addAccount()}">
+			</p:commandButton>
+		</h:panelGrid>
+	</h:form>
+	
 	
 	<h:form>
 		<p:panelGrid columns="2" style="position: absolute; top:250px; left:500px">
