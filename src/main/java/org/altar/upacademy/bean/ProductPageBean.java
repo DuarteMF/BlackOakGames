@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -14,9 +13,13 @@ import org.altar.upacademy.model.Product;
 import org.altar.upacademy.model.ProductUnit;
 import org.altar.upacademy.repository.ProductRepository;
 import org.altar.upacademy.repository.ProductUnitRepository;
+import org.omnifaces.cdi.ViewScoped;
+//import org.apache.myfaces.extensions.cdi.core.api.scope.conversation.ViewAccessScoped;
 
 @Named("ProductPageBean")
-@RequestScoped
+//@RequestScoped
+@ViewScoped
+//@ViewAccessScoped
 public class ProductPageBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -28,6 +31,7 @@ public class ProductPageBean implements Serializable {
 	}
 
 	public void setProductId(Integer productId) {
+		System.out.println("Id = " + productId);
 		this.productId = productId;
 	}
 	
