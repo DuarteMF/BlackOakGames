@@ -43,6 +43,7 @@ public class ProductPageBean implements Serializable {
 	}
 	
 	public void setProduct(){
+		System.out.println("testing " + productId);
 		this.product = productRepository.getProductFromId(productId);
 	}
 	
