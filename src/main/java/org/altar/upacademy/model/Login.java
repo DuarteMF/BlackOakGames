@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "LOGIN")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Login.controll", query = "SELECT l FROM Login l WHERE l.username = :username and l.password = :password"),
+	@NamedQuery(name = "Login.control", query = "SELECT l FROM Login l WHERE l.username = :username and l.password = :password"),
 	@NamedQuery(name = "Login.findAll", query = "SELECT l FROM Login l"),
 	@NamedQuery(name = "Login.findById", query = "SELECT l FROM Login l WHERE l.loginId = :loginId"),
 	@NamedQuery(name = "Login.findByUsername", query ="SELECT l FROM Login l WHERE l.username = :username"),
@@ -30,9 +30,9 @@ public class Login extends Entity implements Serializable{
 	@Column(name = "Login_Id")
 	private Integer loginId = 0;
 	@Column(name = "Username")
-	private String username = null;
+	private String username;
 	@Column(name= "Password")
-	private String password = null;
+	private String password;
 	
 	
 	public Integer getLoginId() {
