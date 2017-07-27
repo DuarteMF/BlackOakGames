@@ -155,9 +155,7 @@
 			<p:column headerText="Rental Price (€ per week)">
 				<h:outputText value="#{product.rentalPrice}" />
 			</p:column>
-			<p:column headerText="Availability">
-				<h:outputText value="#{product.availability}" />
-			</p:column>
+			
 			<p:column headerText="Opções">
 				<p:commandButton update=":EditProductSection, :errorMsgs"
 					icon="ui-icon-pencil" title="Edit">
@@ -223,12 +221,6 @@
 						converterMessage="Cannot convert to double.">
 						<f:validateDoubleRange minimum="1.0" maximum="35.0" />
 					</p:inputText>
-
-
-					<p:outputLabel for="addAvailability" value="Availability 0-99:" />
-					<p:spinner min="0" max="99" id="addAvailability"
-						value="#{ProductBean.newProduct.availability}" placeholder="00-99">
-					</p:spinner>
 
 					<p:outputLabel value="Details:" for="addDetails" />
 					<p:inputTextarea maxlength="1000" cols="22" counter="display"
@@ -301,12 +293,6 @@
 						converterMessage="Cannot convert to double.">
 						<f:validateDoubleRange minimum="1.0" maximum="35.0" />
 					</p:inputText>
-
-					<p:outputLabel for="editAvailability" value="Availability 0-99:" />
-					<p:spinner min="0" max="99" id="editAvailability"
-						value="#{ProductBean.editedProduct.availability}"
-						placeholder="00-99">
-					</p:spinner>
 
 					<p:outputLabel value="Details:" for="editDetails" />
 					<p:inputTextarea maxlength="1000" cols="22" counter="display"

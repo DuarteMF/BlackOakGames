@@ -89,10 +89,6 @@
 			<p:column headerText="Preço" update=":form" sortBy="#{product.rentalPrice}">
 				<h:outputText value="#{product.rentalPrice} €" />
 			</p:column>
-			<p:column headerText="Disponibilidade" update=":form"
-				sortBy="#{product.availability}">
-				<h:outputText value="#{product.availability} und" />
-			</p:column>
 			<p:column>
 			<h:button value="Ver mais" outcome="productPage">
 			<f:param name="productId" value="#{product.productId}"/>

@@ -87,9 +87,11 @@
 			</div>
 
 			<div class="col-xs-6 col-sm-3 c">
-				<h5 id="a3">Available:</h5>
-				<h:outputText value="#{ProductPageBean.product.availability}"
-					id="productAvaliability"></h:outputText>
+				<h5 id="a3">Quantities:</h5>
+				<p:dataList value="#{ProductPageBean.availability()}"
+						var="quantity" type="definition">
+						    #{quantity}
+						    </p:dataList>
 			</div>
 
 			<div class="col-xs-6 col-sm-3 c">
@@ -106,9 +108,9 @@
 
 						<p:selectOneRadio id="platforms"
 							value="#{ShoppingCartBean.productUnitPlatformId}"
-							layout="responsive" columns="2"
+							layout="responsive" columns="1"
 							converter="omnifaces.SelectItemsConverter">
-							<f:selectItems value="#{ProductPageBean.product.platformSet}"
+							<f:selectItems value="#{ProductPageBean.availablePlatforms()}"
 								var="platform" itemLabel="#{platform.platformName}"
 								itemValue="#{platform.platformId}" />
 						</p:selectOneRadio>

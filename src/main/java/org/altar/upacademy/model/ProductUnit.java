@@ -2,6 +2,7 @@ package org.altar.upacademy.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,6 +24,9 @@ public class ProductUnit extends Entity implements Serializable {
 	
 	@ManyToOne
 	private Platform productPlatform;
+	
+	@Column(name = "Available")
+	private boolean available = true;
 
 	public Integer getProductUnitId() {
 		return productUnitId;
@@ -46,6 +50,14 @@ public class ProductUnit extends Entity implements Serializable {
 
 	public void setProductPlatform(Platform productPlatform) {
 		this.productPlatform = productPlatform;
+	}
+
+	public boolean isAvailable() {
+		return available;
+	}
+
+	public void setAvailable(boolean available) {
+		this.available = available;
 	}
 
 	@Override

@@ -42,9 +42,9 @@ public class Product extends Entity implements Serializable {
 	@DecimalMax(value= "35.00", message = "Should not exceed 35.00€")
 	@Column(name="Rental_Price")
 	private Double rentalPrice = null;
-	@Max(99)
-	@Column(name="Availability")
-	private Integer availability = null;
+//	@Max(99)
+//	@Column(name="Availability")
+//	private Integer availability = null;
 	@Column(name="Product_Image")
 	private String productImageName = null;
 	@Column(name="Product_Video")
@@ -86,12 +86,12 @@ public class Product extends Entity implements Serializable {
 	public void setRentalPrice(Double rentalPrice) {
 		this.rentalPrice = rentalPrice;
 	}
-	public Integer getAvailability() {
-		return availability;
-	}
-	public void setAvailability(Integer availability) {
-		this.availability = availability;
-	}
+//	public Integer getAvailability() {
+//		return availability;
+//	}
+//	public void setAvailability(Integer availability) {
+//		this.availability = availability;
+//	}
 	
 	public String getProductImageName() {
 		return productImageName;

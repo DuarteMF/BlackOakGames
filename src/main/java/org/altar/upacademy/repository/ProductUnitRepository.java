@@ -33,9 +33,16 @@ public class ProductUnitRepository extends EntityRepository<ProductUnit> {
 	}
 	
 	public ProductUnit getAvaliableProductUnitFromProductIdAndPlatform(Integer productId, Integer platformId){
-		Query query = getDbConnection().createNativeQuery("SELECT * FROM PRODUCT_UNITS WHERE product_Product_ID = :productId AND productPlatform_Platform_ID = :platformId", ProductUnit.class);
+		Query query = getDbConnection().createNativeQuery("SELECT * FROM PRODUCT_UNITS WHERE product_Product_ID = :productId AND productPlatform_Platform_ID = :platformId AND Available = 1", ProductUnit.class);
 		query.setParameter("productId", productId);
 		query.setParameter("platformId", platformId);
 		return (ProductUnit) query.getResultList().get(0);
+	}
+	
+	public List<ProductUnit> getAvaliableProductUnitsFromProductIdAndPlatform(Integer productId, Integer platformId){
+		Query query = getDbConnection().createNativeQuery("SELECT * FROM PRODUCT_UNITS WHERE product_Product_ID = :productId AND productPlatform_Platform_ID = :platformId AND Available = 1", ProductUnit.class);
+		query.setParameter("productId", productId);
+		query.setParameter("platformId", platformId);
+		return (List<ProductUnit>) query.getResultList();
 	}
 }
