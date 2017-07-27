@@ -8,120 +8,127 @@
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
 	
 
 </h:head>
 <h:body>
-	<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
-	<h:outputStylesheet library="css" name="memenu.css"></h:outputStylesheet>
-	<h:outputStylesheet library="css" name="productPage.css"></h:outputStylesheet>
-	
 
-	<header>
-	</header>
-	<f:metadata>
-		<f:viewParam name="productId" value="#{ProductPageBean.productId}"/>
-	</f:metadata>
-	<h:inputHidden value="#{ProductPageBean.productId}" />
-		<div class="container">
-			<div class="row">
-				<div class="title">
-					<h1 id="titleProduct">
-						<h:outputText value="#{ProductPageBean.product.productName}" ></h:outputText>
-					</h1>
-					
-					<h4 id="titlePublisher">
-						<h:outputText value="Publisher: #{ProductPageBean.product.publisher}"></h:outputText>
-					</h4>
-				</div>
-			</div>
-		</div>
 	
-	
-		<div class="container">
-			<div class="row imagevideo ">
-					
-				<div class="flexbox">
-					<div class="container-fluid">
-						<p:graphicImage library="images" name="#{ProductPageBean.product.productImageName}" 
-						id="imageGame" class="img-responsive"/>
-					</div>
-					
-					<div class="container-fluid">
-						<iframe class="embed-responsive-item" width="470" height="315" src="#{ProductPageBean.product.productVideoUrl}"
-								id="video" allowfullscreen="allowfullscreen">
-						</iframe>
-					</div>
-				</div>
-			</div>
-		</div>
+	<ui:composition template="commonLayout.xhtml">
+		<ui:define name="content">
 		
-		<div class="container description w3-container w3-hide-small ">
-			<div class="row">
-				<h:form id="formDescription">
-					<h4 id="description">Description</h4>
-					<p:separator></p:separator>
-					<div class="text">
-						<h:outputText
-								value="#{ProductPageBean.product.details}"
-								id="detailsText" escape="false"  />
-					</div>
-				</h:form>
-			</div>	
-		</div>
+			<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
+			<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+			<h:outputStylesheet library="css" name="memenu.css"></h:outputStylesheet>
+			<h:outputStylesheet library="css" name="mystyle.css"></h:outputStylesheet>
+			<h:outputStylesheet library="css" name="productPage.css"></h:outputStylesheet>
 	
-		<div class="container columns w3-container w3-hide-small">
-			<div class="row">
-				<h:form id="formDetails">
-					<h4 id="details">Product Details</h4>
-					<p:separator></p:separator>
-					
-					<div class="col-xs-5 col-sm-4 a">
-						<h5 id="a1">Available for:</h5>
-						<p:outputLabel for="platforms" id="availableFor" />
-						
-						<p:selectOneRadio id="platforms" value="" layout="responsive"
-							columns="2">
+			<f:metadata>
+				<f:viewParam name="productId" value="#{ProductPageBean.productId}"/>
+			</f:metadata>
+			
+			<h:inputHidden value="#{ProductPageBean.productId}" />
+				<br/>
+				<br/>
+				<div class="container">
+					<div class="row">
+						<div class="title">
+							<h1 id="titleProduct">
+								<h:outputText value="#{ProductPageBean.product.productName}" ></h:outputText>
+							</h1>
 							
-							<f:selectItems value="#{ProductPageBean.product.platformSet}" var="platform"
-								itemLabel="#{platform.platformName}" itemValue="#{platform}">
-								
-								</f:selectItems>
-						</p:selectOneRadio>
-						
-					
-					</div>
-					
-					<div class="col-xs-7 col-sm-2 b" >
-						<h5 id="a2">Categories:</h5>
-						
-						<div id="catList">
-						    <p:dataList value="#{ProductPageBean.product.categorySet}" var="cat" type="definition">
-						    #{cat.categoryName}
-						    </p:dataList>
-						</div> 
-					</div>
-	
-					<div class="col-xs-6 col-sm-3 c">
-					
-						<h5 id="a3">Available:</h5>
-						<h:outputText value="#{ProductPageBean.product.availability}" id="productAvaliability"></h:outputText>
-					</div>
-	
-					<div class="col-xs-6 col-sm-3 d">
-						<h5 id="a4">Price:</h5>
-						<h:outputText value="#{ProductPageBean.product.rentalPrice}" id="productPrice"></h:outputText>
-					
-						<div id="addButton">
-							<p:commandButton value="Add to cart" id="addToCart" actionListener="#" 
-											update="" icon="ui-icon-cart" class="btn btn-warning w3-button w3-mobile" />
+							<h4 id="titlePublisher">
+								<h:outputText value="Publisher: #{ProductPageBean.product.publisher}"></h:outputText>
+							</h4>
 						</div>
 					</div>
-				</h:form>	
-			</div>
-		</div>
+				</div>
+			
+			
+				<div class="container">
+					<div class="row imagevideo ">
+							
+						<div class="flexbox">
+							<div class="container-fluid">
+								<p:graphicImage library="images" name="#{ProductPageBean.product.productImageName}" 
+								id="imageGame" class="img-responsive"/>
+							</div>
+							
+							<div class="container-fluid">
+								<iframe class="embed-responsive-item" width="470" height="315" src="#{ProductPageBean.product.productVideoUrl}"
+										id="video" allowfullscreen="allowfullscreen">
+								</iframe>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="container description w3-container w3-hide-small ">
+					<div class="row">
+						<h:form id="formDescription">
+							<h4 id="description">Description</h4>
+							<p:separator></p:separator>
+							<div class="text">
+								<h:outputText
+										value="#{ProductPageBean.product.details}"
+										id="detailsText" escape="false"  />
+							</div>
+						</h:form>
+					</div>	
+				</div>
+			
+				<div class="container columns w3-container w3-hide-small">
+					<div class="row">
+						<h:form id="formDetails">
+							<h4 id="details">Product Details</h4>
+							<p:separator></p:separator>
+							
+							<div class="col-xs-5 col-sm-4 a">
+								<h5 id="a1">Available for:</h5>
+								<p:outputLabel for="platforms" id="availableFor" />
+								<h:panelGrid columns="2"> 
+								<p:selectOneRadio id="platforms" value="" layout="responsive"
+									columns="2">
+									
+									<f:selectItems value="#{ProductPageBean.product.platformSet}" var="platform"
+										itemLabel="#{platform.platformName}" itemValue="#{platform}"/>>
+								</p:selectOneRadio>
+								<h:panelGrid columns="1">
+								<h:graphicImage library = "images" name = "#{platform.platformImageName}"/>
+								</h:panelGrid>
+								</h:panelGrid> 
+							</div>
+							
+							<div class="col-xs-7 col-sm-2 b" >
+								<h5 id="a2">Categories:</h5>
+								
+								<div id="catList">
+								    <p:dataList value="#{ProductPageBean.product.categorySet}" var="cat" type="definition">
+								    #{cat.categoryName}
+								    </p:dataList>
+								</div> 
+							</div>
+			
+							<div class="col-xs-6 col-sm-3 c">
+							
+								<h5 id="a3">Available:</h5>
+								<h:outputText value="#{ProductPageBean.product.availability}" id="productAvaliability"></h:outputText>
+							</div>
+			
+							<div class="col-xs-6 col-sm-3 d">
+								<h5 id="a4">Price:</h5>
+								<h:outputText value="#{ProductPageBean.product.rentalPrice}" id="productPrice"></h:outputText>
+							
+								<div id="addButton">
+									<p:commandButton value="Add to cart" id="addToCart" actionListener="#" 
+													update="" icon="ui-icon-cart" class="btn btn-warning w3-button w3-mobile" />
+								</div>
+							</div>
+						</h:form>	
+					</div>
+				</div>
 
-
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

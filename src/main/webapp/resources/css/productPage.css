@@ -14,7 +14,8 @@
 }
 
 .title{
-	padding-left:5%;
+	padding-left:2%;
+	
 }
 
 
@@ -58,8 +59,8 @@
 
 #formDescription, #formDetails{
 
-	padding-left:5%;
-	padding-right:5%; 
+	padding-left:2%;
+	padding-right:5%;  
 } 
 
 #description{

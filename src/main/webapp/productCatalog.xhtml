@@ -17,95 +17,100 @@
 	<link rel="stylesheet"
 		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
 
-
 </h:head>
+
 <h:body>
-	<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
-	<h:outputStylesheet library="css" name="memenu.css"></h:outputStylesheet>
-	<h:outputStylesheet library="css" name="productcatalog.css"></h:outputStylesheet>
-	<f:metadata>
-		<f:viewParam name="productName" value="#{ProductCatalogBean.searchProduct}"/>
-		<f:viewParam name="categoryId" value="#{ProductCatalogBean.searchCategory}"/>
-		<f:viewParam name="platformId" value="#{ProductCatalogBean.searchPlatform}"/>
-	</f:metadata>
-	
-	<header>
-		<h1>Black Oak Games - Product Catalog</h1>
-	</header>
-	<h:form id="form" >
+	<ui:composition template="commonLayout.xhtml">
+		<ui:define name="content">
+		
+			<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
+			<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+			<h:outputStylesheet library="css" name="memenu.css"></h:outputStylesheet>
+			<h:outputStylesheet library="css" name="mystyle.css"></h:outputStylesheet>
+			<h:outputStylesheet library="css" name="productcatalog.css"></h:outputStylesheet>
+		
+			<f:metadata>
+				<f:viewParam name="productName" value="#{ProductCatalogBean.searchProduct}"/>
+				<f:viewParam name="categoryId" value="#{ProductCatalogBean.searchCategory}"/>
+				<f:viewParam name="platformId" value="#{ProductCatalogBean.searchPlatform}"/>
+			</f:metadata>
+			
+			<header>
+				<h1>Product Catalog</h1>
+			</header>
+			
+			<h:form id="form" >
+		
+				<p:dataTable var="product" value="#{ProductCatalogBean.searchBar()}" 
+					style="margin-bottom:40px" paginator="true" id="ProductList" rows="5"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15" widgetVar="productTable">
+		
+					<f:facet name="header">
+		            Videogames for rent
+		        </f:facet>
+					<p:column headerText="Image" update=":form"> 
+						<p:graphicImage library="images" name="#{product.productImageName}"
+							style="width:30%; text-align: center" />
+					</p:column>
+					<p:column filterBy="#{product.productName}"
+						filterMatchMode="contains" headerText="Name" update=":form" actionListener="#{product.productName}"
+						sortBy="#{product.productName}">
+						<h:outputText value="#{product.productName}" />
+					</p:column>
+		
+					<p:column filterBy="#{product.categorySet}" filterMatchMode="in"
+						headerText="Categories" update=":form" sortBy="#{product.categorySet}">
+						<f:facet name="filter">
+							<p:selectCheckboxMenu label="Choose" 
+								onchange="PF('productTable').filter()" panelStyle="width:125px"
+								scrollHeight="150" converter="omnifaces.SelectItemsConverter">
+								<f:selectItems value="#{CategoryBean.getList()}" var="category"
+									itemLabel="#{category.categoryName}"
+									itemValue="#{category.categoryName}" />
+							</p:selectCheckboxMenu>
+						</f:facet>
+						<h:outputText value="#{product.categorySet}" />
+					</p:column>
+		
+		
+		
+					<p:column filterBy="#{product.platformSet}" update=":form" filterMatchMode="in"
+						headerText="Plataforms" sortBy="#{product.platformSet}">
+						<f:facet name="filter">
+							<p:selectCheckboxMenu label="Choose"
+								onchange="PF('productTable').filter()" panelStyle="width:125px"
+								scrollHeight="150" converter="omnifaces.SelectItemsConverter">
+								<f:selectItems value="#{PlatformBean.getList()}" var="platform"
+									itemLabel="#{platform.platformName}"
+									itemValue="#{platform.platformName}" />
+							</p:selectCheckboxMenu>
+						</f:facet>
+						<h:outputText value="#{product.platformSet}" />
+					</p:column>
+		
+					<p:column headerText="Year" update=":form" sortBy="#{product.year}">
+						<h:outputText value="#{product.year}" />
+					</p:column>
+		
+					<p:column headerText="Rental Price" update=":form" sortBy="#{product.rentalPrice}">
+						<h:outputText value="#{product.rentalPrice} €" />
+					</p:column>
+					<p:column headerText="Availability" update=":form"
+						sortBy="#{product.availability}">
+						<h:outputText value="#{product.availability} und" />
+					</p:column>
+					<p:column>
+					<h:button value="See more" outcome="productPage">
+					<f:param name="productId" value="#{product.productId}"/>
+					</h:button>
+					 
+					</p:column>
+				</p:dataTable>
+		
+			</h:form>
 
-		<p:dataTable var="product" value="#{ProductCatalogBean.searchBar()}" 
-			style="margin-bottom:40px" paginator="true" id="ProductList" rows="5"
-			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-			rowsPerPageTemplate="5,10,15" widgetVar="productTable">
-
-			<f:facet name="header">
-            Videogames for rent
-        </f:facet>
-			<p:column headerText="Capa" update=":form"> 
-				<p:graphicImage library="images" name="#{product.productImageName}"
-					style="width:30%; text-align: center" />
-			</p:column>
-			<p:column filterBy="#{product.productName}"
-				filterMatchMode="contains" headerText="Nome" update=":form" actionListener="#{product.productName}"
-				sortBy="#{product.productName}">
-				<h:outputText value="#{product.productName}" />
-			</p:column>
-
-			<p:column filterBy="#{product.categorySet}" filterMatchMode="in"
-				headerText="Categorias" update=":form" sortBy="#{product.categorySet}">
-				<f:facet name="filter">
-					<p:selectCheckboxMenu label="Escolha" 
-						onchange="PF('productTable').filter()" panelStyle="width:125px"
-						scrollHeight="150" converter="omnifaces.SelectItemsConverter">
-						<f:selectItems value="#{CategoryBean.getList()}" var="category"
-							itemLabel="#{category.categoryName}"
-							itemValue="#{category.categoryName}" />
-					</p:selectCheckboxMenu>
-				</f:facet>
-				<h:outputText value="#{product.categorySet}" />
-			</p:column>
-
-
-
-			<p:column filterBy="#{product.platformSet}" update=":form" filterMatchMode="in"
-				headerText="Plataformas" sortBy="#{product.platformSet}">
-				<f:facet name="filter">
-					<p:selectCheckboxMenu label="Escolha"
-						onchange="PF('productTable').filter()" panelStyle="width:125px"
-						scrollHeight="150" converter="omnifaces.SelectItemsConverter">
-						<f:selectItems value="#{PlatformBean.getList()}" var="platform"
-							itemLabel="#{platform.platformName}"
-							itemValue="#{platform.platformName}" />
-					</p:selectCheckboxMenu>
-				</f:facet>
-				<h:outputText value="#{product.platformSet}" />
-			</p:column>
-
-			<p:column headerText="Ano" update=":form" sortBy="#{product.year}">
-				<h:outputText value="#{product.year}" />
-			</p:column>
-
-			<p:column headerText="Preço" update=":form" sortBy="#{product.rentalPrice}">
-				<h:outputText value="#{product.rentalPrice} €" />
-			</p:column>
-			<p:column headerText="Disponibilidade" update=":form"
-				sortBy="#{product.availability}">
-				<h:outputText value="#{product.availability} und" />
-			</p:column>
-			<p:column>
-			<h:button value="Ver mais" outcome="productPage">
-			<f:param name="productId" value="#{product.productId}"/>
-			</h:button>
-			 
-			</p:column>
-		</p:dataTable>
-
-	</h:form>
-
-
+		</ui:define>
+	</ui:composition>
 </h:body>
-<footer>
-	<p>@2017</p>
-</footer>
 </html>
