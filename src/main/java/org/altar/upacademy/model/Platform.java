@@ -30,7 +30,8 @@ public class Platform extends Entity implements Serializable {
 		return platformImageName;
 	}
 
-	public void setPlatformImageName(String platformImageName) {
+	public void setPlatformImageName(String platformImageName){
+		System.out.println(platformImageName);
 		this.platformImageName = platformImageName;
 	}
 

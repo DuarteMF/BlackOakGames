@@ -80,17 +80,17 @@
 					<div class="col-xs-5 col-sm-4 a">
 						<h5 id="a1">Available for:</h5>
 						<p:outputLabel for="platforms" id="availableFor" />
-						<h:panelGrid columns="2"> 
+						
 						<p:selectOneRadio id="platforms" value="" layout="responsive"
 							columns="2">
 							
 							<f:selectItems value="#{ProductPageBean.product.platformSet}" var="platform"
-								itemLabel="#{platform.platformName}" itemValue="#{platform}"/>>
+								itemLabel="#{platform.platformName}" itemValue="#{platform}">
+								
+								</f:selectItems>
 						</p:selectOneRadio>
-						<h:panelGrid columns="1">
-						<h:graphicImage library = "images" name = "#{platform.platformImageName}"/>
-						</h:panelGrid>
-						</h:panelGrid> 
+						
+					
 					</div>
 					
 					<div class="col-xs-7 col-sm-2 b" >
