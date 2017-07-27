@@ -23,6 +23,7 @@
 	line-height:0.9;
 	text-align:center;
 }
+
 @media(max-width:1200px){
 	#gameTitle img{
 		display:none;
@@ -145,7 +146,7 @@
 
 .footer-class{
 	font-weight:normal !important;
-	font-size:10pt;
+	font-size:9pt;
 }
 
 
@@ -167,27 +168,33 @@
 }
 
 .ui-datatable thead th, .ui-datatable tbody td, .ui-datatable tfoot td, .ui-datatable tfoot th{
-	border-width: 0px;
+	border: 0px;
 	text-align: center;
+		
 }
-
-.tab-content .ui-widget-header{
-	border:1px solid #333333 !important;
+ 
+ .tab-content .ui-widget-header{
 	background: #333333 !important;
-	color: white;
+	color: white !important ;
 	box-shadow: none !important;
 	text-shadow: none !important;
-	font-weight:normal !important;
+	font-weight:bold !important;
+		
 	
+} 
+
+ .tab-content .ui-state-default{
+	
+	text-shadow: none !important;
+	background: none  !important;
+		
+} 
+
+ .ui-datatable{
+	 border:1px solid #333333;
+	 
 }
 
-.tab-content .ui-state-default{
-	border:1px solid #333333 !important;
-	background: #c7ccd6 !important;
-	color: white !important;
-	text-shadow: none !important;
-	
-}
 
 
 /* ------------------------------------ Product Page -------------------------------- */
@@ -197,17 +204,14 @@
 	display:flex;
 	justify-content:space-around;
 	flex-wrap:wrap;
-	
 }
 
 .flexbox > *{
 	/* flex-grow:1; */
-
 }
 
 .title{
 	padding-left:2%;
-	
 }
 
 
@@ -216,7 +220,6 @@
 	margin-bottom:20px;
 	/* margin-left:130px; */
 	font-style:oblique;
-	
 }
 
 #imageGame{
@@ -228,8 +231,6 @@
 	width:240px;
 	height:314px;
 	border-radius: 5px;
-	
-	
 } 
 
 #video{
@@ -238,19 +239,15 @@
 	border-color:transparent;
 	margin-bottom:5px;
 	max-width: 100%; 
-	
-	
 }
 
 
 #formDescription{
 	font-size:12pt;
 	margin-top:40px;
-	
 }
 
 #formDescription, #formDetails{
-
 	padding-left:2%;
 	padding-right:5%;  
 } 
@@ -260,7 +257,6 @@
 	text-wight:300;
 	margin-top:20px;
 	font-weight: bold;
-	
 }
 
 
@@ -272,8 +268,6 @@
 	display:block;
 	text-align: justify;
 	text-justify: inter-word;
-	
-	
 }
 
 .a, .b, .c, .d {
@@ -284,7 +278,6 @@
 	text-align:left;
 	margin-top:60px;
 	margin-bottom:100px;
-
 }
 
 #a1, #a2, #a3, #a4{
@@ -292,14 +285,11 @@
 }
 
 #availableFor, #respectiveCategory, #productAvaliability, #productPrice{
-
 	text-align:center;
-
 }
 
 #addButton{
 	margin-top:10px;
-	
 }
 
 #addToCart{
@@ -307,7 +297,6 @@
 	border-radius: 5px;
 	justify-content:space-around;
 	background-color:orange;
-	
 }
 
 h5{
