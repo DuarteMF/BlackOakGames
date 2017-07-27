@@ -17,12 +17,11 @@
 	<ui:composition template="commonLayout.xhtml">
 		<ui:define name="content">
 		
+			<h:outputStylesheet library="css" name="mystyle.css"></h:outputStylesheet>
 			<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
 			<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
 			<h:outputStylesheet library="css" name="memenu.css"></h:outputStylesheet>
-			<h:outputStylesheet library="css" name="mystyle.css"></h:outputStylesheet>
-			<h:outputStylesheet library="css" name="productPage.css"></h:outputStylesheet>
-	
+			
 			<f:metadata>
 				<f:viewParam name="productId" value="#{ProductPageBean.productId}"/>
 			</f:metadata>
