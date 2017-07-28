@@ -16,6 +16,7 @@
 			<div class="header">
 				<div class="header-top">
 					<div class="container">
+					
 						<h:form onsubmit="productCatalog.xhtml">
 							<div class="search1">
 								<div class="searchTitle">
@@ -24,6 +25,7 @@
 										<f:validateLength minimum="2" />
 									</p:inputText>
 								</div>
+								
 								<div class="searchCatPlat">
 									<div class="searchCat">
 										<p:selectOneMenu value="#{ProductCatalogBean.searchCategory}"
@@ -33,6 +35,7 @@
 											<f:selectItems value="#{ProductBean.existingCategories()}" var="category" itemLabel="#{category.categoryName}" itemValue="#{category.categoryId}"/>
 										</p:selectOneMenu>
 									</div>
+									
 									<div class="searchPlat">
 										<p:selectOneMenu value="#{ProductCatalogBean.searchPlatform}"
 											label="Platforms" rendered="#{not empty (ProductBean.existingPlatforms())}"
@@ -41,21 +44,36 @@
 											<f:selectItems value="#{ProductBean.existingPlatforms()}" var="platform" itemLabel="#{platform.platformName}" itemValue="#{platform.platformId}"/>
 										</p:selectOneMenu>
 									</div>
+									
 								</div>
 							</div>
+							
 							<p:commandButton icon="ui-icon-search" styleclass="iconSearch"  update="errors" action="#{ProductCatalogBean.submitSearch}"/>
+							
 						</h:form>
+						
 						<div class="header-left">
 							<ul>
 								<li class="active grid" style="display: inline;"><a
 									class="color8" href="index.xhtml">Login</a></li>
 								<li class="active grid" style="display: inline;"><a
 									class="color8" href="">Sign Up</a></li>
+								<li class="active grid" style="display: inline;"><a
+									class="color8" href="">
+									</a></li>
+										
+								<h:button class=" btn btn-link" value="Dashboard" outcome="dashboard" />
+								
+								<h:button class=" btn btn-link" value="Shopping cart" />
+								
 							</ul>
 						</div>
 					</div>
+					
 				</div>
+				
 				<div class="container"> 
+				
 					<div class="head-top">
 						<div id="gameTitle" class="logo">
 							<div class="row container-fluid">
@@ -64,6 +82,7 @@
 								<p class="col-xs-8">Black Oak Games</p>
 							</div>
 						</div>
+						
 						<div class="h_menu4">
 							<ul class="memenu skyblue">
 								<li class="active grid" style="display: inline;"><a
@@ -71,6 +90,7 @@
 							</ul>
 						</div>
 					</div>
+					
 				</div>
 			</div>
 
