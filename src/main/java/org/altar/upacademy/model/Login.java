@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -34,7 +35,16 @@ public class Login extends Entity implements Serializable{
 	@Column(name= "Password", columnDefinition = "VARCHAR(250) COLLATE latin1_general_cs")
 	private String password;
 	
+	@OneToOne
+	private Client client;
 	
+	
+	public Client getClient() {
+		return client;
+	}
+	public void setClient(Client client) {
+		this.client = client;
+	}
 	public Integer getLoginId() {
 		return loginId;
 	}

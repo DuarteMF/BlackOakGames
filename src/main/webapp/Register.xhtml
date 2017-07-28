@@ -16,13 +16,14 @@
 	<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
 	<h:outputStylesheet library="css" name="memenu.css"></h:outputStylesheet>
 	<h:outputStylesheet library="css" name="Login.css"></h:outputStylesheet>
+	
 	<p:growl id="growl" sticky="true" showDetail="true" />
 
 
 	<div class=" container">
 		<div class=" register">
 			<h1>Register</h1>
-			<form>
+			<h:form>
 				<div class="col-md-6 register-top-grid">
 					<h3>Personal information</h3>
 					<div>
@@ -55,30 +56,14 @@
 					<div>
 						<span>Confirm Password</span> <input type="password"/>
 					</div>
-					<p:commandButton class="RegisterButton" value="Register" action="#{LoginBean.addAccount()}"/>
+					<p:commandButton class="RegisterButton" value="Register" action="#{LoginBean.checkAccountName()}" update="growl">
+						
+					</p:commandButton>
 				</div>
 				<div class="clearfix"></div>
-			</form>
+			</h:form>
 		</div>
 	</div>
-	<h:form id="AddAccountSection">
-		<p:growl id="platformAddMsgs" showDetail="true" />
-		<h:panelGrid columns="2" cellpadding="5">
-
-			<h:outputLabel value="Username:" for="addUserName" />
-			<h:inputText id="addUserName"
-				value="#{LoginBean.newAccount.username}"
-				placeholder="Insert UserName" />
-
-			<h:outputLabel value="Password:" for="addPassword" />
-			<h:inputSecret id="addPassWord"
-				value="#{LoginBean.newAccount.password}"
-				placeholder="Insert Password" />
-
-			<p:commandButton value="Submit" action="#{LoginBean.addAccount()}">
-			</p:commandButton>
-		</h:panelGrid>
-	</h:form>
 
 </h:body>
 </html>

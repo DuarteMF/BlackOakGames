@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 
-.LoginButton, .RegisterButton{
+.LoginButton{
 	border-radius: 0px;
 	font-weight: normal;
 	outline:none; 
@@ -16,11 +16,37 @@
 	font-family:inherit;
 
 }
+
 .LoginButton span{
 	color:white;
 }
 
 .LoginButton:hover{
+	box-shadow:none;
+	background-color: black;
+}
+
+.RegisterButton{
+	border-radius: 0px;
+	font-weight: normal;
+	background: #EF5F21;
+    padding: 0.3em 1em;
+    color: #fff;
+    font-size: 1.2em;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    display: inline-block;
+    border: none;
+    outline: none;
+}
+
+.RegisterButton span{
+	color:white;
+}
+
+.RegisterButton:hover{
 	box-shadow:none;
 	background-color: black;
 }
