@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -54,22 +55,25 @@
 						
 						<div class="header-left">
 							<ul>
-								<li class="active grid" style="display: inline;"><a
-									class="color8" href="index.xhtml">Login</a></li>
-								<li class="active grid" style="display: inline;"><a
-									class="color8" href="">Sign Up</a></li>
-								<li class="active grid" style="display: inline;"><a
-									class="color8" href="">
-									</a></li>
-										
-								<h:button class=" btn btn-link" value="Dashboard" outcome="dashboard" />
+								<li class="active grid" style="display: inline;">
+									<h:button id="login" value="Login" outcome="index"/>
+								</li>
 								
-								<h:button class=" btn btn-link" value="Shopping cart" />
+								<li class="active grid" style="display: inline;">
+									<h:button id="signup" value="Sign Up" outcome="index"/>
+								</li>
 								
+								<li class="active grid" style="display: inline;">		
+									<h:button  id="dashboard" value="Dashboard" outcome="dashboard" />
+								</li>
+								
+								<li class="active grid" style="display: inline;">									
+									<h:button id="cart" image="/resources/images/cart1.png"  outcome="shoppingCart"/>
+								</li>
+							
 							</ul>
 						</div>
 					</div>
-					
 				</div>
 				
 				<div class="container"> 
@@ -93,7 +97,6 @@
 					
 				</div>
 			</div>
-
 	    </ui:composition>
     </body>
 </html>

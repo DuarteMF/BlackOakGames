@@ -109,8 +109,31 @@
 
 }
 
-.iconSearch{
-	
+/* Login, Sign Up, Dashboard and Shopping cart buttons */
+
+#dashboard, #login, #signup{
+	color:white;
+	background-color:transparent ;
+	border-style: hidden;
+	margin:0 2em 0 0;
+	font-family:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 16px;
+}
+
+#cart{
+	vertical-align: middle;
+	margin-bottom:5px;
+	height:20px;
+	width:auto;
+}
+
+#dashboard:hover, #login:hover, #signup:hover{
+	color: #EF5F21;
+	background-color:transparent;
+}
+
+.header-left ul li input[type=button]{
+	padding:0px;
 }
 
 /* Display of Categories and Platforms */
