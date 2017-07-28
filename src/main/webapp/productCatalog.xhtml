@@ -40,9 +40,10 @@
 			</header>
 			
 			<div class="container tab-content">
+			
 				<h:form id="form" >
 			
-					<p:dataTable var="product" value="#{ProductCatalogBean.searchBar()}" 
+					<p:dataTable  var="product" value="#{ProductCatalogBean.searchBar()}" 
 						style="margin-bottom:40px" paginator="true" id="ProductList" rows="5"
 						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 						rowsPerPageTemplate="5,10,15" widgetVar="productTable" styleClass="catalog">
@@ -51,11 +52,11 @@
 			            Videogames for rent
 			        	</f:facet>
 			        	
-						<p:column headerText="Image" update=":form"> 
+						<p:column headerText="Image" update=":form" > 
 							<p:graphicImage library="images" name="#{product.productImageName}"
 								style="width:30%; text-align: center" />
 						</p:column>
-						<p:column filterBy="#{product.productName}"
+						<p:column filterBy="#{product.productName}" 
 							filterMatchMode="contains" headerText="Name" update=":form" actionListener="#{product.productName}"
 							sortBy="#{product.productName}">
 							<h:outputText value="#{product.productName}" />
@@ -64,12 +65,12 @@
 						<p:column filterBy="#{product.categorySet}" filterMatchMode="in"
 							headerText="Categories" update=":form" sortBy="#{product.categorySet}">
 							<f:facet name="filter">
-								<p:selectCheckboxMenu label="Choose" 
+								<p:selectCheckboxMenu label="Choose"
 									onchange="PF('productTable').filter()" panelStyle="width:125px"
-									scrollHeight="150" converter="omnifaces.SelectItemsConverter">
+									scrollHeight="150" converter="omnifaces.SelectItemsConverter" >
 									<f:selectItems value="#{CategoryBean.getList()}" var="category"
 										itemLabel="#{category.categoryName}"
-										itemValue="#{category.categoryName}" />
+										itemValue="#{category.categoryName}"  />
 								</p:selectCheckboxMenu>
 							</f:facet>
 							<h:outputText value="#{product.categorySet}" />
@@ -105,7 +106,7 @@
 						</p:column>
 						
 						<p:column>
-							<h:button value="See more" outcome="productPage">
+							<h:button class="btn btn-link" value="Info"  outcome="productPage">
 							<f:param name="productId" value="#{product.productId}"/>
 							</h:button>
 						</p:column>
@@ -114,6 +115,7 @@
 					
 				</h:form>
 			</div>
+
 		</ui:define>
 	</ui:composition>
 </h:body>

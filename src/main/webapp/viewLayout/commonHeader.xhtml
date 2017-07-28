@@ -7,6 +7,7 @@
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+	
     <body>
     
 	    <ui:composition>
@@ -42,7 +43,7 @@
 									</div>
 								</div>
 							</div>
-							<p:commandButton icon="ui-icon-search" update="errors" action="#{ProductCatalogBean.submitSearch}"/>
+							<p:commandButton icon="ui-icon-search" styleclass="iconSearch"  update="errors" action="#{ProductCatalogBean.submitSearch}"/>
 						</h:form>
 						<div class="header-left">
 							<ul>

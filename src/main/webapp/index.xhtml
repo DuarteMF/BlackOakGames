@@ -22,7 +22,7 @@
 			
 			<div class="CategoriesAndPlatforms content">
 				
-				<div class="container">
+				<div class="container tab-content">
 				
 					<b:tabView class="Tabs"
 						contentStyle="border: 1px solid #ddd;padding:10px">
@@ -39,7 +39,7 @@
 										<h:panelGrid columns="1" style="width:100%">
 											<p:graphicImage value="/resources/images/#{Category.categoryImageName}" style="width:50%" />
 		
-											<h:commandButton class="CategoryButton" value="See Games" action="#{ProductCatalogBean.submitSearch}">
+											<h:commandButton class="CategoryButton btn btn-link" value="See Games"  action="#{ProductCatalogBean.submitSearch}">
 												<f:setPropertyActionListener value="#{Category.categoryId}" target="#{ProductCatalogBean.searchCategory}"/>
 											</h:commandButton>
 											
@@ -65,7 +65,7 @@
 											<p:graphicImage value="/resources/images/#{Platform.platformImageName}" style="width:50%"/>
 
 		
-											<h:commandButton class="PlatformButton" value="See Games" action="#{ProductCatalogBean.submitSearch}">
+											<h:commandButton class="PlatformButton btn btn-link" value="See Games" action="#{ProductCatalogBean.submitSearch}">
 												<f:setPropertyActionListener value="#{Platform.platformId}" target="#{ProductCatalogBean.searchPlatform}"/>
 											</h:commandButton>
 										</h:panelGrid>

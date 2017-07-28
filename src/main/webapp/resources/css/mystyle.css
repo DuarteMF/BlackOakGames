@@ -109,6 +109,10 @@
 
 }
 
+.iconSearch{
+	
+}
+
 /* Display of Categories and Platforms */
 
 .CategoriesAndPlatforms{
@@ -142,11 +146,14 @@
 	text-align: center !important;
 }
 
+
 /* Footer */
 
 .footer-class{
 	font-weight:normal !important;
-	font-size:9pt;
+	font-size: 9pt;
+	font-family: Arial;
+	background: #141414 !important;
 }
 
 
@@ -163,38 +170,47 @@
 }
 
 .paramum{
- 	font-weight: bold !important;
+   font-weight: bold !important;
  	margin-bottom:0px;
 }
 
-.ui-datatable thead th, .ui-datatable tbody td, .ui-datatable tfoot td, .ui-datatable tfoot th{
-	border: 0px;
+ .ui-datatable thead th, .ui-datatable tbody td, .ui-datatable tfoot td, .ui-datatable tfoot th{
 	text-align: center;
-		
-}
+}  
  
- .tab-content .ui-widget-header{
-	background: #333333 !important;
-	color: white !important ;
+.tab-content .ui-widget-header{
+	background:8C8C8C !important;
+	/* color: white !important; */
 	box-shadow: none !important;
 	text-shadow: none !important;
-	font-weight:bold !important;
+	font-size:13pt !important;
+	border: none !important;
 		
 	
-} 
+}  
 
- .tab-content .ui-state-default{
-	
+.tab-content .ui-state-default{
 	text-shadow: none !important;
-	background: none  !important;
-		
-} 
+	background: 8C8C8C  !important;
+	/* color: white !important; */
+	font-weight:normal !important;
+	border: none !important;
+	font-weight:bold !important;	
+}   
 
- .ui-datatable{
-	 border:1px solid #333333;
-	 
+.tab-content .ui-datatable  {
+	/* border:1px solid #333333 !important; */
+	
 }
 
+.tab-content .ui-paginator-rpp-options .ui-widget .ui-state-default .ui-corner-left{
+	/* color: white !important; */
+
+}
+
+.ui-datatable tbody td{
+	border-style:none;
+}
 
 
 /* ------------------------------------ Product Page -------------------------------- */
