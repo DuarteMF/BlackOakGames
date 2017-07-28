@@ -1,10 +1,13 @@
 package org.altar.upacademy.bean;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -12,6 +15,7 @@ import javax.inject.Named;
 
 import org.altar.upacademy.model.Order;
 import org.altar.upacademy.model.ProductUnit;
+import org.altar.upacademy.repository.OrderRepository;
 import org.altar.upacademy.repository.ProductUnitRepository;
 
 @Named("ShoppingCartBean")
@@ -20,13 +24,13 @@ public class ShoppingCartBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Set<ProductUnit> cart = new HashSet<>();
+	private List<ProductUnit> cart = new ArrayList<>();
 
-	public Set<ProductUnit> getCart() {
+	public List<ProductUnit> getCart() {
 		return cart;
 	}
 
-	public void setCart(Set<ProductUnit> cart) {
+	public void setCart(List<ProductUnit> cart) {
 		this.cart = cart;
 	}
 	
@@ -50,7 +54,7 @@ public class ShoppingCartBean implements Serializable {
 	private LocalDate startDate;
 	private LocalDate endDate;
 	
-	private Double expectedPrice;
+	private Double expectedPrice = 0.0;
 
 	public LocalDate getStartDate() {
 		return startDate;
@@ -77,6 +81,7 @@ public class ShoppingCartBean implements Serializable {
 	}
 	
 	public String addToCart(){
+		setProductUnit();
 		cart.add(productUnit);
 		return "success";
 	}
@@ -87,22 +92,27 @@ public class ShoppingCartBean implements Serializable {
 	
 	private Order order = new Order();
 	
+	@Inject
+	private OrderRepository orderRepository;
+	
 	public void createOrder(){
-		order.setProductUnitSet(cart);
+		order.setProductUnitSet(cart.stream().collect(Collectors.toSet()));
 //		order.setClient(client);
 //		order.setSeller(seller);
 		order.setStart(startDate);
 		order.setEnd(endDate);
-		order.setExpectedPrice(calculateExpectedPrice());
+		order.setExpectedPrice(expectedPrice);
+		orderRepository.addToDb(order);
 	}
 	
-	public Double calculateExpectedPrice(){
+	public void calculateExpectedPrice(){
 		Double totalPricePerWeek = 0.0;
 		for(ProductUnit productUnit: cart){
 			totalPricePerWeek += productUnit.getProduct().getRentalPrice();
 		}
-		int numberOfDaysRental = Period.between(endDate, startDate).getDays();
-		return totalPricePerWeek * (numberOfDaysRental/7);
+		int numberOfDaysRental = Period.between(startDate, endDate).getDays();
+		double priceToTruncate = totalPricePerWeek * (((double) numberOfDaysRental)/7);
+		expectedPrice = BigDecimal.valueOf(priceToTruncate).setScale(2, RoundingMode.HALF_UP).doubleValue();
 	}
 	
 	private Integer productUnitPlatformId;
@@ -112,7 +122,6 @@ public class ShoppingCartBean implements Serializable {
 	}
 
 	public void setProductUnitPlatformId(Integer productUnitPlatformId) {
-		System.out.println(productUnitPlatformId);
 		this.productUnitPlatformId = productUnitPlatformId;
 	}
 }

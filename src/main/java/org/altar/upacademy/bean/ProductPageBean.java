@@ -31,7 +31,6 @@ public class ProductPageBean implements Serializable {
 	}
 
 	public void setProductId(Integer productId) {
-		System.out.println("Id = " + productId);
 		this.productId = productId;
 	}
 	
@@ -47,7 +46,6 @@ public class ProductPageBean implements Serializable {
 	}
 	
 	public void setProduct(){
-		System.out.println("testing " + productId);
 		this.product = productRepository.getProductFromId(productId);
 	}
 	
