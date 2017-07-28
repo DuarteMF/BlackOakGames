@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+
+<h:body>
+
+	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="memenu.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="Login.css"></h:outputStylesheet>
+	<p:growl id="growl" sticky="true" showDetail="true" />
+
+
+	<div class=" container">
+		<div class=" register">
+			<h1>Register</h1>
+			<form>
+				<div class="col-md-6 register-top-grid">
+					<h3>Personal information</h3>
+					<div>
+						<span>Name</span> 
+						<h:inputText value="#{ClientBean.newClient.clientName}" type="text"/>
+					</div>
+					<div>
+						<span>Address</span>
+						<h:inputText value="#{ClientBean.newClient.clientAddress}" type="text"/>
+					</div>
+					<div>
+						<span>E-mail</span> 
+						<h:inputText value="#{ClientBean.newClient.clientEmail}" type="text"/>
+					</div>
+					<div>
+						<span>Phone Number</span>
+						<h:inputText value="#{ClientBean.newClient.clientPhoneNumber}" type="text"/>
+					</div>
+				</div>
+				<div class="col-md-6 register-bottom-grid">
+					<h3>Login information</h3>
+					<div>
+						<span>Username</span>
+						<h:inputText value="#{LoginBean.newAccount.username}" type="text"/>
+					</div>
+					<div>
+						<span>Password</span>
+						<h:inputText value="#{LoginBean.newAccount.password}" type="password"/>
+					</div>
+					<div>
+						<span>Confirm Password</span> <input type="password"/>
+					</div>
+					<p:commandButton class="RegisterButton" value="Register" action="#{LoginBean.addAccount()}"/>
+				</div>
+				<div class="clearfix"></div>
+			</form>
+		</div>
+	</div>
+	<h:form id="AddAccountSection">
+		<p:growl id="platformAddMsgs" showDetail="true" />
+		<h:panelGrid columns="2" cellpadding="5">
+
+			<h:outputLabel value="Username:" for="addUserName" />
+			<h:inputText id="addUserName"
+				value="#{LoginBean.newAccount.username}"
+				placeholder="Insert UserName" />
+
+			<h:outputLabel value="Password:" for="addPassword" />
+			<h:inputSecret id="addPassWord"
+				value="#{LoginBean.newAccount.password}"
+				placeholder="Insert Password" />
+
+			<p:commandButton value="Submit" action="#{LoginBean.addAccount()}">
+			</p:commandButton>
+		</h:panelGrid>
+	</h:form>
+
+</h:body>
+</html>
