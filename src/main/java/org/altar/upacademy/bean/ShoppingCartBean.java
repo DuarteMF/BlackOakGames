@@ -124,4 +124,12 @@ public class ShoppingCartBean implements Serializable {
 	public void setProductUnitPlatformId(Integer productUnitPlatformId) {
 		this.productUnitPlatformId = productUnitPlatformId;
 	}
+	
+	public String clean(){
+		cart = new ArrayList<>();
+		startDate = null;
+		endDate = null;
+		order = new Order();
+		return "success";
+	}
 }

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+<h:body>
+	<ui:composition template="commonLayout.xhtml">
+		<ui:define name="content">
+
+			<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
+			<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+			<h:outputStylesheet library="css" name="memenu.css"></h:outputStylesheet>
+			<h:outputStylesheet library="css" name="mystyle.css"></h:outputStylesheet>
+
+			<div class="container">
+				<div class="title">
+					<h1 id="checkout"
+						style="text-align: center; margin-top: 30px; margin-bottom: 30px;">Checkout</h1>
+				</div>
+
+				<h:outputText
+					value="Congratulations!&lt;br /&gt;You can now enjoy these games from #{ShoppingCartBean.startDate} to #{ShoppingCartBean.endDate}.&lt;br /&gt;&lt;br /&gt;Please head to the nearest store to effect payment and pick up your games." escape="false"/>
+
+				<div id="gamesList">
+					<p:dataList value="#{ShoppingCartBean.cart}" var="product"
+						type="definition">
+						<f:facet name="description">
+							<p:graphicImage library="images"
+								name="#{product.product.productImageName}" class="img-responsive"/>
+						</f:facet>
+								    #{product.product.productName}	#{product.productPlatform.platformName}
+					</p:dataList>
+				</div>
+				
+				<h:form>
+				<p:commandButton value="Back to Main Page" action="#{ShoppingCartBean.clean()}"/>
+				</h:form>
+
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
