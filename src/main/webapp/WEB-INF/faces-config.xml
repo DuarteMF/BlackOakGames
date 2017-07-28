@@ -11,6 +11,15 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
+		<from-view-id>/shoppingCart.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{ShoppingCartBean.createOrder()}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/checkoutpage.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
 		<from-view-id>/checkoutpage.xhtml</from-view-id>
 		<navigation-case>
 			<from-action>#{ShoppingCartBean.clean()}</from-action>

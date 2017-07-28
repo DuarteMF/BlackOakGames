@@ -23,4 +23,15 @@
     TITLE="#{ShoppingCartBean.clean()}:success" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#shoppingCart.xhtml"
+  PATH="/shoppingCart.xhtml" SHAPE="32,241,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#shoppingCart.xhtml:0" NAME="item"
+   PATH="/shoppingCart.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="success:#{ShoppingCartBean.createOrder()}:#checkoutpage.xhtml"
+    NAME="output" PATH="/checkoutpage.xhtml"
+    TARGET="rules:#checkoutpage.xhtml"
+    TITLE="#{ShoppingCartBean.createOrder()}:success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
 </PROCESS>

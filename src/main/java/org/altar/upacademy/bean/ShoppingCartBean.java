@@ -4,7 +4,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
-import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -95,7 +96,7 @@ public class ShoppingCartBean implements Serializable {
 	@Inject
 	private OrderRepository orderRepository;
 	
-	public void createOrder(){
+	public String createOrder(){
 		order.setProductUnitSet(cart.stream().collect(Collectors.toSet()));
 //		order.setClient(client);
 //		order.setSeller(seller);
@@ -103,6 +104,7 @@ public class ShoppingCartBean implements Serializable {
 		order.setEnd(endDate);
 		order.setExpectedPrice(expectedPrice);
 		orderRepository.addToDb(order);
+		return "success";
 	}
 	
 	public void calculateExpectedPrice(){
@@ -110,7 +112,7 @@ public class ShoppingCartBean implements Serializable {
 		for(ProductUnit productUnit: cart){
 			totalPricePerWeek += productUnit.getProduct().getRentalPrice();
 		}
-		int numberOfDaysRental = Period.between(startDate, endDate).getDays();
+		long numberOfDaysRental = ChronoUnit.DAYS.between(startDate, endDate);
 		double priceToTruncate = totalPricePerWeek * (((double) numberOfDaysRental)/7);
 		expectedPrice = BigDecimal.valueOf(priceToTruncate).setScale(2, RoundingMode.HALF_UP).doubleValue();
 	}
@@ -130,6 +132,15 @@ public class ShoppingCartBean implements Serializable {
 		startDate = null;
 		endDate = null;
 		order = new Order();
+		expectedPrice = 0.0;
 		return "success";
+	}
+	
+	public String showStartDate(){
+		return startDate.format(DateTimeFormatter.ofPattern("d MMM uuuu"));
+	}
+	
+	public String showEndDate(){
+		return endDate.format(DateTimeFormatter.ofPattern("d MMM uuuu"));
 	}
 }
