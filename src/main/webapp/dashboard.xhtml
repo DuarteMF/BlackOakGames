@@ -4,153 +4,802 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions">
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
 </h:head>
 <h:body>
-	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
-	<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
-	<h:outputStylesheet library="css" name="memenu.css"></h:outputStylesheet>
-	<h:outputStylesheet library="css" name="mystyle.css"></h:outputStylesheet>
-
-<p:growl id="errors" showDetails="true"/>
-	<div class="header">
-		<div class="header-top">
-			<div class="container">
-				<h:form onsubmit="productCatalog.xhtml">
-					<div class="search1">
-						<div class="searchTitle">
-							<p:inputText id="Title" value="#{ProductCatalogBean.searchProduct}" required="true" label="Text 1"
-								placeholder="Search">
-								<f:validateLength minimum="2" />
+	<ui:composition template="commonLayout.xhtml">
+		<ui:define name="content">
+		
+			<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
+			<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+			<h:outputStylesheet library="css" name="memenu.css"></h:outputStylesheet>
+			<h:outputStylesheet library="css" name="mystyle.css"></h:outputStylesheet>
+	
+			<p:growl id="errorMsgs" showDetail="true" />
+			<br/>
+			<br/>
+			<h:form id="PlatformTable">
+				<p:growl id="platformTableMsgs" showDetail="true" />
+				<p:dataTable id="PlatformList" var="platform"
+					value="#{PlatformBean.getList()}">
+					<f:facet name="header">	Platforms </f:facet>
+		
+					<p:column headerText="Id">
+						<h:outputText value="#{platform.platformId}" />
+					</p:column>
+					<p:column headerText="Name">
+						<h:outputText value="#{platform.platformName}" />
+					</p:column>
+					<p:column headerText="Games">
+						<h:outputText value="#{platform.productSet}" />
+					</p:column>
+							<p:column headerText="Image">
+							<p:graphicImage library="images" name="#{platform.platformImageName}"
+							style="width:30%; text-align: center" />
+					</p:column>
+					<p:column headerText="Options">
+						<p:commandButton update=":EditPlatformSection" icon="ui-icon-pencil"
+							title="Edit">
+							<f:setPropertyActionListener value="#{platform}"
+								target="#{PlatformBean.editedPlatform}" />
+						</p:commandButton>
+						<p:commandButton update=":PlatformTable:PlatformList"
+							action="#{PlatformBean.deletePlatform(platform)}"
+							icon="ui-icon-trash" title="Delete" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+			<br/>
+			<h:form id="AddPlatformSection">
+				<p:growl id="platformAddMsgs" showDetail="true" />
+				<h:panelGrid columns="2" cellpadding="5">
+					<p:outputLabel value="Name:" for="addPlatformName" />
+					<p:inputText id="addPlatformName" placeholder="Insert Platform"
+						value="#{PlatformBean.newPlatform.platformName}" />
+						<p:outputLabel value="Image:" for="addPlatformImageName" />
+					<p:inputText id="addPlatformImageName" placeholder="Insert Platform Image"
+						value="#{PlatformBean.newPlatform.platformImageName}" required="true" />
+					<p:commandButton value="Add"
+						update=":PlatformTable:PlatformList, AddProductSection, EditProductSection"
+						action="#{PlatformBean.checkPlatformName()}" />
+				</h:panelGrid>
+			</h:form>
+			<br/>
+			<h:form id="EditPlatformSection">
+				<p:growl id="platformEditMsgs" showDetail="true" />
+				<h:inputHidden value="#{PlatformBean.editedPlatform.platformId}" />
+				<h:panelGrid columns="2" cellpadding="5">
+					<p:outputLabel value="Name:" for="editPlatformName" />
+					<p:inputText id="editPlatformName" placeholder="Insert Platform"
+						value="#{PlatformBean.editedPlatform.platformName}" />
+								<p:outputLabel value="Image:" for="editPlatformImageName" />
+					<p:inputText id="editPlatformImageName" placeholder="Insert Platform Image"
+						value="#{PlatformBean.editedPlatform.platformImageName}" required="true"/>
+					<p:commandButton value="Edit"
+						update=":PlatformTable:PlatformList, AddProductSection, EditProductSection"
+						action="#{PlatformBean.editPlatform()}" />
+				</h:panelGrid>
+			</h:form>
+			<br/>
+			<h:form id="CategoryTable">
+				<p:dataTable id="CategoryList" var="category"
+					value="#{CategoryBean.getList()}">
+					<f:facet name="header">	Categories </f:facet>
+					<p:column headerText="Id">
+						<h:outputText value="#{category.categoryId}" />
+					</p:column>
+					<p:column headerText="Name">
+						<h:outputText value="#{category.categoryName}" />
+					</p:column>
+					<p:column headerText="Games">
+						<h:outputText value="#{category.productSet}" />
+					</p:column>
+					<p:column headerText="Image">
+					<p:graphicImage library="images" name="#{category.categoryImageName}"
+					style="width:30%; text-align: center" />
+			</p:column>
+					<p:column headerText="Options">
+						<p:commandButton update=":EditCategorySection" icon="ui-icon-pencil"
+							title="Edit">
+							<f:setPropertyActionListener value="#{category}"
+								target="#{CategoryBean.editedCategory}" />
+						</p:commandButton>
+						<p:commandButton update=":CategoryTable:CategoryList"
+							action="#{CategoryBean.deleteCategory(category)}"
+							icon="ui-icon-trash" title="Delete" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+			<br/>
+			<h:form id="AddCategorySection">
+				<p:growl id="categoryAddMsgs" showDetail="true" />
+				<h:panelGrid columns="2" cellpadding="5">
+					<p:outputLabel value="Name:" for="addCategoryName" />
+					<p:inputText id="addCategoryName" placeholder="Insert Category"
+						value="#{CategoryBean.newCategory.categoryName}" />
+											<p:outputLabel value="Imagem:" for="addCategoryImageName" />
+			<p:inputText id="addCategoryImageName" placeholder="Insert Category Image"
+				value="#{CategoryBean.newCategory.categoryImageName}" required="true" />
+					<p:commandButton value="Add"
+						update=":CategoryTable:CategoryList, AddProductSection, EditProductSection"
+						action="#{CategoryBean.checkCategoryName()}" />
+				</h:panelGrid>
+			</h:form>
+			<br/>
+			<h:form id="EditCategorySection">
+				<p:growl id="categoryEditMsgs" showDetail="true" />
+				<h:inputHidden value="#{CategoryBean.editedCategory.categoryId}" />
+				<h:panelGrid columns="2" cellpadding="5">
+					<p:outputLabel value="Name:" for="editCategoryName" />
+					<p:inputText id="editCategoryName" placeholder="Insert Category"
+						value="#{CategoryBean.editedCategory.categoryName}" />
+						<p:outputLabel value="Imagem:" for="editCategoryImageName" />
+				<p:inputText id="editCategoryImageName" placeholder="Insert Category Image"
+				value="#{CategoryBean.editedCategory.categoryImageName}" required="true" />
+					<p:commandButton value="Edit"
+						update=":CategoryTable:CategoryList, AddProductSection, EditProductSection"
+						action="#{CategoryBean.editCategory()}" />
+				</h:panelGrid>
+			</h:form>
+			<br/>
+			<h:form id="ProductTable">
+				<p:growl id="productTableMsgs" showDetail="true" />
+				<p:dataTable id="ProductList" var="product"
+					value="#{ProductBean.getList()}">
+					<f:facet name="header">	Products </f:facet>
+		
+					<p:column headerText="Id">
+						<h:outputText value="#{product.productId}" />
+					</p:column>
+					<p:column headerText="Name">
+						<h:outputText value="#{product.productName}" />
+					</p:column>
+					<p:column headerText="Year">
+						<h:outputText value="#{product.year}" />
+					</p:column>
+					<p:column headerText="Categories">
+						<h:outputText value="#{product.categorySet}" />
+					</p:column>
+					<p:column headerText="Platforms">
+						<h:outputText value="#{product.platformSet}" />
+					</p:column>
+					<p:column headerText="Publisher">
+						<h:outputText value="#{product.publisher}" />
+					</p:column>
+					<p:column headerText="Details">
+						<h:outputText value="#{product.details}" />
+					</p:column>
+					<p:column headerText="Rental Price (€ per week)">
+						<h:outputText value="#{product.rentalPrice}" />
+					</p:column>
+					<p:column headerText="Options">
+						<p:commandButton update=":EditProductSection, :errorMsgs"
+							icon="ui-icon-pencil" title="Edit">
+							<f:setPropertyActionListener value="#{product}"
+								target="#{ProductBean.editedProduct}" />
+						</p:commandButton>
+						<p:commandButton
+							update=":ProductTable:ProductList, :PlatformTable:PlatformList, :CategoryTable:CategoryList"
+							action="#{ProductBean.deleteProduct(product)}" icon="ui-icon-trash"
+							title="Delete" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+			<br/>
+			<div class="row">
+				<div class="col-xs-6">
+					<h:form id="AddProductSection">
+						<p:growl id="productAddMsgs" showDetail="true" />
+						<h:panelGrid columns="2" cellpadding="5">
+							
+							<p:outputLabel value="Name:" for="addProductName" />
+							<p:inputText id="addProductName"
+								value="#{ProductBean.newProduct.productName}"
+								placeholder="Insert Product" />
+								
+								<p:outputLabel value="Image:" for="addProductImageName" />
+					<p:inputText id="addProductImageName" placeholder="Insert Product Image"
+						value="#{ProductBean.newProduct.productImageName}" required="true"/>
+						
+						<p:outputLabel value="Video" for="addProductVideoUrl" />
+							<p:inputText id="addProductVideoUrl"
+								value="#{ProductBean.newProduct.productVideoUrl}"
+								placeholder="Insert Product Video url" required="true"/>
+		
+		
+							<p:outputLabel for="addYear" value="Year:" />
+							<p:spinner min="1980" max="2018" id="addYear"
+								value="#{ProductBean.newProduct.year}" placeholder="1980-2018">
+							</p:spinner>
+		
+							<p:outputLabel value="Categories:" for="addCategories"
+								rendered="#{not empty (ProductBean.existingCategories())}" />
+							<p:selectCheckboxMenu id="addCategories"
+								value="#{ProductBean.categoryList}" label="Categories"
+								multiple="true"
+								rendered="#{not empty (ProductBean.existingCategories())}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItems value="#{ProductBean.existingCategories()}"
+									var="category" itemLabel="#{category.categoryName}"
+									itemValue="#{category}" />
+							</p:selectCheckboxMenu>
+							<p:outputLabel value="Platforms:" for="addPlatforms"
+								rendered="#{not empty (ProductBean.existingPlatforms())}" />
+							<p:selectCheckboxMenu id="addPlatforms"
+								value="#{ProductBean.platformList}" label="Platforms"
+								multiple="true"
+								rendered="#{not empty (ProductBean.existingPlatforms())}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItems value="#{ProductBean.existingPlatforms()}"
+									var="platform" itemLabel="#{platform.platformName}"
+									itemValue="#{platform}" />
+							</p:selectCheckboxMenu>
+		
+							<p:outputLabel value="Publisher:" for="addPublisher" />
+							<p:inputText id="addPublisher" placeholder="Insert Publisher"
+								value="#{ProductBean.newProduct.publisher}" />
+		
+							<p:outputLabel for="addRentalPrice"
+								value="Rental Price (€ per week):" />
+							<p:inputText id="addRentalPrice"
+								value="#{ProductBean.newProduct.rentalPrice}"
+								placeholder="1.00-35.00"
+								converterMessage="Cannot convert to double.">
+								<f:validateDoubleRange minimum="1.0" maximum="35.0" />
 							</p:inputText>
-						</div>
-						<div class="searchCatPlat">
-							<div class="searchCat">
-								<p:selectOneMenu value="#{ProductCatalogBean.searchCategory}"
-									label="Categories" rendered="#{not empty (ProductBean.existingCategories())}"
-									converter="omnifaces.SelectItemsConverter">
-									<f:selectItem itemLabel="Category" noSelectionOption="true" />
-									<f:selectItems value="#{ProductBean.existingCategories()}" var="category" itemLabel="#{category.categoryName}" itemValue="#{category.categoryId}"/>
-								</p:selectOneMenu>
-							</div>
-							<div class="searchPlat">
-								<p:selectOneMenu value="#{ProductCatalogBean.searchPlatform}"
-									label="Platforms" rendered="#{not empty (ProductBean.existingPlatforms())}"
-									converter="omnifaces.SelectItemsConverter">
-									<f:selectItem itemLabel="Platform" noSelectionOption="true" />
-									<f:selectItems value="#{ProductBean.existingPlatforms()}" var="platform" itemLabel="#{platform.platformName}" itemValue="#{platform.platformId}"/>
-								</p:selectOneMenu>
-							</div>
-						</div>
-					</div>
-					<p:commandButton icon="ui-icon-search" update="errors" action="#{ProductCatalogBean.submitSearch}"/>
-				</h:form>
-				<div class="header-left">
-					<ul>
-						<li class="active grid" style="display: inline;"><a
-							class="color8" href="index.xhtml">Login</a></li>
-						<li class="active grid" style="display: inline;"><a
-							class="color8" href="">Sign Up</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div class="container">
-			<div class="head-top">
-				<div id="gameTitle" class="logo">
-					<div class="row container-fluid">
-						<img class="col-xs-4"
-							src="https://d30y9cdsu7xlg0.cloudfront.net/png/195040-200.png"></img>
-						<p class="col-xs-8">Black Oak Games</p>
-					</div>
-				</div>
-				<div class="h_menu4">
-					<ul class="memenu skyblue">
-						<li class="active grid" style="display: inline;"><a
-							class="color8" href="dashboard.xhtml">Home</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="CategoriesAndPlatforms content">
-		<div class="container">
-
-			<b:tabView class="Tabs"
-				contentStyle="border: 1px solid #ddd;padding:10px">
-
-				<b:tab title="Categories" contentStyle="container"
-					class="TabCategory">
-
-					<h:form>
-						<p:dataGrid class="GridCategory" var="Category"
-							value="#{CategoryBean.getList()}" columns="3" layout="grid">
-
-							<p:panel footer="#{Category.categoryName}"
-								style="text-align:center">
-								<h:panelGrid columns="1" style="width:100%">
-									<p:graphicImage name="bla bla" />
-
-									<h:commandButton class="CategoryButton" value="See Games" action="#{ProductCatalogBean.submitSearch}">
-										<f:setPropertyActionListener value="#{Category.categoryId}" target="#{ProductCatalogBean.searchCategory}"/>
-									</h:commandButton>
-								</h:panelGrid>
-							</p:panel>
-						</p:dataGrid>
+		
+							<p:outputLabel value="Details:" for="addDetails" />
+							<p:inputTextarea maxlength="1000" cols="22" counter="display"
+								counterTemplate="{0} characters remaining." id="addDetails"
+								placeholder="Insert Details"
+								value="#{ProductBean.newProduct.details}" />
+							<div></div>
+							<h:outputText id="display" />
+		
+							<p:commandButton value="Add"
+								update=":errorMsgs, :ProductTable:ProductList,:PlatformTable:PlatformList, :CategoryTable:CategoryList, :AddProductUnitSection"
+								action="#{ProductBean.checkProductName()}" />
+						</h:panelGrid>
 					</h:form>
-				</b:tab>
-
-
-				<b:tab title="Platforms" contentStyle="container"
-					class="TabPlatform">
-					<h:form>
-						<p:dataGrid class="GridPlatform" var="Platform"
-							value="#{PlatformBean.getList()}" columns="3" layout="grid">
-
-							<p:panel footer="#{Platform.platformName}"
-								style="text-align:center">
-								<h:panelGrid columns="1" style="width:100%">
-									<p:graphicImage name="bla bla" />
-
-									<h:commandButton class="PlatformButton" value="See Games" action="#{ProductCatalogBean.submitSearch}">
-										<f:setPropertyActionListener value="#{Platform.platformId}" target="#{ProductCatalogBean.searchPlatform}"/>
-									</h:commandButton>
-								</h:panelGrid>
-							</p:panel>
-						</p:dataGrid>
+					<br/>
+				</div>
+				
+				<div class="col-xs-6">
+					<h:form id="EditProductSection">
+						<p:growl id="productEditMsgs" showDetail="true" />
+						<h:inputHidden value="#{ProductBean.editedProduct.productId}" />
+						<h:panelGrid columns="2" cellpadding="5">
+		
+							<p:outputLabel value="Name:" for="editProductName" />
+							<p:inputText id="editProductName"
+								value="#{ProductBean.editedProduct.productName}"
+								placeholder="Insert Product" />
+		
+							<p:outputLabel for="editYear" value="Year:" />
+							<p:spinner min="1980" max="2018" id="editYear"
+								value="#{ProductBean.editedProduct.year}" placeholder="1980-2018">
+							</p:spinner>
+		
+							<p:outputLabel value="Categories:" for="addCategories"
+								rendered="#{not empty (ProductBean.existingCategories())}" />
+							<p:selectCheckboxMenu id="addCategories"
+								value="#{ProductBean.categoryList}" label="Categories"
+								multiple="true"
+								rendered="#{not empty (ProductBean.existingCategories())}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItem itemLabel="Select an option"
+									noSelectionOption="true" />
+								<f:selectItems value="#{ProductBean.existingCategories()}"
+									var="category" itemLabel="#{category.categoryName}"
+									itemValue="#{category}" />
+							</p:selectCheckboxMenu>
+							<p:outputLabel value="Platforms:" for="addPlatforms"
+								rendered="#{not empty (ProductBean.existingPlatforms())}" />
+							<p:selectCheckboxMenu id="addPlatforms"
+								value="#{ProductBean.platformList}" label="Platforms"
+								multiple="true"
+								rendered="#{not empty (ProductBean.existingPlatforms())}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItem itemLabel="Select an option"
+									noSelectionOption="true" />
+								<f:selectItems value="#{ProductBean.existingPlatforms()}"
+									var="platform" itemLabel="#{platform.platformName}"
+									itemValue="#{platform}" />
+							</p:selectCheckboxMenu>
+		
+		
+							<p:outputLabel value="Publisher:" for="editPublisher" />
+							<p:inputText id="editPublisher"
+								value="#{ProductBean.editedProduct.publisher}" />
+		
+		
+							<p:outputLabel for="editRentalPrice"
+								value="Rental Price (€ per week):" />
+							<p:inputText id="editRentalPrice"
+								value="#{ProductBean.editedProduct.rentalPrice}"
+								placeholder="1.00-35.00"
+								converterMessage="Cannot convert to double.">
+								<f:validateDoubleRange minimum="1.0" maximum="35.0" />
+							</p:inputText>
+		
+							<p:outputLabel value="Details:" for="editDetails" />
+							<p:inputTextarea maxlength="1000" cols="22" counter="display"
+								counterTemplate="{0} characters remaining." id="editDetails"
+								placeholder="Insert Details"
+								value="#{ProductBean.editedProduct.details}" />
+							<div></div>
+							<h:outputText id="display" />
+		
+							<p:commandButton value="Edit"
+								update=":errorMsgs, :ProductTable:ProductList, :PlatformTable:PlatformList, :CategoryTable:CategoryList, :AddProductUnitSection"
+								action="#{ProductBean.editProduct()}">
+							</p:commandButton>
+						</h:panelGrid>
 					</h:form>
-				</b:tab>
-
-			</b:tabView>
-		</div>
-	</div>
-	<div class="footer">
-		<div class="container">
-			<div class="footer-top-at">
-				<div class="col-xs-4 amet-sed">
-					<h4>MORE INFO</h4>
-					<ul class="nav-bottom">
-						<li><a href="#">Work Description</a></li>
-					</ul>
 				</div>
-				<div class="col-xs-4 amet-sed">
-					<h4>CONTACTS</h4>
-					<p>a.preto@campus.fct.unl.pt</p>
-					<p>duartepferreira@hotmail.com</p>
-					<p>mf.soares@campus.fct.unl.pt</p>
-					<p>valeriagirlus@gmail.com</p>
-					<ul></ul>
-				</div>
-				<div class="clearfix"></div>
 			</div>
-		</div>
-		<div class="footer-class">
-			<p>André Preto, Duarte Ferreira, Miguel Soares, Elena Girlus 2017</p>
-		</div>
-	</div>
+		
+			<h:form id="ProductUnitTable">
+				<p:growl id="productUnitTableMsgs" showDetail="true" />
+				<p:dataTable id="ProductUnitList" var="productUnit"
+					value="#{ProductUnitBean.getList()}">
+					<f:facet name="header">	Product Units </f:facet>
+		
+					<p:column headerText="Id">
+						<h:outputText value="#{productUnit.productUnitId}" />
+					</p:column>
+					<p:column headerText="Product">
+						<h:outputText value="#{productUnit.product}" />
+					</p:column>
+					<p:column headerText="Plataform">
+						<h:outputText value="#{productUnit.productPlatform}" />
+					</p:column>
+					<p:column headerText="Options">
+						<p:commandButton update=":EditProductUnitSection, :errorMsgs"
+							icon="ui-icon-pencil" title="Edit">
+							<f:setPropertyActionListener value="#{productUnit}"
+								target="#{ProductUnitBean.editedProductUnit}" />
+						</p:commandButton>
+						<p:commandButton update=":ProductUnitTable:ProductUnitList"
+							action="#{ProductUnitBean.deleteProductUnit(productUnit)}"
+							icon="ui-icon-trash" title="Delete" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+			<br/>
+			<h:form id="AddProductUnitSection">
+				<h:panelGrid columns="2" cellpadding="5">
+					<p:outputLabel value="Product:" for="addProduct"
+						rendered="#{not empty (ProductBean.getList())}" />
+					<p:selectOneMenu id="addProduct" value="#{ProductUnitBean.product}"
+						label="Produto" rendered="#{not empty (ProductBean.getList())}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="Select an option"
+							noSelectionOption="true" />
+						<f:selectItems value="#{ProductBean.getList()}" var="product"
+							itemLabel="#{product.productName}" itemValue="#{product}" />
+					</p:selectOneMenu>
+		
+					<p:outputLabel value="Plataform:" for="addPlatform"
+						rendered="#{not empty (ProductBean.getList())}" />
+					<p:selectOneMenu id="addPlatform" value="#{ProductUnitBean.platform}"
+						label="Plataforma" rendered="#{not empty (ProductBean.getList())}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="Select an option"
+							noSelectionOption="true" />
+						<f:selectItems value="#{PlatformBean.getList()}" var="platform"
+							itemLabel="#{platform.platformName}" itemValue="#{platform}" />
+					</p:selectOneMenu>
+		
+					<p:outputLabel value="Quantity:" for="UnitQuantity"
+						rendered="#{not empty (ProductBean.getList())}" />
+					<p:spinner min="0" max="1000" id="UnitQuantity"
+						value="#{ProductUnitBean.unitQuantity}" placeholder="00-1000">
+					</p:spinner>
+		
+					<p:commandButton value="Add"
+						update=":errorMsgs, :ProductUnitTable:ProductUnitList"
+						action="#{ProductUnitBean.checkPlatform('Addition')}"
+						rendered="#{not empty (ProductBean.getList())}">
+					</p:commandButton>
+				</h:panelGrid>
+			</h:form>
+			<br/>
+			<h:form id="EditProductUnitSection">
+				<h3>Feature to be added later</h3>
+			</h:form>
+			<br/>
+			<h:form id="ClientTable">
+				<p:growl id="clientTableMsgs" showDetail="true" />
+				<p:dataTable id="ClientList" var="client"
+					value="#{ClientBean.getList()}">
+					<f:facet name="header">	Clients </f:facet>
+		
+					<p:column headerText="Id">
+						<h:outputText value="#{client.clientId}" />
+					</p:column>
+					<p:column headerText="Name">
+						<h:outputText value="#{client.clientName}" />
+					</p:column>
+					<p:column headerText="Address">
+						<h:outputText value="#{client.clientAddress}" />
+					</p:column>
+					<p:column headerText="E-mail">
+						<h:outputText value="#{client.clientEmail}" />
+					</p:column>
+					<p:column headerText="Phone Number">
+						<h:outputText value="#{client.clientPhoneNumber}" />
+					</p:column>
+					<p:column headerText="Feedback">
+						<h:outputText value="#{client.clientFeedback}/5" />
+					</p:column>
+					<p:column headerText="Options">
+						<p:commandButton update=":EditClientSection, :errorMsgs"
+							icon="ui-icon-pencil" title="Edit">
+							<f:setPropertyActionListener value="#{client}"
+								target="#{ClientBean.editedClient}" />
+						</p:commandButton>
+						<p:commandButton update=":ClientTable:ClientList"
+							action="#{ClientBean.deleteClient(client)}"
+							icon="ui-icon-trash" title="Delete" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+			<br/>
+			<div class="row">
+				<div class="col-xs-6">
+					<h:form id="AddClientSection">
+						<p:growl id="clientAddMsgs" showDetail="true" />
+						<h:panelGrid columns="2" cellpadding="5">
+		
+							<p:outputLabel value="Name:" for="addClientName" />
+							<p:inputText id="addClientName"
+								value="#{ClientBean.newClient.clientName}"
+								placeholder="Insert Client's Name" />
+		
+							<p:outputLabel for="addClientAddress" value="Address:" />
+							<p:inputText id="addClientAddress"
+								value="#{ClientBean.newClient.clientAddress}"
+								placeholder="Insert Client's Address" />
+		
+							<p:outputLabel value="E-mail:" for="addClientEmail" />
+							<p:inputText id="addClientEmail"
+								value="#{ClientBean.newClient.clientEmail}"
+								placeholder="Insert Client's E-mail" />
+								
+							<p:outputLabel value="Phone Number:" for="addClientPhoneNumber" />
+							<p:inputText id="addClientPhoneNumber"
+								value="#{ClientBean.newClient.clientPhoneNumber}"
+								placeholder="Insert Client's Phone Number" />
+		
+							<p:commandButton value="Add"
+								update=":errorMsgs, :ClientTable:ClientList, :AddOrderSection, :EditOrderSection"
+								action="#{ClientBean.addClient()}" />
+						</h:panelGrid>
+					</h:form>
+					<br/>
+				</div>
+				
+				<div class="col-xs-6">
+					<h:form id="EditClientSection">
+						<p:growl id="clientEditMsgs" showDetail="true" />
+						<h:inputHidden value="#{ClientBean.editedClient.clientId}" />
+						<h:panelGrid columns="2" cellpadding="5">
+		
+							<p:outputLabel value="Name:" for="editClientName" />
+							<p:inputText id="editClientName"
+								value="#{ClientBean.editedClient.clientName}"
+								placeholder="Insert Client's Name" />
+		
+							<p:outputLabel for="editClientAddress" value="Address:" />
+							<p:inputText id="editClientAddress"
+								value="#{ClientBean.editedClient.clientAddress}"
+								placeholder="Insert Client's Address" />
+		
+							<p:outputLabel value="E-mail:" for="editClientEmail" />
+							<p:inputText id="editClientEmail"
+								value="#{ClientBean.editedClient.clientEmail}"
+								placeholder="Insert Client's E-mail" />
+								
+							<p:outputLabel value="Phone Number:" for="editClientPhoneNumber" />
+							<p:inputText id="editClientPhoneNumber"
+								value="#{ClientBean.editedClient.clientPhoneNumber}"
+								placeholder="Insert Client's Phone Number" />
+		
+							<p:commandButton value="Edit"
+								update=":errorMsgs, :ClientTable:ClientList"
+								action="#{ClientBean.editClient()}">
+							</p:commandButton>
+						</h:panelGrid>
+					</h:form>
+				</div>
+			</div>
+			
+			<h:form id="SellerTable">
+				<p:growl id="sellerTableMsgs" showDetail="true" />
+				<p:dataTable id="SellerList" var="seller"
+					value="#{SellerBean.getList()}">
+					<f:facet name="header">	Sellers </f:facet>
+		
+					<p:column headerText="Id">
+						<h:outputText value="#{seller.sellerId}" />
+					</p:column>
+					<p:column headerText="Name">
+						<h:outputText value="#{seller.sellerName}" />
+					</p:column>
+					<p:column headerText="Address">
+						<h:outputText value="#{seller.sellerAddress}" />
+					</p:column>
+					<p:column headerText="E-mail">
+						<h:outputText value="#{seller.sellerEmail}" />
+					</p:column>
+					<p:column headerText="Phone Number">
+						<h:outputText value="#{seller.sellerPhoneNumber}" />
+					</p:column>
+					<p:column headerText="Feedback">
+						<h:outputText value="#{seller.sellerFeedback}/5" />
+					</p:column>
+					<p:column headerText="Options">
+						<p:commandButton update=":EditSellerSection, :errorMsgs"
+							icon="ui-icon-pencil" title="Edit">
+							<f:setPropertyActionListener value="#{seller}"
+								target="#{SellerBean.editedSeller}" />
+						</p:commandButton>
+						<p:commandButton update=":SellerTable:SellerList"
+							action="#{SellerBean.deleteSeller(seller)}"
+							icon="ui-icon-trash" title="Delete" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+			<br/>
+			<div class="row">
+				<div class="col-xs-6">
+					<h:form id="AddSellerSection">
+						<p:growl id="sellerAddMsgs" showDetail="true" />
+						<h:panelGrid columns="2" cellpadding="5">
+		
+							<p:outputLabel value="Name:" for="addSellerName" />
+							<p:inputText id="addSellerName"
+								value="#{SellerBean.newSeller.sellerName}"
+								placeholder="Insert Seller's Name" />
+		
+							<p:outputLabel for="addSellerAddress" value="Address:" />
+							<p:inputText id="addSellerAddress"
+								value="#{SellerBean.newSeller.sellerAddress}"
+								placeholder="Insert Seller's Address" />
+		
+							<p:outputLabel value="E-mail:" for="addSellerEmail" />
+							<p:inputText id="addSellerEmail"
+								value="#{SellerBean.newSeller.sellerEmail}"
+								placeholder="Insert Seller's E-mail" />
+								
+							<p:outputLabel value="Phone Number:" for="addSellerPhoneNumber" />
+							<p:inputText id="addSellerPhoneNumber"
+								value="#{SellerBean.newSeller.sellerPhoneNumber}"
+								placeholder="Insert Seller's Phone Number" />
+		
+							<p:commandButton value="Add"
+								update=":errorMsgs, :SellerTable:SellerList, :AddOrderSection, :EditOrderSection"
+								action="#{SellerBean.addSeller()}" />
+						</h:panelGrid>
+					</h:form>
+					<br/>
+				</div>
+				
+				<div class="col-xs-6">
+					<h:form id="EditSellerSection">
+						<p:growl id="sellerEditMsgs" showDetail="true" />
+						<h:inputHidden value="#{SellerBean.editedSeller.sellerId}" />
+						<h:panelGrid columns="2" cellpadding="5">
+		
+							<p:outputLabel value="Name:" for="editSellerName" />
+							<p:inputText id="editSellerName"
+								value="#{SellerBean.editedSeller.sellerName}"
+								placeholder="Insert Seller's Name" />
+		
+							<p:outputLabel for="editSellerAddress" value="Address:" />
+							<p:inputText id="editSellerAddress"
+								value="#{SellerBean.editedSeller.sellerAddress}"
+								placeholder="Insert Seller's Address" />
+		
+							<p:outputLabel value="E-mail:" for="editSellerEmail" />
+							<p:inputText id="editSellerEmail"
+								value="#{SellerBean.editedSeller.sellerEmail}"
+								placeholder="Insert Seller's E-mail" />
+								
+							<p:outputLabel value="Phone Number:" for="editSellerPhoneNumber" />
+							<p:inputText id="editSellerPhoneNumber"
+								value="#{SellerBean.editedSeller.sellerPhoneNumber}"
+								placeholder="Insert Seller's Phone Number" />
+		
+							<p:commandButton value="Edit"
+								update=":errorMsgs, :SellerTable:SellerList"
+								action="#{SellerBean.editSeller()}">
+							</p:commandButton>
+						</h:panelGrid>
+					</h:form>
+					<br/>
+				</div>
+			</div>
+		
+			<h:form id="OrderTable">
+				<p:growl id="orderTableMsgs" showDetail="true" />
+				<p:dataTable id="OrderList" var="order"
+					value="#{OrderBean.getList()}">
+					<f:facet name="header">	Orders </f:facet>
+		
+					<p:column headerText="Id">
+						<h:outputText value="#{order.orderId}" />
+					</p:column>
+					<p:column headerText="Units">
+						<h:outputText value="#{order.productUnitSet}" />
+					</p:column>
+					<p:column headerText="Client">
+						<h:outputText value="#{order.client}" />
+					</p:column>
+					<p:column headerText="Seller">
+						<h:outputText value="#{order.seller}" />
+					</p:column>
+					<p:column headerText="Start Date">
+						<h:outputText value="#{order.start}" />
+					</p:column>
+					<p:column headerText="End Date">
+						<h:outputText value="#{order.end}" />
+					</p:column>
+					<p:column headerText="Expected Price">
+						<h:outputText value="#{order.expectedPrice}€" />
+					</p:column>
+					<p:column headerText="Delivery Date">
+						<h:outputText value="#{order.delivery}" />
+					</p:column>
+					<p:column headerText="Delivery Status">
+						<h:outputText value="#{order.deliveryStatus}" />
+					</p:column>
+					<p:column headerText="Final Price">
+						<h:outputText value="#{order.finalPrice}€" />
+					</p:column>
+					<p:column headerText="Options">
+						<p:commandButton update=":EditOrderSection, :errorMsgs"
+							icon="ui-icon-pencil" title="Edit">
+							<f:setPropertyActionListener value="#{order}"
+								target="#{OrderBean.editedOrder}" />
+						</p:commandButton>
+						<p:commandButton update=":OrderTable:OrderList"
+							action="#{OrderBean.deleteOrder(order)}"
+							icon="ui-icon-trash" title="Delete" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+			<br/>
+			<div class="row">
+				<div class="col-xs-6">
+					<h:form id="AddOrderSection">
+						<p:growl id="orderAddMsgs" showDetail="true" />
+						<h:panelGrid columns="2" cellpadding="5">
+		
+							<p:outputLabel value="ProductUnits" for="addProductUnit"
+								rendered="#{not empty (ProductUnitBean.getList())}" />
+							<p:selectCheckboxMenu id="addProductUnit" value="#{OrderBean.productUnitSet}"
+								label="ProductUnit" rendered="#{not empty (ProductUnitBean.getList())}"
+								multiple="true"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItems value="#{ProductUnitBean.getList()}" var="productUnit"
+									itemLabel="#{productUnit.product.productName}: #{productUnit.productPlatform.platformName}" itemValue="#{productUnit}" />
+							</p:selectCheckboxMenu>		
+		
+							<p:outputLabel value="Client" for="addClient"
+								rendered="#{not empty (ClientBean.getList())}" />
+							<p:selectOneMenu id="addClient"
+								value="#{OrderBean.client}" label="Client"
+								rendered="#{not empty (ClientBean.getList())}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItem itemLabel="Select an option"
+									noSelectionOption="true" />
+								<f:selectItems value="#{ClientBean.getList()}" var="client"
+									itemLabel="#{client.clientName}" itemValue="#{client}" />
+							</p:selectOneMenu>
+		
+							<p:outputLabel value="Seller" for="addSeller"
+								rendered="#{not empty (SellerBean.getList())}" />
+							<p:selectOneMenu id="addSeller"
+								value="#{OrderBean.seller}" label="Seller"
+								rendered="#{not empty (ClientBean.getList())}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItem itemLabel="Select an option"
+									noSelectionOption="true" />
+								<f:selectItems value="#{SellerBean.getList()}" var="seller"
+									itemLabel="#{seller.sellerName}" itemValue="#{seller}" />
+							</p:selectOneMenu>
+		
+							<p:outputLabel value="Start Date:" for="addOrderStartDate" />
+							<p:calendar id="addOrderStartDate"
+								value="#{OrderBean.newOrder.start}" pattern="dd/MM/yyyy"
+								required="true" />
+		
+							<p:outputLabel value="End Date:" for="addOrderEndDate" />
+							<p:calendar id="addOrderEndDate" value="#{OrderBean.newOrder.end}"
+								pattern="dd/MM/yyyy" required="true" />
+		
+							<p:outputLabel value="Expected Price:" for="addExpectedPrice" />
+							<p:inputText id="addExpectedPrice"
+								value="#{OrderBean.newOrder.expectedPrice}€" readonly="true" />
+		
+							<p:commandButton value="Add"
+								update=":errorMsgs, :OrderTable:OrderList"
+								action="#{OrderBean.addOrder()}" />
+						</h:panelGrid>
+					</h:form>
+					<br/>
+				</div>
+				
+				<div class="col-xs-6">
+					<h:form id="EditOrderSection">
+						<p:growl id="orderEditMsgs" showDetail="true" />
+						<h:inputHidden value="#{OrderBean.editedOrder.orderId}"/>
+						<h:panelGrid columns="2" cellpadding="5">
+						
+						<p:outputLabel value="ProductUnits" for="addProductUnit"
+								rendered="#{not empty (ProductUnitBean.getList())}" />
+							<p:selectCheckboxMenu id="addProductUnit" value="#{OrderBean.productUnitSet}"
+								label="ProductUnit" rendered="#{not empty (ProductUnitBean.getList())}"
+								multiple="true"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItems value="#{ProductUnitBean.getList()}" var="productUnit"
+									itemLabel="#{productUnit.product.productName}: #{productUnit.productPlatform.platformName}" itemValue="#{productUnit}" />
+							</p:selectCheckboxMenu>	
+					
+						<p:outputLabel value="Client" for="editClient"
+							rendered="#{not empty (ClientBean.getList())}" />
+						<p:selectOneMenu id="editClient" value="#{OrderBean.client}"
+							label="Client" rendered="#{not empty (ClientBean.getList())}"
+							converter="omnifaces.SelectItemsConverter">
+							<f:selectItem itemLabel="Select an option"
+								noSelectionOption="true" />
+							<f:selectItems value="#{ClientBean.getList()}" var="client"
+								itemLabel="#{client.clientName}" itemValue="#{client}" />
+						</p:selectOneMenu>
+		
+						<p:outputLabel value="Seller" for="editSeller"
+							rendered="#{not empty (SellerBean.getList())}" />
+						<p:selectOneMenu id="editSeller" value="#{OrderBean.seller}"
+							label="Seller" rendered="#{not empty (ClientBean.getList())}"
+							converter="omnifaces.SelectItemsConverter">
+							<f:selectItem itemLabel="Select an option"
+								noSelectionOption="true" />
+							<f:selectItems value="#{SellerBean.getList()}" var="seller"
+								itemLabel="#{seller.sellerName}" itemValue="#{seller}" />
+						</p:selectOneMenu>
+		
+						<p:outputLabel value="Start Date:" for="editOrderStartDate" />
+						<p:calendar id="editOrderStartDate"
+							value="#{OrderBean.editedOrder.start}" pattern="dd/MM/yyyy"
+							required="true" />
+		
+						<p:outputLabel value="End Date:" for="editOrderEndDate" />
+						<p:calendar id="editOrderEndDate" value="#{OrderBean.editedOrder.end}"
+							pattern="dd/MM/yyyy" required="true" />
+		
+						<p:outputLabel value="Expected Price:" for="editExpectedPrice" />
+						<p:inputText id="editExpectedPrice"
+							value="#{OrderBean.editedOrder.expectedPrice}€" readonly="true" />
+		
+						<p:commandButton value="Edit"
+							update=":errorMsgs, :OrderTable:OrderList"
+							action="#{OrderBean.editOrder()}" />
+							</h:panelGrid>
+					</h:form>
+					<br/>
+				</div>
+			</div>
+
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>
