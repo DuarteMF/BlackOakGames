@@ -18,7 +18,6 @@
 		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
 
 </h:head>
-
 <h:body>
 	<ui:composition template="commonLayout.xhtml">
 		<ui:define name="content">
@@ -38,7 +37,7 @@
 			<header>
 				<h1 id="productcatalog">Product Catalog</h1>
 			</header>
-			
+
 			<div class="container tab-content">
 			
 				<h:form id="form" >
@@ -100,11 +99,6 @@
 							<h:outputText value="#{product.rentalPrice} €" />
 						</p:column>
 						
-						<p:column headerText="Availability" update=":form"
-							sortBy="#{product.availability}">
-							<h:outputText value="#{product.availability} und" />
-						</p:column>
-						
 						<p:column>
 							<h:button class="btn btn-link" value="Info"  outcome="productPage">
 								<f:param name="productId" value="#{product.productId}"/>
@@ -115,7 +109,6 @@
 					
 				</h:form>
 			</div>
-
 		</ui:define>
 	</ui:composition>
 </h:body>

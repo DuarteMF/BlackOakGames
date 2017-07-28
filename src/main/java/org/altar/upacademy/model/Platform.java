@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @javax.persistence.Entity
 @Table(name = "PLATFORM")
 public class Platform extends Entity implements Serializable {
-
+//	, Comparable<Platform>
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -30,7 +30,8 @@ public class Platform extends Entity implements Serializable {
 		return platformImageName;
 	}
 
-	public void setPlatformImageName(String platformImageName) {
+	public void setPlatformImageName(String platformImageName){
+		System.out.println(platformImageName);
 		this.platformImageName = platformImageName;
 	}
 
@@ -73,4 +74,9 @@ public class Platform extends Entity implements Serializable {
 	public boolean equals(Object platform){
 		return this.platformId.equals(((Platform) platform).getPlatformId());
 	}
+	
+//	@Override
+//	public int compareTo(Platform platformToCompare){
+//		return this.platformName.compareTo(platformToCompare.getPlatformName());
+//	}
 }

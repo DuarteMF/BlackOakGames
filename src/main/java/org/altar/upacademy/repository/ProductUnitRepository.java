@@ -8,7 +8,6 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
-import org.altar.upacademy.model.Product;
 import org.altar.upacademy.model.ProductUnit;
 
 @Named("productUnitRepository")
@@ -30,6 +29,20 @@ public class ProductUnitRepository extends EntityRepository<ProductUnit> {
 	public ProductUnit getProductUnitFromProductId(Integer productId){
 		TypedQuery<ProductUnit> query = getDbConnection().createQuery("SELECT p FROM ProductUnit AS p WHERE p.product.productId = :id", ProductUnit.class);
 		query.setParameter("id", productId);
-		return query.getResultList().get(0);
+		return query.getSingleResult();
+	}
+	
+	public ProductUnit getAvaliableProductUnitFromProductIdAndPlatform(Integer productId, Integer platformId){
+		Query query = getDbConnection().createNativeQuery("SELECT * FROM PRODUCT_UNITS WHERE product_Product_ID = :productId AND productPlatform_Platform_ID = :platformId AND Available = 1", ProductUnit.class);
+		query.setParameter("productId", productId);
+		query.setParameter("platformId", platformId);
+		return (ProductUnit) query.getResultList().get(0);
+	}
+	
+	public List<ProductUnit> getAvaliableProductUnitsFromProductIdAndPlatform(Integer productId, Integer platformId){
+		Query query = getDbConnection().createNativeQuery("SELECT * FROM PRODUCT_UNITS WHERE product_Product_ID = :productId AND productPlatform_Platform_ID = :platformId AND Available = 1", ProductUnit.class);
+		query.setParameter("productId", productId);
+		query.setParameter("platformId", platformId);
+		return (List<ProductUnit>) query.getResultList();
 	}
 }

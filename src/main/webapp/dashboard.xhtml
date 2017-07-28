@@ -101,7 +101,10 @@
 					<p:column headerText="Games">
 						<h:outputText value="#{category.productSet}" />
 					</p:column>
-					
+					<p:column headerText="Image">
+					<p:graphicImage library="images" name="#{category.categoryImageName}"
+					style="width:30%; text-align: center" />
+			</p:column>
 					<p:column headerText="Options">
 						<p:commandButton update=":EditCategorySection" icon="ui-icon-pencil"
 							title="Edit">
@@ -117,10 +120,13 @@
 			<br/>
 			<h:form id="AddCategorySection">
 				<p:growl id="categoryAddMsgs" showDetail="true" />
-				<h:panelGrid columns="3" cellpadding="5">
+				<h:panelGrid columns="2" cellpadding="5">
 					<p:outputLabel value="Name:" for="addCategoryName" />
 					<p:inputText id="addCategoryName" placeholder="Insert Category"
 						value="#{CategoryBean.newCategory.categoryName}" />
+											<p:outputLabel value="Imagem:" for="addCategoryImageName" />
+			<p:inputText id="addCategoryImageName" placeholder="Insert Category Image"
+				value="#{CategoryBean.newCategory.categoryImageName}" required="true" />
 					<p:commandButton value="Add"
 						update=":CategoryTable:CategoryList, AddProductSection, EditProductSection"
 						action="#{CategoryBean.checkCategoryName()}" />
@@ -130,10 +136,13 @@
 			<h:form id="EditCategorySection">
 				<p:growl id="categoryEditMsgs" showDetail="true" />
 				<h:inputHidden value="#{CategoryBean.editedCategory.categoryId}" />
-				<h:panelGrid columns="3" cellpadding="5">
+				<h:panelGrid columns="2" cellpadding="5">
 					<p:outputLabel value="Name:" for="editCategoryName" />
 					<p:inputText id="editCategoryName" placeholder="Insert Category"
 						value="#{CategoryBean.editedCategory.categoryName}" />
+						<p:outputLabel value="Imagem:" for="editCategoryImageName" />
+				<p:inputText id="editCategoryImageName" placeholder="Insert Category Image"
+				value="#{CategoryBean.editedCategory.categoryImageName}" required="true" />
 					<p:commandButton value="Edit"
 						update=":CategoryTable:CategoryList, AddProductSection, EditProductSection"
 						action="#{CategoryBean.editCategory()}" />
@@ -169,9 +178,6 @@
 					</p:column>
 					<p:column headerText="Rental Price (€ per week)">
 						<h:outputText value="#{product.rentalPrice}" />
-					</p:column>
-					<p:column headerText="Availability">
-						<h:outputText value="#{product.availability}" />
 					</p:column>
 					<p:column headerText="Options">
 						<p:commandButton update=":EditProductSection, :errorMsgs"
@@ -249,12 +255,6 @@
 								<f:validateDoubleRange minimum="1.0" maximum="35.0" />
 							</p:inputText>
 		
-		
-							<p:outputLabel for="addAvailability" value="Availability 0-99:" />
-							<p:spinner min="0" max="99" id="addAvailability"
-								value="#{ProductBean.newProduct.availability}" placeholder="00-99">
-							</p:spinner>
-		
 							<p:outputLabel value="Details:" for="addDetails" />
 							<p:inputTextarea maxlength="1000" cols="22" counter="display"
 								counterTemplate="{0} characters remaining." id="addDetails"
@@ -328,12 +328,6 @@
 								converterMessage="Cannot convert to double.">
 								<f:validateDoubleRange minimum="1.0" maximum="35.0" />
 							</p:inputText>
-		
-							<p:outputLabel for="editAvailability" value="Availability 0-99:" />
-							<p:spinner min="0" max="99" id="editAvailability"
-								value="#{ProductBean.editedProduct.availability}"
-								placeholder="00-99">
-							</p:spinner>
 		
 							<p:outputLabel value="Details:" for="editDetails" />
 							<p:inputTextarea maxlength="1000" cols="22" counter="display"

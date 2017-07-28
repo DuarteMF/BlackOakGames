@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+<h:body>
+	<ui:composition template="commonLayout.xhtml">
+		<ui:define name="content">
+
+			<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
+			<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+			<h:outputStylesheet library="css" name="memenu.css"></h:outputStylesheet>
+			<h:outputStylesheet library="css" name="mystyle.css"></h:outputStylesheet>
+
+			<div class="container">
+				<div class="title">
+					<h1 id="checkout"
+						style="text-align: center; margin-top: 30px; margin-bottom: 30px;">Checkout</h1>
+				</div>
+
+				<h:outputText styleClass="h4"
+					value="Congratulations!&lt;br /&gt;You can now enjoy these games from #{ShoppingCartBean.showStartDate()} to #{ShoppingCartBean.showEndDate()}." escape="false"/>
+
+				<div id="gamesList">
+					<p:dataList value="#{ShoppingCartBean.cart}" var="product"
+						type="definition">
+<!-- 						.ui-datalist .ui-datalist-content{border-style:none;}  -->
+						<h:panelGrid columns="3">
+							<p:graphicImage library="images"
+								name="#{product.product.productImageName}" class="img-responsive" style="max-height:75px;"/>	#{product.product.productName}	#{product.productPlatform.platformName}
+							</h:panelGrid>
+					</p:dataList>
+					<h:outputText styleClass="h3" value="Price: #{ShoppingCartBean.expectedPrice}€" style="display:block;text-align:right;"/>
+				</div>
+				
+				<h:outputText styleClass="h4" value="Please head to the nearest store to effect payment and pick up your games."/>
+				<br />
+				<br />
+				<h:form>
+				<p:commandButton value="Back to Main Page" action="#{ShoppingCartBean.clean()}"/>
+				</h:form>
+
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
