@@ -27,6 +27,19 @@
 	width:100%;
 	}
 }
+.moldura{
+	width: 65% !important;
+	align-text: center;
+	background-color: white !important;
+	margin: none;
+}
+
+#displaybackground{
+background: url("#{resource['images:backgroundred.png']}");
+background-size: 100%;
+ background-repeat: no-repeat;
+ background-color: #C60000;
+}
 
 /* Zona do search */
 
