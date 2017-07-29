@@ -41,6 +41,8 @@ public class LoginBean implements Serializable{
 	public void checkAccountName() {
 		if(loginRepository.getLoginFromName(newAccount.getUsername()).isEmpty()){
 			addAccount();
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucess!",
+					"Your account was succefully created"));
 		}else{
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!",
 					"There is already another person with the same Username "));
