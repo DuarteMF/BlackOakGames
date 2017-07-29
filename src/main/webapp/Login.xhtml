@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+
+<h:body>
+
+	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="memenu.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="Login.css"></h:outputStylesheet>
+
+	<p:growl id="growl" sticky="true" showDetail="true" />
+
+	<div class="container">
+		<div class="account">
+			<h1>Account</h1>
+			<div class="account-pass">
+				<div class="col-md-8 account-top">
+					<h:form>
+						<div>
+							<span>Username</span> 
+							<h:inputText value="#{login.username}"/>
+						</div>
+						<div>
+							<span>Password</span> 
+							<h:inputSecret  value="#{login.password}"/>
+						</div>
+						<p:commandButton class="LoginButton" value="Login" action="#{login.loginControl()}"/>
+					</h:form>
+				</div>
+				<div class="col-md-4 left-account ">
+					<a href="Register.xhtml">
+						<p:graphicImage class="img-responsive" value="/resources/images/pressStart.png" alt=""/></a>
+					<a href="Register.xhtml" class="create">Create an account</a>
+					<div class="clearfix"></div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+
+	</div>
+</h:body>
+</html>

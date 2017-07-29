@@ -54,4 +54,8 @@ public class ClientBean implements Serializable{
 	public void deleteClient(Client client) {
 		clientRepository.removeFromDb(client);
 	}
+	
+	public Client getAddedClient(){
+		return clientRepository.getClientByName(newClient.getClientName());
+	}
 }

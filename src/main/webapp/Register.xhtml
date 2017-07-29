@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+
+<h:body>
+
+	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="memenu.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="Login.css"></h:outputStylesheet>
+	
+	<p:growl id="growl" sticky="true" showDetail="true" />
+
+
+	<div class=" container">
+		<div class=" register">
+			<h1>Register</h1>
+			<h:form>
+				<div class="col-md-6 register-top-grid">
+					<h3>Personal information</h3>
+					<div>
+						<span>Name</span> 
+						<h:inputText id="Name" value="#{ClientBean.newClient.clientName}" type="text" required="true"/>
+						<p:message for="Name" closable="true"/>
+					</div>
+					<div>
+						<span>Address</span>
+						<h:inputText value="#{ClientBean.newClient.clientAddress}" type="text" required="true"/>
+					</div>
+					<div>
+						<span>E-mail</span> 
+						<h:inputText value="#{ClientBean.newClient.clientEmail}" type="text" required="true"/>
+					</div>
+					<div>
+						<span>Phone Number</span>
+						<h:inputText value="#{ClientBean.newClient.clientPhoneNumber}" type="text" required="true"/>
+					</div>
+				</div>
+				<div class="col-md-6 register-bottom-grid">
+					<h3>Login information</h3>
+					<div>
+						<span>Username</span>
+						<h:inputText value="#{LoginBean.newAccount.username}" type="text" required="true"/>
+					</div>
+					<div>
+						<span>Password</span>
+						<h:inputSecret value="#{LoginBean.newAccount.password}" type="password" required="true"/>
+					</div>
+					<div>
+						<span>Confirm Password</span> 
+						<h:inputSecret value="" type="password"/>
+					</div>
+					<p:commandButton class="RegisterButton" value="Register" action="#{LoginBean.checkAccountName()}" update="growl">
+						
+					</p:commandButton>
+				</div>
+				<div class="clearfix"></div>
+			</h:form>
+		</div>
+	</div>
+
+</h:body>
+</html>
