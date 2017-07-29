@@ -36,9 +36,8 @@
 									<p:panel footer="#{Category.categoryName}"
 										style="text-align:center">
 										<h:panelGrid columns="1" style="width:100%">
-											<p:graphicImage value="/resources/images/#{Category.categoryImageName}" style="width:50%" />
 		
-											<h:commandButton class="CategoryButton btn btn-link" value="See Games"  action="#{ProductCatalogBean.submitSearch}">
+											<h:commandButton class="CategoryButton btn btn-link" image="/resources/images/#{Category.categoryImageName}" style="width:50%" action="#{ProductCatalogBean.submitSearch}">
 												<f:setPropertyActionListener value="#{Category.categoryId}" target="#{ProductCatalogBean.searchCategory}"/>
 											</h:commandButton>
 											
@@ -61,12 +60,11 @@
 									<p:panel footer="#{Platform.platformName}"
 										style="text-align:center">
 										<h:panelGrid columns="1" style="width:100%">
-											<p:graphicImage value="/resources/images/#{Platform.platformImageName}" style="width:50%"/>
-
-		
-											<h:commandButton class="PlatformButton btn btn-link" value="See Games" action="#{ProductCatalogBean.submitSearch}">
+										
+											<h:commandButton class="PlatformButton btn btn-link" image="/resources/images/#{Platform.platformImageName}" style="width:50%" action="#{ProductCatalogBean.submitSearch}">
 												<f:setPropertyActionListener value="#{Platform.platformId}" target="#{ProductCatalogBean.searchPlatform}"/>
 											</h:commandButton>
+											
 										</h:panelGrid>
 									</p:panel>
 								</p:dataGrid>

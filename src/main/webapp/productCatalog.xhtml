@@ -64,7 +64,7 @@
 						<p:column filterBy="#{product.categorySet}" filterMatchMode="in"
 							headerText="Categories" update=":form" sortBy="#{product.categorySet}">
 							<f:facet name="filter">
-								<p:selectCheckboxMenu label="Choose"
+								<p:selectCheckboxMenu label="Choose" 
 									onchange="PF('productTable').filter()" panelStyle="width:125px"
 									scrollHeight="150" converter="omnifaces.SelectItemsConverter" >
 									<f:selectItems value="#{CategoryBean.getList()}" var="category"
@@ -74,8 +74,6 @@
 							</f:facet>
 							<h:outputText value="#{product.categorySet}" />
 						</p:column>
-			
-			
 			
 						<p:column filterBy="#{product.platformSet}" update=":form" filterMatchMode="in"
 							headerText="Plataforms" sortBy="#{product.platformSet}">
