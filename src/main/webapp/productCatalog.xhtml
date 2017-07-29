@@ -35,7 +35,7 @@
 			</f:metadata>
 			
 			<header>
-				<h1 id="productcatalog">Product Catalog</h1>
+				<h1 id="productcatalog">Videogames</h1>
 			</header>
 
 			<div class="container tab-content">
@@ -44,13 +44,9 @@
 			
 					<p:dataTable  var="product" value="#{ProductCatalogBean.searchBar()}" 
 						style="margin-bottom:40px" paginator="true" id="ProductList" rows="5"
-						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 						rowsPerPageTemplate="5,10,15" widgetVar="productTable" styleClass="catalog">
-			
-						<f:facet name="header">
-			            Videogames for rent
-			        	</f:facet>
-			        	
+
 						<p:column headerText="Image" update=":form" > 
 							<p:graphicImage library="images" name="#{product.productImageName}"
 								style="width:30%; text-align: center" />

@@ -25,6 +25,7 @@
 										placeholder="Search">
 										<f:validateLength minimum="2" />
 									</p:inputText>
+									
 								</div>
 								
 								<div class="searchCatPlat">
@@ -49,9 +50,13 @@
 								</div>
 							</div>
 							
-							<p:commandButton icon="ui-icon-search" styleclass="iconSearch"  update="errors" action="#{ProductCatalogBean.submitSearch}"/>
-							
+							<p:commandButton icon="ui-icon-search" update="errors" action="#{ProductCatalogBean.submitSearch}" >
+							 	<!--  <p:graphicImage image="/resources/images/search.png" style="width:16px, height:16px;" /> -->
+							</p:commandButton>
+						
 						</h:form>
+						
+						
 						
 						<div class="header-left">
 							<ul>
