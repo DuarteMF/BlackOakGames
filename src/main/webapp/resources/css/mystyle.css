@@ -27,10 +27,16 @@
 	width:100%;
 	}
 }
+
+img{
+	margin-bottom: 10px !important;
+}
 .moldura{
 	width: 65% !important;
 	align-text: center !important;
 	background-color: white !important;
+	padding-left: 0px !important;
+	padding-right: 0px !important;
 	
 }
 
