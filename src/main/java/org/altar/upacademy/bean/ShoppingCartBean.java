@@ -104,6 +104,10 @@ public class ShoppingCartBean implements Serializable {
 		order.setEnd(endDate);
 		order.setExpectedPrice(expectedPrice);
 		orderRepository.addToDb(order);
+		for(ProductUnit unit: cart){
+			unit.setAvailable(false);
+			productUnitRepository.updateInDb(unit);
+		}
 		return "success";
 	}
 	
