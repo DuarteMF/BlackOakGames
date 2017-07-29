@@ -163,6 +163,7 @@
 
 .tab-content{
 	border-color: #333333 !important;
+	
 }
 
 .GridCategory .ui-panel-footer.ui-widget-content, .GridPlatform .ui-panel-footer.ui-widget-content{
@@ -201,23 +202,23 @@
 
  .ui-datatable thead th, .ui-datatable tbody td, .ui-datatable tfoot td, .ui-datatable tfoot th{
 	text-align: center;
-}  
+	
+} 
+ 
  
 .tab-content .ui-widget-header{
-	background:	#333333 !important;
-	color: white !important;
+	/* background:	#333333 !important; */
+	/* color: white !important; */
 	box-shadow: none !important;
 	text-shadow: none !important;
 	font-size:13pt !important;
 	border: none !important;
-		
-	
+	border-radius: 0px !important;
 }  
 
 .tab-content .ui-state-default{
 	text-shadow: none !important;
 	background: none  !important;
-	/* color: white !important; */
 	font-weight:normal !important;
 	border: none !important;
 	font-weight:bold !important;
@@ -243,17 +244,26 @@
 	border: 0px!important;
 }	
 
-.tab-content .ui-paginator-rpp-options {
-	color: white !important;
-	
-}
-
-.tab-content .ui-paginator-page{
-	color: white !important;
-}
-
-.tab-content .ui-selectcheckboxmenu-label-container{
+ .tab-content .ui-paginator-rpp-options {
+	/* color: white !important; */
 	border: 0px !important;
+	
+} 
+
+.tab-content .ui-paginator-page, .tab-content .ui-paginator-next,  .tab-content .ui-paginator-last,  .tab-content .ui-paginator-first, .tab-content .ui-paginator-prev {
+	border: 0px !important;
+} 
+
+.tab-content {
+	border: 0px !important;
+}
+
+.tab-content .ui-column-customfilter .ui-selectcheckboxmenu,  .tab-content .ui-column-customfilter .ui-selectcheckboxmenu-trigger {
+	border: 0px !important;
+}
+
+.tab-content .ui-column-filter{
+	border-color: grey !important;
 }
 
 
