@@ -1,14 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      >
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+	
     <body>
+    
 	    <ui:composition>
 
-		<h1 class=" title">Black Oak Games</h1>
-
+		<p:growl id="errors" showDetails="true"/>
+			<div class="header">
+				<div class="header-top">
+					<div class="container">
+					
+						<h:form onsubmit="productCatalog.xhtml">
+							<div class="search1">
+								<div class="searchTitle">
+									<p:inputText id="Title" value="#{ProductCatalogBean.searchProduct}" required="true" label="Text 1"
+										placeholder="Search">
+										<f:validateLength minimum="2" />
+									</p:inputText>
+								</div>
+								
+								<div class="searchCatPlat">
+									<div class="searchCat">
+										<p:selectOneMenu value="#{ProductCatalogBean.searchCategory}"
+											label="Categories" rendered="#{not empty (ProductBean.existingCategories())}"
+											converter="omnifaces.SelectItemsConverter">
+											<f:selectItem itemLabel="Category" noSelectionOption="true" />
+											<f:selectItems value="#{ProductBean.existingCategories()}" var="category" itemLabel="#{category.categoryName}" itemValue="#{category.categoryId}"/>
+										</p:selectOneMenu>
+									</div>
+									
+									<div class="searchPlat">
+										<p:selectOneMenu value="#{ProductCatalogBean.searchPlatform}"
+											label="Platforms" rendered="#{not empty (ProductBean.existingPlatforms())}"
+											converter="omnifaces.SelectItemsConverter">
+											<f:selectItem itemLabel="Platform" noSelectionOption="true" />
+											<f:selectItems value="#{ProductBean.existingPlatforms()}" var="platform" itemLabel="#{platform.platformName}" itemValue="#{platform.platformId}"/>
+										</p:selectOneMenu>
+									</div>
+									
+								</div>
+							</div>
+							
+							<p:commandButton icon="ui-icon-search" styleclass="iconSearch"  update="errors" action="#{ProductCatalogBean.submitSearch}"/>
+							
+						</h:form>
+						
+						<div class="header-left">
+							<ul>
+								<li class="active grid" style="display: inline;">
+									<h:button id="login" value="Login" outcome="index"/>
+								</li>
+								
+								<li class="active grid" style="display: inline;">
+									<h:button id="signup" value="Sign Up" outcome="index"/>
+								</li>
+								
+								<li class="active grid" style="display: inline;">		
+									<h:button  id="dashboard" value="Dashboard" outcome="dashboard" />
+								</li>
+								
+								<li class="active grid" style="display: inline;">									
+									<h:button id="cart" image="/resources/images/cart1.png"  outcome="shoppingCart"/>
+								</li>
+							
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+				<div class="container"> 
+				
+					<div class="head-top">
+						<div id="gameTitle" class="logo">
+							<div class="row container-fluid">
+								<img class="col-xs-4"
+									src="https://d30y9cdsu7xlg0.cloudfront.net/png/195040-200.png"></img>
+								<p class="col-xs-8">Black Oak Games</p>
+							</div>
+						</div>
+						
+						<div class="h_menu4">
+							<ul class="memenu skyblue">
+								<li class="active grid" style="display: inline;"><a
+									class="color8" href="dashboard.xhtml">Home</a></li>
+							</ul>
+						</div>
+					</div>
+					
+				</div>
+			</div>
 	    </ui:composition>
     </body>
 </html>

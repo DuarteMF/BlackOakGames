@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+<h:body>
+	<ui:composition template="commonLayout.xhtml">
+		<ui:define name="content">
+
+			<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
+			<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+			<h:outputStylesheet library="css" name="memenu.css"></h:outputStylesheet>
+			<h:outputStylesheet library="css" name="mystyle.css"></h:outputStylesheet>
+
+			<p:growl id="errorMsgs" showDetail="true" />
+
+			<div class="container">
+				<div class="title">
+					<h1 id="shoppingcart"
+						style="text-align: center; margin-top: 30px; margin-bottom: 30px;">Shopping
+						Cart</h1>
+				</div>
+
+				<div>
+					<p:dataTable id="ShoppingCart" var="productUnit"
+						value="#{ShoppingCartBean.cart}">
+						<p:column>
+							<p:graphicImage library="images"
+								name="#{productUnit.product.productImageName}" id="imageGame"
+								class="img-responsive" />
+						</p:column>
+						<p:column>
+							<h:outputText value="#{productUnit.product.productName}" />
+						</p:column>
+						<p:column>
+							<h:outputText value="#{productUnit.productPlatform}" />
+						</p:column>
+						<p:column>
+							<h:outputText value="#{productUnit.product.rentalPrice}" />
+						</p:column>
+						<p:column>
+							<p:commandButton update=":ShoppingCart"
+								action="#{ShoppingCartBean.removeFromCart(productUnit)}"
+								icon="ui-icon-trash" title="Delete" />
+						</p:column>
+					</p:dataTable>
+
+					<br /> <br />
+
+					<h:form id="rentalPeriod">
+						<p:outputLabel value="Start Date:" for="addOrderStartDate" />
+						<p:calendar id="addOrderStartDate"
+							value="#{ShoppingCartBean.startDate}" pattern="dd/MM/yyyy"
+							required="true" converter="localDateTimeConverter">
+						</p:calendar>
+
+						<p:outputLabel value="End Date:" for="addOrderEndDate" />
+						<p:calendar id="addOrderEndDate"
+							value="#{ShoppingCartBean.endDate}" pattern="dd/MM/yyyy"
+							required="true" converter="localDateTimeConverter">
+						</p:calendar>
+
+						<p:commandButton update=":expectedRentalPrice, errorMsgs"
+							action="#{ShoppingCartBean.calculateExpectedPrice()}"
+							value="Calculate Rental Price" />
+					</h:form>
+
+					<div id="rentalPriceContainer">
+						<h:form id="expectedRentalPrice" style="display:inline-flex;">
+							<h2>Total Price:</h2>
+							<h:outputText value="#{ShoppingCartBean.expectedPrice}€"
+								styleClass="h2" />
+						</h:form>
+					</div>
+				</div>
+
+				<div>
+					<h:form>
+						<p:commandButton value="Submit Order"
+							action="#{ShoppingCartBean.createOrder()}" update="errorMsgs" />
+					</h:form>
+				</div>
+			</div>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

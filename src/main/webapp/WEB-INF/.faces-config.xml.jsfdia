@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#productCatalog.xhtml"
+  PATH="/productCatalog.xhtml" SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#index.xhtml" PATH="/index.xhtml"
+  SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#index.xhtml:0" NAME="item"
+   PATH="/index.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="success:#{ProductCatalogBean.submitSearch}:#productCatalog.xhtml"
+    NAME="output" PATH="/productCatalog.xhtml"
+    TARGET="rules:#productCatalog.xhtml"
+    TITLE="#{ProductCatalogBean.submitSearch}:success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#checkoutpage.xhtml"
+  PATH="/checkoutpage.xhtml" SHAPE="32,129,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#checkoutpage.xhtml:0" NAME="item"
+   PATH="/checkoutpage.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="success:#{ShoppingCartBean.clean()}:#index.xhtml" NAME="output"
+    PATH="/index.xhtml" TARGET="rules:#index.xhtml"
+    TITLE="#{ShoppingCartBean.clean()}:success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#shoppingCart.xhtml"
+  PATH="/shoppingCart.xhtml" SHAPE="32,241,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#shoppingCart.xhtml:0" NAME="item"
+   PATH="/shoppingCart.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="success:#{ShoppingCartBean.createOrder()}:#checkoutpage.xhtml"
+    NAME="output" PATH="/checkoutpage.xhtml"
+    TARGET="rules:#checkoutpage.xhtml"
+    TITLE="#{ShoppingCartBean.createOrder()}:success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+</PROCESS>

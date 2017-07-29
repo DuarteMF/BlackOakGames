@@ -17,7 +17,7 @@ import javax.validation.constraints.Size;
 
 @javax.persistence.Entity
 @Table(name="PRODUCT")
-
+//@SqlResultSetMapping(name = "ProductMapping", classes = @ConstructorResult(targetClass = Product.class, columns={@ColumnResult(name="name")}))
 public class Product extends Entity implements Serializable {
 	/**
 	 * 
@@ -42,9 +42,13 @@ public class Product extends Entity implements Serializable {
 	@DecimalMax(value= "35.00", message = "Should not exceed 35.00€")
 	@Column(name="Rental_Price")
 	private Double rentalPrice = null;
-	@Max(99)
-	@Column(name="Availability")
-	private Integer availability = null;
+//	@Max(99)
+//	@Column(name="Availability")
+//	private Integer availability = null;
+	@Column(name="Product_Image")
+	private String productImageName = null;
+	@Column(name="Product_Video")
+	private String productVideoUrl = null;
 	
 	public Integer getProductId() {
 		return productId;
@@ -82,13 +86,25 @@ public class Product extends Entity implements Serializable {
 	public void setRentalPrice(Double rentalPrice) {
 		this.rentalPrice = rentalPrice;
 	}
-	public Integer getAvailability() {
-		return availability;
-	}
-	public void setAvailability(Integer availability) {
-		this.availability = availability;
-	}
+//	public Integer getAvailability() {
+//		return availability;
+//	}
+//	public void setAvailability(Integer availability) {
+//		this.availability = availability;
+//	}
 	
+	public String getProductImageName() {
+		return productImageName;
+	}
+	public void setProductImageName(String productImageName) {
+		this.productImageName = productImageName;
+	}
+	public String getProductVideoUrl() {
+		return productVideoUrl;
+	}
+	public void setProductVideoUrl(String productVideoUrl) {
+		this.productVideoUrl = productVideoUrl;
+	}
 	public Product() {
 
 	}

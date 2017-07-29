@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
+	
+
+</h:head>
+<h:body>
+
+	<h:form>
+	
+	 <p:commandButton value ="Ver mais" action="productPage.xhtml">
+		<f:setPropertyActionListener target="#{ProductPageBean.productId}" value="1" ajax="false" />
+	</p:commandButton> 
+	
+	
+	
+	</h:form>
+	
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	
+	<h:form>
+	
+	 <p:link value = "Ver mais" outcome="productPage">
+		<f:param value="1" name="productId" />
+	</p:link> 
+	
+	
+	
+	</h:form>
+</h:body>
+</html>

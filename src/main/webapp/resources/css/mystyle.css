@@ -1,6 +1,9 @@
 @CHARSET "UTF-8";
+@CHARSET "ISO-8859-1";
 
-/* Zona do titulo e logo */
+/* ------------------------------------ Front Page -------------------------------- */
+
+/* Title and logo */
 #gameTitle{
 	min-width:25%;
 	width:25%;
@@ -13,12 +16,14 @@
 	width:95px;
 	height:65px;
 }
+
 #gameTitle p{
 	font-weight:700;
 	font-size:30px;
 	line-height:0.9;
 	text-align:center;
 }
+
 @media(max-width:1200px){
 	#gameTitle img{
 		display:none;
@@ -28,7 +33,7 @@
 	}
 }
 
-/* Zona do search */
+/* Search */
 
 .search1{
 	display:flex;
@@ -41,9 +46,11 @@
     font-weight: bold;
     border: 1px solid black;
 }
+
 .search1 .ui-state-default, .search1 .ui-widget-content.ui-state-default, .search1 .ui-widget-header.ui-state-default{
 	border
 }
+
 .search1 .ui-inputfield {
 	border-radius: 0px !important;
 	width:100%;
@@ -55,11 +62,13 @@
 .searchTitle{
 	border-radius: 0px !important;
 }
+
 .searchTitle form{
 	border-radius: 0px !important;
 	margin-bottom: 0px;
 	border: 1px solid black;
 }
+
 .searchCatPlat form{
 	border: 1px solid black;
 }
@@ -69,6 +78,7 @@
 	flex-direction:row;
 	border-radius: 0px !important;
 }
+
 .searchCat{
 	margin-top: 0px;
 	width:50%;
@@ -80,6 +90,7 @@
 	width:50%;
 	border-radius: 0px !important;
 }
+
 .search1 .ui-selectonemenu.ui-widget.ui-state-default.ui-corner-all{
 	width:100%;
 	min-width:inherit !important;
@@ -91,13 +102,41 @@
 .search1 label{
 	border-radius: 0px !important;
 }
+
 .search1 .ui-selectonemenu-trigger.ui-state-default.ui-corner-right{
 	border-radius: 0px !important;
 	width: 25px;
 
 }
 
-/* Zona de display das Categorias e das Plataformas */
+/* Login, Sign Up, Dashboard and Shopping cart buttons */
+
+#dashboard, #login, #signup{
+	color:white;
+	background-color:transparent ;
+	border-style: hidden;
+	margin:0 2em 0 0;
+	font-family:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 16px;
+}
+
+#cart{
+	vertical-align: middle;
+	margin-bottom:5px;
+	height:20px;
+	width:auto;
+}
+
+#dashboard:hover, #login:hover, #signup:hover{
+	color: #EF5F21;
+	background-color:transparent;
+}
+
+.header-left ul li input[type=button]{
+	padding:0px;
+}
+
+/* Display of Categories and Platforms */
 
 .CategoriesAndPlatforms{
   	margin-top: 50px;
@@ -117,135 +156,212 @@
 	background-color: #333333;
 	border:1px solid #333333;
 }
+
 .TabCategory, .TabPlatform{
 	width:100%;
 }
+
 .tab-content{
 	border-color: #333333 !important;
 }
+
 .GridCategory .ui-panel-footer.ui-widget-content, .GridPlatform .ui-panel-footer.ui-widget-content{
 	text-align: center !important;
+}
+
+
+/* Footer */
+
+.footer-class{
+	font-weight:normal !important;
+	font-size: 9pt;
+	font-family: Arial;
+	background: #141414 !important;
+}
+
+
+/* ------------------------------------ Product Catalog -------------------------------- */
+
+#productcatalog{
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.row{
+ 	align-content: right;
+}
+
+.paramum{
+   font-weight: bold !important;
+ 	margin-bottom:0px;
+}
+
+ .ui-datatable thead th, .ui-datatable tbody td, .ui-datatable tfoot td, .ui-datatable tfoot th{
+	text-align: center;
+}  
+ 
+.tab-content .ui-widget-header{
+	background:8C8C8C !important;
+	/* color: white !important; */
+	box-shadow: none !important;
+	text-shadow: none !important;
+	font-size:13pt !important;
+	border: none !important;
+		
+	
+}  
+
+.tab-content .ui-state-default{
+	text-shadow: none !important;
+	background: 8C8C8C  !important;
+	/* color: white !important; */
+	font-weight:normal !important;
+	border: none !important;
+	font-weight:bold !important;	
+}   
+
+.tab-content .ui-datatable  {
+	/* border:1px solid #333333 !important; */
 	
 }
 
-/* 
+.tab-content .ui-paginator-rpp-options .ui-widget .ui-state-default .ui-corner-left{
+	/* color: white !important; */
 
- #title {
-  color: #FFD200;  
-  font-size: 47px;
-  margin-bottom: 15px;
-  margin-top: 0;
-  font-weight: lighter;
-  text-align:left;
-  
+}
+
+.ui-datatable tbody td{
+	border-style:none;
 }
 
 
-html{
-	padding-bottom: 0px;
-	padding-left: 0px;
-	padding-right: 0px;
-	padding-top: 0px;
-	height:100%;
-	width: 100%;
-}
+/* ------------------------------------ Product Page -------------------------------- */
 
-body{
-	color: #FFD200 !important;
-	background-color:#637ba0 !important;
-}
 
-/* --------------------------Header-----------------------------
-.header{
+.flexbox{
 	display:flex;
-	background-color:#3b424f;
-	align-items: center;
-	margin-bottom: 50px;
+	justify-content:space-around;
+	flex-wrap:wrap;
 }
-.Título{
-	font-size: 20px;
-	display:flex;
-	justify-content:flex-start;
-	padding-top: 10px;
+
+.flexbox > *{
+	/* flex-grow:1; */
+}
+
+.title{
+	padding-left:2%;
+}
+
+
+#titleProduct{
+	margin-top:auto;
+	margin-bottom:20px;
+	/* margin-left:130px; */
+	font-style:oblique;
+}
+
+#imageGame{
 	
-}
-.Login{
-	display:flex;
- 	justify-content:flex-end;
-	padding-top: 10px;
-
-}
-
-.Search{
-	display:flex;
-	padding-top: 10px;
-
-}
-
-botões Login e Sign Up
-.LoginButton, .SignUp{
+	margin-top:40px;
+/* 	margin-left:100px; */ 
 	border-radius: 5px;
-	border-color: transparent;
-	background-color:#3b424f;
-	color: white;
-	
-}
-
-.LoginButton:hover, .SignUp:hover{
+	border-color:transparent;
+	width:240px;
+	height:314px;
 	border-radius: 5px;
-	background-color:#395272;
-	border-color: transparent;
-	color: white;
-	
+} 
+
+#video{
+	margin-top:40px;
+	border-radius: 5px;
+	border-color:transparent;
+	margin-bottom:5px;
+	max-width: 100%; 
 }
 
-.Search1{
+
+#formDescription{
+	font-size:12pt;
+	margin-top:40px;
+}
+
+#formDescription, #formDetails{
+	padding-left:2%;
+	padding-right:5%;  
+} 
+
+#description{
+	text-align:left;
+	text-wight:300;
+	margin-top:20px;
+	font-weight: bold;
+}
+
+
+#details{
+	font-weight: bold;
+}
+
+#detailsText{
+	display:block;
+	text-align: justify;
+	text-justify: inter-word;
+}
+
+.a, .b, .c, .d {
+	text-align:center;
+}
+
+.columns{
+	text-align:left;
+	margin-top:60px;
+	margin-bottom:100px;
+}
+
+#a1, #a2, #a3, #a4{
+	margin-bottom:25px;
+}
+
+#availableFor, #respectiveCategory, #productAvaliability, #productPrice{
+	text-align:center;
+}
+
+#addButton{
+	margin-top:10px;
+}
+
+#addToCart{
 	display:flex;
-	background-color:#3b424f;
-	
-	
+	border-radius: 5px;
+	justify-content:space-around;
+	background-color:orange;
 }
 
-.GameSearch{
-	display:flex;
-	justify-content: flex-end;
-}	
+h5{
+	font-size:12pt;
+	font-weight:bold;
+	margin-top:20px;
+}
 
-	
+.ui-datalist-content.ui-widget-content{
+	border:0 !important;
+	font-weight:normal;
 }
 
 
 
---------------------------Content------------------------------
 
-Área da grid Categoria
-.GridCategory, .GridPlatform{
-	background-color:#637ba0;
-	border: none;
-	
-}
-Área das Tabs Categoria e Plataformas na grid
-.Tabs{
-	background-color:#637ba0;
-	text-align:center !important;
-	display:flex;
-	justify-content:center;
-	color:white !important;
-}
 
-Tabs Categoria e Plataformas na grid
-#j_idt31_tab, #j_idt25_tab{
-	color:white;
-	background-color:#637ba0;
-	margin-bottom: 20px;
-}
 
-#cat{  
-     font-size: 20px;  
-     text-decoration: none;  
-     color:orange;  
-     font-style: normal; 
- } 
 
- */
+
+
+
+
+
+
+
+
+
 
