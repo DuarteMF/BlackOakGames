@@ -82,7 +82,7 @@
 				</div>
 
 				<div>
-					<h:form>
+					<h:form rendered="#{LoginController.activeUser eq CLIENT or ADMIN}">
 						<p:commandButton value="Submit Order"
 							action="#{ShoppingCartBean.createOrder()}" update="errorMsgs" />
 					</h:form>

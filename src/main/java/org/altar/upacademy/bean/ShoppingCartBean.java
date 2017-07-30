@@ -14,6 +14,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.altar.upacademy.controller.LoginController;
 import org.altar.upacademy.model.Order;
 import org.altar.upacademy.model.ProductUnit;
 import org.altar.upacademy.repository.OrderRepository;
@@ -96,9 +97,12 @@ public class ShoppingCartBean implements Serializable {
 	@Inject
 	private OrderRepository orderRepository;
 	
+	@Inject
+	private LoginController loginController;
+	
 	public String createOrder(){
 		order.setProductUnitSet(cart.stream().collect(Collectors.toSet()));
-//		order.setClient(client);
+		order.setClient(loginController.getActiveUser().getClient());
 //		order.setSeller(seller);
 		order.setStart(startDate);
 		order.setEnd(endDate);

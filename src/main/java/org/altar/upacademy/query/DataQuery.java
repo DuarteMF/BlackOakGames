@@ -37,5 +37,8 @@ public class DataQuery {
 		}
 	}
 	
+	public Login getUser(String username, String password){
+		return em.createNamedQuery("Login.control", Login.class).setParameter("username", username).setParameter("password", password).getSingleResult();
+	}
 	
 }
