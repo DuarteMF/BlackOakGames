@@ -173,9 +173,9 @@
 					<p:column headerText="Publisher">
 						<h:outputText value="#{product.publisher}" />
 					</p:column>
-					<p:column headerText="Details">
+					<!-- <p:column headerText="Details">
 						<h:outputText value="#{product.details}" />
-					</p:column>
+					</p:column> -->
 					<p:column headerText="Rental Price (€ per week)">
 						<h:outputText value="#{product.rentalPrice}" />
 					</p:column>
@@ -281,6 +281,15 @@
 							<p:inputText id="editProductName"
 								value="#{ProductBean.editedProduct.productName}"
 								placeholder="Insert Product" />
+								
+								<p:outputLabel value="Image:" for="editProductImageName" />
+					<p:inputText id="editProductImageName" placeholder="Insert Product Image"
+						value="#{ProductBean.editedProduct.productImageName}" required="true"/>
+						
+						<p:outputLabel value="Video" for="editProductVideoUrl" />
+							<p:inputText id="editProductVideoUrl"
+								value="#{ProductBean.editedProduct.productVideoUrl}"
+								placeholder="Insert Product Video url" required="true"/>
 		
 							<p:outputLabel for="editYear" value="Year:" />
 							<p:spinner min="1980" max="2018" id="editYear"

@@ -49,7 +49,7 @@ img{
 }
 
 #displaybackground {
-	background: url("#{resource['images:imagemFundo2.png']}");
+	background: url("#{resource['images:backgroundnew.png']}");
 	/*background-attachment: fixed;*/
 	background-size: 100%;
 	background-repeat: no-repeat;
