@@ -83,7 +83,7 @@
 			</div>
 
 			<div class="container-fluid" id="submitOrder">
-				<h:form rendered="#{LoginController.activeUser eq CLIENT or ADMIN}">
+				<h:form rendered="#{login.activeUser eq CLIENT or ADMIN}">
 					<p:commandButton value="Submit Order" id="submitOrderButton"
 						action="#{ShoppingCartBean.createOrder()}" update="errorMsgs" />
 				</h:form>

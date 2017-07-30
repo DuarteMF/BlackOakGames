@@ -61,19 +61,19 @@
 						<div class="header-left">
 							<ul>
 								<li class="active grid" style="display: inline;">
-									<h:button id="login" value="Login" outcome="Login" rendered="#{empty (LoginController.activeUser)}"/>
+									<h:button id="login" value="Login" outcome="Login" rendered="#{empty (login.activeUser)}"/>
 								</li>
 								
 								<li class="active grid" style="display: inline;">
-									<h:button id="signup" value="Register" outcome="Register" rendered="#{empty (LoginController.activeUser)}"/>
+									<h:button id="signup" value="Register" outcome="Register" rendered="#{empty (login.activeUser)}"/>
 								</li>
 								
 								<li class="active grid" style="display: inline;">		
-									<h:button  id="dashboard" value="Dashboard" outcome="dashboard" rendered="#{LoginController.activeUser eq ADMIN}"/>
+									<h:button  id="dashboard" value="Dashboard" outcome="dashboard" rendered="#{login.activeUser.userRole eq ADMIN}"/>
 								</li>
 								
 								<li class="active grid" style="display: inline;">									
-									<h:button id="cart" image="/resources/images/cart.png"  outcome="shoppingCart" rendered="#{LoginController.activeUser eq ADMIN or CLIENT}"/>
+									<h:button id="cart" image="/resources/images/cart.png"  outcome="shoppingCart"/>
 								</li>
 							
 							</ul>
