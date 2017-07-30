@@ -46,16 +46,15 @@ img{
 	
 }
 
-#displaybackground{
-background: url("#{resource['images:backgroundlumini.png']}");
-background-size: 100%;
- background-repeat: no-repeat;
- background-color: #D22B2B;
+#displaybackground {
+	background: url("#{resource['images:imagemFundo2.png']}");
+	background-attachment: fixed;
+	background-size: 100%;
+	background-repeat: no-repeat;
+ 	background-color: #EE8F00;
 }
 
 /* Zona do search */
-
-
 .search1{
 	display:flex;
 	position:relative;
@@ -69,7 +68,7 @@ background-size: 100%;
 }
 
 .search1 .ui-state-default, .search1 .ui-widget-content.ui-state-default, .search1 .ui-widget-header.ui-state-default{
-	border
+	
 }
 
 .search1 .ui-inputfield {
@@ -200,7 +199,7 @@ background-size: 100%;
 	font-family: Arial;
 	text-align: center;
 	margin-top: 20px; 
-	background: #ffffff !important;
+	background: none !important;
 	color: black !important; 
 }
 
