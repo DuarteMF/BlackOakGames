@@ -21,14 +21,11 @@
 
 			<p:growl id="errorMsgs" showDetail="true" />
 
-			<div class="container">
 				<div class="title">
-					<h1 id="shoppingcart"
-						style="text-align: center; margin-top: 30px; margin-bottom: 30px;">Shopping
-						Cart</h1>
+					<h1 id="shoppingcart">Shopping Cart</h1>
 				</div>
 
-				<div>
+				<div class="container-fluid">
 					<p:dataTable id="ShoppingCart" var="productUnit"
 						value="#{ShoppingCartBean.cart}">
 						<p:column>
@@ -43,7 +40,7 @@
 							<h:outputText value="#{productUnit.productPlatform}" />
 						</p:column>
 						<p:column>
-							<h:outputText value="#{productUnit.product.rentalPrice}" />
+							<h:outputText value="#{productUnit.product.rentalPrice}€" />
 						</p:column>
 						<p:column>
 							<p:commandButton update=":ShoppingCart"
@@ -54,26 +51,29 @@
 
 					<br /> <br />
 
-					<h:form id="rentalPeriod">
+				<h:form id="rentalPeriod">
+					<h:panelGrid columns="2" cellpadding="5">
 						<p:outputLabel value="Start Date:" for="addOrderStartDate" />
 						<p:calendar id="addOrderStartDate"
 							value="#{ShoppingCartBean.startDate}" pattern="dd/MM/yyyy"
 							required="true" converter="localDateTimeConverter">
 						</p:calendar>
 
+
 						<p:outputLabel value="End Date:" for="addOrderEndDate" />
 						<p:calendar id="addOrderEndDate"
 							value="#{ShoppingCartBean.endDate}" pattern="dd/MM/yyyy"
 							required="true" converter="localDateTimeConverter">
 						</p:calendar>
+					</h:panelGrid>
+					<br/>
+					<p:commandButton id="rentalDataButton" update=":expectedRentalPrice, errorMsgs"
+						action="#{ShoppingCartBean.calculateExpectedPrice()}"
+						value="Calculate Rental Price" />
+				</h:form>
 
-						<p:commandButton update=":expectedRentalPrice, errorMsgs"
-							action="#{ShoppingCartBean.calculateExpectedPrice()}"
-							value="Calculate Rental Price" />
-					</h:form>
-
-					<div id="rentalPriceContainer">
-						<h:form id="expectedRentalPrice" style="display:inline-flex;">
+				<div id="rentalPriceContainer" class="container-fluid">
+						<h:form id="expectedRentalPrice">
 							<h2>Total Price:</h2>
 							<h:outputText value="#{ShoppingCartBean.expectedPrice}€"
 								styleClass="h2" />
@@ -81,13 +81,12 @@
 					</div>
 				</div>
 
-				<div>
+				<div class="container-fluid" id="submitOrder">
 					<h:form>
-						<p:commandButton value="Submit Order"
+						<p:commandButton value="Submit Order" id="submitOrderButton"
 							action="#{ShoppingCartBean.createOrder()}" update="errorMsgs" />
 					</h:form>
 				</div>
-			</div>
 
 		</ui:define>
 	</ui:composition>

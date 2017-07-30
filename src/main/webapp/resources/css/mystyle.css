@@ -8,8 +8,10 @@
 	min-width:25%;
 	width:25%;
 	text-align:center;
-	color:#EF5F21;
-	background-color: #fff;
+	color:#EF5F21; 
+	/*color: white;*/
+	/* background-color: #fff; */
+	background-color: none;
 }
 	
 #gameTitle img{
@@ -39,16 +41,16 @@ img{
 }
 .moldura{
 	width: 65% !important;
-	align-text: center !important;
+	margin: auto !important;
 	background-color: white !important;
 	padding-left: 0px !important;
 	padding-right: 0px !important;
-	
+	background-color: white !important;
 }
 
 #displaybackground {
 	background: url("#{resource['images:imagemFundo2.png']}");
-	background-attachment: fixed;
+	/*background-attachment: fixed;*/
 	background-size: 100%;
 	background-repeat: no-repeat;
  	background-color: #EE8F00;
@@ -158,9 +160,9 @@ img{
 
 /* Display of Categories and Platforms */
 
-.CategoriesAndPlatforms{
-  	margin-top: 50px;
-  	margin-bottom: 50px;
+#gridIndex{
+	padding-top:30px;
+	padding-bottom:30px;
 }
 
 .Tabs{
@@ -172,19 +174,17 @@ img{
 	border-color: black !important;
 }
 
-.tab-panel{
-	background-color: #333333;
+#gridIndex .tab-panel{
+	background-color: white !important;
 	border:1px solid #333333;
+	border-radius: 5px;
 }
 
 .TabCategory, .TabPlatform{
 	width:100%;
+	background: none;
 }
 
-.tab-content{
-	border-color: #333333 !important;
-	
-}
 
 .GridCategory .ui-panel-footer.ui-widget-content, .GridPlatform .ui-panel-footer.ui-widget-content{
 	text-align: center !important;
@@ -208,9 +208,11 @@ img{
 
 #productcatalog{
 	text-align: center;
-	margin-top: 30px;
+	padding-top: 30px;
 	margin-bottom: 30px;
-	font-family:Palatino Linotype;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: bold;
+	color: black;
 	
 }
 
@@ -238,6 +240,7 @@ img{
 	border: none !important;
 	border-radius: 0px !important;
 	padding:10px;
+	
 }  
 
 .tab-content .ui-state-default{
@@ -250,6 +253,7 @@ img{
 	margin-bottom: 10px !important;
  	border-bottom: 1px solid #333333 !important;
 	border-top: 1px solid #333333 !important; 
+	color: black !important;
 }   
 
 .tab-content .ui-datatable  {
@@ -262,7 +266,8 @@ img{
 
 .tab-content .ui-widget-content{
 	border: 0px;
-	background:	#ffffff !important;
+	background:	none !important;
+	color: black;
 }	
 	
 .ui-column-customfilter .ui-selectcheckboxmenu .ui-widget .ui-state-default .ui-corner-all label{
@@ -274,7 +279,7 @@ img{
 } 
 
 .tab-content .ui-paginator{
-	font-size: 10pt !important;
+	font-size: 12pt !important;
 }
 
 .tab-content .ui-paginator-page, .tab-content .ui-paginator-next,  .tab-content .ui-paginator-last,  .tab-content .ui-paginator-first, .tab-content .ui-paginator-prev {
@@ -284,6 +289,7 @@ img{
 
 .tab-content {
 	border: 0px !important;
+	
 }
 
 .tab-content .ui-column-customfilter .ui-selectcheckboxmenu,  .tab-content .ui-column-customfilter .ui-selectcheckboxmenu-trigger {
@@ -312,6 +318,10 @@ img{
 	padding-left:2%;
 }
 
+#productExtraDetails{
+	padding-left: 2%;
+    padding-right: 5%;
+}
 
 #titleProduct{
 	margin-top:auto;
@@ -375,7 +385,7 @@ img{
 .columns{
 	text-align:left;
 	margin-top:60px;
-	margin-bottom:100px;
+	padding-bottom:30px;
 }
 
 #a1, #a2, #a3, #a4{
@@ -408,19 +418,62 @@ h5{
 	font-weight:normal;
 }
 
+/* ------------------------------------ Shopping Cart Page ------------------------------ */
+
+#shoppingcart{
+	text-align: center; 
+	padding-top: 30px; 
+	margin-bottom: 30px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: bold;
+	color: black;
+}
+
+#ShoppingCart_head{
+	display: none;
+}
+
+#rentalPeriod\:rentalDataButton, #j_idt48\:submitOrderButton{
+	margin:5px;
+}
+
+#rentalPriceContainer{
+	margin:10px;
+}
+
+#expectedRentalPrice{
+	display:-webkit-box;
+}
+
+#submitOrder{
+	padding-left:15px;
+	padding-bottom:30px;
+}
+
+#ShoppingCart_data tr{
+	border:hidden;
+}
 
 
+/* ------------------------------------ Checkout Page ------------------------------ */
 
+#checkout{
+	text-align: center; 
+	padding-top: 30px; 
+	margin-bottom: 30px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: bold;
+	color: black;
+}
 
+#gamesList{
+	padding:10px;
+}
 
+#gamesList table tr td{
+	padding-right:10px;
+}
 
-
-
-
-
-
-
-
-
-
-
+#checkoutPageContainer{
+	padding-bottom:30px;
+}

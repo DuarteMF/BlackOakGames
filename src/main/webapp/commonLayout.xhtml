@@ -8,33 +8,35 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
 
-    <h:head>
+<h:head>
 	<h:outputStylesheet name="common-style.css" library="css" />
-    </h:head>
+</h:head>
 
-    <h:body id="displaybackground">
+<h:body >
 
 	<div id="page">
 
-	    <div id="header">
-		<ui:insert name="header" >
-		  <ui:include src="/viewLayout/commonHeader.xhtml" />
-		</ui:insert>
-	    </div>
+		<div id="header">
+			<ui:insert name="header">
+				<ui:include src="/viewLayout/commonHeader.xhtml" />
+			</ui:insert>
+		</div>
 
-	    <div id="content">
-	  	<ui:insert name="content" >
-	 	  <ui:include src="/viewLayout/commonContent.xhtml" />
-	   	</ui:insert>
-	    </div>
+		<div id="displaybackground">
+			<div id="content" class="moldura">
+				<ui:insert name="content">
+					<ui:include src="/viewLayout/commonContent.xhtml" />
+				</ui:insert>
+			</div>
+		</div>
 
-	    <div id="footer">
-	    	<ui:insert name="footer" >
-	    	  <ui:include src="/viewLayout/commonFooter.xhtml" />
-	    	</ui:insert>
-    	    </div>
+		<div id="footer">
+			<ui:insert name="footer">
+				<ui:include src="/viewLayout/commonFooter.xhtml" />
+			</ui:insert>
+		</div>
 
-        </div>
+	</div>
 
-    </h:body>
+</h:body>
 </html>

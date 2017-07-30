@@ -61,19 +61,19 @@
 						<div class="header-left">
 							<ul>
 								<li class="active grid" style="display: inline;">
-									<h:button id="login" value="Login" outcome="Login"/>
+									<h:button id="login" value="Login" outcome="Login" rendered="#{empty (LoginController.activeUser)}"/>
 								</li>
 								
 								<li class="active grid" style="display: inline;">
-									<h:button id="signup" value="Register" outcome="Register"/>
+									<h:button id="signup" value="Register" outcome="Register" rendered="#{empty (LoginController.activeUser)}"/>
 								</li>
 								
 								<li class="active grid" style="display: inline;">		
-									<h:button  id="dashboard" value="Dashboard" outcome="dashboard" />
+									<h:button  id="dashboard" value="Dashboard" outcome="dashboard" rendered="#{LoginController.activeUser eq ADMIN}"/>
 								</li>
 								
 								<li class="active grid" style="display: inline;">									
-									<h:button id="cart" image="/resources/images/cart.png"  outcome="shoppingCart"/>
+									<h:button id="cart" image="/resources/images/cart.png"  outcome="shoppingCart" rendered="#{LoginController.activeUser eq ADMIN or CLIENT}"/>
 								</li>
 							
 							</ul>
@@ -95,7 +95,7 @@
 						<div class="h_menu4">
 							<ul class="memenu skyblue">
 								<li class="active grid" style="display: inline;"><a
-									class="color8" href="dashboard.xhtml">Home</a></li>
+									class="color8" href="index.xhtml">Home</a></li>
 							</ul>
 						</div>
 					</div>
