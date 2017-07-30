@@ -3,6 +3,8 @@ package org.altar.upacademy.model;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,7 +38,11 @@ public class Login extends Entity implements Serializable{
 	private String password;
 	
 	@OneToOne
-	private Client client;
+	private Client client = new Client();
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name="User_Role")
+	private Role userRole = Role.CLIENT;
 	
 	
 	public Client getClient() {
@@ -62,6 +68,12 @@ public class Login extends Entity implements Serializable{
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public Role getUserRole() {
+		return userRole;
+	}
+	public void setUserRole(Role userRole) {
+		this.userRole = userRole;
 	}
 	
 }

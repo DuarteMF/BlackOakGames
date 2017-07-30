@@ -27,21 +27,18 @@ public class DataQuery {
 //	@Transactional
 	public boolean loginControl(String username, String password){
 		try{
-			System.out.println(username);
-			System.out.println(password);
 			Login l = em.createNamedQuery("Login.control", Login.class).setParameter("username", username).setParameter("password", password).getSingleResult();
-//			Login l = (Login) em.createNativeQuery("SELECT * FROM LOGIN WHERE Username = '"+ username + "' and Password = '" + password + "'", Login.class).getResultList().get(0);
-//			Login l = (Login) em.createNativeQuery("SELECT * FROM LOGIN", Login.class).getResultList().get(0);
-			System.out.println(l);
 			if(l != null){
 				return true;
 			}
 			return false;
 		}catch (Exception e){
-			System.out.println("teste "+ e.getMessage());
 			return false;
 		}
 	}
 	
+	public Login getUser(String username, String password){
+		return em.createNamedQuery("Login.control", Login.class).setParameter("username", username).setParameter("password", password).getSingleResult();
+	}
 	
 }

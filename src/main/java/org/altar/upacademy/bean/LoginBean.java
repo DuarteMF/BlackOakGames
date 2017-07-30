@@ -9,9 +9,8 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-
 import org.altar.upacademy.model.Login;
-import org.altar.upacademy.model.Platform;
+import org.altar.upacademy.model.Role;
 import org.altar.upacademy.repository.LoginRepository;
 
 @Named("LoginBean")
@@ -55,6 +54,7 @@ public class LoginBean implements Serializable{
 	public void addAccount() {
 		clientBean.addClient();
 		newAccount.setClient(clientBean.getAddedClient());
+//		newAccount.setUserRole(Role.CLIENT);
 		loginRepository.addToDb(newAccount);
 	}
 }

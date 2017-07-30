@@ -4,7 +4,9 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:b="http://bootsfaces.net/ui"
+    xmlns:o="http://omnifaces.org/ui">
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -28,38 +30,45 @@
 					<h3>Personal information</h3>
 					<div>
 						<span>Name</span> 
-						<h:inputText id="Name" value="#{ClientBean.newClient.clientName}" type="text" required="true"/>
-						<p:message for="Name" closable="true"/>
+						<h:inputText id="Name" value="#{ClientBean.newClient.clientName}" type="text" required="true" requiredMessage="Please enter a Name" />
+						<p:message id="Namemessage" for="Name" closable="true"/>
 					</div>
 					<div>
 						<span>Address</span>
-						<h:inputText value="#{ClientBean.newClient.clientAddress}" type="text" required="true"/>
+						<h:inputText id="Address" value="#{ClientBean.newClient.clientAddress}" type="text" required="true" requiredMessage="Please enter an Address"/>
+						<p:message id="Addressmessage" for="Address" closable="true"/>
 					</div>
 					<div>
 						<span>E-mail</span> 
-						<h:inputText value="#{ClientBean.newClient.clientEmail}" type="text" required="true"/>
+						<h:inputText id="Email" value="#{ClientBean.newClient.clientEmail}" type="text" required="true" requiredMessage="Please enter an E-mail"/>
+						<p:message id="Emailmessage" for="Email" closable="true"/>
 					</div>
 					<div>
 						<span>Phone Number</span>
-						<h:inputText value="#{ClientBean.newClient.clientPhoneNumber}" type="text" required="true"/>
+						<h:inputText id="PhoneNumber" value="#{ClientBean.newClient.clientPhoneNumber}" type="text" required="true" requiredMessage="Please enter a Phone Number"/>
+						<p:message id="PhoneNumbermessage" for="PhoneNumber" closable="true"/>
+						
 					</div>
 				</div>
 				<div class="col-md-6 register-bottom-grid">
 					<h3>Login information</h3>
 					<div>
 						<span>Username</span>
-						<h:inputText value="#{LoginBean.newAccount.username}" type="text" required="true"/>
+						<h:inputText id="UserName" value="#{LoginBean.newAccount.username}" type="text" required="true" requiredMessage="Please enter an Username"/>
+						<p:message id="UserNamemessage" for="UserName" closable="true"/>
 					</div>
 					<div>
 						<span>Password</span>
-						<h:inputSecret value="#{LoginBean.newAccount.password}" type="password" required="true"/>
+						<h:inputSecret id="Password" redisplay="true" value="#{LoginBean.newAccount.password}" type="password" required="true" requiredMessage="Please enter a Password"/>
+						<p:message id="Passwordmessage" for="Password" closable="true"/>
 					</div>
 					<div>
 						<span>Confirm Password</span> 
-						<h:inputSecret value="" type="password"/>
+						<h:inputSecret  id="confirm" redisplay="true" required="true" type="password"/>
+						<o:validateEqual id="equal" components="Password confirm"
+                		message="Passwords are not equal" showMessageFor="Password" />
 					</div>
-					<p:commandButton class="RegisterButton" value="Register" action="#{LoginBean.checkAccountName()}" update="growl">
-						
+					<p:commandButton class="RegisterButton" value="Register" action="#{LoginBean.checkAccountName()}" update="growl, Namemessage, Addressmessage, PhoneNumbermessage, Emailmessage, UserNamemessage, Passwordmessage ">
 					</p:commandButton>
 				</div>
 				<div class="clearfix"></div>

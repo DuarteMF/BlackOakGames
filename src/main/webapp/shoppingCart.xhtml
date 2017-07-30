@@ -21,35 +21,35 @@
 
 			<p:growl id="errorMsgs" showDetail="true" />
 
-				<div class="title">
-					<h1 id="shoppingcart">Shopping Cart</h1>
-				</div>
+			<div class="title">
+				<h1 id="shoppingcart">Shopping Cart</h1>
+			</div>
 
-				<div class="container-fluid">
-					<p:dataTable id="ShoppingCart" var="productUnit"
-						value="#{ShoppingCartBean.cart}">
-						<p:column>
-							<p:graphicImage library="images"
-								name="#{productUnit.product.productImageName}" id="imageGame"
-								class="img-responsive" />
-						</p:column>
-						<p:column>
-							<h:outputText value="#{productUnit.product.productName}" />
-						</p:column>
-						<p:column>
-							<h:outputText value="#{productUnit.productPlatform}" />
-						</p:column>
-						<p:column>
-							<h:outputText value="#{productUnit.product.rentalPrice}€" />
-						</p:column>
-						<p:column>
-							<p:commandButton update=":ShoppingCart"
-								action="#{ShoppingCartBean.removeFromCart(productUnit)}"
-								icon="ui-icon-trash" title="Delete" />
-						</p:column>
-					</p:dataTable>
+			<div class="container-fluid">
+				<p:dataTable id="ShoppingCart" var="productUnit"
+					value="#{ShoppingCartBean.cart}">
+					<p:column>
+						<p:graphicImage library="images"
+							name="#{productUnit.product.productImageName}" id="imageGame"
+							class="img-responsive" />
+					</p:column>
+					<p:column>
+						<h:outputText value="#{productUnit.product.productName}" />
+					</p:column>
+					<p:column>
+						<h:outputText value="#{productUnit.productPlatform}" />
+					</p:column>
+					<p:column>
+						<h:outputText value="#{productUnit.product.rentalPrice}€" />
+					</p:column>
+					<p:column>
+						<p:commandButton update=":ShoppingCart"
+							action="#{ShoppingCartBean.removeFromCart(productUnit)}"
+							icon="ui-icon-trash" title="Delete" />
+					</p:column>
+				</p:dataTable>
 
-					<br /> <br />
+				<br /> <br />
 
 				<h:form id="rentalPeriod">
 					<h:panelGrid columns="2" cellpadding="5">
@@ -66,27 +66,28 @@
 							required="true" converter="localDateTimeConverter">
 						</p:calendar>
 					</h:panelGrid>
-					<br/>
-					<p:commandButton id="rentalDataButton" update=":expectedRentalPrice, errorMsgs"
+					<br />
+					<p:commandButton id="rentalDataButton"
+						update=":expectedRentalPrice, errorMsgs"
 						action="#{ShoppingCartBean.calculateExpectedPrice()}"
 						value="Calculate Rental Price" />
 				</h:form>
 
 				<div id="rentalPriceContainer" class="container-fluid">
-						<h:form id="expectedRentalPrice">
-							<h2>Total Price:</h2>
-							<h:outputText value="#{ShoppingCartBean.expectedPrice}€"
-								styleClass="h2" />
-						</h:form>
-					</div>
-				</div>
-
-				<div class="container-fluid" id="submitOrder">
-					<h:form>
-						<p:commandButton value="Submit Order" id="submitOrderButton"
-							action="#{ShoppingCartBean.createOrder()}" update="errorMsgs" />
+					<h:form id="expectedRentalPrice">
+						<h2>Total Price:</h2>
+						<h:outputText value="#{ShoppingCartBean.expectedPrice}€"
+							styleClass="h2" />
 					</h:form>
 				</div>
+			</div>
+
+			<div class="container-fluid" id="submitOrder">
+				<h:form rendered="#{LoginController.activeUser eq CLIENT or ADMIN}">
+					<p:commandButton value="Submit Order" id="submitOrderButton"
+						action="#{ShoppingCartBean.createOrder()}" update="errorMsgs" />
+				</h:form>
+			</div>
 
 		</ui:define>
 	</ui:composition>
