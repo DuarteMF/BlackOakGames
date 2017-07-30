@@ -7,8 +7,10 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
 import org.altar.upacademy.model.Login;
+import org.altar.upacademy.model.Role;
 import org.altar.upacademy.query.DataQuery;
 import org.primefaces.context.RequestContext;
 
@@ -60,7 +62,20 @@ public class LoginController implements Serializable{
 		this.activeUser = activeUser;
 	}
 	
-	public void logout(){
-		activeUser = null;
+	public String logout(){
+//		activeUser = null;
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
+				.getExternalContext().getSession(false);
+		session.invalidate();
+		return "index.xhtml?faces-redirect=true";
+	}
+	
+	public boolean isAdmin(){
+		if(this.activeUser != null){
+			return this.activeUser.getUserRole()==Role.ADMIN;
+		}			
+		else{
+			return false;
+		}
 	}
 }

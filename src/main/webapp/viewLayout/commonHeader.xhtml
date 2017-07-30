@@ -78,12 +78,15 @@
 
 							<li class="active grid" style="display: inline;"><h:button
 									id="dashboard" value="Dashboard" outcome="dashboard"
-									rendered="#{not empty (login.activeUser)}" /></li>
+									rendered="#{login.admin}" /></li>
 
 							<li class="active grid" style="display: inline;"><h:button
 									id="cart" image="/resources/images/cart.png"
 									outcome="shoppingCart" /></li>
-							
+
+							<li class="active grid" style="display: inline;"><h:form><h:commandLink
+									id="logout" value="Logout" action="#{login.logout}" rendered="#{not empty (login.activeUser)}" /></h:form></li>
+
 
 						</ul>
 					</div>
