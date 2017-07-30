@@ -258,14 +258,15 @@ background-size: 100%;
 }
 
 .ui-datatable tbody td{
-	border-style:none;
+	border-style: 0px!important;
 }
 
 .tab-content .ui-widget-content{
-	border: 0px;
+	border: 0px !important;
 	background:	#ffffff !important;
 }	
-	
+
+
 .ui-column-customfilter .ui-selectcheckboxmenu .ui-widget .ui-state-default .ui-corner-all label{
 	border: 0px!important;
 }	
