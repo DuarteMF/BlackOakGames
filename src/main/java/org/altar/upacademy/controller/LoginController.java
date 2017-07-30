@@ -60,5 +60,7 @@ public class LoginController implements Serializable{
 		this.activeUser = activeUser;
 	}
 	
-	
+	public void logout(){
+		activeUser = null;
+	}
 }
