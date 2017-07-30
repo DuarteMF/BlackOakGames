@@ -33,7 +33,28 @@
 	}
 }
 
-/* Search */
+
+img{
+	margin-bottom: 10px !important;
+}
+.moldura{
+	width: 65% !important;
+	align-text: center !important;
+	background-color: white !important;
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+	
+}
+
+#displaybackground{
+background: url("#{resource['images:backgroundlumini.png']}");
+background-size: 100%;
+ background-repeat: no-repeat;
+ background-color: #D22B2B;
+}
+
+/* Zona do search */
+
 
 .search1{
 	display:flex;
