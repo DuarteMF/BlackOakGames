@@ -28,7 +28,7 @@ public class LoginController implements Serializable{
 	
 	public String loginControl(){
 		if(query.loginControl(username, password)){
-			return "dashboard.xhtml";
+			return "index.xhtml?faces-redirect=true";
 		}
 		RequestContext.getCurrentInstance().update("growl");
 		FacesContext context = FacesContext.getCurrentInstance();
