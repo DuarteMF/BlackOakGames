@@ -179,6 +179,11 @@
 					<p:column headerText="Rental Price (€ per week)">
 						<h:outputText value="#{product.rentalPrice}" />
 					</p:column>
+					<p:column>
+							<h:button class="btn btn-link" value="Info"  outcome="productPage">
+								<f:param name="productId" value="#{product.productId}"/>
+							</h:button>
+						</p:column>
 					<p:column headerText="Options">
 						<p:commandButton update=":EditProductSection, :errorMsgs"
 							icon="ui-icon-pencil" title="Edit">

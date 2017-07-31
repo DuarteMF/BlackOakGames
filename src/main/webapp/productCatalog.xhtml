@@ -41,7 +41,6 @@
 			<div class="container-fluid tab-content">
 			
 				<h:form id="form" >
-			
 					<p:dataTable  var="product" value="#{ProductCatalogBean.searchBar()}" 
 						style="margin-bottom:40px" paginator="true" id="ProductList" rows="5"
 						paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -51,37 +50,18 @@
 							<p:graphicImage library="images" name="#{product.productImageName}"
 								style="width:30%; text-align: center" />
 						</p:column>
-						<p:column filterBy="#{product.productName}" 
-							filterMatchMode="contains" headerText="Name" update=":form" actionListener="#{product.productName}"
+						<p:column  headerText="Name" update=":form" actionListener="#{product.productName}"
 							sortBy="#{product.productName}">
 							<h:outputText value="#{product.productName}" />
 						</p:column>
 			
-						<p:column filterBy="#{product.categorySet}" filterMatchMode="in"
-							headerText="Categories" update=":form" sortBy="#{product.categorySet}">
-							<f:facet name="filter">
-								<p:selectCheckboxMenu label="Choose" 
-									onchange="PF('productTable').filter()" panelStyle="width:125px"
-									scrollHeight="150" converter="omnifaces.SelectItemsConverter" >
-									<f:selectItems value="#{CategoryBean.getList()}" var="category"
-										itemLabel="#{category.categoryName}"
-										itemValue="#{category.categoryName}"  />
-								</p:selectCheckboxMenu>
-							</f:facet>
+						<p:column headerText="Categories" update=":form" sortBy="#{product.categorySet}">
 							<h:outputText value="#{product.categorySet}" />
 						</p:column>
 			
-						<p:column filterBy="#{product.platformSet}" update=":form" filterMatchMode="in"
+						<p:column  update=":form" 
 							headerText="Plataforms" sortBy="#{product.platformSet}">
-							<f:facet name="filter">
-								<p:selectCheckboxMenu label="Choose"
-									onchange="PF('productTable').filter()" panelStyle="width:125px"
-									scrollHeight="150" converter="omnifaces.SelectItemsConverter">
-									<f:selectItems value="#{PlatformBean.getList()}" var="platform"
-										itemLabel="#{platform.platformName}"
-										itemValue="#{platform.platformName}" />
-								</p:selectCheckboxMenu>
-							</f:facet>
+						
 							<h:outputText value="#{product.platformSet}" />
 						</p:column>
 			

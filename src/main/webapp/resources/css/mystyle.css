@@ -185,7 +185,7 @@ img{
 	background: none;
 }
 
-.TabCategory.active #j_idt31_tab, .TabPlatform.active #j_idt37_tab{
+#gridIndex .TabCategory.active #j_idt31_tab, .TabPlatform.active #j_idt37_tab{
 	background-color: #f2f2f2 !important;
 	border: hidden !important;
 }
